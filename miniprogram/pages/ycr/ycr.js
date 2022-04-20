@@ -5,9 +5,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    color:1
   },
-
+  use(){
+    var color = (this.data.color + 1) % 7
+    this.setData({
+      color
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

@@ -1,2 +1,8 @@
 <!--pages/ycr/ycr.wxml-->
-<button>ycr is here</button>
+<button class="red" bindtap="use" wx:if="{{color == 1}}">ycr is here</button>
+<button class="orange" bindtap="use" wx:if="{{color == 2}}">ycr is here</button>
+<button class="yellow" bindtap="use" wx:if="{{color == 3}}">ycr is here</button>
+<button class="green" bindtap="use" wx:if="{{color == 4}}">ycr is here</button>
+<button class="cyan" bindtap="use" wx:if="{{color == 5}}">ycr is here</button>
+<button class="blue" bindtap="use" wx:if="{{color == 6}}">ycr is here</button>
+<button class="purple" bindtap="use" wx:if="{{color == 0}}">ycr is here</button>

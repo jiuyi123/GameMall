@@ -1,1 +1,50 @@
 /* pages/ycr/ycr.wxss */
+.red{
+  color: aliceblue;
+  background-color: red;
+  position: absolute;
+  top:100rpx;
+  left:200rpx;
+}
+.orange{
+  color: aliceblue;
+  background-color: orange;
+  position: absolute;
+  top:110rpx;
+  left:210rpx;
+}
+.yellow{
+  color: aliceblue;
+  background-color: yellow;
+  position: absolute;
+  top:120rpx;
+  left:220rpx;
+}
+.green{
+  color: aliceblue;
+  background-color: green;
+  position: absolute;
+  top:130rpx;
+  left:230rpx;
+}
+.cyan{
+  color: aliceblue;
+  background-color: cyan;
+  position: absolute;
+  top:140rpx;
+  left:240rpx;
+}
+.blue{
+  color: aliceblue;
+  background-color: blue;
+  position: absolute;
+  top:150rpx;
+  left:250rpx;
+}
+.purple{
+  color: aliceblue;
+  background-color: purple;
+  position: absolute;
+  top:160rpx;
+  left:260rpx;
+}
