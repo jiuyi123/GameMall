@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/ycr/ycr",
     "pages/index/index",
     "pages/getOpenId/index",
     "pages/getMiniProgramCode/index",
