@@ -1,0 +1,1 @@
+"D:\develop\WCDevtools\微信web开发者工具\cli.bat" cloud functions deploy --e cloud1-4gttuttpb60aab13 --n quickstartFunctions --r --project "D:\ygks" --report_first --report
