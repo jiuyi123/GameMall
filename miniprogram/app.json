@@ -1,5 +1,8 @@
 {
   "pages": [
+    "pages/gameMarketProject/index/index",
+    "pages/gameMarketProject/person/person",
+    "pages/gameMarketProject/information/information",
     "pages/ycr/ycr",
     "pages/index/index",
     "pages/getOpenId/index",
@@ -15,12 +18,39 @@
     "pages/sumRecordResult/index"
   ],
   "window": {
-    "backgroundColor": "#F6F6F6",
+    "backgroundColor": "#0E3767",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "云开发 QuickStart",
-    "navigationBarTextStyle": "black"
+    "navigationBarBackgroundColor": "#00243B",
+    "navigationBarTitleText": "游戏商城",
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": true
   },
+
+  "tabBar": {
+    "color": "#ffffff",
+    "selectedColor": "#f79926",
+    "backgroundColor": "#00243B",
+    "list": [
+      {
+        "pagePath": "pages/gameMarketProject/person/person",
+        "text": "我的",
+        "iconPath": "images/tarBar/yonghu.png",
+        "selectedIconPath": "images/tarBar/yonghufill.png"
+      },
+      {
+        "pagePath": "pages/gameMarketProject/index/index",
+        "text": "首页",
+        "iconPath": "images/tarBar/shouye.png",
+        "selectedIconPath": "images/tarBar/shouyefill.png"
+      },
+      {
+        "pagePath": "pages/gameMarketProject/information/information",
+        "text": "通知",
+        "iconPath": "images/tarBar/xinxi.png",
+        "selectedIconPath": "images/tarBar/xinxifill.png"
+      }
+  ]
+},
   "sitemapLocation": "sitemap.json",
   "style": "v2"
 }

@@ -1,0 +1,46 @@
+/* pages/gameMarketProject/index/index.wxss */
+page{
+  background-color:#0c2f5a;
+  height:100%;
+  }
+.inputBox{
+  background-color: azure;
+  border-color: black;
+  border-width: 5vmax;
+  margin-top: 5vw;
+  margin-left: 2vw;
+  height: 10vw;
+  width: 70vw;
+}
+.buttonBox{
+  margin-top: 5vw;
+  background-color: lightblue;
+}
+.banners{
+  margin: 5vx;
+  width: 100%;
+  height: 300rpx;
+}
+
+
+
+.banners image{
+  height: 100%;
+  width: 100%;
+}
+
+.btn{
+  font-size: 24rpx;
+  padding: 20rpx 51rpx;
+  background: #00243B;
+  text-align: center;
+  display: inline-block;
+  color: #fff;
+}
+.btn:nth-child(5) {
+margin-right: 0;
+}
+.btn-selected{
+  /* color: #F73C41; */
+  background: #5E9Fe6;
+}

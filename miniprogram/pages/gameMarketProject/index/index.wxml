@@ -1,0 +1,42 @@
+<!--pages/gameMarketProject/index/index.wxml-->
+<view>
+<!-- 搜索框 -->
+  <view style="display: flex;">
+    <input type="text"  class="inputBox"/>
+    <button class="buttonBox" size="mini">搜索</button>
+  </view>
+<!-- 导航栏 -->
+  <view style="margin:2%;margin-top: 4%;">
+    <swiper class="banners" indicator-dots autoplay  indicator-active-color="#d43c33" indicator-color="ivory">
+      <swiper-item wx:for="{{imgUrl}}" wx:key="bannerId">
+        <image mode="widthFix" src="{{item}}" />
+      </swiper-item>
+    </swiper>
+  </view>
+<!-- 标签分区 -->
+  <view style="margin-left: 2%;">
+    <view
+   wx:for="{{riderCommentList}}"
+   wx:for-item="item" 
+   wx:key="index" 
+   bindtap="checkboxChange" 
+   data-value="{{item.value}}" 
+   data-index="{{index}}" 
+   checked="{{item.selected}}"
+   class="btn {{item.selected ? 'btn-selected' : ''}}" >
+        {{item.title}}
+  </view>
+  </view>
+<!-- 展示区 -->
+<view style="margin: 5rpx;margin-top: 20rpx;">
+  <view wx:for="{{imgGames}}"  style="display: inline-block;">
+    <view style="flex-direction: column;display: flex;">
+      <image mode="scaleToFill" src="{{item.src}}" style="margin: 5rpx;height: 35vmax; width: 22vmax;"/>
+      <text style="color:lightblue;text-align: center;">{{item.name}}</text>
+    </view>
+  </view>
+</view>
+
+
+
+</view>

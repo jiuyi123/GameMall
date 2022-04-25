@@ -10,41 +10,41 @@
   color: aliceblue;
   background-color: orange;
   position: absolute;
-  top:110rpx;
-  left:210rpx;
+  top:100rpx;
+  left:200rpx;
 }
 .yellow{
   color: aliceblue;
   background-color: yellow;
   position: absolute;
-  top:120rpx;
-  left:220rpx;
+  top:100rpx;
+  left:200rpx;
 }
 .green{
   color: aliceblue;
   background-color: green;
   position: absolute;
-  top:130rpx;
-  left:230rpx;
+  top:100rpx;
+  left:200rpx;
 }
 .cyan{
   color: aliceblue;
   background-color: cyan;
   position: absolute;
-  top:140rpx;
-  left:240rpx;
+  top:100rpx;
+  left:200rpx;
 }
 .blue{
   color: aliceblue;
   background-color: blue;
   position: absolute;
-  top:150rpx;
-  left:250rpx;
+  top:100rpx;
+  left:200rpx;
 }
 .purple{
   color: aliceblue;
   background-color: purple;
   position: absolute;
-  top:160rpx;
-  left:260rpx;
+  top:100rpx;
+  left:200rpx;
 }

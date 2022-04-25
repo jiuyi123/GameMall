@@ -6,3 +6,4 @@
 <button class="cyan" bindtap="use" wx:if="{{color == 5}}">ycr is here</button>
 <button class="blue" bindtap="use" wx:if="{{color == 6}}">ycr is here</button>
 <button class="purple" bindtap="use" wx:if="{{color == 0}}">ycr is here</button>
+<button >ssc</button>

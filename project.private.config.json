@@ -57,7 +57,54 @@
         {
           "name": "pages/updateRecordSuccess/index",
           "pathName": "pages/updateRecordSuccess/index",
+          "query": "",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/databaseGuide/databaseGuide",
+          "query": "",
+          "launchMode": "default",
+          "scene": null,
+          "partialCompile": {
+            "enabled": false,
+            "pages": [
+              "pages/ycr/ycr"
+            ]
+          }
+        },
+        {
+          "name": "",
+          "pathName": "pages/databaseGuide/databaseGuide",
+          "query": "",
+          "launchMode": "default",
+          "scene": null,
+          "partialCompile": {
+            "enabled": false,
+            "pages": [
+              "pages/ycr/ycr"
+            ]
+          }
+        },
+        {
+          "name": "",
+          "pathName": "pages/index/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null,
+          "launchMode": "default",
+          "partialCompile": {
+            "enabled": false,
+            "pages": [
+              "pages/gameMarketProject/index/index"
+            ]
+          }
         }
       ]
     }
