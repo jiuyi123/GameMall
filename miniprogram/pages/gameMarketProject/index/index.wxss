@@ -6,23 +6,20 @@ page{
 .inputBox{
   background-color: azure;
   border-color: black;
-  border-width: 5vmax;
-  margin-top: 5vw;
-  margin-left: 2vw;
-  height: 10vw;
-  width: 70vw;
+  margin-top: 30rpx;
+  margin-left: 10rpx;
+  height: 60rpx;
+  width: 600rpx;
 }
 .buttonBox{
-  margin-top: 5vw;
+  margin-top: 30rpx;
   background-color: lightblue;
 }
 .banners{
-  margin: 5vx;
-  width: 100%;
+  margin: 2rpx;
+  width: 740rpx;
   height: 300rpx;
 }
-
-
 
 .banners image{
   height: 100%;
@@ -43,4 +40,16 @@ margin-right: 0;
 .btn-selected{
   /* color: #F73C41; */
   background: #5E9Fe6;
+}
+
+.viewStore{
+  display:flex; 
+  justify-content: center;
+}
+.viewStore2{
+  display:flex; 
+  justify-content: center;
+  align-content: center;
+  background-color: rgba(11, 32, 44, 0.5);
+  width: 500rpx;
 }

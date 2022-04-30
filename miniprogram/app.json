@@ -1,9 +1,12 @@
 {
   "pages": [
     "pages/gameMarketProject/index/index",
+    "pages/gameMarketProject/index/gameDetail/detail/detail",
+    "pages/gameMarketProject/index/gameSort/sort/sort",
     "pages/gameMarketProject/person/person",
     "pages/gameMarketProject/information/information",
     "pages/ycr/ycr",
+    "pages/ssc/ssc",
     "pages/index/index",
     "pages/getOpenId/index",
     "pages/getMiniProgramCode/index",

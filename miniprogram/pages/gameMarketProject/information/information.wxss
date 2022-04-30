@@ -1,1 +1,5 @@
 /* pages/gameMarketProject/information/information.wxss */
+page{
+  background-color:#0c2f5a;
+  height:100%;
+  }

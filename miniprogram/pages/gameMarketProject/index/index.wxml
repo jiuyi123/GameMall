@@ -1,20 +1,30 @@
 <!--pages/gameMarketProject/index/index.wxml-->
 <view>
 <!-- 搜索框 -->
-  <view style="display: flex;">
+  <view style="display: flex; flex-direction: row;justify-content: space-around;">
     <input type="text"  class="inputBox"/>
     <button class="buttonBox" size="mini">搜索</button>
   </view>
 <!-- 导航栏 -->
-  <view style="margin:2%;margin-top: 4%;">
+  <view style="display: flex; justify-content: center;margin: 5rpx;">
     <swiper class="banners" indicator-dots autoplay  indicator-active-color="#d43c33" indicator-color="ivory">
       <swiper-item wx:for="{{imgUrl}}" wx:key="bannerId">
-        <image mode="widthFix" src="{{item}}" />
+        <image  src="{{item}}" style="width: 740rpx;"/>
       </swiper-item>
     </swiper>
   </view>
+  <!-- 分类 -->
+  <view class="viewStore">
+    <view class="viewStore2" >
+      <view style="display: flex;flex-direction: column;" bindtap="goSort">
+        <a href="https://imgtu.com/i/LvSw1e"></a>
+        <image src="https://s1.ax1x.com/2022/04/29/LvSw1e.png" lazy-load="true" style="width: 100rpx;height: 100rpx;"></image>
+        <text style="color: white;font-size: 25rpx;">游戏分类</text>
+      </view>
+    </view>
+  </view>
 <!-- 标签分区 -->
-  <view style="margin-left: 2%;">
+  <!-- <view style="margin-left: 10rpx;">
     <view
    wx:for="{{riderCommentList}}"
    wx:for-item="item" 
@@ -26,17 +36,21 @@
    class="btn {{item.selected ? 'btn-selected' : ''}}" >
         {{item.title}}
   </view>
-  </view>
+  </view> -->
 <!-- 展示区 -->
-<view style="margin: 5rpx;margin-top: 20rpx;">
-  <view wx:for="{{imgGames}}"  style="display: inline-block;">
-    <view style="flex-direction: column;display: flex;">
-      <image mode="scaleToFill" src="{{item.src}}" style="margin: 5rpx;height: 35vmax; width: 22vmax;"/>
+<view style="margin:30rpx;margin-top: 20rpx;">
+  <view wx:for="{{gameInfo}}"  style="display: inline-block;">
+    <view id="gameInformation" data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
+      <image mode="scaleToFill" src="{{item.src}}" style="margin: 15rpx;height: 300rpx; width: 200rpx;"/>
       <text style="color:lightblue;text-align: center;">{{item.name}}</text>
     </view>
   </view>
 </view>
-
+<!-- 详细信息 -->
+<view>
+  <!-- 视频 -->
+  <!-- <video src="https://gp-dev.cdn.bcebos.com/gp-dev/upload/file/source/02175c1a3c029ad6c4120a87f3ab39dc.mp4"></video> -->
+</view>
 
 
 </view>

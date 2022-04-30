@@ -1,0 +1,121 @@
+/* pages/gameMarketProject/index/gameDetail/detail/detail.wxss */
+page{
+  height: 100%;
+  -webkit-overflow-scrolling : touch;
+}
+.inputBox{
+  background-color: azure;
+  border-color: black;
+  margin-left: 5rpx;
+  height: 75rpx;
+  width: 540rpx;
+}
+.buttonBox{
+  background-color: lightblue;
+}
+/*信息tab页面*/
+.tab-h{
+  margin-top: -10rpx; height: 80rpx;width: 100%; box-sizing: border-box;overflow: hidden;line-height: 80rpx;background: #0D3665; font-size: 16px; white-space: nowrap;top: 0; left: 0; z-index: 99;display: flex;flex-direction: row;justify-content: space-around;}
+ .tab-item{display:inline-flex;justify-content: space-around;}
+ .tab-item.active{color: #4675F9;position: relative;}
+ /*.tab-item.active:after{ content: "";display: block;height: 8rpx;width: 60rpx;background: #4675F9;position: absolute; bottom: 0;left: 5rpx;border-radius: 16rpx;} */
+ .item-ans{ width: 100%;display: flex; flex-grow: row no-wrap;justify-content: space-between; padding: 30rpx;box-sizing: border-box; height: 180rpx;align-items: center;border-bottom: 1px solid #F2F2F2;}
+ .avatar{width: 100rpx;height: 100rpx;position: relative;padding-right: 30rpx;}
+ .avatar .img{width: 100%;height: 100%;}
+ .avatar .doyen{width: 40rpx;height: 40rpx;position: absolute;bottom: -2px;right: 20rpx;}
+ .expertInfo{font-size: 12px;flex-grow: 2;color: #B0B0B0;line-height: 1.5em;}
+ .expertInfo .name{font-size: 16px;color:#000;margin-bottom: 6px;}
+ .askBtn{ width: 120rpx;height: 60rpx;line-height: 60rpx;text-align: center;font-size: 14px; border-radius: 60rpx;border: 1px solid #4675F9; color:#4675F9;}
+ .tab-content{margin-top: 0rpx;}
+ .scoll-h{height: 100%;}
+
+ /*评论tab页面*/
+ /*用户评价*/
+/*用户评价*/
+.reviewItemView{
+  padding:20rpx 0;
+  border-bottom: 1rpx solid #f1f1f1;
+  position: relative;
+}
+.reviewItemView > view:nth-child(1){
+  font-size: 24rpx;
+  color: #9f9f9f;
+}
+.reviewItemView > view:nth-child(2){
+  font-size: 24rpx;
+  position:absolute;
+  top:20rpx;
+  right:30rpx;
+  color:#9f9f9f
+}
+.reviewItemView > view:nth-child(3){
+  font-size: 30rpx;
+  padding-top: 20rpx;
+}
+@font-face {  
+  font-family: 'FontAwesome';  
+  src: url('https://netdna.bootstrapcdn.com/font-awesome/3.2.1/font/fontawesome-webfont.woff?v=3.2.1') format('woff'); 
+}
+.userNameView{
+  position:relative;
+}
+.userNameView > view{
+  display: flex;
+  position:absolute;
+  left:130rpx;
+  top:6rpx;
+}
+.star{margin-right:4rpx;}/*五角星之间的间距*/
+/*五角星*/
+.star .icon:before {
+  content: '\f005'; 
+  font-family: FontAwesome; 
+  display: block;  
+  overflow: hidden;
+}
+.star .icon {
+    display: block;
+    font-size: 24rpx; 
+    text-align: center; 
+    width: 24rpx;
+    height: 24rpx;
+    line-height: 24rpx;
+    position: relative;
+    white-space: pre;
+  }
+/*灰色五角星*/
+.star .icon_gray{color:#dddddd}
+/*黄色五角星*/
+.star .icon_yellow:before {color: #fed300;}
+#moreView{
+  height:88rpx;
+  line-height: 88rpx;
+  font-size: 28rpx;
+  color: #a6a6a6;
+  position: relative;
+}
+.arrow{
+  width: 16rpx;
+  height:16rpx;
+  border-top:4rpx solid #999;
+  border-right: 4rpx solid #999;
+  /*旋转45度*/
+  transform:rotate(45deg);
+  /*调整位置*/
+  position:absolute;
+  right:30rpx;
+  top:38rpx;
+}
+
+.cmtView{
+  height:100rpx;
+  width: 750rpx; 
+  display: flex;
+  flex-direction: 
+  row;justify-content: 
+  space-around;
+  align-items: center;
+  background-color: #0D3665;
+  position:fixed;
+  bottom:0;
+}

@@ -1,4 +1,4 @@
-// pages/ssc/ssc.js
+// pages/gameMarketProject/index/gameSort/sort/sort.js
 Page({
 
   /**
@@ -6,12 +6,6 @@ Page({
    */
   data: {
 
-  },
-  toYcr(){
-    console.log("yoYcr")
-    wx.navigateTo({
-      url: '/pages/ycr/ycr',
-    })
   },
 
   /**
