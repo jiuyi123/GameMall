@@ -4,16 +4,21 @@ page{
   height:100%;
   }
 .inputBox{
-  background-color: azure;
-  border-color: black;
-  margin-top: 30rpx;
-  margin-left: 10rpx;
-  height: 60rpx;
-  width: 600rpx;
+  width: 500rpx;
+  height: 70rpx;
+  background: rgba(244, 246, 248, 1);
+  border-radius: 17px;
+  margin: 20rpx 0rpx 20rpx 20rpx;
+  font-size: 26rpx;
+  color: #000;
+  line-height: 70rpx;
+  text-align: center;
 }
 .buttonBox{
-  margin-top: 30rpx;
+  margin-top: 20rpx;
   background-color: lightblue;
+  height: 70rpx;
+  text-align: center;
 }
 .banners{
   margin: 2rpx;

@@ -8,7 +8,7 @@
       <view class="tab-h" scroll-left="{{scrollLeft}}">
             <view class="tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="swichNav">信息</view>
             <view class="tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav">评论({{gameInfoObj.numComment}})</view>
-            <view class="tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="swichNav">购买</view>
+            <view class="tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="swichNav">推荐</view>
       </view>
       <view style="background-color:rgba(173,216,210, 0.3);">
             <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab" style="height:{{winHeight}}rpx">
@@ -26,6 +26,13 @@
                                           </view>
                                     </view>
                                     <text>游戏简介</text>
+
+                                    <!-- 购买页面 -->
+                                    <view class="buyView">
+                                          <button style="background-color: rgb(153, 255, 204); ">收藏</button>
+                                          <button style="background-color: rgb(102, 255, 102);">购物车</button>
+                                          <button style="background-color: rgb(204, 255, 51);">购买</button>
+                                    </view>
                               </view>
                               <!-- 评论页面 ------------------------------------->
                               <view wx:if="{{currentTab==1?'active':''}}">
@@ -63,8 +70,8 @@
                                     </view>
                         
                               </view>
-                              <!-- 购买页面 ---------------------------------------->
-                              <view wx:if="{{currentTab==2?'active':''}}">购买</view>
+                              <!-- 推荐页面 ---------------------------------------->
+                              <view wx:if="{{currentTab==2?'active':''}}">推荐</view>
                         </scroll-view>
                   </swiper-item>
             </swiper>

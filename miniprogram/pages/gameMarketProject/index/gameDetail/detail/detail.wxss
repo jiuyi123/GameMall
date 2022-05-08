@@ -115,7 +115,19 @@ page{
   row;justify-content: 
   space-around;
   align-items: center;
-  background-color: #0D3665;
+  background-color: rgb(145, 220, 255);
+  position:fixed;
+  bottom:0;
+}
+
+.buyView{
+  height:100rpx;
+  width: 750rpx; 
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgb(145, 220, 255);
   position:fixed;
   bottom:0;
 }

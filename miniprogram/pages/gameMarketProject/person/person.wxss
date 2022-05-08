@@ -1,5 +1,29 @@
 /* pages/gameMarketProject/person/person.wxss */
-page{
-  background-color:#0c2f5a;
-  height:100%;
-  }
+page {
+  background-color: #0c2f5a;
+  height: 100%;
+}
+
+.informationItemView {
+  color: #fff;
+  font-size: 40rpx;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f1f1f1;
+  position: relative;
+  background-color: rgb(94, 159, 230, 0.7);
+  display: flex;
+}
+
+.textView {
+  display: flex;
+  margin-left: 20rpx;
+}
+.icon-box{
+  margin: auto;
+  margin-right: 10rpx;
+}
+.icon-box-img {
+  height: 50rpx;
+  width:30rpx; 
+}
+

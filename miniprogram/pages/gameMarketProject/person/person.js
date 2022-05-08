@@ -5,7 +5,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+      user:{
+        Account:"1094567728",
+        Balance:"99",
+        ID:"000001",
+        Name:"JY",
+        Password:"123456",
+        PhotoLink:"https://s1.ax1x.com/2022/05/08/O1XIk4.jpg",
+      
+      }
   },
 
   /**

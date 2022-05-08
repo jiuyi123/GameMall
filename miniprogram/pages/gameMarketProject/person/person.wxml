@@ -1,5 +1,76 @@
 <!--pages/gameMarketProject/person/person.wxml-->
-<text>pages/gameMarketProject/person/person.wxml</text>
 <view>
+  <!-- 个人头像和昵称 -->
+  <view style="display: flex;align-items: center;background-color: rgb(0, 36, 59,0.5);">
+    <a href="{{user.PhotoLink}}">
+      <image src="{{user.PhotoLink}}" mode="scaleToFill" style="height: 100rpx;width:100rpx; margin: 10rpx;" />
+    </a>
+    <text style="font-size: 50rpx;color: beige;margin-left: 20rpx;">{{user.Name}}</text>
+  </view>
+
+  <!-- 购物车/我喜欢/订单/库  模块·-->
+  <view style="display: flex;flex-direction: row;justify-content: space-around;color: lightblue; margin: 10rpx;margin-top: 40rpx;background-color: rgb(23, 77, 142,0.5);">
+    <view style="display: flex;flex-flow: column wrap;">
+      <a href="https://imgtu.com/i/O3uCdg">
+        <image src="https://s1.ax1x.com/2022/05/08/O3uCdg.png" mode="scaleToFill" style="height: 70rpx;width:70rpx; margin: 10rpx;" />
+      </a>
+      购物车
+    </view>
+    <view style="display: flex;flex-flow: column wrap;">
+      <a href="https://imgtu.com/i/O3Ky4J">
+        <image src="https://s1.ax1x.com/2022/05/08/O3Ky4J.png" mode="scaleToFill" style="height: 70rpx;width:70rpx; margin: 10rpx;" />
+      </a>
+      收藏
+    </view>
+    <view style="display: flex;flex-flow: column wrap;">
+      <a href="https://imgtu.com/i/O3MKPJ">
+        <image src="https://s1.ax1x.com/2022/05/08/O3MKPJ.png" mode="scaleToFill" style="height: 70rpx;width:70rpx; margin: 10rpx;" />
+      </a>
+      订单
+    </view>
+    <view style="display: flex;flex-flow: column wrap;">
+      <a href="https://imgtu.com/i/O3M6Z8">
+        <image src="https://s1.ax1x.com/2022/05/08/O3M6Z8.png" mode="scaleToFill" style="height: 70rpx;width:70rpx; margin: 10rpx;" />
+      </a>
+      仓库
+    </view>
+  </view>
+
+  <!-- 信息列表页面 -->
+  <view style="margin: 5rpx;margin-top: 100rpx;">
+    <view class="informationItemView">
+      <text class="textView">账户</text>
+      <a class="icon-box" href="https://imgtu.com/i/O3rsO">
+        <image class="icon-box-img" src="https://s1.ax1x.com/2022/05/08/O3rsOK.png" />
+      </a>
+    </view>
+    <view class="informationItemView">
+      <text class="textView">历史记录</text>
+      <a class="icon-box" href="https://imgtu.com/i/O3rsO">
+        <image class="icon-box-img" src="https://s1.ax1x.com/2022/05/08/O3rsOK.png" />
+      </a>
+    </view>
+    <view class="informationItemView">
+      <text class="textView">我的好友</text> <a class="icon-box" href="https://imgtu.com/i/O3rsO">
+        <image class="icon-box-img" src="https://s1.ax1x.com/2022/05/08/O3rsOK.png" />
+      </a>
+    </view>
+    <view class="informationItemView">
+      <text class="textView">意见反馈</text> <a class="icon-box" href="https://imgtu.com/i/O3rsO">
+        <image class="icon-box-img" src="https://s1.ax1x.com/2022/05/08/O3rsOK.png" />
+      </a>
+    </view>
+    <view class="informationItemView">
+      <text class="textView">设置</text> <a class="icon-box" href="https://imgtu.com/i/O3rsO">
+        <image class="icon-box-img" src="https://s1.ax1x.com/2022/05/08/O3rsOK.png" />
+      </a>
+    </view>
+  </view>
+
+  <!-- <view style="background-color: lightgreen;display: flex;">
+    <view>左</view>
+    <view style=" margin: auto;margin-right: 10rpx;">右</view>
+  </view> -->
+
 
 </view>
