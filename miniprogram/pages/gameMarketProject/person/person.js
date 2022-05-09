@@ -15,7 +15,55 @@ Page({
       
       }
   },
+  //购物车
+  goShopCart(e){
+    console.log("goShopCart")
+    // console.log(e)
+    // var gameInfoStr = encodeURIComponent(JSON.stringify(e.currentTarget.dataset.gameInfo)) 
+    //把点击的游戏对象参数传递给游戏详情页面
+    wx.navigateTo({
+      url:"/pages/gameMarketProject/person/modules/shopCart/shopCart",
+    })
+  },
+  //收藏
+  goFavorite(e){
+    console.log("goFavorite")
+    wx.navigateTo({
+      url:"/pages/gameMarketProject/person/modules/favorite/favorite",
+    })
+  },
+  //订单
+  goOrder(e){
+    console.log("goOrder")
+    wx.navigateTo({
+      url:"/pages/gameMarketProject/person/modules/order/order",
+    })
+  },
+//仓库
+goWarehouse(e){
+  console.log("goWarehouse")
+  wx.navigateTo({
+    url:"/pages/gameMarketProject/person/modules/warehouse/warehouse",
+  })
+},
 
+//登出
+Logout(){
+  wx.showModal({
+    title: '提示',
+    content: '确定退出登录嘛',
+    success: function (res) {
+      if (res.confirm) {//这里是点击了确定以后
+        wx.reLaunch({
+          url:"../login/login",
+        })
+      } else {//这里是点击了取消以后
+        console.log('用户点击取消')
+      }
+    }
+  })
+
+},
   /**
    * 生命周期函数--监听页面加载
    */

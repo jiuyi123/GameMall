@@ -6,29 +6,30 @@
       <image src="{{user.PhotoLink}}" mode="scaleToFill" style="height: 100rpx;width:100rpx; margin: 10rpx;" />
     </a>
     <text style="font-size: 50rpx;color: beige;margin-left: 20rpx;">{{user.Name}}</text>
+    <button bindtap="Logout">退出登录</button>
   </view>
 
   <!-- 购物车/我喜欢/订单/库  模块·-->
   <view style="display: flex;flex-direction: row;justify-content: space-around;color: lightblue; margin: 10rpx;margin-top: 40rpx;background-color: rgb(23, 77, 142,0.5);">
-    <view style="display: flex;flex-flow: column wrap;">
+    <view style="display: flex;flex-flow: column wrap;" bindtap="goShopCart">
       <a href="https://imgtu.com/i/O3uCdg">
         <image src="https://s1.ax1x.com/2022/05/08/O3uCdg.png" mode="scaleToFill" style="height: 70rpx;width:70rpx; margin: 10rpx;" />
       </a>
       购物车
     </view>
-    <view style="display: flex;flex-flow: column wrap;">
+    <view style="display: flex;flex-flow: column wrap;" bindtap="goFavorite">
       <a href="https://imgtu.com/i/O3Ky4J">
         <image src="https://s1.ax1x.com/2022/05/08/O3Ky4J.png" mode="scaleToFill" style="height: 70rpx;width:70rpx; margin: 10rpx;" />
       </a>
       收藏
     </view>
-    <view style="display: flex;flex-flow: column wrap;">
+    <view style="display: flex;flex-flow: column wrap;" bindtap="goOrder">
       <a href="https://imgtu.com/i/O3MKPJ">
         <image src="https://s1.ax1x.com/2022/05/08/O3MKPJ.png" mode="scaleToFill" style="height: 70rpx;width:70rpx; margin: 10rpx;" />
       </a>
       订单
     </view>
-    <view style="display: flex;flex-flow: column wrap;">
+    <view style="display: flex;flex-flow: column wrap;" bindtap="goWarehouse">
       <a href="https://imgtu.com/i/O3M6Z8">
         <image src="https://s1.ax1x.com/2022/05/08/O3M6Z8.png" mode="scaleToFill" style="height: 70rpx;width:70rpx; margin: 10rpx;" />
       </a>
@@ -42,7 +43,6 @@
       <text class="textView">账户</text>
       <a class="icon-box" href="https://imgtu.com/i/O3rsO">
         <image class="icon-box-img" src="https://s1.ax1x.com/2022/05/08/O3rsOK.png" />
-         
       </a>
     </view>
     <view class="informationItemView">
