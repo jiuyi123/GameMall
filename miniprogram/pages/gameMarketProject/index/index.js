@@ -93,20 +93,6 @@ Page({
 
     console.log("GoDetail")
     // console.log(e)
-    // console.log("-----------------")
-    // console.log(e.currentTarget.dataset)
-    // console.log("-----------------")
-    // console.log("----------e-------")
-    // console.log(e)
-    // console.log("----------e.currentTarget-------")
-    // console.log(e.currentTarget)
-    // console.log("----------e.currentTarget.dataset-------")
-    // console.log(e.currentTarget.dataset)
-    // console.log("----------e.currentTarget.dataset.gameInfo-------")
-    // console.log(e.currentTarget.dataset.gameInfo)
-    // console.log("----------e.currentTarget.dataset.gameInfo.value-------")
-    // console.log(e.currentTarget.dataset.gameInfo.name)
-    // console.log(e.currentTarget.dataset.gameInfo.src)
     var gameInfoStr = encodeURIComponent(JSON.stringify(e.currentTarget.dataset.gameInfo)) 
     //把点击的游戏对象参数传递给游戏详情页面
     wx.navigateTo({
