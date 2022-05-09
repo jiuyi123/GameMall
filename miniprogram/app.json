@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/gameMarketProject/Login/login",
+    "pages/gameMarketProject/login/login",
     "pages/gameMarketProject/index/index",
     "pages/gameMarketProject/index/gameDetail/detail/detail",
     "pages/gameMarketProject/index/gameSort/sort/sort",
