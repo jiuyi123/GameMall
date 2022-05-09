@@ -4,7 +4,13 @@
     "pages/gameMarketProject/index/index",
     "pages/gameMarketProject/index/gameDetail/detail/detail",
     "pages/gameMarketProject/index/gameSort/sort/sort",
+
     "pages/gameMarketProject/person/person",
+    "pages/gameMarketProject/person/modules/shopCart/shopCart",
+    "pages/gameMarketProject/person/modules/favorite/favorite",
+    "pages/gameMarketProject/person/modules/order/order",
+    "pages/gameMarketProject/person/modules/warehouse/warehouse",
+    
     "pages/gameMarketProject/information/information",
     "pages/ycr/ycr",
     "pages/ssc/ssc",

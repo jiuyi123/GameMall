@@ -23,6 +23,6 @@ App({
     phoneHeight:320,
     phoneWidth:568,
     whRation:1,
-    User
+    User:''
   }
 });
