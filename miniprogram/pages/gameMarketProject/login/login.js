@@ -3,10 +3,7 @@
 const app = getApp();
 const db = wx.cloud.database();
 Page({
-<<<<<<< HEAD
-=======
     
->>>>>>> master
   /**
    * 页面的初始数据
    */
@@ -226,9 +223,4 @@ Page({
   onShareAppMessage: function () {
 
   }
-<<<<<<< HEAD
-})
-
-=======
 });
->>>>>>> master
