@@ -22,6 +22,7 @@ App({
   globalData:{
     phoneHeight:320,
     phoneWidth:568,
-    whRation:1
+    whRation:1,
+    User:''
   }
 });
