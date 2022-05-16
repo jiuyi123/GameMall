@@ -1,20 +1,21 @@
 <!--pages/gameMarketProject/register/register.wxml-->
 <view>
-  <view class="registerBorder">
-    <view style="display: flex;  align-content: center;">
-      <text class="loginText">账号:</text>
-      <input class="loginBox" type="text" name="username" placeholder="输入您的账号" value="{{Account}}"></input>
-    </view>
-    <view style="display: flex;">
-      <text class="loginText">密码:</text>
-      <input class="loginBox" type="password" name="password" placeholder="输入您的密码" value="{{Password}}"></input>
-    </view>
+  <form bindsubmit="create_login" catchsubmit="Register">
+    <view class="registerBorder">
+      <view style="display: flex;  align-content: center;">
+        <text class="loginText">账号:</text>
+        <input class="loginBox" type="text" name="Account_new" placeholder="输入您的账号" value="{{Account_new}}"></input>
+      </view>
+      <view style="display: flex;">
+        <text class="loginText">密码:</text>
+        <input class="loginBox" type="password" name="Password_new" placeholder="输入您的密码" value="{{Password_new}}"></input>
+      </view>
 
-    <view style="display: flex;">
-      <text class="loginText">确认:</text>
-      <input class="loginBox" type="password" name="password" placeholder="请再次输入您的密码" value="{{PasswordConfirm}}"></input>
+      <view style="display: flex;">
+        <text class="loginText">确认:</text>
+        <input class="loginBox" type="password" name="Password_new_again" placeholder="请再次输入您的密码" value="{{Password_new_again}}"></input>
+      </view>
+      <button class="loginBtn" form-type="submit" style="width: 600rpx; height: 80rpx;"><text>注 册</text></button>
     </view>
-    <button class="loginBtn" bindtap="Register" form-type="submit" style="width: 600rpx; height: 80rpx;"><text>注 册</text></button>
-  </view>
-
+  </form>
 </view>
