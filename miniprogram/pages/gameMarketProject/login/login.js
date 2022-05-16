@@ -17,8 +17,8 @@ Page({
     },
     
   Login :function(e) {
-    //console.log("Login")
-    //console.log(e.detail.value)
+    console.log("Login")
+    console.log(e.detail.value)
     //检查Password是否对应Account
     this.setData({
       Account:e.detail.value.username,
@@ -55,7 +55,13 @@ Page({
     })
   },
 
-  Register :function(e) { //添加到前端Register页面的相关按钮接口
+  Register :function(e) { 
+    console.log("Register")
+    wx.navigateTo({
+      url: "../register/register"
+    })
+    
+    //添加到前端Register页面的相关按钮接口
 //      /*
 //     判断密码长度是够合法，两次密码是否一致，设置相关布尔值
 //     判断Account——new是否合法，比较数据库账户是否已存在
