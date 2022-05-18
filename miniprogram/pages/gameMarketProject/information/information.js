@@ -1,40 +1,82 @@
 // pages/gameMarketProject/information/information.js
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    currentTab: 0, //预设当前项的值
-    gameInfoObj:{},
+    winHeight: "", //聊天列表窗口高度
+    gameInfoObj: [{
+      "userName": "jy",
+      "userPhoto": "https://s1.ax1x.com/2022/05/08/O1XIk4.jpg",
+      "infoContent": "今天有时间呀",
+      "infoTime": "13:15",
+      "numCommentInfo": 12
+    }, {
+      "userName": "ctz",
+      "userPhoto": "https://s1.ax1x.com/2022/05/18/OTqQZ8.jpg ",
+      "infoContent": "今天有时间呀",
+      "infoTime": "13:15",
+      "numCommentInfo": 5
+    }, {
+      "userName": "wzl",
+      "userPhoto": "https://s1.ax1x.com/2022/05/18/OTqKqf.jpg",
+      "infoContent": "今天有时间呀",
+      "infoTime": "13:15",
+      "numCommentInfo": 1
+    }, {
+      "userName": "ycr",
+      "userPhoto": "https://s1.ax1x.com/2022/05/18/OTqnMt.jpg",
+      "infoContent": "今天有时间呀",
+      "infoTime": "13:15",
+      "numCommentInfo": 999
+    }, {
+      "userName": "hyl",
+      "userPhoto": "https://s1.ax1x.com/2022/05/18/OTqusP.jpg",
+      "infoContent": "今天有时间呀",
+      "infoTime": "13:15",
+      "numCommentInfo": 0
+    }, {
+      "userName": "小久",
+      "userPhoto": "https://s1.ax1x.com/2022/05/08/O1XIk4.jpg",
+      "infoContent": "今天有时间呀",
+      "infoTime": "13:15",
+      "numCommentInfo": 0
+    }, {
+      "userName": "小楠",
+      "userPhoto": "https://s1.ax1x.com/2022/05/08/O1XIk4.jpg",
+      "infoContent": "今天有时间呀",
+      "infoTime": "13:15",
+      "numCommentInfo": 0
+    }, {
+      "userName": "康康",
+      "userPhoto": "https://s1.ax1x.com/2022/05/08/O1XIk4.jpg",
+      "infoContent": "今天有时间呀",
+      "infoTime": "13:15",
+      "numCommentInfo": 0
+    }, {
+      "userName": "小云",
+      "userPhoto": "https://s1.ax1x.com/2022/05/08/O1XIk4.jpg",
+      "infoContent": "今天有时间呀",
+      "infoTime": "13:15",
+      "numCommentInfo": 0
+    }],
+    numCommentInfo: 11, //评论数量
+    numSystemInfo: 8, //系统通知数量
   },
-
-  // 滚动切换标签样式
-  switchTab: function (e) {
-    this.setData({
-      currentTab: e.detail.current
-    });
-    this.checkCor();
+  // 跳转聊天界面
+  goChatPage: function () {
+    wx.navigateTo({
+      url: '../information/chatPage/chatPage',
+    })
   },
-  // 点击标题切换当前页时改变样式
-  swichNav: function (e) {
-    var cur = e.target.dataset.current;
-    if (this.data.currentTaB == cur) {
-      return false;
-    } else {
-      this.setData({
-        currentTab: cur
-      })
-    }
-  },
-//跳转评论消息页面
-  goCommentInfo:function () {
+  //跳转评论消息页面
+  goCommentInfo: function () {
     wx.navigateTo({
       url: '../information/modules/commentInfo/commentInfo',
     })
   },
-//跳转系统消息
-  goSystemInfo:function () {
+  //跳转系统消息
+  goSystemInfo: function () {
     wx.navigateTo({
       url: '../information/modules/systemInfo/systemInfo',
     })
@@ -43,50 +85,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var gameInfoObj = JSON.parse(decodeURIComponent(options.gameInfoStr))
-    gameInfoObj.numComment = 999
-    gameInfoObj.score = 4.8;
-    gameInfoObj.comment = [
-      {
-        "userName":1,
-        "cmtData":"2021.04.01 14:08",
-        "cmtScore":[0,1,2,3],
-        "cmtContent":"这个游戏太好玩了"
-      },
-      {
-        "userName":2,
-        "cmtData":"2021.06.01 14:08",
-        "cmtScore":[0,2],
-        "cmtContent":"还可以吧"
-      },
-      {
-        "userName":3,
-        "cmtData":"2021.04.12 14:08",
-        "cmtScore":[0,1,2],
-        "cmtContent":"画风我爱了"
-      },     
-      {
-        "userName":5,
-        "cmtData":"2021.04.13 14:08",
-        "cmtScore":[0,1,2,4,5],
-        "cmtContent":"强烈推荐"
-      },
-      {
-        "userName":6,
-        "cmtData":"2021.04.13 14:08",
-        "cmtScore":[0,1,2,4,5],
-        "cmtContent":"强烈推荐"
-      },
-      {
-        "userName":7,
-        "cmtData":"2021.04.13 14:08",
-        "cmtScore":[0,1,2,4,5],
-        "cmtContent":"强烈推荐"
+    // 高度自适应
+    var that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        var clientHeight = res.windowHeight,
+          clientWidth = res.windowWidth,
+          rpxR = 750 / clientWidth;
+        var calc = clientHeight * rpxR - 180;
+        console.log(calc)
+        that.setData({
+          winHeight: calc
+        });
       }
-    ]
-    this.setData({
-      gameInfoObj,
-    })
+    });
   },
 
   /**

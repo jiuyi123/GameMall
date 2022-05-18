@@ -4,7 +4,7 @@
     "miniprogram": {
       "list": [
         {
-          "name": "",
+          "name": "消息页面主页",
           "pathName": "pages/gameMarketProject/information/information",
           "query": "",
           "launchMode": "default",
@@ -13,6 +13,19 @@
             "enabled": false,
             "pages": [
               "pages/gameMarketProject/information/information"
+            ]
+          }
+        },
+        {
+          "name": "聊天页面主页",
+          "pathName": "pages/gameMarketProject/information/chatPage/chatPage",
+          "query": "",
+          "launchMode": "default",
+          "scene": null,
+          "partialCompile": {
+            "enabled": false,
+            "pages": [
+              "pages/gameMarketProject/information/chatPage/chatPage"
             ]
           }
         }

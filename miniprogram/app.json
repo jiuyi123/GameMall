@@ -13,6 +13,7 @@
     "pages/gameMarketProject/person/modules/warehouse/warehouse",
     
     "pages/gameMarketProject/information/information",
+    "pages/gameMarketProject/information/chatPage/chatPage",
     "pages/gameMarketProject/information/modules/commentInfo/commentInfo",
     "pages/gameMarketProject/information/modules/systemInfo/systemInfo",
 
