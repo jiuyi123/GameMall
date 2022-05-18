@@ -1,2 +1,11 @@
 <!--pages/gameMarketProject/person/modules/favorite/favorite.wxml-->
 <text>收藏</text>
+<!-- 展示区 -->
+<view style="margin:30rpx;margin-top: 20rpx;">
+  <view wx:for="{{gameInfo}}"  style="display: inline-block;">
+    <view id="gameInformation" data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
+      <image mode="scaleToFill" src="{{item.src}}" style="margin: 15rpx;height: 300rpx; width: 200rpx;"/>
+      <text style="color:lightblue;text-align: center;">{{item.name}}</text>
+    </view>
+  </view>
+</view>

@@ -3,3 +3,31 @@ page{
   background-color:#0c2f5a;
   height:100%;
   }
+  /* 搜索列表 */
+  .inputBox{
+    width: 500rpx;
+    height: 70rpx;
+    background: rgba(244, 246, 248, 1);
+    border-radius: 17px;
+    margin: 20rpx 0rpx 0rpx 20rpx;
+    font-size: 26rpx;
+    color: #000;
+    line-height: 70rpx;
+    text-align: center;
+  }
+  .buttonBox{
+    margin-top: 20rpx;
+    background-color: lightblue;
+    height: 70rpx;
+    text-align: center;
+  }
+
+
+
+/*信息tab页面*/
+.tab-h{
+  margin-top: -10rpx; height: 80rpx;width: 100%; box-sizing: border-box;overflow: hidden;line-height: 80rpx;background: #0D3665; font-size: 16px; white-space: nowrap;top: 0; left: 0; z-index: 99;display: flex;flex-direction: row;justify-content: space-around;}
+ .tab-item{display:inline-flex;justify-content: space-around;}
+ .tab-item.active{color: #4675F9;position: relative;}
+ /*.tab-item.active:after{ content: "";display: block;height: 8rpx;width: 60rpx;background: #4675F9;position: absolute; bottom: 0;left: 5rpx;border-radius: 16rpx;} */
+ .item-ans{ width: 100%;display: flex; flex-grow: row no-wrap;justify-content: space-between; padding: 30rpx;box-sizing: border-box; height: 180rpx;align-items: center;border-bottom: 1px solid #F2F2F2;}

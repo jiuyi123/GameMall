@@ -35,15 +35,12 @@ Page({
       })
     }
     else {
-      console.log(this.data.Account_new)
-      console.log(this.data.Password_new)
       db.collection("Users")
       .where({
         Name:this.data.Account_new
       })
       .get({
         success :res=>{
-        console.log(res.data)
         if(res.data.length>0){
           wx.showToast({
             title: '用户名已存在',
@@ -55,11 +52,9 @@ Page({
           db.collection("Users")
           .get({
             success:res=>{
-            console.log(res)
             this.setData({
               IDNext: res.data[res.data.length-1].ID + 1
             }) 
-            console.log(this.data.IDNext)
             db.collection("Users")
             .add({
               data:{
@@ -69,7 +64,17 @@ Page({
               Password:this.data.Password_new,
               Photo_link:'' //默认头像路径
               },
-              success(res){
+            })
+            db.collection("Users")
+                .where({
+                  Name:this.data.Account_new
+                })
+                .get({
+                  success:res=>{
+                    console.log(res.data)
+                    app.globalData.User = res.data
+                  }
+                })
                 wx.reLaunch({
                   url: "../index/index"
                 }),
@@ -78,8 +83,6 @@ Page({
                   icon: 'success',
                   duration: 1500,//持续的时间
                 })
-              },
-            })
           }})
         }
       }})

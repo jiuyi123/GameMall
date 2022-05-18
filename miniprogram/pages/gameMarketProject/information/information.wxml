@@ -1,2 +1,63 @@
 <!--pages/gameMarketProject/information/information.wxml-->
-<text>pages/gameMarketProject/information/information.wxml</text>
+<view>
+
+
+  <!--子页面入口：评论和赞 系统通知·-->
+  <view style="display: flex;flex-direction: row;justify-content: space-around;color: lightblue; margin: 10rpx;margin-top: 40rpx;background-color: rgb(23, 77, 142,0.5);">
+    <view style="display: flex;flex-flow: column wrap;" bindtap="goCommentInfo">
+      <a href="https://s1.ax1x.com/2022/05/17/O5Pjyj.png">
+        <image src="https://s1.ax1x.com/2022/05/17/O5Pjyj.png" mode="scaleToFill" style="height: 70rpx;width:70rpx; margin: 10rpx;margin-left: 40rpx;" />
+      </a>
+      评论和赞
+    </view>
+
+    <view style="display: flex;flex-flow: column wrap;" bindtap="goSystemInfo">
+      <a href="https://s1.ax1x.com/2022/05/17/O5PvOs.png">
+        <image src="https://s1.ax1x.com/2022/05/17/O5PvOs.png" mode="scaleToFill" style="height: 70rpx;width:70rpx; margin: 10rpx;margin-left: 40rpx;" />
+      </a>
+      系统通知
+    </view>
+  </view>
+  <!-- 搜索框 -->
+  <view style="display: flex; flex-direction: row;justify-content: space-around;">
+    <input type="text" class="inputBox" />
+    <button class="buttonBox" size="mini">搜索</button>
+  </view>
+  <!-- 聊天列表 -->
+  <!-- 评论页面 ------------------------------------->
+  <view wx:if="{{currentTab==1?'active':''}}">
+    <!-- 总评分 -->
+    <view>
+      <text>总评分：{{gameInfoObj.score}}</text>
+    </view>
+    <!--具体评价-->
+    <view id="reviewView">
+      <!--用户评论项-->
+      <view class="reviewItemView" wx:for="{{gameInfoObj.comment}}" wx:for-index="userId" data-item="item">
+        <view class="userNameView">
+          用户{{item.userName}}
+          <view>
+            <view class="star" wx:for="{{item.cmtScore}}">
+              <view class="icon icon_yellow"></view>
+            </view>
+          </view>
+        </view>
+        <view>{{item.cmtData}}</view>
+        <view>{{item.cmtContent}}</view>
+      </view>
+      <!--查看更多-->
+      <view id="moreView" bindtap="goHotArticlePage">
+        <text>查看更多</text>
+        <view class="arrow"></view>
+      </view>
+    </view>
+    <!-- 100rpx占位符 -->
+    <view style="height: 100rpx;"></view>
+    <!-- 发表评论 -->
+    <view class="cmtView">
+      <input type="text" class="inputBox" />
+      <button class="buttonBox" size="mini">发表</button>
+    </view>
+
+  </view>
+</view>

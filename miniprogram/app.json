@@ -13,6 +13,9 @@
     "pages/gameMarketProject/person/modules/warehouse/warehouse",
     
     "pages/gameMarketProject/information/information",
+    "pages/gameMarketProject/information/modules/commentInfo/commentInfo",
+    "pages/gameMarketProject/information/modules/systemInfo/systemInfo",
+
     "pages/ycr/ycr",
     "pages/ssc/ssc",
     "pages/index/index",
