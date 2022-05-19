@@ -1,6 +1,14 @@
 // app.js
 App({
-
+  globalData: {
+  
+  },
+  
+  userInfo:{
+    Name:"jy",
+    Photo_link:"https://s1.ax1x.com/2022/05/08/O1XIk4.jpg",
+    Password:"jy"
+  },
   onLaunch: function () {
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力');
@@ -19,10 +27,5 @@ App({
   },
   
   
-  globalData:{
-    phoneHeight:320,
-    phoneWidth:568,
-    whRation:1,
-    User:''
-  }
+
 });
