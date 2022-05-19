@@ -1,1 +1,69 @@
 /* pages/gameMarketProject/information/modules/systemInfo/systemInfo.wxss */
+/*消息图标*/
+/*图片叠加*/
+.head-text {
+  position: absolute;
+  margin-left: 85rpx;
+}
+.num-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.goods-btn {
+  width: 40rpx;
+  height: 40rpx;
+  padding: 0;
+  line-height: 40rpx;
+  font-size: x-small;
+  color: #fff;
+  background: #e60a30;
+  border-radius: 50%;
+}
+
+.btn-groups {
+  width: 40rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  background: rgb(244, 244, 244, 0);
+  margin: 5rpx;
+  border-radius: 10rpx;
+}
+/* 聊天列表 */
+
+.reviewItemView {
+  border-bottom: 1rpx solid #f1f1f1;
+  position: relative;
+}
+
+.infoBox {
+  display: inline-flex;
+}
+
+.nameInfoBox {
+  margin-left: 20rpx;
+  color: #fff;
+  width: 430rpx;
+}
+
+.userName {
+  margin-bottom: 10rpx;
+  font-size: larger;
+  font-weight: bolder;
+}
+
+.infoContent {
+  font-size: smaller;
+  color: rgb(206, 206, 206);
+}
+
+.infoTime {
+  width: 180rpx;
+  display: flex;
+  flex-direction: row-reverse;
+  align-self: center;
+  color: rgb(233, 232, 232);
+}

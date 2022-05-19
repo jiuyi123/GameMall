@@ -1,2 +1,32 @@
 <!--pages/gameMarketProject/information/modules/systemInfo/systemInfo.wxml-->
-<text>pages/gameMarketProject/information/modules/systemInfo/systemInfo.wxml</text>
+  <!-- 聊天列表 -->
+  <scroll-view scroll-y="true" style="height:{{winHeight}}rpx;">
+    <view class="reviewItemView" wx:for="{{gameInfoObj}}" data-item="item">
+      <view class="infoBox" bindtap="goChatPage" id="userFriend" data-user-Info="{{item}}">
+        <!-- 用户头像 -->
+        <view style="height: 120rpx;">
+          <!-- 通知图标 -->
+          <view class="head-text" style="margin-left:85rpx;margin-bottom: 10rpx;" wx:if="{{item.numCommentInfo>0}}">
+            <view class="num-box">
+              <view class="btn-groups">
+                <button class="goods-btn" wx:if="{{item.numCommentInfo<=99}}">{{item.numCommentInfo}}</button>
+                <button class="goods-btn" wx:if="{{item.numCommentInfo>99}}">...</button>
+              </view>
+            </view>
+          </view>
+          <a href="{{item.userPhoto}}">
+            <image src="{{item.userPhoto}}" mode="scaleToFill" style="height: 100rpx;width:100rpx; margin: 10rpx;" />
+          </a>
+        </view>
+        <!-- 用户名和消息 -->
+        <view class="nameInfoBox">
+          <!-- 用户名 -->
+          <view class="userName">{{item.userName}}</view>
+          <!-- 最新消息 -->
+          <view class="infoContent">{{item.infoContent}}</view>
+        </view>
+        <!-- 发送时间 -->
+        <view class="infoTime">{{item.infoTime}}</view>
+      </view>
+    </view>
+  </scroll-view>
