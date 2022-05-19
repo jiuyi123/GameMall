@@ -64,9 +64,13 @@ Page({
     numSystemInfo: 8, //系统通知数量
   },
   // 跳转聊天界面
-  goChatPage: function () {
+  goChatPage: function (e) {
+    console.log("goChatPage")
+    console.log(e.currentTarget.dataset.userInfo)
+    var userInfoStr = encodeURIComponent(JSON.stringify(e.currentTarget.dataset.userInfo)) 
+    //跳转到聊天界面并传参
     wx.navigateTo({
-      url: '../information/chatPage/chatPage',
+      url: '../information/chatPage/chatPage?userInfoStr='+userInfoStr,
     })
   },
   //跳转评论消息页面

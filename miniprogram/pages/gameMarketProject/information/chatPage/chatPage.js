@@ -49,19 +49,24 @@ Page({
    * 页面的初始数据
    */
   data: {
+    cusHeadIcon:'',
     scrollHeight: '100vh',
-    inputBottom: 0
+    inputBottom: 0,
+    userFriend:{},
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    var userFriend = JSON.parse(decodeURIComponent(options.userInfoStr))
     initData(this);
     this.setData({
-      // cusHeadIcon: app.globalData.userInfo.avatarUrl,
-      cusHeadIcon:" https://s1.ax1x.com/2022/05/08/O1XIk4.jpg"
+      //加载当前用户头像
+      cusHeadIcon:getApp().userInfo.Photo_link,
+      //加载聊天对象信息,从聊天列表处传参得来
+      userFriend,
     });
+    
   },
 
   /**
