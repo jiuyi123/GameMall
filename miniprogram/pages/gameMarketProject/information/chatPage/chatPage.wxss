@@ -1,13 +1,13 @@
 /* pages/gameMarketProject/information/chatPage/chatPage.wxss */
 page {
-  background-color: #f1f1f1;
+  background-color: rgb(94, 159, 230);
 }
 
 .inputRoom {
   width: 100vw;
   height: 16vw;
   border-top: 1px solid #cdcdcd;
-  background-color: #f1f1f1;
+  background-color: rgb(0, 36, 59);
   position: fixed;
   bottom: 0;
   display: flex;
@@ -16,7 +16,7 @@ page {
 }
 
 input {
-  width: 76vw;
+  width: 80vw;
   height: 9.33vw;
   background-color: #fff;
   border-radius: 40rpx;

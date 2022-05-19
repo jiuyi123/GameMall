@@ -13,7 +13,7 @@
           <image style='width: 11vw; height: 11vw; border-radius: 10rpx;' src='https://s1.ax1x.com/2022/05/18/OTqusP.jpg'></image>
         </view>
         <view style='width: 4vw; height: 11vw; margin-left: 0.5vw; display: flex; align-items: center; z-index: 9;'>
-          <image style='width: 4vw;' src='../../images/left_msg.png' mode='widthFix'></image>
+          <!-- <image style='width: 4vw;' src='../../images/left_msg.png' mode='widthFix'></image> -->
         </view>
         <view class='leftMsg'>{{item.content}}</view>
       </view>
@@ -21,7 +21,7 @@
       <view wx:else id='msg-{{index}}' style='display: flex; justify-content: flex-end; padding: 2vw 2vw 2vw 11vw;'>
         <view class='rightMsg'>{{item.content}}</view>
         <view style='width: 4vw; height: 11vw; margin-right: 0.5vw; display: flex; align-items: center; z-index: 9;'>
-          <image style='width: 4vw;' src='../../images/right_msg.png' mode='widthFix'></image>
+          <!-- <image style='width: 4vw;' src='../../images/right_msg.png' mode='widthFix'></image> -->
         </view>
         <view style='width: 11vw; height: 11vw;'>
           <image style='width: 11vw; height: 11vw; border-radius: 10rpx;' src='{{cusHeadIcon}}'></image>
@@ -33,8 +33,12 @@
     <view style='width: 100%; height: 18vw;'></view>
   </scroll-view>
 
+<!-- 发送栏 -->
   <view class='inputRoom' style='bottom: {{inputBottom}}'>
-    <image style='width: 7vw; margin-left: 3.2vw;' src='/miniprogram/' mode='widthFix'></image>
+    <image style='width: 7vw; margin-left: 3.2vw;' src='https://s1.ax1x.com/2022/05/18/O7kKOS.png' mode='widthFix'></image>
     <input bindconfirm='sendClick' adjust-position='{{false}}' value='{{inputVal}}' confirm-type='send' bindfocus='focus' bindblur='blur'></input>
+    <image style='width: 7vw; margin-left: 3.2vw;' src='https://s1.ax1x.com/2022/05/18/O7kq6f.png' mode='widthFix'></image>
+    <!-- <image style='width: 7vw; margin-left: 3.2vw;' src='https://s1.ax1x.com/2022/05/18/O7E9Ve.png' mode='widthFix'></image> -->
+    <view  style="width: 14vw; margin-left: 3.2vw;border-radius: 10rpx;background-color: rgb(2, 250, 44);color: white;">发送</view>
   </view>
 </view>

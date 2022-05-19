@@ -21,6 +21,11 @@ function initData(that) {
       speaker: 'customer',
       contentType: 'text',
       content: '我怕是走错片场了...'
+    },
+    {
+      speaker: 'customer',
+      contentType: 'text',
+      content: '我怕是走错片场了...'
     }
   ]
   that.setData({
