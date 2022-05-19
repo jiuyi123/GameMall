@@ -39,29 +39,29 @@
 
   <!-- 信息列表页面 -->
   <view style="margin: 5rpx;margin-top: 100rpx;">
-    <view class="informationItemView">
+    <view class="informationItemView" bindtap="goAccount">
       <text class="textView">账户</text>
       <a class="icon-box" href="https://imgtu.com/i/O3rsO">
         <image class="icon-box-img" src="https://s1.ax1x.com/2022/05/08/O3rsOK.png" />
       </a>
     </view>
-    <view class="informationItemView">
+    <view class="informationItemView" bindtap="goHistory">
       <text class="textView">历史记录</text>
       <a class="icon-box" href="https://imgtu.com/i/O3rsO">
         <image class="icon-box-img" src="https://s1.ax1x.com/2022/05/08/O3rsOK.png" />
       </a>
     </view>
-    <view class="informationItemView">
+    <view class="informationItemView" bindtap="goFriend">
       <text class="textView">我的好友</text> <a class="icon-box" href="https://imgtu.com/i/O3rsO">
         <image class="icon-box-img" src="https://s1.ax1x.com/2022/05/08/O3rsOK.png" />
       </a>
     </view>
-    <view class="informationItemView">
+    <view class="informationItemView" bindtap="goFeedback">
       <text class="textView">意见反馈</text> <a class="icon-box" href="https://imgtu.com/i/O3rsO">
         <image class="icon-box-img" src="https://s1.ax1x.com/2022/05/08/O3rsOK.png" />
       </a>
     </view>
-    <view class="informationItemView">
+    <view class="informationItemView" bindtap="goSettings">
       <text class="textView">设置</text> <a class="icon-box" href="https://imgtu.com/i/O3rsO">
         <image class="icon-box-img" src="https://s1.ax1x.com/2022/05/08/O3rsOK.png" />
       </a>

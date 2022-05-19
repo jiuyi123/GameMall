@@ -11,7 +11,12 @@
     "pages/gameMarketProject/person/modules/favorite/favorite",
     "pages/gameMarketProject/person/modules/order/order",
     "pages/gameMarketProject/person/modules/warehouse/warehouse",
-    
+    "pages/gameMarketProject/person/personInfo/account/account",
+    "pages/gameMarketProject/person/personInfo/history/history",
+    "pages/gameMarketProject/person/personInfo/friend/friend",
+    "pages/gameMarketProject/person/personInfo/feedback/feedback",
+    "pages/gameMarketProject/person/personInfo/settings/settings",
+
     "pages/gameMarketProject/information/information",
     "pages/gameMarketProject/information/chatPage/chatPage",
     "pages/gameMarketProject/information/modules/commentInfo/commentInfo",

@@ -28,6 +28,19 @@
               "pages/gameMarketProject/information/chatPage/chatPage"
             ]
           }
+        },
+        {
+          "name": "我的主页面",
+          "pathName": "pages/gameMarketProject/person/person",
+          "query": "",
+          "launchMode": "default",
+          "scene": null,
+          "partialCompile": {
+            "enabled": false,
+            "pages": [
+              "pages/gameMarketProject/person/person"
+            ]
+          }
         }
       ]
     }
