@@ -21,21 +21,8 @@
     "pages/gameMarketProject/information/chatPage/chatPage",
     "pages/gameMarketProject/information/modules/commentInfo/commentInfo",
     "pages/gameMarketProject/information/modules/systemInfo/systemInfo",
-
-    "pages/ycr/ycr",
-    "pages/ssc/ssc",
-    "pages/index/index",
-    "pages/getOpenId/index",
-    "pages/getMiniProgramCode/index",
-    "pages/deployService/index",
-    "pages/createCollection/index",
-    "pages/uploadFile/index",
-    "pages/selectRecord/index",
-    "pages/updateRecord/index",
-    "pages/updateRecordResult/index",
-    "pages/updateRecordSuccess/index",
-    "pages/sumRecord/index",
-    "pages/sumRecordResult/index"
+    
+    "pages/index/index"
   ],
   "window": {
     "backgroundColor": "#0E3767",

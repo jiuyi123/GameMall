@@ -1,3 +1,0 @@
-<!--pages/ssc/ssc.wxml-->
-<text>pages/ssc/ssc.wxml</text>
-<button bindtap="toYcr">to ycr</button>
