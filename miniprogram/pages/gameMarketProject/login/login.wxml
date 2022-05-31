@@ -12,7 +12,7 @@
         <input class="loginBox" type="password" name="password" placeholder="输入您的密码" value="{{Password}}"></input>
       </view>
 
-      <button class="loginBtn"  bindtap="Login" form-type="submit" style="width: 600rpx; height: 80rpx;" ><text>登 录</text></button>
+      <button class="loginBtn" form-type="submit" style="width: 600rpx; height: 80rpx;" ><text>登 录</text></button>
       
       <button class="loginBtn" bindtap="Weixin_login" style="width: 600rpx; height: 80rpx;" ><text>微 信 一 键 登 录</text></button>
       <view style="color:rgb(116, 206, 236);display: flex; justify-content: space-between;font-size: 50rpx;margin-top: 100rpx;">

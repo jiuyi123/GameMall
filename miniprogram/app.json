@@ -5,7 +5,6 @@
     "pages/gameMarketProject/index/index",
     "pages/gameMarketProject/index/gameDetail/detail/detail",
     "pages/gameMarketProject/index/gameSort/sort/sort",
-
     "pages/gameMarketProject/person/person",
     "pages/gameMarketProject/person/modules/shopCart/shopCart",
     "pages/gameMarketProject/person/modules/favorite/favorite",
@@ -16,13 +15,12 @@
     "pages/gameMarketProject/person/personInfo/friend/friend",
     "pages/gameMarketProject/person/personInfo/feedback/feedback",
     "pages/gameMarketProject/person/personInfo/settings/settings",
-
     "pages/gameMarketProject/information/information",
     "pages/gameMarketProject/information/chatPage/chatPage",
     "pages/gameMarketProject/information/modules/commentInfo/commentInfo",
     "pages/gameMarketProject/information/modules/systemInfo/systemInfo",
-    
-    "pages/index/index"
+    "pages/index/index",
+    "pages/gameMarketProject/index/Search/Search"
   ],
   "window": {
     "backgroundColor": "#0E3767",
@@ -32,7 +30,6 @@
     "navigationBarTextStyle": "white",
     "enablePullDownRefresh": true
   },
-
   "tabBar": {
     "color": "#ffffff",
     "selectedColor": "#f79926",
@@ -56,8 +53,8 @@
         "iconPath": "images/tarBar/xinxi.png",
         "selectedIconPath": "images/tarBar/xinxifill.png"
       }
-  ]
-},
+    ]
+  },
   "sitemapLocation": "sitemap.json",
   "style": "v2"
 }

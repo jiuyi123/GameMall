@@ -23,7 +23,7 @@ App({
       });
     }
 
-    this.globalData = {};
+    this.globalData = {search_text:'',Game:'',User:''};
   },
   
   

@@ -1,10 +1,9 @@
 <!--pages/gameMarketProject/index/index.wxml-->
 <view>
 <!-- 搜索框 -->
-  <view style="display: flex; flex-direction: row;justify-content: space-around;">
-    <input type="text"  class="inputBox"/>
-    <button class="buttonBox" size="mini">搜索</button>
-    
+<view style="display: flex; flex-direction: row;justify-content: space-around;">
+    <input bindinput='bindSearchContent' type="text"  class="inputBox">{{SearchContent}}</input>
+    <button class="buttonBox" size="mini" bindtap="search">搜索</button>
   </view>
 <!-- 导航栏 -->
   <view style="display: flex; justify-content: center;margin: 5rpx;">
