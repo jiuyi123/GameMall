@@ -6,26 +6,93 @@ Page({
    * 页面的初始数据
    */
   data: {
-    search_text:'',
-    Game:''
+    search_text:app.globalData.search_text,
+    Game:app.globalData.Game,
   },
-  Dafen :function() { //王子龙在这写你的打分函数 你要用的参数自己在上面data里加 赋值和调用见下面例子都给你写好了
-    //示例
-    //console.log(app.globalData.Game)
-    //console.log(app.globalData.search_text)
-    this.setData({
-      search_text:app.globalData.search_text,
-      Game:app.globalData.Game
-    })
-    console.log('输入数据:' + this.data.search_text)
-    console.log(this.data.Game) //game json数组
-    console.log('Game数据获取：' + this.data.Game[0].Name)
+  Dafen :function(Game) { //比较用户搜索的字符串和游戏属性进行打分
+    var fenshu = 0//总分
+    var game = Game//游戏对象
+    var str = app.globalData.search_text//用户搜索的字串
+
+    fenshu += this.Dafen_cishu(game.Name)
+    fenshu += this.Dafen_cishu(game.Intro)
+    fenshu += this.Dafen_shunxu(game.Name)
+    fenshu += this.Dafen_shunxu(game.Intro)
+    fenshu += this.Dafen_tag(game.Tag)
+    return fenshu;
   },
+
+//根据用户输入字串和游戏相关字串的字符匹配次数打分
+  Dafen_cishu :function(str){
+    var equal_char = 0
+    for(var i = 0; i < str.length; i++){
+      for(var j = 0; j < app.globalData.search_text.length; j++){
+        if(str[i] == app.globalData.search_text[j])
+          equal_char++
+      }
+    }
+    return 2 * equal_char
+  },
+
+//根据用户输入字串和游戏相关字串的字符顺序匹配程度进行打分
+  Dafen_shunxu :function(str){
+    var max_sub_str = this.finMaxSubStr(str,app.globalData.search_text)//算法本质是获取两个字符串的最大相同子字符串的长度
+    //console.log("子串长度:" + max_sub_str.length)
+    var mark = 2
+    if(max_sub_str.length == 0)
+      return 0
+    else{
+      for(var i = 0; i < max_sub_str.length; i++){
+        mark = 2 * mark
+      }
+      return mark
+    }
+  },
+
+//获取两个字符串的最大字串
+  finMaxSubStr :function(str1,str2){
+  //创建一个二维数组
+  let temp = new Array()
+  let max = 0
+  let index = null
+  for (let i = 0; i < str1.length; i++) {
+    //初始化为二维数组
+    temp[i] = new Array()
+    for (let j = 0; j < str2.length; j++) {
+      //比较两个位置是否相等，相等就将让temp[i][j]相对于temp[i-1][j-1]加一（前提是temp[i-1][j-1]存在）
+      if(str1.charAt(i) === str2.charAt(j)){
+        if(i>0&&j>0&&temp[i-1][j-1]>0){
+          temp[i][j] = 1 + temp[i-1][j-1]
+        } else{
+          temp[i][j] = 1
+        }
+        //保存当前temp中最大的数字，并
+        if(max<temp[i][j]){
+          max = temp[i][j]
+          index = i
+        }
+      } else {
+        temp[i][j] = 0
+      }
+    }
+  }
+  return str1.substr(index-max+1,max)
+  },
+
+  //根据用户输入字串和游戏相关字串的字符匹配次数打分
+  Dafen_tag :function(tag_str){
+    var tag_str_array = tag_str.trim().split(" ")//以空格分隔Tag字符串
+    for(var i = 0; i < tag_str_array.length; i++){
+      if(tag_str_array[i] == app.globalData.search_text) return 10
+    }
+      return 0
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    this.Dafen()
+  onLoad: function (options) {  
+    console.log(this.Dafen(app.globalData.Game[0]))//对第i个游戏进行打分
   },
 
   /**
