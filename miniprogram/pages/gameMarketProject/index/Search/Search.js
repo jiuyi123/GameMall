@@ -6,14 +6,53 @@ Page({
    * 页面的初始数据
    */
   data: {
-    search_text:app.globalData.search_text,
-    Game:app.globalData.Game,
+    Game_list:'',
+    Show_list:new Array(),
+    NoRes:false
   },
+
+  Dafen_AllGame:function(){
+    let temp = new Array()
+    this.setData({
+      Game_list:app.globalData.Game
+    })
+    let game = new Array()
+    for(var i = 0; i<this.data.Game_list.length; i++){
+      game[i] = this.data.Game_list[i];
+    }
+    for(var i = 0; i<game.length; i++){
+      temp[i] = this.Dafen(game[i])
+    }
+    temp = this.Sort(temp,game)
+    if(temp[0]==0){
+      this.setData({
+        NoRes:true,
+        Show_list:null
+      })
+    }
+    else{
+      for(var i = 0; i<temp.length; i++){
+        if(temp[i]<temp[0]/2){
+          var tem = temp.length
+          temp.splice(i,tem-i)
+          game.splice(i,tem-i)
+          break
+        }
+      }
+      this.setData({
+        NoRes:false,
+        Show_list:game
+      })
+    }
+    console.log(this.data.Show_list)
+    console.log(app.globalData.Game)
+    console.log(this.data.Game_list)
+  },
+
   Dafen :function(Game) { //比较用户搜索的字符串和游戏属性进行打分
     var fenshu = 0//总分
     var game = Game//游戏对象
     var str = app.globalData.search_text//用户搜索的字串
-
     fenshu += this.Dafen_cishu(game.Name)
     fenshu += this.Dafen_cishu(game.Intro)
     fenshu += this.Dafen_shunxu(game.Name)
@@ -88,11 +127,27 @@ Page({
       return 0
   },
 
+  Sort: function(arr,game){
+		for(var i=0;i<arr.length-1;i++){//确定轮数
+			for(var j=i;j<arr.length-i-1;j++){//确定每次比较的次数
+				if(arr[j]<arr[j+1]){
+          var tem = arr[j]
+          var temgame = game[j]
+          arr[j] = arr[j+1]
+          game[j] = game[j+1]
+          arr[j+1] = tem
+          game[j+1] = temgame
+				}
+			}
+    }
+    return arr
+   },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {  
-    console.log(this.Dafen(app.globalData.Game[0]))//对第i个游戏进行打分
+    this.Dafen_AllGame()
   },
 
   /**
