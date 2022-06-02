@@ -1,2 +1,29 @@
 <!--pages/gameMarketProject/index/Search/Search.wxml-->
-<text>pages/gameMarketProject/index/Search/Search.wxml</text>
+<!-- 这里的类的名字请忽略，因为是直接复制消息列表的 -->
+<!-- 结果列表 -->
+<scroll-view scroll-y="true" style="height:{{winHeight}}rpx;">
+  <view class="reviewItemView" wx:for="{{Show_list}}" data-item="item">
+    <view class="infoBox" bindtap="goChatPage" id="userFriend" data-user-Info="{{item}}">
+      <!-- 游戏图片 -->
+      <view style="height: 240rpx;">
+        <a href="{{item.Photo_link}}">
+          <image src="{{item.Photo_link}}" mode="scaleToFill" style="height: 240rpx;width:180rpx; margin: 10rpx;" />
+        </a>
+      </view>
+      <!-- 游戏名和标签 -->
+      <view class="nameInfoBox">
+        <!-- 游戏名 -->
+        <view class="userName">{{item.Name}}</view>
+        <!-- 游戏标签 -->
+        <view class="infoContent">标签：{{item.Tag}}</view>
+         <!-- 热度 -->
+         <view class="infoContent">热度：{{item.Hits}}</view>
+        <!-- 发行时间 -->
+        <view class="infoTime">时间：{{item.Release_Time}}</view>
+      </view>
+        <!-- 游戏价格 -->
+        <view class="gamePrice">¥{{item.Price}}</view>
+
+    </view>
+  </view>
+</scroll-view>

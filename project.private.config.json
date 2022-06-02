@@ -41,6 +41,19 @@
               "pages/gameMarketProject/person/person"
             ]
           }
+        },
+        {
+          "name": "游戏首页",
+          "pathName": "pages/gameMarketProject/index/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null,
+          "partialCompile": {
+            "enabled": false,
+            "pages": [
+              "pages/gameMarketProject/index/index"
+            ]
+          }
         }
       ]
     }
