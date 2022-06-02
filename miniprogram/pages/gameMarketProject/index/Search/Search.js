@@ -13,9 +13,13 @@ Page({
   },
   bindSearchContent: function (e) {
 
-    app.globalData.search_text= e.detail.value,
+    this.setData({
+      search_text: e.detail.value
+    })
+  },
+  search:function() {
+    app.globalData.search_text= this.data.search_text,
     this.Dafen_AllGame()
-
   },
   Dafen_AllGame: function () {
     let temp = new Array()
