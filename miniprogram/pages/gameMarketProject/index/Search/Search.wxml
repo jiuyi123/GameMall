@@ -1,4 +1,11 @@
 <!--pages/gameMarketProject/index/Search/Search.wxml-->
+
+<!-- 搜索框 -->
+<view style="display: flex; flex-direction: row;justify-content: space-around;">
+  <input bindinput='bindSearchContent' type="text" class="inputBox">{{SearchContent}}</input>
+  <button class="buttonBox" size="mini" bindtap="search">搜索</button>
+</view>
+
 <!-- 这里的类的名字请忽略，因为是直接复制消息列表的 -->
 <!-- 结果列表 -->
 <scroll-view scroll-y="true" style="height:{{winHeight}}rpx;">
@@ -16,13 +23,13 @@
         <view class="userName">{{item.Name}}</view>
         <!-- 游戏标签 -->
         <view class="infoContent">标签：{{item.Tag}}</view>
-         <!-- 热度 -->
-         <view class="infoContent">热度：{{item.Hits}}</view>
+        <!-- 热度 -->
+        <view class="infoContent">热度：{{item.Hits}}</view>
         <!-- 发行时间 -->
         <view class="infoTime">时间：{{item.Release_Time}}</view>
       </view>
-        <!-- 游戏价格 -->
-        <view class="gamePrice">¥{{item.Price}}</view>
+      <!-- 游戏价格 -->
+      <view class="gamePrice">¥{{item.Price}}</view>
 
     </view>
   </view>
