@@ -53,7 +53,6 @@ Page({
         Show_list: game
       })
     }
-
     console.log(this.data.Show_list)
   },
 

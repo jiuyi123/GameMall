@@ -131,19 +131,25 @@ Page({
       url: "/pages/gameMarketProject/index/gameDetail/detail/detail?gameInfoStr=" + gameInfoStr,
     })
   },
+  async Onload(){
+    let count = await db.collection("Games").count()
+    count = count.total
+    let all = []
+    for(let i = 0; i < count; i += 20){
+      let list = await db.collection("Games").skip(i).get()
+      all = all.concat(list.data)
+    }
+    app.globalData.Game = all;
+    console.log(app.globalData.Game)
+    this.setData({
+      Is_game_got:true
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    db.collection("Games")
-    .get({
-      success :res=>{
-      //console.log(res.data)
-      app.globalData.Game = res.data
-    }})
-    this.setData({
-      Is_game_got:true
-    })
+    this.Onload()
   },
 
   /**
