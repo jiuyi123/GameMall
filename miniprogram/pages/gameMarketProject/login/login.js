@@ -23,7 +23,7 @@ Page({
     db.collection("Users")
     .where({
       Name : this.data.Account,
-      //Password : this.data.Password
+      Password : this.data.Password
     })
     .get({
       success :res=>{

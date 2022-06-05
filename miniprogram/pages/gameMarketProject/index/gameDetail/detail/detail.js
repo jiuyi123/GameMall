@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    gameInfoObj: {
+    game_id: {
 
     },
     /******信息页面数据*******/
@@ -14,6 +14,7 @@ Page({
     currentTab: 0, //预设当前项的值
     scrollLeft: 0, //tab标题的滚动条位置
     /*************/
+
   },
 
   /******************************* */
@@ -61,10 +62,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var gameInfoObj = JSON.parse(decodeURIComponent(options.gameInfoStr))
-    gameInfoObj.numComment = 999
-    gameInfoObj.score = 4.8;
-    gameInfoObj.comment = [
+    var game_id = JSON.parse(decodeURIComponent(options.gameInfoStr))
+    game_id.numComment = 999
+    game_id.score = 4.8;
+    game_id.comment = [
       {
         "userName":1,
         "cmtData":"2021.04.01 14:08",
@@ -103,9 +104,9 @@ Page({
       }
     ]
     this.setData({
-      gameInfoObj,
+      game_id,
     })
-    //  console.log(this.data.gameInfoObj)
+     console.log(this.data.game_id)
     // 高度自适应
     var that = this;
     wx.getSystemInfo({
@@ -114,7 +115,6 @@ Page({
           clientWidth = res.windowWidth,
           rpxR = 750 / clientWidth;
         var calc = clientHeight * rpxR - 380;
-        console.log(calc)
         that.setData({
           winHeight: calc
         });

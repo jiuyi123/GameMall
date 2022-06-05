@@ -10,7 +10,18 @@ Page({
         Password_new_again:'',
         IDNext:0,
   },
-  Register :function(e) {
+  async GetAlldb(DBName){
+    let count = await db.collection(DBName).count()
+    count = count.total
+    let all = []
+    for(let i = 0; i < count; i += 20){
+      let list = await db.collection(DBName).skip(i).get()
+      all = all.concat(list.data)
+    }
+    return all
+  },
+
+  Register :async function(e) {
      /*
         判断密码长度是够合法，两次密码是否一致，设置相关布尔值
         判断Account——new是否合法，比较数据库账户是否已存在
@@ -49,11 +60,9 @@ Page({
           })
         }
         else {
-          db.collection("Users")
-          .get({
-            success:res=>{
+          var data = this.GetAlldb("Users")
             this.setData({
-              IDNext: res.data[res.data.length-1].ID + 1
+              IDNext: data[data.length-1].ID + 1
             }) 
             db.collection("Users")
             .add({
@@ -83,8 +92,7 @@ Page({
                   icon: 'success',
                   duration: 1500,//持续的时间
                 })
-          }})
-        }
+          }
       }})
     }
   },

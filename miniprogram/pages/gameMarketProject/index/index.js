@@ -140,7 +140,7 @@ Page({
       all = all.concat(list.data)
     }
     app.globalData.Game = all;
-    console.log(app.globalData.Game)
+    //console.log(app.globalData.Game)
     this.setData({
       Is_game_got:true
     })

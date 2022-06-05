@@ -53,7 +53,7 @@ Page({
         Show_list: game
       })
     }
-    console.log(this.data.Show_list)
+    //console.log(this.data.Show_list)
   },
 
   Dafen: function (Game) { //比较用户搜索的字符串和游戏属性进行打分

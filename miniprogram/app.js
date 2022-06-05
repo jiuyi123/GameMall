@@ -1,7 +1,9 @@
 // app.js
 App({
   globalData: {
-  
+    search_text:'',
+    Game:'',
+    User:''
   },
   
   userInfo:{
@@ -22,8 +24,6 @@ App({
         traceUser: true,
       });
     }
-
-    this.globalData = {search_text:'',Game:'',User:''};
   },
   
   
