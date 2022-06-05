@@ -1,21 +1,21 @@
 <!--pages/gameMarketProject/index/index.wxml-->
 <view>
-<!-- 搜索框 -->
-<view style="display: flex; flex-direction: row;justify-content: space-around;">
-    <input bindinput='bindSearchContent' type="text"  class="inputBox">{{SearchContent}}</input>
+  <!-- 搜索框 -->
+  <view style="display: flex; flex-direction: row;justify-content: space-around;">
+    <input bindinput='bindSearchContent' type="text" class="inputBox">{{SearchContent}}</input>
     <button class="buttonBox" size="mini" bindtap="search">搜索</button>
   </view>
-<!-- 导航栏 -->
+  <!-- 导航栏 -->
   <view style="display: flex; justify-content: center;margin: 5rpx;">
-    <swiper class="banners" indicator-dots autoplay  indicator-active-color="#d43c33" indicator-color="ivory">
+    <swiper class="banners" indicator-dots autoplay indicator-active-color="#d43c33" indicator-color="ivory">
       <swiper-item wx:for="{{imgUrl}}" wx:key="bannerId">
-        <image  src="{{item}}" style="width: 740rpx;"/>
+        <image src="{{item}}" style="width: 740rpx;" />
       </swiper-item>
     </swiper>
   </view>
   <!-- 分类 -->
   <view class="viewStore">
-    <view class="viewStore2" >
+    <view class="viewStore2">
       <view style="display: flex;flex-direction: column;" bindtap="goSort">
         <a href="https://imgtu.com/i/LvSw1e"></a>
         <image src="https://s1.ax1x.com/2022/04/29/LvSw1e.png" lazy-load="true" style="width: 100rpx;height: 100rpx;"></image>
@@ -23,7 +23,7 @@
       </view>
     </view>
   </view>
-<!-- 标签分区 -->
+  <!-- 标签分区 -->
   <!-- <view style="margin-left: 10rpx;">
     <view
    wx:for="{{riderCommentList}}"
@@ -37,20 +37,24 @@
         {{item.title}}
   </view>
   </view> -->
-<!-- 展示区 -->
-<view style="margin:30rpx;margin-top: 20rpx;">
-  <view wx:for="{{gameInfo}}"  style="display: inline-block;">
-    <view id="gameInformation" data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
-      <image mode="scaleToFill" src="{{item.src}}" style="margin: 15rpx;height: 300rpx; width: 200rpx;"/>
-      <text style="color:lightblue;text-align: center;">{{item.name}}</text>
+  <!-- 展示区 -->
+  <view style="width: 99%;margin-top: 20rpx;border: 3rpx solid #faca82;">
+    <view wx:for="{{gameInfo}}" style="display: inline-block;">
+      <view id="gameInformation" data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
+        <view style="height: 470rpx;width: 234rpx;border: 3rpx solid #82fa96;margin: 5rpx;background-color: rgb(0, 255, 255,0.5);">
+          <image mode="scaleToFill" src="{{item.Pic_link}}" style="margin: 15rpx;margin-bottom: 5rpx;height: 300rpx; width: 204rpx;" />
+          <view style="width: 230rpx;margin-right: 2rpx;margin-left: 2rpx;">
+            <text style="color:lightblue;display: flex;justify-content: center;">{{item.Name}}</text>
+          </view>
+        </view>
+      </view>
     </view>
   </view>
-</view>
-<!-- 详细信息 -->
-<view>
-  <!-- 视频 -->
-  <!-- <video src="https://gp-dev.cdn.bcebos.com/gp-dev/upload/file/source/02175c1a3c029ad6c4120a87f3ab39dc.mp4"></video> -->
-</view>
+  <!-- 详细信息 -->
+  <view>
+    <!-- 视频 -->
+    <!-- <video src="https://gp-dev.cdn.bcebos.com/gp-dev/upload/file/source/02175c1a3c029ad6c4120a87f3ab39dc.mp4"></video> -->
+  </view>
 
 
 </view>
