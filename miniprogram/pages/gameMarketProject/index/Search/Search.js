@@ -11,15 +11,26 @@ Page({
     Show_list: new Array(),
     NoRes: false
   },
+  //游戏详情页面
+  goDetail(e) {
+    console.log("GoDetail")
+    // console.log(e)
+    var gameInfoStr = encodeURIComponent(JSON.stringify(e.currentTarget.dataset.gameInfo))
+    console.log(gameInfoStr)
+    //把点击的游戏对象参数传递给游戏详情页面
+    wx.navigateTo({
+      url: "../gameDetail/detail/detail?gameInfoStr=" + gameInfoStr,
+    })
+  },
   bindSearchContent: function (e) {
 
     this.setData({
       search_text: e.detail.value
     })
   },
-  search:function() {
-    app.globalData.search_text= this.data.search_text,
-    this.Dafen_AllGame()
+  search: function () {
+    app.globalData.search_text = this.data.search_text,
+      this.Dafen_AllGame()
   },
   Dafen_AllGame: function () {
     let temp = new Array()
@@ -53,7 +64,7 @@ Page({
         Show_list: game
       })
     }
-    //console.log(this.data.Show_list)
+    console.log(this.data.Show_list)
   },
 
   Dafen: function (Game) { //比较用户搜索的字符串和游戏属性进行打分
@@ -61,9 +72,9 @@ Page({
     var game = Game //游戏对象
     var str = app.globalData.search_text //用户搜索的字串
     fenshu += this.Dafen_cishu(game.Name)
-    fenshu += this.Dafen_cishu(game.Intro)
+    fenshu += this.Dafen_cishu(game.Info)
     fenshu += this.Dafen_shunxu(game.Name)
-    fenshu += this.Dafen_shunxu(game.Intro)
+    fenshu += this.Dafen_shunxu(game.Info)
     fenshu += this.Dafen_tag(game.Tag)
     return fenshu;
   },
