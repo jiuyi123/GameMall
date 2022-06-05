@@ -2,7 +2,9 @@
 <view style="flex-direction: column;display: flex;">
   <!-- 宣传界面 -->
   <view>
-    <video src="{{gameInfoObj.videoSrc}}" show-mute-btn="true" autoplay="true" loop="true" style="width: 750rpx;height: 300rpx;"></video>
+    <a href="{{gameInfoObj.Video_link}}">
+      <video src="{{gameInfoObj.Video_link}}" show-mute-btn="true" autoplay="false" loop="true" style="width: 750rpx;height: 300rpx;"></video>
+    </a>
   </view>
   <!-- tab -->
   <view class="tab-h" scroll-left="{{scrollLeft}}">
@@ -16,17 +18,31 @@
         <scroll-view scroll-y="true" class="scoll-h">
           <!-- 信息页面 ------------------------------------->
           <view wx:if="{{currentTab==0?'active':''}}" style="display: flex;flex-direction: column;">
-            <view style="display: flex;">
-              <image mode="scaleToFill" src="{{gameInfoObj.src}}" style="margin: 15rpx;height: 300rpx; width: 200rpx;" />
-              <view style=" display: flex;flex-flow: column wrap;row-gap: 30rpx; height: 300rpx;margin: 15rpx;color: white;">
-                <text>游戏名称:{{gameInfoObj.name}}</text>
-                <text>类型：RGB</text>
-                <text>开发商：久一科技有限公司</text>
-                <text>上次更新时间：2022.04.08</text>
+            <!-- 游戏自身信息 -->
+            <view style="display: flex;border:3rpx solid aqua">
+              <a href="{{gameInfoObj.Pic_link}}">
+                <image mode="scaleToFill" src="{{gameInfoObj.Pic_link}}" style="margin: 15rpx;height: 300rpx; width: 200rpx;" />
+              </a>
+              <view style=" display: flex;flex-flow: column wrap;row-gap: 30rpx; height: 300rpx;margin: 15rpx;color: white;border:3rpx solid aqua ">
+                <text>游戏名称: {{gameInfoObj.Name}}</text>
+                <text>类型: {{gameInfoObj.Tag}}</text>
+                <text>语言: {{gameInfoObj.Language}}</text>
+                <text>开发商：{{gameInfoObj.Developer}}</text>
               </view>
             </view>
-            <text>游戏简介</text>
-
+            <!-- 游戏价格分数等 -->
+            <view style=" display: flex;flex-flow: column wrap;row-gap: 30rpx; height: 300rpx;margin-top: 10rpx;margin-bottom: 10rpx;color: white;border:3rpx solid rgb(255, 196, 0) ">
+              <text>游戏评分:{{gameInfoObj.Score}}分</text>
+              <text>游戏价格:{{gameInfoObj.Price}}¥</text>
+              <text>游戏点击:{{gameInfoObj.Hits}}次</text>
+              <text>游戏售卖:{{gameInfoObj.Sales}}份</text>
+            </view>
+            <!-- 游戏简介 -->
+            <view style="margin-top: 5rpx;border:3rpx solid rgb(43, 255, 0)">
+              <text>游戏简介:{{gameInfoObj.Info}}</text>
+            </view>
+            <!-- 占位符 -->
+            <view style="height:105rpx ;"></view>
             <!-- 购买页面 -->
             <view class="buyView">
               <button style="background-color: rgb(153, 255, 204); ">收藏</button>
@@ -52,7 +68,6 @@
                     </view>
                   </view>
                 </view>
-                
                 <view>{{item.cmtData}}</view>
                 <view>{{item.cmtContent}}</view>
               </view>

@@ -56,7 +56,6 @@ Page({
 
   // },
   footerTap: app.footerTap,
-
   /************************************* */
   Load(gameInfoObj){
     gameInfoObj.numComment = 999
