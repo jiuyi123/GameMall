@@ -92,6 +92,7 @@ Page({
     })
   },
   async Onload(){
+    console.log(app.globalData.User[0])
     let count = await db.collection("Games").count()
     count = count.total
     console.log(count)
@@ -100,7 +101,7 @@ Page({
       let list = await db.collection("Games").skip(i).get()
       all = all.concat(list.data)
     }
-    console.log(all)
+    //console.log(all)
     app.globalData.Game = all;
     //console.log(app.globalData.Game)
     this.setData({

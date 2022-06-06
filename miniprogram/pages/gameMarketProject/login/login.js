@@ -2,6 +2,7 @@
 /*Author 花园路 */
 const app = getApp();
 const db = wx.cloud.database();
+var userInfo
 Page({
     
   /**
@@ -11,7 +12,18 @@ Page({
         Account: '',
         Password:'',
     },
-    
+  
+    async GetAlldb(DBName){
+      let count = await db.collection(DBName).count()
+      count = count.total
+      let all = []
+      for(let i = 0; i < count; i += 20){
+        let list = await db.collection(DBName).skip(i).get()
+        all = all.concat(list.data)
+      }
+      return all
+    },
+
   Login :function(e) {
     console.log("Login")
     console.log(e.detail.value)
@@ -56,46 +68,83 @@ Page({
       url: "../register/register"
     })
   },
-
-  Weixin_login :function() {
-    //查询数据库open_id，如果存在则登录到该账号
-    console.log("Weixin_login")
-    wx.login({
-      success (res) {
-        if (res.code) {
-          //发起网络请求
-          wx.request({
-            url: 'https://example.com/onLogin',
-            data: {
-              code: res.code
-            }
-          })
-        } else {
-          console.log('登录失败！' + res.errMsg)
-        }
+  
+  async GetUserInfo(){
+    wx.getUserInfo({
+      success:(res)=>{
+        userInfo= res.userInfo
+        // 获取code值
+        wx.login({
+          success:(res)=>{
+            let code=res.code
+            // 通过code换取openId
+            wx.request({
+              url: `https://api.weixin.qq.com/sns/jscode2session?appid=wxa25a2ea091c9f809&secret=0060decbfc8c655a7157c02f8cfd386f&js_code=${code}&grant_type=authorization_code`,
+              success:(res)=>{
+                userInfo.openid=res.data.openid
+                //console.log(userInfo)
+                return userInfo
+              }
+            })
+          }
+        })
       }
     })
-   {
-      // wx.login({
-      //   success:function(res) {
-      //     var code = res.code
-      //     wx.getsetting({
-      //       success:function(res) {
-      //         // 判断用户是否授权 如果用户授权了 返回的数据res中 是有userinfo的
-      //         if (res.authSetting['scope.userInfo']){
-      //           console.log(res)
-      //         }
-      //       }
-      //     })
-      //   }
-      // })
-    }
+  },
+
+  Weixin_login :async function() {
+    //查询数据库open_id，如果存在则登录到该账号
+    const that = this
+    var res
+    //console.log("Weixin_login")
+    while(userInfo.openid!=undefined){
+      res = await db.collection("Users").where({
+        _openid:userInfo.openid
+      }).get()
+      //console.log(res.data)
+      if(res.data.length>0){  //存在记录
+        app.globalData.User = res.data  //默认0号元素为登录账户
+        wx.reLaunch({
+          url:"../index/index",
+        })
+        wx.showToast({
+          title: '登录成功',
+          icon: 'success',
+          duration: 1500,//持续的时间
+        })
+      }
+      else{
+        var data = await this.GetAlldb("Users")
+        db.collection("Users").add({
+          data:{
+              ID:data[data.length-1].ID + 1,
+              Balance:0,
+              Name:userInfo.nickName,
+              Photo_link:userInfo.avatarUrl //默认头像路径
+          }
+        })
+        var res = await db.collection("Users")
+        .where({
+          _openid:userInfo.openid
+        }).get()
+        app.globalData.User = res.data  //默认0号元素为登录账户
+        wx.reLaunch({
+          url:"../index/index",
+        })
+        wx.showToast({
+          title: '登录成功',
+          icon: 'success',
+          duration: 1500,//持续的时间
+        })
+      }
+      break
+    }  
   },
 /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: async function (options) {
+    await this.GetUserInfo()
   },
 
   /**
