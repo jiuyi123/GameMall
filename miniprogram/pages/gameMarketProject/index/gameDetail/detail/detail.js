@@ -1,13 +1,15 @@
 // pages/gameMarketProject/index/gameDetail/detail/detail.js
 var app = getApp();
 var db = wx.cloud.database();
+var gameInfoObj
+var game_id
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    gameInfoObj: {
+    gameInfoObj:{
 
     },
     /******信息页面数据*******/
@@ -117,13 +119,6 @@ Page({
     });
   },
 
-  async GetGame(gameInfoObj){
-    const res = await db.collection("Games").where({
-      Name:gameInfoObj.name
-    }).get()
-    return res.data[0]
-  },
-
   async GetAlldb(DBName){
     let count = await db.collection(DBName).count()
     count = count.total
@@ -190,6 +185,8 @@ Page({
       Game_ID:game_id,
       User_ID:app.globalData.User[0].ID
     }).get()
+    const that = this
+    const data = await this.GetAlldb("Orders")
     if(this.data.is_GouMai==false){
       wx.showModal({
         title:'确认',
@@ -204,7 +201,20 @@ Page({
                 }
               })
             }
-            this.setData({
+            else{//记录不在购物车内
+              db.collection("Orders")
+              .add({
+                data:{
+                  Final_price:gameInfoObj.Price,
+                  Game_ID:game_id,
+                  ID:data[data.length-1].ID+1,
+                  State:"已支付",
+                  Time:that.GetTime(),
+                  User_ID:app.globalData.User[0].ID
+                },
+              })
+            }
+            that.setData({
               is_GouMai:true
             })
           } 
@@ -213,11 +223,12 @@ Page({
     }
   },
 
-  async Gouwuche(game){//函数内不允许添加await待测试
+  async Gouwuche(){//函数内不允许添加await待测试
     const res = await db.collection("Orders").where({
       Game_ID:game_id,
       User_ID:app.globalData.User[0].ID
     }).get()
+    const that = this
     const data = await this.GetAlldb("Orders")
     if(this.data.is_GouWuChe){
       wx.showModal({
@@ -227,7 +238,7 @@ Page({
           //如果用户点击了确定按钮
           if (r.confirm) {
             db.collection("Orders").doc(res.data[0]._id).remove()
-            this.setData({
+            that.setData({
               is_GouWuChe:false
             })
           } 
@@ -238,9 +249,9 @@ Page({
       db.collection("Orders")
             .add({
               data:{
-                Final_price:game.Price,
-                Game_ID:game.ID,
-                ID:data[data.length-1].ID,
+                Final_price:gameInfoObj.Price,
+                Game_ID:game_id,
+                ID:data[data.length-1].ID+1,
                 State:"未支付",
                 Time:this.GetTime(),
                 User_ID:app.globalData.User[0].ID
@@ -267,9 +278,8 @@ Page({
     //             User_ID:app.globalData.User[0].ID
     //           },
     //         })
-    var gameInfoObj= JSON.parse(decodeURIComponent(options.gameInfoStr))
-    var game = await this.GetGame(gameInfoObj)
-    var game_id = game.ID
+    gameInfoObj = JSON.parse(decodeURIComponent(options.gameInfoStr))
+    game_id = gameInfoObj.ID
     this.Load(gameInfoObj)
     await this.Is_ShouCang(game_id)
     await this.Is_GouWuCheGouMai(game_id)
