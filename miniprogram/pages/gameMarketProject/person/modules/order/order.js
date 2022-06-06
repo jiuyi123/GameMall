@@ -1,18 +1,34 @@
 // pages/gameMarketProject/person/modules/order/order.js
+const app = getApp()
+const db = wx.cloud.database()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    Show_list:''
+  },
 
+  async LoadInfo(){
+    let count = await db.collection("Orders").where({User_ID:app.globalData.User[0].ID}).count()
+    count = count.total
+    let all = []
+    for(let i = 0; i < count; i += 20){
+      let list = await db.collection("Orders").where({User_ID:app.globalData.User[0].ID}).skip(i).get()
+      all = all.concat(list.data)
+    }
+    this.setData({
+      Show_list:all
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: async function (options) {
+    await this.LoadInfo()
+    console.log(this.data.Show_list)
   },
 
   /**

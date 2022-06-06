@@ -1,113 +1,5 @@
-// // pages/gameMarketProject/person/modules/shopCart/shopCart.js
-// Page({
-
-//   /**
-//    * 页面的初始数据
-//    */
-//   data: {
-//     "cartList": [{
-//       src: 'https://gimg0.baidu.com/gimg/src=https%3A%2F%2Fgp-dev.cdn.bcebos.com%2Fgp-dev%2Fupload%2Ffile%2Fsource%2F55df338c08e931ee7e6452881485e953.jpeg&app=2000&size=f260,344&n=0&g=0n&q=85&fmt=jpeg?sec=0&t=20b1a2b46873566e45f35feaa0f497af',
-//       videoSrc: 'https://gp-dev.cdn.bcebos.com/gp-dev/upload/file/source/02175c1a3c029ad6c4120a87f3ab39dc.mp4',
-//       name: "原神"
-//     },
-//     {
-//       src: 'https://gimg0.baidu.com/gimg/src=https%3A%2F%2Fgameplus-platform.cdn.bcebos.com%2Fgameplus-platform%2Fupload%2Ffile%2Fsource%2Fec295c1d427e9bf483d30dcd82040067.jpeg&app=2000&size=b272_153&n=0&g=4n&q=70&fmt=auto?sec=0&t=4b309a9063a94e70b77e7638a3da833c"',
-//       videoSrc: 'https://gameplus-platform.cdn.bcebos.com/gameplus-platform/upload/file/video/c2afa0dff0d46df50772017dbfe2310f/c2afa0dff0d46df50772017dbfe2310f.mp4',
-//       name: "艾尔登法环"
-//     },
-//     {
-//       src: 'https://gimg0.baidu.com/gimg/src=https%3A%2F%2Fgameplus-platform.cdn.bcebos.com%2Fgameplus-platform%2Fupload%2Ffile%2Fimg%2Fd6dbddb2884f5ed2b002efb057f408d1%2Fd6dbddb2884f5ed2b002efb057f408d1.png&app=2000&size=b272_153&n=0&g=4n&q=70&fmt=auto?sec=0&t=d767ecbd84fb025a1b124083b23a9200',
-//       videoSrc: 'https://gameplus-platform.cdn.bcebos.com/gameplus-platform/upload/file/source/5bbe1e3144d45212dd678c7e34b5e00e.mp4',
-//       name: "我的世界"
-//     },
-//     {
-//       src: 'https://gimg0.baidu.com/gimg/src=https%3A%2F%2Fgameplus-platform.cdn.bcebos.com%2Fgameplus-platform%2Fupload%2Ffile%2Fsource%2F7df2c6aae86db3d24031fcdb8ac338bb.jpeg&app=2000&size=b272_153&n=0&g=4n&q=70&fmt=auto?sec=0&t=67fb378398fc0f561b6028aec4710cfd',
-//       videoSrc: 'http://vd3.bdstatic.com/mda-kc7u0m8ec2crdhjp/v1-cae/sc/mda-kc7u0m8ec2crdhjp.mp4',
-//       name: "植物大战僵尸"
-//     },
-//     {
-//       src: 'https://gimg0.baidu.com/gimg/src=https%3A%2F%2Fgameplus-platform.cdn.bcebos.com%2Fgameplus-platform%2Fupload%2Ffile%2Fimg%2F49e1a313497eb2169788bc858bc24836%2F49e1a313497eb2169788bc858bc24836.png&app=2000&size=b272_153&n=0&g=4n&q=70&fmt=auto?sec=0&t=a61e67af407acc3e8c12648673c19143',
-//       videoSrc: 'https://gameplus-platform.cdn.bcebos.com/gameplus-platform/upload/file/source/faeffa9a2aa77a3254eab4af6f2d596e.mp4',
-//       name: "泰拉瑞亚"
-//     },
-//     {
-//       src: 'https://gimg0.baidu.com/gimg/src=https%3A%2F%2Fgameplus-platform.cdn.bcebos.com%2Fgameplus-platform%2Fupload%2Ffile%2Fimg%2Fbcede38d0286bb5c5a9f2fbbd6c317d7%2Fbcede38d0286bb5c5a9f2fbbd6c317d7.jpg&app=2000&size=b272_153&n=0&g=4n&q=70&fmt=auto?sec=0&t=9da303772b3e095085630fccc60d04d8',
-//       videoSrc: 'https://gameplus-platform.cdn.bcebos.com/gameplus-platform/upload/file/source/fd60a32221be624ab52734a2a9a14e93.mp4',
-//       name: "赛博朋克"
-//     },
-//     {
-//       src: 'https://gimg0.baidu.com/gimg/src=https%3A%2F%2Fgameplus-platform.cdn.bcebos.com%2Fgameplus-platform%2Fupload%2Ffile%2Fsource%2F7fdafdec912bd8bfbbdc417118b0152b.jpeg&app=2000&size=b272_153&n=0&g=4n&q=70&fmt=auto?sec=0&t=c1b30cd7365c1c4c7f294423efb5981b',
-//       videoSrc: 'https://gameplus-platform.cdn.bcebos.com/gameplus-platform/upload/file/source/5513c43b159f4834aeb0055e9db2402c.mp4',
-//       name: "方舟"
-//     },
-//     {
-//       src: 'https://gimg0.baidu.com/gimg/src=https%3A%2F%2Fgameplus-platform.cdn.bcebos.com%2Fgameplus-platform%2Fupload%2Ffile%2Fimg%2F6e56014c71f3967e631d8d060ad9a685%2F6e56014c71f3967e631d8d060ad9a685.png&app=2000&size=f0,0&n=0&g=0n&q=85&fmt=jpeg?sec=0&t=5dc6960710545e73f91256ff6bb47872',
-//       videoSrc: 'https://gameplus-platform.cdn.bcebos.com/gameplus-platform/upload/file/video/8290d51e6d509b9c574adc4e7e7130d0/8290d51e6d509b9c574adc4e7e7130d0.mp4',
-//       name: "人类一败涂地"
-//     }
-//   ],
-//   },
-
-//   /**
-//    * 生命周期函数--监听页面加载
-//    */
-//   onLoad: function (options) {
-
-//   },
-
-//   /**
-//    * 生命周期函数--监听页面初次渲染完成
-//    */
-//   onReady: function () {
-
-//   },
-
-//   /**
-//    * 生命周期函数--监听页面显示
-//    */
-//   onShow: function () {
-
-//   },
-
-//   /**
-//    * 生命周期函数--监听页面隐藏
-//    */
-//   onHide: function () {
-
-//   },
-
-//   /**
-//    * 生命周期函数--监听页面卸载
-//    */
-//   onUnload: function () {
-
-//   },
-
-//   /**
-//    * 页面相关事件处理函数--监听用户下拉动作
-//    */
-//   onPullDownRefresh: function () {
-
-//   },
-
-//   /**
-//    * 页面上拉触底事件的处理函数
-//    */
-//   onReachBottom: function () {
-
-//   },
-
-//   /**
-//    * 用户点击右上角分享
-//    */
-//   onShareAppMessage: function () {
-
-//   }
-// })
-
-/********************************* */
-
 const app = getApp()
+const db = wx.cloud.database()
 Page({
 
   /**
@@ -118,7 +10,7 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-
+    Show_list:'',
     slideProductList: [
       {
         id:1,
@@ -370,18 +262,37 @@ Page({
     })
   },
 
-  
+  async LoadInfo(){
+    let count = await db.collection("Orders").where({      User_ID:app.globalData.User[0].ID,
+      State:"未支付"}).count()
+    count = count.total
+    let all = []
+    for(let i = 0; i < count; i += 20){
+      let list = await db.collection("Orders").where({      User_ID:app.globalData.User[0].ID,
+        State:"未支付"}).skip(i).get()
+      all = all.concat(list.data)
+    }
+    var gamelist = new Array
+    for(let i = 0; i < all.length; i++){
+      gamelist = gamelist.concat(app.globalData.Game[all[i].Game_ID])
+    }
+    this.setData({
+      Show_list:gamelist
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: async function (options) {
     var width=wx.getSystemInfoSync().windowWidth
     var height=wx.getSystemInfoSync().windowHeight
     height=height-55-53;
     this.setData({
       height:height
     })
+    await this.LoadInfo()
+    console.log(this.data.Show_list)
   },
 
   /**

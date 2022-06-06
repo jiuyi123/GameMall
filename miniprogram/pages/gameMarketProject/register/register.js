@@ -33,6 +33,7 @@ Page({
         *
         */
     //console.log(e.detail.value)
+    var data = await this.GetAlldb("Users")
     this.setData({
       Account_new :e.detail.value.Account_new,
       Password_new :e.detail.value.Password_new,
@@ -59,8 +60,21 @@ Page({
             duration: 1500,
           })
         }
+        else if(this.data.Account_new.length==0){
+          wx.showToast({
+            title: '用户名不能为空',
+            icon:'error',
+            duration: 1500,
+          })
+        }
+        else if(this.data.Password_new.length==0){
+          wx.showToast({
+            title: '密码不能为空',
+            icon:'error',
+            duration: 1500,
+          })
+        }
         else {
-          var data = this.GetAlldb("Users")
             this.setData({
               IDNext: data[data.length-1].ID + 1
             }) 
