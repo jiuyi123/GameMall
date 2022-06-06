@@ -176,8 +176,48 @@ Page({
     }
   },
 
-  ShouCang(){
+  async UpdateData(){
+    var res = await db.collection("Games").where({
+      ID:game_id
+    }).get()
+    console.log(res.data)
+    db.collection("Games").doc(res.data[0]._id).update({
+      data:{
+        Hits:res.data[0].Hits + 1
+      }
+    })
+    db.collection("Click").add({
+      data:{
+        Game_ID:game_id,
+        Time:this.GetTime(),
+        User_ID:app.globalData.User[0].ID
+      }
+    })
+  },
 
+  async ShouCang(){
+    if(this.data.is_ShouCang){
+      var res = await db.collection("Collect").where({
+        Game_ID:game_id,
+        User_ID:app.globalData.User[0].ID
+      }).get()
+      db.collection("Collect").doc(res.data[0]._id).remove()
+      this.setData({
+        is_ShouCang : false
+      })
+    }
+    else{
+      db.collection("Collect").add({
+        data:{
+            Game_ID:game_id,
+            Time:this.GetTime(),
+            User_ID:app.globalData.User[0].ID
+        }
+      })
+      this.setData({
+        is_ShouCang : true
+      })
+    }
   },
 
   async Goumai(){
@@ -197,7 +237,8 @@ Page({
             if(res.data.length>0){//记录存在说明在购物车内
               db.collection("Orders").doc(res.data[0]._id).update({
                 data:{
-                  State:"已支付"
+                  State:"已支付",
+                  Time:that.GetTime()
                 }
               })
             }
@@ -280,6 +321,7 @@ Page({
     //         })
     gameInfoObj = JSON.parse(decodeURIComponent(options.gameInfoStr))
     game_id = gameInfoObj.ID
+    this.UpdateData()
     this.Load(gameInfoObj)
     await this.Is_ShouCang(game_id)
     await this.Is_GouWuCheGouMai(game_id)
