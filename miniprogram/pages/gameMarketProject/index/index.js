@@ -95,7 +95,7 @@ Page({
     console.log(app.globalData.User[0])
     let count = await db.collection("Games").count()
     count = count.total
-    console.log(count)
+    //console.log(count)
     let all = []
     for(let i = 0; i < count; i += 20){
       let list = await db.collection("Games").skip(i).get()
