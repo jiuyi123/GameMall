@@ -7,7 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    Show_list:''
+    Show_list:'',
+    Photo:"https://img.3dmgame.com/uploads/images/thumbkwdfirst/20190610/1560146839_941491.jpg",
   },
 
   async LoadInfo(){

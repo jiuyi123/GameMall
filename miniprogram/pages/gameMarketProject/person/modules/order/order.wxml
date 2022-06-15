@@ -1,2 +1,25 @@
 <!--pages/gameMarketProject/person/modules/order/order.wxml-->
-<text>订单</text>
+<!-- 订单列表 -->
+<scroll-view scroll-y="true" style="height:{{winHeight}}rpx;">
+  <view class="reviewItemView" wx:for="{{Show_list}}" data-item="item">
+    <view class="infoBox" bindtap="goChatPage" id="userFriend" data-user-Info="{{item}}">
+      <!-- 订单时间 -->
+      <view class="infoTime">{{item.Time}}</view>
+       <!-- 订单编号-->
+       <view class="infoTime">{{item.ID}}</view>
+      <!-- 游戏头像 -->
+      <view style="height: 120rpx;">
+        <a href="{{Photo}}">
+          <image src="{{Photo}}" mode="scaleToFill" style="height: 100rpx;width:100rpx; margin: 10rpx;" />
+        </a>
+      </view>
+      <!-- 用户名和消息 -->
+      <view class="nameInfoBox">
+        <!-- 用户名 -->
+        <view class="userName">{{item.userName}}</view>
+        <!-- 最新消息 -->
+        <view class="infoContent">{{item.infoContent}}</view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

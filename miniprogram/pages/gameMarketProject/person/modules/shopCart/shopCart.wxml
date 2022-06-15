@@ -52,18 +52,6 @@
             </view>
             <view class="goods-price">￥{{item.Price}}</view>
           </view>
-
-          <!-- 操作按钮
-          <view class="product-movable-item product-movable-item-amount">
-            <view class="num-box">
-              <view class="btn-groups">
-                <button class="goods-btn" data-index="{{index}}" data-num="{{item.num}}" bindtap="subtraction">-</button>
-                <!-- <input class='num' type='number' data-index="{{index}}" bindblur="numIputBlur" bindinput='inputNum' value='{{item.num}}'></input>
-                <button class="goods-btn" data-index="{{index}}" data-num="{{item.num}}" bindtap="addtion">+</button>
-              </view>
-            </view>
-          </view> -->
-
         </view>
       </slide-delete>
     </view>
