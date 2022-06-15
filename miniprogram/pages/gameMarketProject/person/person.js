@@ -1,4 +1,5 @@
 // pages/gameMarketProject/person/person.js
+const app = getApp();
 Page({
 
   /**
@@ -103,6 +104,10 @@ Page({
    */
   onLoad: function (options) {
 
+    this.data({
+      Name:getApp().userInfo.Name,
+      PhotoLink:getApp().userInfo.Photo_link
+    })
   },
 
   /**

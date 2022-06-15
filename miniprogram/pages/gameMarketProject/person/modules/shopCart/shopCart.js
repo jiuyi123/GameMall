@@ -19,7 +19,7 @@ Page({
         videoSrc: 'https://gp-dev.cdn.bcebos.com/gp-dev/upload/file/source/02175c1a3c029ad6c4120a87f3ab39dc.mp4',
            
         style: "RGB 角色扮演 养成",
-        price: "149.5",
+        Price: "149.5",
         select: "circle",
         num: "1",
         code: "0001",
@@ -31,7 +31,7 @@ Page({
         src: "https://gimg0.baidu.com/gimg/src=https%3A%2F%2Fgameplus-platform.cdn.bcebos.com%2Fgameplus-platform%2Fupload%2Ffile%2Fsource%2Fec295c1d427e9bf483d30dcd82040067.jpeg&app=2000&size=b272_153&n=0&g=4n&q=70&fmt=auto?sec=0&t=4b309a9063a94e70b77e7638a3da833c",
         videoSrc: 'https://gameplus-platform.cdn.bcebos.com/gameplus-platform/upload/file/video/c2afa0dff0d46df50772017dbfe2310f/c2afa0dff0d46df50772017dbfe2310f.mp4',
         style: "动作 冒险 剧情",
-        price: "488",
+        Price: "488",
         select: "circle",
         code: "0002",
         num: "1",
@@ -43,7 +43,7 @@ Page({
         src: "https://gimg0.baidu.com/gimg/src=https%3A%2F%2Fgameplus-platform.cdn.bcebos.com%2Fgameplus-platform%2Fupload%2Ffile%2Fimg%2Fd6dbddb2884f5ed2b002efb057f408d1%2Fd6dbddb2884f5ed2b002efb057f408d1.png&app=2000&size=b272_153&n=0&g=4n&q=70&fmt=auto?sec=0&t=d767ecbd84fb025a1b124083b23a9200",
         videoSrc: 'https://gameplus-platform.cdn.bcebos.com/gameplus-platform/upload/file/source/5bbe1e3144d45212dd678c7e34b5e00e.mp4',
         style: "养成 建造 像素",
-        price: "88",
+        Price: "88",
         select: "circle",
         code: "0003",
         num: "1",
@@ -56,7 +56,7 @@ Page({
         src: "https://gimg0.baidu.com/gimg/src=https%3A%2F%2Fgameplus-platform.cdn.bcebos.com%2Fgameplus-platform%2Fupload%2Ffile%2Fsource%2F7df2c6aae86db3d24031fcdb8ac338bb.jpeg&app=2000&size=b272_153&n=0&g=4n&q=70&fmt=auto?sec=0&t=67fb378398fc0f561b6028aec4710cfd",
         videoSrc: 'http://vd3.bdstatic.com/mda-kc7u0m8ec2crdhjp/v1-cae/sc/mda-kc7u0m8ec2crdhjp.mp4',
         style: "射击 策略",
-        price: "29",
+        Price: "29",
         select: "circle",
         code: "0004",
         num: "1",
@@ -69,7 +69,7 @@ Page({
         src: "https://gimg0.baidu.com/gimg/src=https%3A%2F%2Fgameplus-platform.cdn.bcebos.com%2Fgameplus-platform%2Fupload%2Ffile%2Fimg%2Fbcede38d0286bb5c5a9f2fbbd6c317d7%2Fbcede38d0286bb5c5a9f2fbbd6c317d7.jpg&app=2000&size=b272_153&n=0&g=4n&q=70&fmt=auto?sec=0&t=9da303772b3e095085630fccc60d04d8",
         videoSrc: 'https://gameplus-platform.cdn.bcebos.com/gameplus-platform/upload/file/source/fd60a32221be624ab52734a2a9a14e93.mp4',
         style: "都市 剧情 科幻",
-        price: "399",
+        Price: "399",
         select: "circle",
         code: "0004",
         num: "1",
@@ -82,7 +82,7 @@ Page({
         src: "https://gimg0.baidu.com/gimg/src=https%3A%2F%2Fgameplus-platform.cdn.bcebos.com%2Fgameplus-platform%2Fupload%2Ffile%2Fimg%2F6e56014c71f3967e631d8d060ad9a685%2F6e56014c71f3967e631d8d060ad9a685.png&app=2000&size=f0,0&n=0&g=0n&q=85&fmt=jpeg?sec=0&t=5dc6960710545e73f91256ff6bb47872",
         videoSrc: 'https://gameplus-platform.cdn.bcebos.com/gameplus-platform/upload/file/video/8290d51e6d509b9c574adc4e7e7130d0/8290d51e6d509b9c574adc4e7e7130d0.mp4',
         style: "多人 配合 冒险",
-        price: "188",
+        Price: "188",
         select: "circle",
         code: "0004",
         num: "1",
@@ -95,8 +95,6 @@ Page({
     lastX: 0,
     lastY: 0,
     text: "没有滑动",
-
-   
   },
  //游戏详情页面
  goDetail(e){
@@ -119,10 +117,10 @@ Page({
     } else {
       var stype = "circle"
     }
-    var newList = that.data.slideProductList
+    var newList = that.data.Show_list
     newList[index].select = stype
     that.setData({
-      slideProductList: newList
+      Show_list: newList
     })
     that.countNum()
     that.count()
@@ -135,11 +133,11 @@ Page({
     if (num < 99) {
       num++
     }
-    var newList = that.data.slideProductList
+    var newList = that.data.Show_list
     newList[index].num = num
     that.setData({
       goodsNum:num,
-      slideProductList: newList
+      Show_list: newList
     })
     that.countNum()
     that.count()
@@ -154,16 +152,16 @@ Page({
     var that = this
     var num = that.data.goodsNum
     var index = e.currentTarget.dataset.index
-    var newList = that.data.slideProductList
+    var newList = that.data.Show_list
     if (num == "") { //盘空
       newList[index].num = 1;
       that.setData({
-        slideProductList: newList
+        Show_list: newList
       })
     }else if (num < 1) {
       that.setData({
         goodsNum: newList[index].num,
-        slideProductList: newList
+        Show_list: newList
       })
       wx.showToast({
         title: '亲，该宝贝不能减少了哦~',
@@ -173,7 +171,7 @@ Page({
       
       that.setData({
         goodsNum: newList[index].num,
-        slideProductList: newList
+        Show_list: newList
       })
       wx.showToast({
         title: '亲，该宝贝最多购买99件哦~',
@@ -182,7 +180,7 @@ Page({
     }else{
       newList[index].num = num;
       that.setData({
-        slideProductList: newList
+        Show_list: newList
       })
     }
     that.countNum()
@@ -193,7 +191,7 @@ Page({
     var that = this
     var index = e.currentTarget.dataset.index
     var num = e.currentTarget.dataset.num
-    var newList = that.data.slideProductList
+    var newList = that.data.Show_list
     
     if (num == 1) {//当数量为1件时，再次点击移除该商品
       newList.splice(index, 1)
@@ -203,7 +201,7 @@ Page({
     }
     that.setData({
       goodsNum: num,
-      slideProductList: newList
+      Show_list: newList
     })
     that.countNum()
     that.count()
@@ -212,7 +210,7 @@ Page({
   allSelect: function (e) {
     var that = this
     var allSelect = e.currentTarget.dataset.select //先判断是否选中
-    var newList = that.data.slideProductList
+    var newList = that.data.Show_list
     console.log(newList)
     if (allSelect == "circle") {
       for (var i = 0; i < newList.length; i++) {
@@ -226,7 +224,7 @@ Page({
       var select = "circle"
     }
     that.setData({
-      slideProductList: newList,
+      Show_list: newList,
       allSelect: select
     })
     that.countNum()
@@ -235,7 +233,7 @@ Page({
  
   countNum: function () { //计算数量
     var that = this
-    var newList = that.data.slideProductList
+    var newList = that.data.Show_list
     var allNum = 0
     for (var i = 0; i < newList.length; i++) {
       if (newList[i].select == "success") {
@@ -250,11 +248,11 @@ Page({
   
   count: function () {//计算金额方法
     var that = this
-    var newList = that.data.slideProductList
+    var newList = that.data.Show_list
     var newCount = 0
     for (var i = 0; i < newList.length; i++) {
       if (newList[i].select == "success") {
-        newCount += newList[i].num * newList[i].price
+        newCount += newList[i].num * newList[i].Price
       }
     }
     that.setData({
@@ -274,6 +272,8 @@ Page({
     }
     var gamelist = new Array
     for(let i = 0; i < all.length; i++){
+      app.globalData.Game[all[i].Game_ID].select = "circle",
+      app.globalData.Game[all[i].Game_ID].num = 1,
       gamelist = gamelist.concat(app.globalData.Game[all[i].Game_ID])
     }
     this.setData({

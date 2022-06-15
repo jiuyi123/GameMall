@@ -9,7 +9,16 @@ Page({
   data: {
     Show_list:''
   },
-
+ //游戏详情页面
+ goDetail(e){
+  console.log("GoDetail")
+  console.log(e)
+  var gameInfoStr = encodeURIComponent(JSON.stringify(e.currentTarget.dataset.gameInfo)) 
+  //把点击的游戏对象参数传递给游戏详情页面
+  wx.navigateTo({
+    url:"/pages/gameMarketProject/index/gameDetail/detail/detail?gameInfoStr="+gameInfoStr,
+  })
+},
   async LoadInfo(){
     let count = await db.collection("Orders").where({      User_ID:app.globalData.User[0].ID,
       State:"已支付"}).count()

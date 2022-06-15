@@ -23,7 +23,7 @@
               <a href="{{gameInfoObj.Pic_link}}">
                 <image mode="scaleToFill" src="{{gameInfoObj.Pic_link}}" style="margin: 15rpx;height: 300rpx; width: 200rpx;" />
               </a>
-              <view style=" display: flex;flex-flow: column wrap;row-gap: 30rpx; height: 300rpx;margin: 15rpx;color: white;border:3rpx solid aqua ">
+              <view style=" display: flex;flex-flow: column wrap;row-gap: 30rpx; height: 300rpx;margin: 10rpx;color: white;border:3rpx solid aqua ">
                 <text>游戏名称: {{gameInfoObj.Name}}</text>
                 <text>类型: {{gameInfoObj.Tag}}</text>
                 <text>语言: {{gameInfoObj.Language}}</text>

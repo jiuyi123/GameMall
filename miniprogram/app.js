@@ -3,7 +3,9 @@ App({
   globalData: {
     search_text:'',
     Game:'',
-    User:''
+    User:'',
+    Photo_link:'',
+    
   },
   
   userInfo:{

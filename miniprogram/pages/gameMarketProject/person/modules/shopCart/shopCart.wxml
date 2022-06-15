@@ -33,39 +33,36 @@
 <view class="product-container">
 
   <view class="product-list" style="  height: calc(100vh - 100rpx);">
-    <view class="product-item" wx:for="{{slideProductList}}" wx:for-index="index" wx:key='slideProductList'>
+    <view class="product-item" wx:for="{{Show_list}}" wx:for-index="index" wx:key='slideProductList'>
       <!-- 商品列表 -->
       <slide-delete pid="{{item.id}}" bindaction="handleSlideDelete" wx:key='slideProductList'>
-
         <view class="product-item-wrap">
-
           <!-- 选择框 -->
           <icon type="{{item.select}}" size="19" data-index="{{index}}" data-select="{{item.select}}" bindtap="change" color="red" />
-
           <!-- 商品图片 -->
           <view class="product_img" id="gameInformation" data-game-Info="{{item}}" bindtap="goDetail">
-            <image src="{{item.src}}" class='goods-img' mode="widthFix"></image>
+            <image src="{{item.Pic_link}}" class='goods-img' mode="widthFix"></image>
           </view>
 
           <!-- 商品信息描述 -->
           <view class="product-movable-item">
-            <view class="goods-name">{{item.name}}</view>
+            <view class="goods-name">{{item.Name}}</view>
             <view class="goods-type">标签
-              <text>{{item.style}}</text>
+              <text>{{item.Tag}}</text>
             </view>
-            <view class="goods-price">￥{{item.price}}</view>
+            <view class="goods-price">￥{{item.Price}}</view>
           </view>
 
-          <!-- 操作按钮 -->
+          <!-- 操作按钮
           <view class="product-movable-item product-movable-item-amount">
             <view class="num-box">
               <view class="btn-groups">
                 <button class="goods-btn" data-index="{{index}}" data-num="{{item.num}}" bindtap="subtraction">-</button>
                 <!-- <input class='num' type='number' data-index="{{index}}" bindblur="numIputBlur" bindinput='inputNum' value='{{item.num}}'></input>
-                <button class="goods-btn" data-index="{{index}}" data-num="{{item.num}}" bindtap="addtion">+</button> -->
+                <button class="goods-btn" data-index="{{index}}" data-num="{{item.num}}" bindtap="addtion">+</button>
               </view>
             </view>
-          </view>
+          </view> -->
 
         </view>
       </slide-delete>

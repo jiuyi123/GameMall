@@ -1,2 +1,17 @@
 <!--pages/gameMarketProject/person/modules/warehouse/warehouse.wxml-->
-<text>仓库</text>
+<view>
+  <text style="color: azure;">已拥有</text>
+</view>
+<!-- 展示区 -->
+<view style="width: 99%;margin-top: 20rpx;border: 3rpx solid #faca82;">
+  <view wx:for="{{Show_list}}" style="display: inline-block;">
+    <view id="gameInformation" data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
+      <view style="height: 470rpx;width: 234rpx;border: 3rpx solid #82fa96;margin: 5rpx;background-color: rgb(0, 255, 255,0.5);">
+        <image mode="scaleToFill" src="{{item.Pic_link}}" style="margin: 15rpx;margin-bottom: 5rpx;height: 300rpx; width: 204rpx;" />
+        <view style="width: 230rpx;margin-right: 2rpx;margin-left: 2rpx;">
+          <text style="color:lightblue;display: flex;justify-content: center;">{{item.Name}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
