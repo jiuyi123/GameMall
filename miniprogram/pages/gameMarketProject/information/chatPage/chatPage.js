@@ -5,7 +5,7 @@ var msgList = [];
 var windowWidth = wx.getSystemInfoSync().windowWidth;
 var windowHeight = wx.getSystemInfoSync().windowHeight;
 var keyHeight = 0;
-
+var db = wx.cloud.database();
 /**
  * 初始化数据
  */
@@ -53,11 +53,66 @@ Page({
     scrollHeight: '100vh',
     inputBottom: 0,
     userFriend:{},
+    //新加的
+    TempMessage:"",
+	  MessageList:[],
+	  FriendID:"5"
+  },
+
+  GetTime(){
+    var blank=""
+    var myDate = new Date();
+    var year=myDate.getFullYear();
+    var month=(myDate.getMonth() + 1 < 10 ? '0' + (myDate.getMonth() + 1) : myDate.getMonth() + 1);
+    var date=myDate.getDate() < 10 ? '0' + myDate.getDate() : myDate.getDate();
+    var hour=myDate.getHours() < 10 ? '0' + myDate.getHours() : myDate.getHours();
+    var min=myDate.getMinutes() < 10 ? '0' + myDate.getMinutes() : myDate.getMinutes();
+    var sec=myDate.getSeconds() < 10 ? '0' + myDate.getSeconds() : myDate.getSeconds();
+    var myTime=blank.concat(year,"-",month,"-",date," ",hour,":",min,":",sec);
+    return myTime
+  },
+
+  WriteMessage(e){
+    this.setData({
+      TempMessage:e.detail.value
+    })
+  },
+
+  SendMessage(){
+    console.log(this.data.TempMessage)
+    var sendmessage = this.data.TempMessage
+    db.collection("ChatRecord").add({
+      data:{
+          Data:sendmessage,
+          Receiver_ID:this.data.FriendID,
+          Sender_ID:app.globalData.User[0].ID,
+          Time:this.GetTime()
+      }
+    })
+    this.setData({
+      TempMessage:''
+    })
+  },
+
+  async GetMessage(){
+    let count = await db.collection("ChatRecord").where({      
+      Receiver_ID:this.data.FriendID,
+      Sender_ID:app.globalData.User[0].ID,}).count()
+    count = count.total
+    let data = []
+    for(let i = 0; i < count; i += 20){
+      let list = await db.collection("ChatRecord").where({     
+         Receiver_ID:this.data.FriendID,
+      Sender_ID:app.globalData.User[0].ID,}).skip(i).get()
+      data = data.concat(list.data)
+    }
+    console.log(data)
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad:async function(options) {
+    this.GetMessage()
     var userFriend = JSON.parse(decodeURIComponent(options.userInfoStr))
     initData(this);
     this.setData({
@@ -66,7 +121,6 @@ Page({
       //加载聊天对象信息,从聊天列表处传参得来
       userFriend,
     });
-    
   },
 
   /**
