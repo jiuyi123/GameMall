@@ -83,7 +83,7 @@ Page({
               url: `https://api.weixin.qq.com/sns/jscode2session?appid=wxa25a2ea091c9f809&secret=0060decbfc8c655a7157c02f8cfd386f&js_code=${code}&grant_type=authorization_code`,
               success:(res)=>{
                 userInfo.openid=res.data.openid
-                //console.log(userInfo)
+                console.log(userInfo)
                 return userInfo
               }
             })
@@ -116,7 +116,7 @@ Page({
       }
       else{
         var data = await this.GetAlldb("Users")
-        db.collection("Users").add({
+        await db.collection("Users").add({
           data:{
               ID:data[data.length-1].ID + 1,
               Balance:0,

@@ -7,7 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    Show_list:'',
+    Game_list:'',
+    Order_list:'',
     Photo:"https://img.3dmgame.com/uploads/images/thumbkwdfirst/20190610/1560146839_941491.jpg",
   },
 
@@ -19,17 +20,23 @@ Page({
       let list = await db.collection("Orders").where({User_ID:app.globalData.User[0].ID}).skip(i).get()
       all = all.concat(list.data)
     }
+    var gamelist = new Array
+    for(let i = 0; i < all.length; i++){
+      gamelist = gamelist.concat(app.globalData.Game[all[i].Game_ID-1])
+    }
     this.setData({
-      Show_list:all
+      Order_list:all,
+      Game_list:gamelist
     })
-    console.log(this.data.Show_list) },
+    // console.log(this.data.Game_list) 
+    // console.log(this.data.Order_list)
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: async function (options) {
     await this.LoadInfo()
-    console.log(this.data.Show_list)
   },
 
   /**

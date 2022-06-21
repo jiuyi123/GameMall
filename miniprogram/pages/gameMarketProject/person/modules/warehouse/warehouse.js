@@ -31,7 +31,7 @@ Page({
     }
     var gamelist = new Array
     for(let i = 0; i < all.length; i++){
-      gamelist = gamelist.concat(app.globalData.Game[all[i].Game_ID])
+      gamelist = gamelist.concat(app.globalData.Game[all[i].Game_ID-1])
     }
     this.setData({
       Show_list:gamelist

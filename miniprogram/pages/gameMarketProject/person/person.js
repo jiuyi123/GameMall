@@ -104,7 +104,7 @@ Page({
    */
   onLoad: function (options) {
 
-    this.data({
+    this.setData({
       Name:getApp().userInfo.Name,
       PhotoLink:getApp().userInfo.Photo_link
     })

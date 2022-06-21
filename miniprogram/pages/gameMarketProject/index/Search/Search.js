@@ -37,6 +37,7 @@ Page({
     this.setData({
       Game_list: app.globalData.Game
     })
+    console.log("length:"+app.globalData.Game.length)
     let game = new Array()
     for (var i = 0; i < this.data.Game_list.length; i++) {
       game[i] = this.data.Game_list[i];
