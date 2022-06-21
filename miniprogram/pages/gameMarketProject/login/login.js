@@ -11,7 +11,7 @@ Page({
   data: {
         Account: '',
         Password:'',
-    },
+      },
   
     async GetAlldb(DBName){
       let count = await db.collection(DBName).count()
@@ -30,7 +30,8 @@ Page({
     //检查Password是否对应Account
     this.setData({
       Account:e.detail.value.username,
-      Password:e.detail.value.password
+      Password:e.detail.value.password,
+      bools:[1,2,3]
     })
     db.collection("Users")
     .where({

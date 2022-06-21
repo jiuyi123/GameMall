@@ -1,5 +1,6 @@
 <!--pages/gameMarketProject/index/index.wxml-->
 <view>
+<van-button>哈哈哈</van-button>
   <!-- 搜索框 -->
   <view style="display: flex; flex-direction: row;justify-content: space-around;">
     <input bindinput='bindSearchContent' type="text" class="inputBox">{{SearchContent}}</input>
@@ -42,7 +43,7 @@
     <view wx:for="{{gameInfo}}" style="display: inline-block;">
       <view id="gameInformation" data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
         <view style="height: 470rpx;width: 234rpx;border: 3rpx solid #82fa96;margin: 5rpx;background-color: rgb(0, 255, 255,0.5);">
-          <image mode="scaleToFill" src="{{item.Pic_link}}" style="margin: 15rpx;margin-bottom: 5rpx;height: 300rpx; width: 204rpx;" />
+          <image mode="scaleToFill" src="{{item.Pic_link}}" lazy-load="true" style="margin: 15rpx;margin-bottom: 5rpx;height: 300rpx; width: 204rpx;" />
           <view style="width: 230rpx;margin-right: 2rpx;margin-left: 2rpx;">
             <text style="color:lightblue;display: flex;justify-content: center;">{{item.Name}}</text>
           </view>
