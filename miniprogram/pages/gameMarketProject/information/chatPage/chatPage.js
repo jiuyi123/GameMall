@@ -79,7 +79,7 @@ Page({
   },
 
   SendMessage(){
-    console.log(this.data.TempMessage)
+    //console.log(this.data.TempMessage)
     var sendmessage = this.data.TempMessage
     db.collection("ChatRecord").add({
       data:{
@@ -106,13 +106,19 @@ Page({
       Sender_ID:app.globalData.User[0].ID,}).skip(i).get()
       data = data.concat(list.data)
     }
-    console.log(data)
+    //console.log(data)
+    this.setData({
+      MessageList:data
+    })
+    console.log(this.data.MessageList)
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad:async function(options) {
     this.GetMessage()
+    const that = this
     var userFriend = JSON.parse(decodeURIComponent(options.userInfoStr))
     initData(this);
     this.setData({
@@ -121,6 +127,18 @@ Page({
       //加载聊天对象信息,从聊天列表处传参得来
       userFriend,
     });
+    db.collection('ChatRecord').where({
+      Receiver_ID:this.data.FriendID,
+      Sender_ID:app.globalData.User[0].ID
+    }).watch({
+      onChange: function (snapshot) {
+        //监控数据发生变化时触发
+        that.GetMessage()
+      },
+      onError:(err) => {
+        console.error(err)
+      }
+    })
   },
 
   /**
