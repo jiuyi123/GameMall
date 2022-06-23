@@ -95,8 +95,6 @@
       </swiper-item>
     </swiper>
   </view>
-
-
   <!-- ***************************************** -->
 
   <!-- <text style="color:lightblue;text-align: center;">{{gameInfoObj.name}}</text> -->

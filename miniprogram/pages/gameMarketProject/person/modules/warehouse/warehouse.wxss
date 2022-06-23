@@ -1,1 +1,12 @@
 /* pages/gameMarketProject/person/modules/warehouse/warehouse.wxss */
+/* 省略显示 */
+.productNameText {
+  font-size: 35rpx;
+  text-overflow: ellipsis;
+  z-index: -1;
+  display: -webkit-box;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
