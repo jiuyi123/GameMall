@@ -1,33 +1,55 @@
 <!--pages/gameMarketProject/index/index.wxml-->
 <view>
-  <!-- 搜索框 -->
-  <view style="display: flex; flex-direction: row;justify-content: space-around;align-items: center;background: rgb(136, 203, 230);border-radius: 20rpx; ">
-    <view style="width: 600rpx;">
-      <van-search  bind:change='bindSearchContent' background="rgb(136, 203, 230)" placeholder="请输入游戏关键词">
-      </van-search>
-    </view>
-    <van-button bindtap="search" color="blue" size="small" style="align-items: center;margin-right: 20rpx;">搜索</van-button>
-  </view>
+
   <!-- 导航栏 -->
-  <view style="display: flex; justify-content: center;margin: 5rpx;">
-    <swiper class="banners" indicator-dots autoplay indicator-active-color="#d43c33" indicator-color="ivory">
-      <swiper-item wx:for="{{imgUrl}}" wx:key="bannerId">
-        <image src="{{item}}" style="width: 740rpx;" />
-      </swiper-item>
-    </swiper>
-  </view>
-  <!-- 分类 -->
-  <view class="viewStore">
-    <view class="viewStore2">
-      <view style="display: flex;flex-direction: column;" bindtap="goSort">
+  <view style="display: flex;background: rgb(136, 203, 230);">
+    <!-- 搜索框 -->
+    <view style="width: 650rpx;">
+      <van-search value="{{ value }}" placeholder="请输入游戏关键词" bindtap="showPopup" background="rgb(136, 203, 230)" wx:if="{{searchFirst}}" />
+    </view>
+    <!-- 分类 -->
+      <view style="display: flex;flex-direction: column; border:3rpx solid white;" bindtap="goSort">
         <a href="https://imgtu.com/i/LvSw1e"></a>
         <image src="https://s1.ax1x.com/2022/04/29/LvSw1e.png" lazy-load="true" style="width: 100rpx;height: 100rpx;"></image>
         <text style="color: white;font-size: 25rpx;">游戏分类</text>
       </view>
-    </view>
   </view>
-  <!-- 标签分区 -->
-  <!-- <view style="margin-left: 10rpx;">
+  <!-- 点击搜索后内容 -->
+  <van-popup show="{{ show }}" position="top" custom-style="height: 130rpx;" bind:close="onClose">
+    <!-- 搜索框 -->
+    <view style="display: flex; flex-direction: row;justify-content: space-around;align-items: center;background: rgb(136, 203, 230);">
+      <view style="width: 600rpx;">
+        <van-search bind:change='bindSearchContent' background="rgb(136, 203, 230)" placeholder="请输入游戏关键词">
+        </van-search>
+      </view>
+      <van-button bindtap="search" color="blue" size="small" style="align-items: center;margin-right: 20rpx;">搜索</van-button>
+    </view>
+  </van-popup>
+
+<!-- 信息合集 -->
+  <scroll-view scroll-y="true" bindscroll="srollViewTop" scroll-top="{{top}}" style="height:{{winHeight}}rpx;">
+    <!-- 热点信息栏 -->
+    <!-- <van-notice-bar left-icon="volume-o" text="开启洞穴冒险新篇章！《我的世界》夏日派对即将来袭" /> -->
+    <view style="display: flex; justify-content: center;margin: 5rpx;">
+      <swiper class="banners" indicator-dots autoplay indicator-active-color="#d43c33" indicator-color="ivory">
+        <swiper-item wx:for="{{imgUrl}}" wx:key="bannerId">
+          <image src="{{item}}" style="width: 740rpx;" />
+        </swiper-item>
+      </swiper>
+    </view>
+
+    <!-- 分类
+    <view class="viewStore">
+      <view class="viewStore2">
+        <view style="display: flex;flex-direction: column;" bindtap="goSort">
+          <a href="https://imgtu.com/i/LvSw1e"></a>
+          <image src="https://s1.ax1x.com/2022/04/29/LvSw1e.png" lazy-load="true" style="width: 100rpx;height: 100rpx;"></image>
+          <text style="color: white;font-size: 25rpx;">游戏分类</text>
+        </view>
+      </view>
+    </view> -->
+    <!-- 标签分区 
+     <view style="margin-left: 10rpx;">
     <view
    wx:for="{{riderCommentList}}"
    wx:for-item="item" 
@@ -40,8 +62,40 @@
         {{item.title}}
   </view>
   </view> -->
-  <!-- 展示区 -->
-  <view style="width: 99%;margin-top: 20rpx;border: 3rpx solid #faca82;">
+
+    <text style="color: white;">你会喜欢</text>
+    <scroll-view style="width:100%;height:410rpx;white-space: nowrap;border: 3rpx solid #82fa96 " scroll-x="true">
+      <view>
+        <view wx:for="{{gameInfo}}" style="display: inline-block;">
+          <view id="gameInformation" data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
+            <view style="height: 400rpx;width: 234rpx;border: 3rpx solid #82fa96;margin: 5rpx;background-color: rgb(0, 255, 255,0.5);">
+              <image mode="scaleToFill" src="{{item.Pic_link}}" lazy-load="true" style="margin: 15rpx;margin-bottom: 5rpx;height: 300rpx; width: 204rpx;" />
+              <view style="width: 230rpx;margin-right: 2rpx;margin-left: 2rpx; display: flex;justify-content: center;color:lightblue;">
+                <text class='productNameText'>{{item.Name}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+
+    <text style="color: white;">本周新游</text>
+    <scroll-view style="width:100%;height:410rpx;white-space: nowrap;border: 3rpx solid #82fa96 " scroll-x="true">
+      <view>
+        <view wx:for="{{gameInfo}}" style="display: inline-block;">
+          <view id="gameInformation" data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
+            <view style="height: 400rpx;width: 234rpx;border: 3rpx solid #82fa96;margin: 5rpx;background-color: rgb(0, 255, 255,0.5);">
+              <image mode="scaleToFill" src="{{item.Pic_link}}" lazy-load="true" style="margin: 15rpx;margin-bottom: 5rpx;height: 300rpx; width: 204rpx;" />
+              <view style="width: 230rpx;margin-right: 2rpx;margin-left: 2rpx; display: flex;justify-content: center;color:lightblue;">
+                <text class='productNameText'>{{item.Name}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+    <!-- 展示区 -->
+    <!-- <view style="width: 99%;margin-top: 20rpx;border: 3rpx solid #faca82;">
     <view wx:for="{{gameInfo}}" style="display: inline-block;">
       <view id="gameInformation" data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
         <view style="height: 470rpx;width: 234rpx;border: 3rpx solid #82fa96;margin: 5rpx;background-color: rgb(0, 255, 255,0.5);">
@@ -52,12 +106,6 @@
         </view>
       </view>
     </view>
-  </view>
-  <!-- 详细信息 -->
-  <view>
-    <!-- 视频 -->
-    <!-- <video src="https://gp-dev.cdn.bcebos.com/gp-dev/upload/file/source/02175c1a3c029ad6c4120a87f3ab39dc.mp4"></video> -->
-  </view>
-
-
+  </view> -->
+  </scroll-view>
 </view>

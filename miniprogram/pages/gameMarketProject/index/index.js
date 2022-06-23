@@ -1,16 +1,17 @@
 // pages/gameMarketProject/index/index.js
 var db = wx.cloud.database();
 var app = getApp()
-
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
+    show: false,
+    searchFirst:true,
     Is_game_got : false,
-    windowHeight: 0,
-    windowWidth: 0,
+    winHeight: "", //窗口高度
+    // windowHeight: 0,
+    // windowWidth: 0,
     //搜索框
     search_text: "搜索框",
     //轮播图
@@ -47,7 +48,18 @@ Page({
     //游戏
     gameInfo: [],
   },
-
+  showPopup() {
+    this.setData({ 
+      show: true,
+      searchFirst:false
+    });
+  },
+  onClose() {
+    this.setData({ 
+      show: false,
+      searchFirst:true
+    });
+  },
  /*监听搜索输入框的值*/
  onChange(event){
   console.log(event.detail)
@@ -88,7 +100,6 @@ Page({
       url: "/pages/gameMarketProject/index/gameSort/sort/sort",
     })
   },
-
   //游戏详情页面
   goDetail(e) {
 
@@ -122,6 +133,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+        // 高度自适应
+        var that = this;
+        wx.getSystemInfo({
+          success: function (res) {
+            var clientHeight = res.windowHeight,
+              clientWidth = res.windowWidth,
+              rpxR = 750 / clientWidth;
+            var calc = clientHeight * rpxR - 130;
+            that.setData({
+              winHeight: calc
+            });
+          }
+        });
     this.Onload()
   },
 
