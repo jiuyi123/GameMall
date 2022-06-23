@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    test:[1,2],
     Is_game_got : false,
     windowHeight: 0,
     windowWidth: 0,

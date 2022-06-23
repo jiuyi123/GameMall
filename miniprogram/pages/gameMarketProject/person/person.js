@@ -54,34 +54,6 @@ Page({
       url: "/pages/gameMarketProject/person/personInfo/account/account",
     })
   },
-  //历史记录
-  goHistory() {
-    console.log("goHistory")
-    wx.navigateTo({
-      url: "/pages/gameMarketProject/person/personInfo/history/history",
-    })
-  },
-  //我的好友
-  goFriend() {
-    console.log("goFriend")
-    wx.navigateTo({
-      url: "/pages/gameMarketProject/person/personInfo/friend/friend",
-    })
-  },
-  //意见反馈
-  goFeedback() {
-    console.log("goFeedback")
-    wx.navigateTo({
-      url: "/pages/gameMarketProject/person/personInfo/feedback/feedback",
-    })
-  },
-  //设置
-  goSettings() {
-    console.log("goSettings")
-    wx.navigateTo({
-      url: "/pages/gameMarketProject/person/personInfo/settings/settings",
-    })
-  },
   //登出
   Logout() {
     wx.showModal({

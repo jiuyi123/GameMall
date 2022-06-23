@@ -3,7 +3,9 @@ page {
   background-color: #0c2f5a;
   height: 100%;
 }
-
+.van-cell-group{
+  background-color: rgba(211, 231, 253, 0.7) !important;
+}
 .informationItemView {
   color: #fff;
   font-size: 40rpx;

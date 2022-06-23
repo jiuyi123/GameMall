@@ -36,42 +36,12 @@
       仓库
     </view>
   </view>
-
   <!-- 信息列表页面 -->
-  <view style="margin: 5rpx;margin-top: 100rpx;">
-    <view class="informationItemView" bindtap="goAccount">
-      <text class="textView">账户</text>
-      <a class="icon-box" href="https://imgtu.com/i/O3rsO">
-        <image class="icon-box-img" src="https://s1.ax1x.com/2022/05/08/O3rsOK.png" />
-      </a>
-    </view>
-    <view class="informationItemView" bindtap="goHistory">
-      <text class="textView">历史记录</text>
-      <a class="icon-box" href="https://imgtu.com/i/O3rsO">
-        <image class="icon-box-img" src="https://s1.ax1x.com/2022/05/08/O3rsOK.png" />
-      </a>
-    </view>
-    <view class="informationItemView" bindtap="goFriend">
-      <text class="textView">我的好友</text> <a class="icon-box" href="https://imgtu.com/i/O3rsO">
-        <image class="icon-box-img" src="https://s1.ax1x.com/2022/05/08/O3rsOK.png" />
-      </a>
-    </view>
-    <view class="informationItemView" bindtap="goFeedback">
-      <text class="textView">意见反馈</text> <a class="icon-box" href="https://imgtu.com/i/O3rsO">
-        <image class="icon-box-img" src="https://s1.ax1x.com/2022/05/08/O3rsOK.png" />
-      </a>
-    </view>
-    <view class="informationItemView" bindtap="goSettings">
-      <text class="textView">设置</text> <a class="icon-box" href="https://imgtu.com/i/O3rsO">
-        <image class="icon-box-img" src="https://s1.ax1x.com/2022/05/08/O3rsOK.png" />
-      </a>
-    </view>
-  </view>
-
-  <!-- <view style="background-color: lightgreen;display: flex;">
-    <view>左</view>
-    <view style=" margin: auto;margin-right: 10rpx;">右</view>
-  </view> -->
-
-
+  <van-cell-group style="margin: 5rpx;margin-top: 100rpx;">
+    <van-cell custom-class="van-cell-group" title="账户" is-link url="/pages/gameMarketProject/person/personInfo/account/account" />
+    <van-cell custom-class="van-cell-group" title="历史记录" is-link url="/pages/gameMarketProject/person/personInfo/history/history" />
+    <van-cell custom-class="van-cell-group" title="我的好友" is-link url="/pages/gameMarketProject/person/personInfo/friend/friend" />
+    <van-cell custom-class="van-cell-group" title="意见反馈" is-link url="/pages/gameMarketProject/person/personInfo/feedback/feedback" />
+    <van-cell custom-class="van-cell-group" title="设置" is-link url="/pages/gameMarketProject/person/personInfo/settings/settings" />
+  </van-cell-group>
 </view>

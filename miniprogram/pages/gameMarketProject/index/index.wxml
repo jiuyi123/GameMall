@@ -1,6 +1,5 @@
 <!--pages/gameMarketProject/index/index.wxml-->
 <view>
-<van-button>哈哈哈</van-button>
   <!-- 搜索框 -->
   <view style="display: flex; flex-direction: row;justify-content: space-around;">
     <input bindinput='bindSearchContent' type="text" class="inputBox">{{SearchContent}}</input>
