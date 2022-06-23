@@ -1,10 +1,13 @@
 <!--pages/gameMarketProject/index/Search/Search.wxml-->
 
 <!-- 搜索框 -->
-<view style="display: flex; flex-direction: row;justify-content: space-around;">
-  <input bindinput='bindSearchContent' type="text" class="inputBox">{{SearchContent}}</input>
-  <button class="buttonBox" size="mini" bindtap="search">搜索</button>
-</view>
+<view style="display: flex; flex-direction: row;justify-content: space-around;align-items: center;background: rgb(136, 203, 230);border-radius: 20rpx; ">
+    <view style="width: 600rpx;">
+      <van-search  bind:change='bindSearchContent' background="rgb(136, 203, 230)" placeholder="请输入游戏关键词">
+      </van-search>
+    </view>
+    <van-button bindtap="search" color="blue" size="small" style="align-items: center;margin-right: 20rpx;">搜索</van-button>
+  </view>
 
 <!-- 这里的类的名字请忽略，因为是直接复制消息列表的 -->
 <!-- 结果列表 -->
@@ -13,8 +16,8 @@
     <view class="infoBox" bindtap="goChatPage" id="userFriend" data-user-Info="{{item}}">
       <!-- 游戏图片 -->
       <view style="height: 240rpx;">
-        <a href="{{item.Photo_link}}">
-          <image src="{{item.Photo_link}}" mode="scaleToFill" style="height: 240rpx;width:180rpx; margin: 10rpx;" />
+        <a href="{{item.Pic_link}}">
+          <image src="{{item.Pic_link}}" mode="scaleToFill" style="height: 240rpx;width:180rpx; margin: 10rpx;" />
         </a>
       </view>
       <!-- 游戏名和标签 -->

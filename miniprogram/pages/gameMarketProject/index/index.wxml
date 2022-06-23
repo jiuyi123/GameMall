@@ -1,9 +1,12 @@
 <!--pages/gameMarketProject/index/index.wxml-->
 <view>
   <!-- 搜索框 -->
-  <view style="display: flex; flex-direction: row;justify-content: space-around;">
-    <input bindinput='bindSearchContent' type="text" class="inputBox">{{SearchContent}}</input>
-    <button class="buttonBox" size="mini" bindtap="search">搜索</button>
+  <view style="display: flex; flex-direction: row;justify-content: space-around;align-items: center;background: rgb(136, 203, 230);border-radius: 20rpx; ">
+    <view style="width: 600rpx;">
+      <van-search  bind:change='bindSearchContent' background="rgb(136, 203, 230)" placeholder="请输入游戏关键词">
+      </van-search>
+    </view>
+    <van-button bindtap="search" color="blue" size="small" style="align-items: center;margin-right: 20rpx;">搜索</van-button>
   </view>
   <!-- 导航栏 -->
   <view style="display: flex; justify-content: center;margin: 5rpx;">

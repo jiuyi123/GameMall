@@ -25,7 +25,7 @@ Page({
   bindSearchContent: function (e) {
 
     this.setData({
-      search_text: e.detail.value
+      search_text: e.detail
     })
   },
   search: function () {

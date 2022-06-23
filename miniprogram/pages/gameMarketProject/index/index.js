@@ -1,12 +1,13 @@
 // pages/gameMarketProject/index/index.js
 var db = wx.cloud.database();
 var app = getApp()
+
 Page({
+
   /**
    * 页面的初始数据
    */
   data: {
-    test:[1,2],
     Is_game_got : false,
     windowHeight: 0,
     windowWidth: 0,
@@ -21,7 +22,6 @@ Page({
       'https://gimg0.baidu.com/gimg/src=https%3A%2F%2Ffenwan.cdn.bcebos.com%2Fcms%2Fgamenow%2Flewan%2F2022-4%2F1649840368082%2Ff6c03d2548df.jpg&app=2000&size=f0,0&n=0&g=0n&q=85&fmt=jpeg?sec=0&t=88cd3a4ff17872345f1a6592c71173df',
       'https://fenwan.cdn.bcebos.com/cms/gamenow/lewan/2022-2/1644565803292/e2df1c0a895e.jpg?x-bce-process=image/resize,m_lfit,w_242'
     ],
-
     //分类标签
     riderCommentList: [{
       value: '全部',
@@ -44,11 +44,17 @@ Page({
       selected: false,
       title: '其他'
     }],
-
     //游戏
     gameInfo: [],
   },
 
+ /*监听搜索输入框的值*/
+ onChange(event){
+  console.log(event.detail)
+  this.setData({
+    search:event.detail
+  })
+},
   checkboxChange(e) {
     console.log('checkboxChange e:', e);
     let string = "riderCommentList[" + e.target.dataset.index + "].selected"
@@ -60,14 +66,16 @@ Page({
   },
   //搜索框
   bindSearchContent: function (e) {
+    console.log(e.detail)
     this.setData({
-      search_text: e.detail.value
+      search_text: e.detail
     })
   },
   //搜索按钮
   search: function (e) {
-    //console.log(this.data.search_text)
+    console.log(this.data.search_text)
     //console.log(this.data.Is_game_got)
+
     app.globalData.search_text = this.data.search_text
     wx.navigateTo({
       url: "/pages/gameMarketProject/index/Search/Search",
