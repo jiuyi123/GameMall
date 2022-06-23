@@ -1,16 +1,39 @@
 // pages/gameMarketProject/index/Search/Search.js
 var app = getApp()
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
+    Top:true,
+    top:false,
+    winHeight: "", //窗口高度
     Game_list: '',
     search_text: '',
     Show_list: new Array(),
     NoRes: false
   },
+  /***************************** */
+  /***************触底返回***************** */
+  srollViewTop: function (e) {
+    //console.log(e.detail.scrollTop);
+    if (e.detail.scrollTop > 300) {
+      this.setData({
+        Top: false
+      })
+    } else {
+      this.setData({
+        Top: true
+      })
+    }
+  },
+  backTop: function () {
+    this.setData({
+      top: true
+    })
+  },
+
+  /*******************************/
   //游戏详情页面
   goDetail(e) {
     console.log("GoDetail")
@@ -23,7 +46,6 @@ Page({
     })
   },
   bindSearchContent: function (e) {
-
     this.setData({
       search_text: e.detail
     })
@@ -37,7 +59,7 @@ Page({
     this.setData({
       Game_list: app.globalData.Game
     })
-    console.log("length:"+app.globalData.Game.length)
+    console.log("length:" + app.globalData.Game.length)
     let game = new Array()
     for (var i = 0; i < this.data.Game_list.length; i++) {
       game[i] = this.data.Game_list[i];
@@ -166,6 +188,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // 高度自适应
+    var that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        var clientHeight = res.windowHeight,
+          clientWidth = res.windowWidth,
+          rpxR = 750 / clientWidth;
+        var calc = clientHeight * rpxR - 130;
+        that.setData({
+          winHeight: calc
+        });
+      }
+    });
+    this.setData({
+      search_text: app.globalData.search_text
+    })
     this.Dafen_AllGame()
   },
 

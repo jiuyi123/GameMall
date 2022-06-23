@@ -1,39 +1,41 @@
 <!--pages/gameMarketProject/index/Search/Search.wxml-->
-
-<!-- 搜索框 -->
-<view style="display: flex; flex-direction: row;justify-content: space-around;align-items: center;background: rgb(136, 203, 230);border-radius: 20rpx; ">
+<view>
+  <!-- 搜索框 -->
+  <view style="display: flex; flex-direction: row;justify-content: space-around;align-items: center;background: rgb(136, 203, 230);">
     <view style="width: 600rpx;">
-      <van-search  bind:change='bindSearchContent' background="rgb(136, 203, 230)" placeholder="请输入游戏关键词">
+      <van-search bind:change='bindSearchContent' background="rgb(136, 203, 230)" placeholder="{{search_text}}">
       </van-search>
     </view>
     <van-button bindtap="search" color="blue" size="small" style="align-items: center;margin-right: 20rpx;">搜索</van-button>
   </view>
+  <!-- 这里的类的名字请忽略，因为是直接复制消息列表的 -->
+  <!-- 结果列表 -->
+  <scroll-view scroll-y="true" bindscroll="srollViewTop" scroll-top="{{top}}" style="height:{{winHeight}}rpx;">
+    <view class="reviewItemView" wx:for="{{Show_list}}" data-item="item" data-game-Info="{{item}}" id="gameInformation" bindtap="goDetail">
+      <view class="infoBox" bindtap="goChatPage" id="userFriend" data-user-Info="{{item}}">
+        <!-- 游戏图片 -->
+        <view style="height: 240rpx;">
+          <a href="{{item.Pic_link}}">
+            <image src="{{item.Pic_link}}" mode="scaleToFill" style="height: 240rpx;width:180rpx; margin: 10rpx;" />
+          </a>
+        </view>
+        <!-- 游戏名和标签 -->
+        <view class="nameInfoBox">
+          <!-- 游戏名 -->
+          <view class="userName">{{item.Name}}</view>
+          <!-- 游戏标签 -->
+          <view class="infoContent">标签：{{item.Tag}}</view>
+          <!-- 热度 -->
+          <view class="infoContent">热度：{{item.Hits}}</view>
+          <!-- 发行时间 -->
+          <view class="infoTime">时间：{{item.Release_Time}}</view>
+        </view>
+        <!-- 游戏价格 -->
+        <view class="gamePrice">¥{{item.Price}}</view>
 
-<!-- 这里的类的名字请忽略，因为是直接复制消息列表的 -->
-<!-- 结果列表 -->
-<scroll-view scroll-y="true" style="height:{{winHeight}}rpx;">
-  <view class="reviewItemView" wx:for="{{Show_list}}" data-item="item" data-game-Info="{{item}}" id="gameInformation" bindtap="goDetail">
-    <view class="infoBox" bindtap="goChatPage" id="userFriend" data-user-Info="{{item}}">
-      <!-- 游戏图片 -->
-      <view style="height: 240rpx;">
-        <a href="{{item.Pic_link}}">
-          <image src="{{item.Pic_link}}" mode="scaleToFill" style="height: 240rpx;width:180rpx; margin: 10rpx;" />
-        </a>
       </view>
-      <!-- 游戏名和标签 -->
-      <view class="nameInfoBox">
-        <!-- 游戏名 -->
-        <view class="userName">{{item.Name}}</view>
-        <!-- 游戏标签 -->
-        <view class="infoContent">标签：{{item.Tag}}</view>
-        <!-- 热度 -->
-        <view class="infoContent">热度：{{item.Hits}}</view>
-        <!-- 发行时间 -->
-        <view class="infoTime">时间：{{item.Release_Time}}</view>
-      </view>
-      <!-- 游戏价格 -->
-      <view class="gamePrice">¥{{item.Price}}</view>
-
     </view>
-  </view>
-</scroll-view>
+    <view hidden="{{Top}}" class="back" bindtap="backTop" style="color: white;height: 100rpx;display: flex;justify-content: center;size: 50rpx;">已经到底了，点击返回顶端</view>
+  </scroll-view>
+ 
+</view>
