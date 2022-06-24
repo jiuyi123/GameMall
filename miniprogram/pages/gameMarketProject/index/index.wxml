@@ -28,6 +28,8 @@
     <!-- 历史记录 -->
     <text>搜索历史</text>
   </van-popup>
+  <!-- <view style="background-color: ghostwhite;height: 200rpx;width: 300rpx;justify-items: center;box-shadow: 0 0 10px rgb(180, 180, 180); border:1px solid rgb(0, 0, 0)">
+  </view> -->
 
   <!-- 信息合集 -->
   <scroll-view scroll-y="true" style="height:{{winHeight}}rpx; margin-bottom:10rpx ;">
@@ -68,7 +70,7 @@
   </view> -->
 
     <text style="color: white;">你会喜欢</text>
-    <scroll-view style="width:100%;height:410rpx;white-space: nowrap;border: 3rpx solid #82fa96 " scroll-x="true">
+    <scroll-view style="width:100%;height:410rpx;white-space: nowrap;border: 3rpx solid #82fa96 ;box-shadow: 0 0 10px rgb(180, 180, 180);" scroll-x="true">
       <view>
         <view wx:for="{{gameInfo}}" wx:key="list1" style="display: inline-block; ">
           <view data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
@@ -84,7 +86,7 @@
     </scroll-view>
 
     <text style="color: white;">本周新游</text>
-    <scroll-view style="width:100%;height:410rpx;white-space: nowrap;border: 3rpx solid #82fa96 " scroll-x="true">
+    <scroll-view style="width:100%;height:410rpx;white-space: nowrap;border: 3rpx solid #82fa96 ;box-shadow: 0 0 10px rgb(180, 180, 180);" scroll-x="true">
       <view>
         <view wx:for="{{gameInfo}}" wx:key="list2" style="display: inline-block;">
           <view id="gameInformation" data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">

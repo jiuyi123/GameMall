@@ -3,6 +3,7 @@ var app = getApp();
 var db = wx.cloud.database();
 var gameInfoObj
 var game_id
+
 Page({
 
   /**
@@ -13,6 +14,7 @@ Page({
 
     },
     /******信息页面数据*******/
+    activeNames: ['1'], //折叠面板
     winHeight: "", //窗口高度
     currentTab: 0, //预设当前项的值
     scrollLeft: 0, //tab标题的滚动条位置
@@ -21,7 +23,13 @@ Page({
     is_GouWuChe: false,
     is_GouMai: false
   },
-
+  /************************* */
+  //折叠面板
+  onChange(event) {
+    this.setData({
+      activeNames: event.detail,
+    });
+  },
   /******************************* */
   // 滚动切换标签样式
   switchTab: function (e) {
@@ -60,7 +68,7 @@ Page({
   footerTap: app.footerTap,
 
 
- 
+
   /************************************* */
   Load(gameInfoObj) {
     gameInfoObj.numComment = 999
@@ -206,6 +214,11 @@ Page({
       this.setData({
         is_ShouCang: false
       })
+      wx.showToast({
+        title: '取消收藏',
+        icon: 'success',
+        duration: 1000
+      })
     } else {
       db.collection("Collect").add({
         data: {
@@ -216,6 +229,11 @@ Page({
       })
       this.setData({
         is_ShouCang: true
+      })
+      wx.showToast({
+        title: '已收藏',
+        icon: 'success',
+        duration: 1000
       })
     }
   },

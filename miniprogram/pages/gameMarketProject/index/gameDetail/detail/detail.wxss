@@ -121,13 +121,20 @@ page{
 }
 
 .buyView{
-  height:100rpx;
+  height:110rpx;
   width: 750rpx; 
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  background-color: rgb(145, 220, 255);
+  background-color: rgb(13, 54, 101);
   position:fixed;
   bottom:0;
+}
+
+.van-collapse{
+  background-color: rgba(211, 231, 253, 0.7) !important;
+}
+.van-collapse-item{
+  background-color: rgba(211, 231, 253, 0.7) !important;
 }
