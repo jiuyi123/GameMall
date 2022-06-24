@@ -272,8 +272,8 @@ Page({
     }
     var gamelist = new Array
     for(let i = 0; i < all.length; i++){
-      app.globalData.Game[all[i].Game_ID].select = "circle",
-      app.globalData.Game[all[i].Game_ID].num = 1,
+      app.globalData.Game[all[i].Game_ID-1].select = "circle",
+      app.globalData.Game[all[i].Game_ID-1].num = 1,
       gamelist = gamelist.concat(app.globalData.Game[all[i].Game_ID-1])
     }
     this.setData({
