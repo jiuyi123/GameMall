@@ -19,6 +19,7 @@ Page({
     url:"/pages/gameMarketProject/index/gameDetail/detail/detail?gameInfoStr="+gameInfoStr,
   })
 },
+//获取游戏列表
   async LoadInfo(){
     let count = await db.collection("Orders").where({      User_ID:app.globalData.User[0].ID,
       State:"已支付"}).count()
