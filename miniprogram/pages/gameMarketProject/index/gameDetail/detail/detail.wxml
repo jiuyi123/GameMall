@@ -25,17 +25,17 @@
                 <image mode="scaleToFill" src="{{gameInfoObj.Pic_link}}" style="margin: 15rpx;margin-left: 30rpx; height: 300rpx; width: 200rpx;border-radius: 20rpx;box-shadow: 0 0 10px rgb(180, 180, 180);" />
               </a>
               <!-- 游戏信息 -->
-              <view style=" display: flex;flex-flow: column wrap;row-gap: 40rpx; height: 300rpx;width: 500rpx; margin: 10rpx;color: white;">
+              <view style=" display: flex;flex-flow: column wrap;row-gap: 40rpx; height: 300rpx;width: 450rpx; margin: 10rpx;color: white;">
                 <view style="display: flex;justify-content: space-around;flex-direction: row;">
                   <text style="font-size:40rpx;font-weight: bolder;">{{gameInfoObj.Name}}</text>
                   <van-icon bindtap="ShouCang" wx:if="{{!is_ShouCang}}" name="like-o" color="red" size="20px" />
                   <van-icon bindtap="ShouCang" wx:if="{{is_ShouCang}}" name="like" color="red" size="20px" />
                 </view>
-                <view style="margin-left: 50rpx; color: gainsboro; font-size: 25rpx;display: flex;flex-flow: column wrap;row-gap: 30rpx;">
-                  <text>类型: {{gameInfoObj.Tag}}</text>
-                  <text>语言支持：{{gameInfoObj.Language}}</text>
-                  <text>配置要求：win10</text>
-                  <text>开发商：{{gameInfoObj.Developer}}</text>
+                <view style="margin-left: 20rpx; color: gainsboro; font-size: 25rpx;display: flex;flex-flow: column wrap;row-gap: 20rpx;">
+                  <text class="productNameText">类型: {{gameInfoObj.Tag}}</text>
+                  <text class="productNameText">语言支持：{{gameInfoObj.Language}}</text>
+                  <text class="productNameText">配置要求：win10</text>
+                  <text class="productNameText">开发商：{{gameInfoObj.Developer}}</text>
                 </view>
 
               </view>
