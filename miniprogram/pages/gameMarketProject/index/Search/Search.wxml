@@ -8,8 +8,8 @@
     </view>
     <van-button bindtap="search" color="blue" size="small" style="align-items: center;margin-right: 20rpx;">搜索</van-button>
   </view>
-  <!-- 这里的类的名字请忽略，因为是直接复制消息列表的 -->
-  <!-- 结果列表 -->
+
+  <!-- 结果列表   这里的类的名字请忽略，因为是直接复制消息列表的 -->
   <scroll-view scroll-y="true" bindscroll="srollViewTop" scroll-top="{{top}}" style="height:{{winHeight}}rpx;">
     <view class="reviewItemView" wx:for="{{Show_list}}" data-item="item" data-game-Info="{{item}}" id="gameInformation" bindtap="goDetail">
       <view class="infoBox" bindtap="goChatPage" id="userFriend" data-user-Info="{{item}}">

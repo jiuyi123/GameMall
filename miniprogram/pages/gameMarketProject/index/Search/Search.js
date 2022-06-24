@@ -201,6 +201,7 @@ Page({
         });
       }
     });
+    //搜索内容
     this.setData({
       search_text: app.globalData.search_text
     })

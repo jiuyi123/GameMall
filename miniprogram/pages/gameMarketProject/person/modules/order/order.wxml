@@ -1,25 +1,39 @@
 <!--pages/gameMarketProject/person/modules/order/order.wxml-->
-<!-- 订单列表 -->
-<scroll-view scroll-y="true" style="height:{{winHeight}}rpx;">
-  <view class="reviewItemView" wx:for="{{Show_list}}" data-item="item">
-    <view class="infoBox" bindtap="goChatPage" id="userFriend" data-user-Info="{{item}}">
-      <!-- 订单时间 -->
-      <view class="infoTime">{{item.Time}}</view>
-       <!-- 订单编号-->
-       <view class="infoTime">{{item.ID}}</view>
-      <!-- 游戏头像 -->
-      <view style="height: 120rpx;">
-        <a href="{{Photo}}">
-          <image src="{{Photo}}" mode="scaleToFill" style="height: 100rpx;width:100rpx; margin: 10rpx;" />
-        </a>
+<view>
+  <!-- 顶部 -->
+  <view>
+    <!-- 搜索框 -->
+    <view style="display: flex; flex-direction: row;justify-content: space-around;align-items: center;background: rgb(136, 203, 230);">
+      <view style="width: 600rpx;">
+        <van-search bind:change='bindSearchContent' background="rgb(136, 203, 230)" placeholder="输入订单关键词查询">
+        </van-search>
       </view>
-      <!-- 用户名和消息 -->
-      <view class="nameInfoBox">
-        <!-- 用户名 -->
-        <view class="userName">{{item.userName}}</view>
-        <!-- 最新消息 -->
-        <view class="infoContent">{{item.infoContent}}</view>
-      </view>
+      <van-button bindtap="search" color="blue" size="small" style="align-items: center;margin-right: 20rpx;">搜索</van-button>
     </view>
+    <!-- 选择框 -->
+    <van-dropdown-menu>
+      <van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" />
+    </van-dropdown-menu>
   </view>
-</scroll-view>
+  <!-- 订单列表 -->
+  <scroll-view scroll-y="true" style="height:{{winHeight}}rpx;">
+    <view style="border-bottom: 3rpx solid red; margin-bottom: 10rpx;"  wx:for="{{Show_list}}" data-item="item">
+      <!-- 订单头部 -->
+      <view style="color: aliceblue;background-color: rgb(154, 167, 167,0.5);display: flex;justify-content: space-around;">
+        <text>编号：{{item.ID}}</text>
+        <text>时间:{{item.Time}}</text>
+      </view>
+      <!-- 订单信息 -->
+      <van-card custom-class="van-card" price="{{item.Final_price}}" tag="{{item.State}}" desc="" title="商品名称：{{item.gameName}}" thumb="{{ item.Pic_link }}">
+        <view slot="footer">
+          <text style="color: red;border-bottom: 3rpx solid red">订单详情</text>
+        </view>
+        <view slot="price-top">
+          <!-- <text>订单时间:{{item.Time}}</text> -->
+        </view>
+      </van-card>
+      <!-- 下划线 -->
+      <!-- <van-divider hairline /> -->
+    </view>
+  </scroll-view>
+</view>

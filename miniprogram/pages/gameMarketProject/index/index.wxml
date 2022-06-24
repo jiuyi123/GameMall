@@ -30,7 +30,7 @@
   </van-popup>
 
   <!-- 信息合集 -->
-  <scroll-view scroll-y="true" bindscroll="srollViewTop" scroll-top="{{top}}" style="height:{{winHeight}}rpx; margin-bottom:10rpx ;">
+  <scroll-view scroll-y="true" style="height:{{winHeight}}rpx; margin-bottom:10rpx ;">
     <!-- 热点信息栏 -->
     <van-notice-bar left-icon="volume-o" text="开启洞穴冒险新篇章！《我的世界》夏日派对即将来袭" />
 
@@ -70,7 +70,7 @@
     <text style="color: white;">你会喜欢</text>
     <scroll-view style="width:100%;height:410rpx;white-space: nowrap;border: 3rpx solid #82fa96 " scroll-x="true">
       <view>
-        <view wx:for="{{gameInfo}}" style="display: inline-block;">
+        <view wx:for="{{gameInfo}}" wx:key="list1" style="display: inline-block; ">
           <view data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
             <view style="height: 400rpx;width: 234rpx;border: 3rpx solid #82fa96;margin: 5rpx;background-color: rgb(0, 255, 255,0.5);">
               <image mode="scaleToFill" src="{{item.Pic_link}}" lazy-load="true" style="margin: 15rpx;margin-bottom: 5rpx;height: 300rpx; width: 204rpx;" />
@@ -86,7 +86,7 @@
     <text style="color: white;">本周新游</text>
     <scroll-view style="width:100%;height:410rpx;white-space: nowrap;border: 3rpx solid #82fa96 " scroll-x="true">
       <view>
-        <view wx:for="{{gameInfo}}" style="display: inline-block;">
+        <view wx:for="{{gameInfo}}" wx:key="list2" style="display: inline-block;">
           <view id="gameInformation" data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
             <view style="height: 400rpx;width: 234rpx;border: 3rpx solid #82fa96;margin: 5rpx;background-color: rgb(0, 255, 255,0.5);">
               <image mode="scaleToFill" src="{{item.Pic_link}}" lazy-load="true" style="margin: 15rpx;margin-bottom: 5rpx;height: 300rpx; width: 204rpx;" />
