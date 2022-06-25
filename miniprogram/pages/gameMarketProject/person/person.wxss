@@ -3,17 +3,37 @@ page {
   background-color: #0c2f5a;
   height: 100%;
 }
+
+.boxIconAll {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  color: whitesmoke;
+  margin: 10rpx;
+  margin-top: 40rpx;
+}
+
+.boxIcon {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  border-radius: 10rpx;
+  width: 150rpx;
+  font-weight: border;
+}
+
 .loginOutBtn {
   color: rgb(255, 0, 0);
-  background-color: rgb(0, 36, 59,0.8);
+  background-color: rgb(0, 36, 59, 0.8);
   margin-top: 10rpx;
   width: 300rpx;
 
 }
 
-.van-cell-group{
+.van-cell-group {
   background-color: rgba(211, 231, 253, 0.7) !important;
 }
+
 .informationItemView {
   color: #fff;
   font-size: 40rpx;
@@ -28,12 +48,13 @@ page {
   display: flex;
   margin-left: 20rpx;
 }
-.icon-box{
+
+.icon-box {
   margin: auto;
   margin-right: 10rpx;
 }
+
 .icon-box-img {
   height: 50rpx;
-  width:30rpx; 
+  width: 30rpx;
 }
-

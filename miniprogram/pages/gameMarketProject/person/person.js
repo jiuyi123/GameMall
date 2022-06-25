@@ -20,21 +20,21 @@ Page({
       url: "/pages/gameMarketProject/person/modules/shopCart/shopCart",
     })
   },
-  //收藏
+  //我喜欢
   goFavorite(e) {
     console.log("goFavorite")
     wx.navigateTo({
       url: "/pages/gameMarketProject/person/modules/favorite/favorite",
     })
   },
-  //订单
-  goOrder(e) {
+  //历史
+  goHistory(e) {
     console.log("goOrder")
     wx.navigateTo({
-      url: "/pages/gameMarketProject/person/modules/order/order",
+      url: "/pages/gameMarketProject/person/modules/history/history",
     })
   },
-  //仓库
+  //库
   goWarehouse(e) {
     console.log("goWarehouse")
     wx.navigateTo({
