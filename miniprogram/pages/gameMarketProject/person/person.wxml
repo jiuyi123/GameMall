@@ -2,10 +2,10 @@
 <view>
   <!-- 个人头像和昵称 -->
   <view style="display: flex;align-items: center;background-color: rgb(0, 36, 59,0.5);">
-    <a href="{{user.PhotoLink}}">
-      <image src="{{user.PhotoLink}}" mode="scaleToFill" style="height: 100rpx;width:100rpx; margin: 10rpx;" />
+    <a href="{{UserInfo.Photo_link}}">
+      <image src="{{UserInfo.Photo_link}}" mode="scaleToFill" style="height: 100rpx;width:100rpx; margin: 10rpx;" />
     </a>
-    <text style="font-size: 50rpx;color: beige;margin-left: 20rpx;">{{user.Name}}</text>
+    <text style="font-size: 50rpx;color: beige;margin-left: 20rpx;">{{UserInfo.Nickname}}</text>
     <button bindtap="Logout">退出登录</button>
   </view>
 
