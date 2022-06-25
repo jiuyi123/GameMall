@@ -55,7 +55,7 @@ Page({
     TempMessage:"",
     SendMessageList:[],
     ReceiveMessageList:[],
-	  FriendID:5
+	  FriendID:3
   },
 
   GetTime(){

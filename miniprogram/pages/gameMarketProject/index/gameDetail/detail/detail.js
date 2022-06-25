@@ -14,6 +14,8 @@ Page({
 
     },
     /*******购买弹窗*******/
+    radio: '1',//单选框
+    checked: false,//复选框
     show: false,
     actions: [{
       name: '获取用户信息',
@@ -32,6 +34,16 @@ Page({
   },
   /************************* */
   /****************购买弹窗****************/
+  onChangeCheckbox(event) {
+    this.setData({
+      checked: event.detail,
+    });
+  },
+  onChangeRadio(event) {
+    this.setData({
+      radio: event.detail,
+    });
+  },
   buyPop()
   {
     this.setData({
