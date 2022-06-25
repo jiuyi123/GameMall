@@ -13,6 +13,13 @@ Page({
     gameInfoObj: {
 
     },
+    /*******购买弹窗*******/
+    show: false,
+    actions: [{
+      name: '获取用户信息',
+      color: '#07c160',
+      openType: 'getUserInfo'
+    }, ],
     /******信息页面数据*******/
     activeNames: ['1'], //折叠面板
     winHeight: "", //窗口高度
@@ -24,13 +31,28 @@ Page({
     is_GouMai: false
   },
   /************************* */
-  //折叠面板
+  /****************购买弹窗****************/
+  buyPop()
+  {
+    this.setData({
+      show: true
+    });
+  },
+  onClose() {
+    this.setData({
+      show: false
+    });
+  },
+  onGetUserInfo(e) {
+    console.log(e.detail);
+  },
+  /**************游戏简介等折叠面板************/
   onChange(event) {
     this.setData({
       activeNames: event.detail,
     });
   },
-  /******************************* */
+  /**************中部标签设计***************** */
   // 滚动切换标签样式
   switchTab: function (e) {
     this.setData({
@@ -61,14 +83,7 @@ Page({
       })
     }
   },
-  // onLoad: function () {
-  //   var that = this;
-
-  // },
   footerTap: app.footerTap,
-
-
-
   /************************************* */
   Load(gameInfoObj) {
     gameInfoObj.numComment = 999
@@ -237,7 +252,6 @@ Page({
       })
     }
   },
-
   async Goumai() {
     const res = await db.collection("Orders").where({
       Game_ID: game_id,

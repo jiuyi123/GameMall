@@ -11,7 +11,6 @@ var db = wx.cloud.database();
  */
 function initData(that) {
   inputVal = '';
-
   msgList = [{
       speaker: 'server',
       contentType: 'text',
@@ -33,7 +32,6 @@ function initData(that) {
     inputVal
   })
 }
-
 /**
  * 计算msg总高度
  */
@@ -42,13 +40,12 @@ function initData(that) {
 //   query.select('.scrollMsg').boundingClientRect(function(rect) {
 //   }).exec();
 // }
-
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
+    userID:6,
     cusHeadIcon:'',
     scrollHeight: '100vh',
     inputBottom: 0,
@@ -173,6 +170,7 @@ Page({
           Show_list:list
         })
       }
+      console.log("Show_list")
       console.log(this.data.Show_list)
   },
 

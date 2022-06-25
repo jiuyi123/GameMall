@@ -36,12 +36,6 @@
     "backgroundColor": "#00243B",
     "list": [
       {
-        "pagePath": "pages/gameMarketProject/person/person",
-        "text": "我的",
-        "iconPath": "images/tarBar/yonghu.png",
-        "selectedIconPath": "images/tarBar/yonghufill.png"
-      },
-      {
         "pagePath": "pages/gameMarketProject/index/index",
         "text": "首页",
         "iconPath": "images/tarBar/shouye.png",
@@ -52,6 +46,12 @@
         "text": "通知",
         "iconPath": "images/tarBar/xinxi.png",
         "selectedIconPath": "images/tarBar/xinxifill.png"
+      },
+      {
+        "pagePath": "pages/gameMarketProject/person/person",
+        "text": "我的",
+        "iconPath": "images/tarBar/yonghu.png",
+        "selectedIconPath": "images/tarBar/yonghufill.png"
       }
     ]
   },
@@ -79,6 +79,7 @@
     "van-goods-action-button": "@vant/weapp/goods-action-button/index",
     "van-icon": "@vant/weapp/icon/index",
     "van-toast": "@vant/weapp/toast/index",
-    "van-rate": "@vant/weapp/rate/index"
+    "van-rate": "@vant/weapp/rate/index",
+    "van-action-sheet": "@vant/weapp/action-sheet/index"
   }
 }
