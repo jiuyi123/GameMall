@@ -68,7 +68,7 @@
     </view>
     <view class="order">
       <view class="orders">
-        去结算
+        <button bindtap='buy'>结算</button>
         <text class="allnum">({{num}})</text>
       </view>
 

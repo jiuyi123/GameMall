@@ -11,84 +11,6 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     Show_list:'',
-    slideProductList: [
-      {
-        id:1,
-        name: '原神',
-        src: "https://gimg0.baidu.com/gimg/src=https%3A%2F%2Fgp-dev.cdn.bcebos.com%2Fgp-dev%2Fupload%2Ffile%2Fsource%2F55df338c08e931ee7e6452881485e953.jpeg&app=2000&size=f260,344&n=0&g=0n&q=85&fmt=jpeg?sec=0&t=20b1a2b46873566e45f35feaa0f497af",
-        videoSrc: 'https://gp-dev.cdn.bcebos.com/gp-dev/upload/file/source/02175c1a3c029ad6c4120a87f3ab39dc.mp4',
-           
-        style: "RGB 角色扮演 养成",
-        Price: "149.5",
-        select: "circle",
-        num: "1",
-        code: "0001",
-        amount: 500
-      },
-      {
-        id: 2,
-        name: "艾尔登法环",
-        src: "https://gimg0.baidu.com/gimg/src=https%3A%2F%2Fgameplus-platform.cdn.bcebos.com%2Fgameplus-platform%2Fupload%2Ffile%2Fsource%2Fec295c1d427e9bf483d30dcd82040067.jpeg&app=2000&size=b272_153&n=0&g=4n&q=70&fmt=auto?sec=0&t=4b309a9063a94e70b77e7638a3da833c",
-        videoSrc: 'https://gameplus-platform.cdn.bcebos.com/gameplus-platform/upload/file/video/c2afa0dff0d46df50772017dbfe2310f/c2afa0dff0d46df50772017dbfe2310f.mp4',
-        style: "动作 冒险 剧情",
-        Price: "488",
-        select: "circle",
-        code: "0002",
-        num: "1",
-        amount: 500
-      },
-      {
-        id: 3,
-        name: "我的世界",
-        src: "https://gimg0.baidu.com/gimg/src=https%3A%2F%2Fgameplus-platform.cdn.bcebos.com%2Fgameplus-platform%2Fupload%2Ffile%2Fimg%2Fd6dbddb2884f5ed2b002efb057f408d1%2Fd6dbddb2884f5ed2b002efb057f408d1.png&app=2000&size=b272_153&n=0&g=4n&q=70&fmt=auto?sec=0&t=d767ecbd84fb025a1b124083b23a9200",
-        videoSrc: 'https://gameplus-platform.cdn.bcebos.com/gameplus-platform/upload/file/source/5bbe1e3144d45212dd678c7e34b5e00e.mp4',
-        style: "养成 建造 像素",
-        Price: "88",
-        select: "circle",
-        code: "0003",
-        num: "1",
-        amount: 110
-      },
-      {
-        id: 4,
-        code: "0001",
-        name: "植物大战僵尸",
-        src: "https://gimg0.baidu.com/gimg/src=https%3A%2F%2Fgameplus-platform.cdn.bcebos.com%2Fgameplus-platform%2Fupload%2Ffile%2Fsource%2F7df2c6aae86db3d24031fcdb8ac338bb.jpeg&app=2000&size=b272_153&n=0&g=4n&q=70&fmt=auto?sec=0&t=67fb378398fc0f561b6028aec4710cfd",
-        videoSrc: 'http://vd3.bdstatic.com/mda-kc7u0m8ec2crdhjp/v1-cae/sc/mda-kc7u0m8ec2crdhjp.mp4',
-        style: "射击 策略",
-        Price: "29",
-        select: "circle",
-        code: "0004",
-        num: "1",
-        amount: 200
-      },
-      {
-        id: 5,
-        code: "0001",
-        name: "赛博朋克",
-        src: "https://gimg0.baidu.com/gimg/src=https%3A%2F%2Fgameplus-platform.cdn.bcebos.com%2Fgameplus-platform%2Fupload%2Ffile%2Fimg%2Fbcede38d0286bb5c5a9f2fbbd6c317d7%2Fbcede38d0286bb5c5a9f2fbbd6c317d7.jpg&app=2000&size=b272_153&n=0&g=4n&q=70&fmt=auto?sec=0&t=9da303772b3e095085630fccc60d04d8",
-        videoSrc: 'https://gameplus-platform.cdn.bcebos.com/gameplus-platform/upload/file/source/fd60a32221be624ab52734a2a9a14e93.mp4',
-        style: "都市 剧情 科幻",
-        Price: "399",
-        select: "circle",
-        code: "0004",
-        num: "1",
-        amount: 200
-      },
-      {
-        id: 6,
-        code: "0001",
-        name: "人类一败涂地",
-        src: "https://gimg0.baidu.com/gimg/src=https%3A%2F%2Fgameplus-platform.cdn.bcebos.com%2Fgameplus-platform%2Fupload%2Ffile%2Fimg%2F6e56014c71f3967e631d8d060ad9a685%2F6e56014c71f3967e631d8d060ad9a685.png&app=2000&size=f0,0&n=0&g=0n&q=85&fmt=jpeg?sec=0&t=5dc6960710545e73f91256ff6bb47872",
-        videoSrc: 'https://gameplus-platform.cdn.bcebos.com/gameplus-platform/upload/file/video/8290d51e6d509b9c574adc4e7e7130d0/8290d51e6d509b9c574adc4e7e7130d0.mp4',
-        style: "多人 配合 冒险",
-        Price: "188",
-        select: "circle",
-        code: "0004",
-        num: "1",
-        amount: 200
-      },
-    ],
     allSelect: "circle",
     num: 0,
     count: 0,
@@ -107,6 +29,19 @@ Page({
   })
 },
 
+  GetTime() {
+    var blank = ""
+    var myDate = new Date();
+    var year = myDate.getFullYear();
+    var month = (myDate.getMonth() + 1 < 10 ? '0' + (myDate.getMonth() + 1) : myDate.getMonth() + 1);
+    var date = myDate.getDate() < 10 ? '0' + myDate.getDate() : myDate.getDate();
+    var hour = myDate.getHours() < 10 ? '0' + myDate.getHours() : myDate.getHours();
+    var min = myDate.getMinutes() < 10 ? '0' + myDate.getMinutes() : myDate.getMinutes();
+    var sec = myDate.getSeconds() < 10 ? '0' + myDate.getSeconds() : myDate.getSeconds();
+    var myTime = blank.concat(year, "-", month, "-", date, " ", hour, ":", min, ":", sec);
+    return myTime
+  },
+
   change: function (e) {
     var that = this
     var index = e.currentTarget.dataset.index
@@ -122,88 +57,6 @@ Page({
     that.setData({
       Show_list: newList
     })
-    that.countNum()
-    that.count()
-  },
-  addtion: function (e) {
-    var that = this
-    var index = e.currentTarget.dataset.index
-    var num = e.currentTarget.dataset.num
-    //默认99件
-    if (num < 99) {
-      num++
-    }
-    var newList = that.data.Show_list
-    newList[index].num = num
-    that.setData({
-      goodsNum:num,
-      Show_list: newList
-    })
-    that.countNum()
-    that.count()
-  },
-  inputNum:function(e){
-    var num = e.detail.value;
-    this.setData({
-      goodsNum:num
-    })
-  },
-  numIputBlur:function(e){
-    var that = this
-    var num = that.data.goodsNum
-    var index = e.currentTarget.dataset.index
-    var newList = that.data.Show_list
-    if (num == "") { //盘空
-      newList[index].num = 1;
-      that.setData({
-        Show_list: newList
-      })
-    }else if (num < 1) {
-      that.setData({
-        goodsNum: newList[index].num,
-        Show_list: newList
-      })
-      wx.showToast({
-        title: '亲，该宝贝不能减少了哦~',
-        icon: 'none'
-      })
-    }else if(num>99){
-      
-      that.setData({
-        goodsNum: newList[index].num,
-        Show_list: newList
-      })
-      wx.showToast({
-        title: '亲，该宝贝最多购买99件哦~',
-        icon: 'none'
-      })
-    }else{
-      newList[index].num = num;
-      that.setData({
-        Show_list: newList
-      })
-    }
-    that.countNum()
-    that.count()
-  },
-  //减法
-  subtraction: function (e) {
-    var that = this
-    var index = e.currentTarget.dataset.index
-    var num = e.currentTarget.dataset.num
-    var newList = that.data.Show_list
-    
-    if (num == 1) {//当数量为1件时，再次点击移除该商品
-      newList.splice(index, 1)
-    } else {
-      num--
-      newList[index].num = num
-    }
-    that.setData({
-      goodsNum: num,
-      Show_list: newList
-    })
-    that.countNum()
     that.count()
   },
   //全选
@@ -231,21 +84,6 @@ Page({
     that.count()
   },
  
-  countNum: function () { //计算数量
-    var that = this
-    var newList = that.data.Show_list
-    var allNum = 0
-    for (var i = 0; i < newList.length; i++) {
-      if (newList[i].select == "success") {
-        allNum += parseInt(newList[i].num)
-      }
-    }
-    parseInt
-    that.setData({
-      num: allNum
-    })
-  },
-  
   count: function () {//计算金额方法
     var that = this
     var newList = that.data.Show_list
@@ -258,6 +96,49 @@ Page({
     that.setData({
       count: newCount
     })
+  },
+
+  buy: async function (){ //弹窗显示购买
+    var UserID = app.globalData.User[0].ID
+      if(app.globalData.User[0].Balance>this.data.count){
+        //修改数据库User
+        var res = await db.collection("Users").where({
+          ID:UserID
+        }).get()
+        await db.collection("Users").doc(res.data[0]._id).update({
+          data:{
+            Balance:app.globalData.User[0].Balance-this.data.count
+          }
+        })
+        res = await db.collection("Users").where({
+          ID:UserID
+        }).get()
+        app.globalData.User = res.data
+        //修改订单信息
+        for(var i = 0;i < this.data.Show_list.length;i++){
+          if (this.data.Show_list[i].select == "success") {
+          res = await db.collection("Orders").where({
+            Game_ID:this.data.Show_list[i].ID,
+            User_ID:UserID
+          }).get()
+          await db.collection("Orders").doc(res.data[0]._id).update({
+            data:{
+              State:'已支付',
+              Time:this.GetTime(),
+              Final_price:this.data.Show_list[i].Price
+            }
+          })
+        }
+        wx.reLaunch({
+          url:"../shopCart/shopCart",
+        })
+      }
+    }
+    else{
+      wx.showToast({
+        title: '余额不足',
+      })
+    }
   },
 
   async LoadInfo(){

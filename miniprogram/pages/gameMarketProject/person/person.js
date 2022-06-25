@@ -70,11 +70,9 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      Name:getApp().userInfo.Name,
-      PhotoLink:getApp().userInfo.Photo_link,
       UserInfo:app.globalData.User[0]
     })
-    console.log(this.data.UserInfo)
+    //console.log(this.data.UserInfo)
   },
 
   /**
