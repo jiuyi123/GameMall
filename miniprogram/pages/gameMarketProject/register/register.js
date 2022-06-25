@@ -1,5 +1,7 @@
 // pages/gameMarketProject/register/register.js
+const app = getApp();
 const db = wx.cloud.database();
+var userInfo
 Page({
   /**
    * 页面的初始数据
@@ -19,6 +21,29 @@ Page({
       all = all.concat(list.data)
     }
     return all
+  },
+
+  async GetUserInfo(){
+    wx.getUserInfo({
+      success:(res)=>{
+        userInfo= res.userInfo
+        // 获取code值
+        wx.login({
+          success:(res)=>{
+            let code=res.code
+            // 通过code换取openId
+            wx.request({
+              url: `https://api.weixin.qq.com/sns/jscode2session?appid=wxa25a2ea091c9f809&secret=0060decbfc8c655a7157c02f8cfd386f&js_code=${code}&grant_type=authorization_code`,
+              success:(res)=>{
+                userInfo.openid=res.data.openid
+                console.log(userInfo)
+                return userInfo
+              }
+            })
+          }
+        })
+      }
+    })
   },
 
   Register :async function(e) {
@@ -84,8 +109,14 @@ Page({
               ID:this.data.IDNext,
               Balance:0,
               Name:this.data.Account_new,
+              Nickname:this.data.Account_new,
               Password:this.data.Password_new,
-              Photo_link:'' //默认头像路径
+              Photo_link:"https://thirdwx.qlogo.cn/mmopen/vi_32/POgEwh4mIHO4nibH0KlMECNjjGxQUq24ZEaGT4poC6icRiccVGKSyXwibcPq4BWmiaIGuG1icwxaQX6grC9VemZoJ8rg/132",
+              Email:'',
+              Country:userInfo.country,
+              Kupublic:true,
+              Likepublic:true,
+              Commentpublic:true
               },
             })
             db.collection("Users")
@@ -113,8 +144,8 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
-
+  async onLoad(options) {
+    this.GetUserInfo()
   },
 
   /**
