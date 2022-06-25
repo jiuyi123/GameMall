@@ -32,7 +32,7 @@ Page({
     let show_list = []
     count = 0
     for(var i = 0;i < all.length;i++){
-      if(!this.check(all[i].Game_ID,show_list,all[i].Time)&&all[i].length!=4){
+      if(!this.check(all[i].Game_ID,show_list,all[i].Time)){
         show_list = show_list.concat(app.globalData.Game[all[i].Game_ID-1])
         show_list[count++].Time = all[i].Time
       }

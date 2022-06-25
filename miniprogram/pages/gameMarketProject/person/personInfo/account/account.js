@@ -5,7 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    is_Kupublic:true,
+    is_Commentpublic:true,
+    is_Likepublic:true
   },
 
   /**

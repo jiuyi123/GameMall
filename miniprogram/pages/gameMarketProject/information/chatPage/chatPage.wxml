@@ -38,5 +38,6 @@
     <image style='width: 7vw; margin-left: 3.2vw;' src='https://s1.ax1x.com/2022/05/18/O7kq6f.png' mode='widthFix'></image>
     <!-- <image style='width: 7vw; margin-left: 3.2vw;' src='https://s1.ax1x.com/2022/05/18/O7E9Ve.png' mode='widthFix'></image> -->
     <button bindtap='SendMessage' style="width: 14vw; margin-left: 3.2vw;border-radius: 10rpx;background-color: rgb(2, 250, 44);color: white;">发送</button>
+    <button bindtap='Show' style="width: 14vw; margin-left: 3.2vw;border-radius: 10rpx;background-color: rgb(2, 250, 44);color: white;">发送1</button>
   </view>
 </view>

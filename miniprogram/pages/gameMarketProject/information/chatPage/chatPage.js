@@ -54,9 +54,11 @@ Page({
     inputBottom: 0,
     userFriend:{},
     //新加的
+    Show_list:'',
     TempMessage:"",
-	  MessageList:[],
-	  FriendID:"5"
+    SendMessageList:[],
+    ReceiveMessageList:[],
+	  FriendID:5
   },
 
   GetTime(){
@@ -86,7 +88,8 @@ Page({
           Data:sendmessage,
           Receiver_ID:this.data.FriendID,
           Sender_ID:app.globalData.User[0].ID,
-          Time:this.GetTime()
+          Time:this.GetTime(),
+          State:'未读'
       }
     })
     this.setData({
@@ -94,7 +97,7 @@ Page({
     })
   },
 
-  async GetMessage(){
+  async GetSendMessage(){
     let count = await db.collection("ChatRecord").where({      
       Receiver_ID:this.data.FriendID,
       Sender_ID:app.globalData.User[0].ID,}).count()
@@ -108,16 +111,75 @@ Page({
     }
     //console.log(data)
     this.setData({
-      MessageList:data
+      SendMessageList:data
     })
-    console.log(this.data.MessageList)
+    console.log(this.data.SendMessageList)
+  },
+
+  async GetReceiveMessage(){
+    let count = await db.collection("ChatRecord").where({      
+      Receiver_ID:app.globalData.User[0].ID,
+      Sender_ID:this.data.FriendID,}).count()
+    count = count.total
+    let data = []
+    for(let i = 0; i < count; i += 20){
+      let list = await db.collection("ChatRecord").where({     
+         Receiver_ID:app.globalData.User[0].ID,
+      Sender_ID:this.data.FriendID,}).skip(i).get()
+      data = data.concat(list.data)
+    }
+    //console.log(data)
+    for(let i = 0;i < data.length;i++){
+      if(data[i].State='未读'){
+        db.collection("ChatRecord").doc(data[i]._id).update({
+          data:{
+            State:'已读'
+          }
+        })
+        data[i].State = '已读'
+      }
+    }
+    this.setData({
+      ReceiveMessageList:data
+    })
+    console.log(this.data.ReceiveMessageList)
+  },
+
+  Show(){//前端调用一次用于数据初始化
+    let arr1 = this.data.ReceiveMessageList
+    let arr2 = this.data.SendMessageList
+    var list = []
+    //console.log(arr1)
+    //console.log(arr2)
+      while(arr1.length!=0||arr2.length!=0){
+        if(arr1.length==0){
+          list.push(arr2.splice(0,1))
+        }
+        else if(arr2.length==0){
+          list.push(arr1.splice(0,1))
+        }
+        else{
+          if(arr1[0].Time<arr2[0].Time) {
+            list.push(arr1.splice(0,1))
+          }
+          else{
+            list.push(arr2.splice(0,1))
+          }
+        }
+      }
+      //console.log(list)
+      if(list.length!=0){
+        this.setData({
+          Show_list:list
+        })
+      }
+      console.log(this.data.Show_list)
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad:async function(options) {
-    this.GetMessage()
     const that = this
     var userFriend = JSON.parse(decodeURIComponent(options.userInfoStr))
     initData(this);
@@ -131,9 +193,39 @@ Page({
       Receiver_ID:this.data.FriendID,
       Sender_ID:app.globalData.User[0].ID
     }).watch({
-      onChange: function (snapshot) {
+      onChange: async function (snapshot) {
         //监控数据发生变化时触发
-        that.GetMessage()
+        await that.GetReceiveMessage()
+        await that.GetSendMessage()
+        let list = []
+        list.concat(that.data.Show_list)
+        list.push(that.data.SendMessageList[0])
+        that.setData({
+          Show_list:list
+        })
+        await that.Show()
+        console.log(that.data.Show_list)
+      },
+      onError:(err) => {
+        console.error(err)
+      }
+    })
+    db.collection('ChatRecord').where({
+      Receiver_ID:app.globalData.User[0].ID,
+      Sender_ID:this.data.FriendID
+    }).watch({
+      onChange: async function (snapshot) {
+        //监控数据发生变化时触发
+        await that.GetReceiveMessage()
+        await that.GetSendMessage()
+        let list = []
+        list.concat(that.data.Show_list)
+        list.push(that.data.ReceiveMessageList[0])
+        that.setData({
+          Show_list:list
+        })
+        await that.Show()
+        console.log(that.data.Show_list)
       },
       onError:(err) => {
         console.error(err)
