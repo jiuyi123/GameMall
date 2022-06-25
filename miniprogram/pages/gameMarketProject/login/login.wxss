@@ -25,7 +25,6 @@
   height: 75rpx;
   width: 550rpx;
   color: #fff;
-
 }
 
 .loginBtn {

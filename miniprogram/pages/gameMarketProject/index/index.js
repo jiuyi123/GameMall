@@ -146,6 +146,24 @@ Page({
             });
           }
         });
+        //是否需要填写个人信息
+        if(options.FirstLogin)
+        {
+          wx.showModal({
+            title: '注册成功',
+            content: '请完善个人资料',
+            success(res) {
+              if (res.confirm) {
+
+                wx.navigateTo({
+                  url: "../person/personInfo/account/account"
+                })
+              } else if (res.cancel) {
+               
+              }
+            }
+          })
+        }
     this.Onload()
   },
 
