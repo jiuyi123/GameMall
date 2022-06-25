@@ -138,3 +138,14 @@ page{
 .van-collapse-item{
   background-color: rgba(211, 231, 253, 0.7) !important;
 }
+
+/* 省略显示 */
+.productNameText {
+  text-overflow: ellipsis;
+  z-index: -1;
+  display: -webkit-box;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}

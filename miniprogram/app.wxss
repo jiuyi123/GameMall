@@ -20,7 +20,7 @@ button::after{
 
 
 page {
-  background-color:#0c2f5a;
+  background: -webkit-linear-gradient(top,rgb(8,45,90),rgb(16, 55, 102),rgb(67, 117, 180));
   height:100%;
   display: flex;
   flex-direction: column;

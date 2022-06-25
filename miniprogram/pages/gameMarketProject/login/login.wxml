@@ -2,24 +2,25 @@
   <image class="loginImage" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fc4afab32eb6987475352aa8fb28f774560e852dd3cd7-mti6IE_fw658&refer=http%3A%2F%2Fhbimg.b0.upaiyun.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1654674617&t=7a14c82209b32e566468499ad982624d"></image>
   <form bindsubmit="create_login" catchsubmit="Login">
     <!-- 登录框 -->
-    <view class="loginBorder">
-      <view style="display: flex;  align-content: center;">
-        <text class="loginText">账号:</text>
-        <input class="loginBox" type="text" name="username" placeholder="输入您的账号" value="{{Account}}"></input>
+    <view style="display: flex;flex-direction: column;align-items:  center;">
+      <view style="display: flex;flex-flow: column;margin-bottom: 20rpx;">
+        <text class="loginText">账号</text>
+        <input class="loginBox" type="text" name="username" value="{{Account}}"></input>
       </view>
-      <view style="display: flex;">
-        <text class="loginText">密码:</text>
-        <input class="loginBox" type="password" name="password" placeholder="输入您的密码" value="{{Password}}"></input>
-      </view>
-
-      <button class="loginBtn" form-type="submit" style="width: 600rpx; height: 80rpx;" ><text>登 录</text></button>
-      
-      <button class="loginBtn" bindtap="Weixin_login" style="width: 600rpx; height: 80rpx;" ><text>微 信 一 键 登 录</text></button>
-      <view style="color:rgb(116, 206, 236);display: flex; justify-content: space-between;font-size: 50rpx;margin-top: 100rpx;">
-        <text bindtap="Register">新用户注册</text>
-        <text>忘记密码</text>
+      <view style="display: flex;flex-direction: column;">
+        <text class="loginText">密码</text>
+        <input class="loginBox" type="password" name="password" value="{{Password}}"></input>
       </view>
 
+      <button class="loginBtn" form-type="submit" size="mini"><text>登 录</text></button>
+      <!-- 微 信 一 键 登 录 -->
+      <view style="border: 3rpx solid rgb(55, 182, 74);width: 650rpx ;height: 80rpx; border-radius: 10rpx;display: flex;justify-content: center;align-items: center;margin-top: 20%;">
+        <text bindtap="Weixin_login" style="color: rgb(55, 182, 74);font-weight: bolder;">微信授权登录</text>
+      </view>
+      <!-- 新用户注册 -->
+      <view style="color:rgb(0, 170, 255);display: flex; justify-content: space-between;font-size: 30rpx;margin-top: 100rpx;">
+        <text bindtap="Register" style="border-bottom: 3rpx solid rgb(0, 170, 255);">新用户注册</text>
+      </view>
     </view>
   </form>
 </view>
