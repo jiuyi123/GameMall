@@ -5,9 +5,6 @@
     <!-- <view class='scrollMsg'> -->
     <!-- 聊天消息列表 -->
     <block wx:for='{{Show_list}}' data-item="item">
-      {{item[0].Sender_ID}}
-      {{item[0].Data}}
-      {{item[0].Sender_ID-userID}}
       <!-- 单个消息1 对方发出（左） -->
       <view wx:if='{{(item[0].Sender_ID-userID)}}' id='msg-{{index}}' style='display: flex; padding: 2vw 11vw 2vw 2vw;'>
         <view style='width: 11vw; height: 11vw;'>
