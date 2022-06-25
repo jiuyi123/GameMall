@@ -7,13 +7,7 @@ Page({
    */
   data: {
     user: {
-      Account: "1094567728",
-      Balance: "99",
-      ID: "000001",
-      Name: "JY",
-      Password: "123456",
-      PhotoLink: "https://s1.ax1x.com/2022/05/08/O1XIk4.jpg",
-
+      UserInfo:[]
     }
   },
   //购物车
@@ -75,11 +69,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
     this.setData({
       Name:getApp().userInfo.Name,
-      PhotoLink:getApp().userInfo.Photo_link
+      PhotoLink:getApp().userInfo.Photo_link,
+      UserInfo:app.globalData.User[0]
     })
+    console.log(this.data.UserInfo)
   },
 
   /**
