@@ -2,46 +2,50 @@
 <view>
   <!-- 个人头像和昵称 -->
   <view style="display: flex;align-items: center;background-color: rgb(0, 36, 59,0.5);">
-    <a href="{{UserInfo.Photo_link}}">
-      <image src="{{UserInfo.Photo_link}}" mode="scaleToFill" style="height: 100rpx;width:100rpx; margin: 10rpx;" />
-    </a>
-    <text style="font-size: 50rpx;color: beige;margin-left: 20rpx;">{{UserInfo.Nickname}}</text>
-    <button bindtap="Logout">退出登录</button>
+    <image src="{{UserInfo.Photo_link}}" mode="scaleToFill" style="height: 80rpx;width:80rpx;margin: 10rpx;" />
+    <text style="font-size: 50rpx;font-weight: bolder;color:rgb(153, 153, 153);">{{UserInfo.Nickname}}</text>
+
   </view>
 
   <!-- 购物车/我喜欢/订单/库  模块·-->
-  <view style="display: flex;flex-direction: row;justify-content: space-around;color: lightblue; margin: 10rpx;margin-top: 40rpx;background-color: rgb(23, 77, 142,0.5);">
-    <view style="display: flex;flex-flow: column wrap;" bindtap="goShopCart">
+  <view class="boxIconAll" style="">
+    <view class="boxIcon" style="background-color: rgb(0, 196, 190);" bindtap="goWarehouse">
+      <a href="http://www.w3.org/2000/svg">
+        <image src="https://s4.aconvert.com/convert/p3r68-cdx67/asd0x-x1t42.gif " mode="scaleToFill" style="height: 70rpx;width:70rpx; margin: 10rpx;" />
+      </a>
+      库
+    </view>
+    <view class="boxIcon" style="background-color: rgb(255, 106, 0);" bindtap="goShopCart">
+
       <a href="https://imgtu.com/i/O3uCdg">
         <image src="https://s1.ax1x.com/2022/05/08/O3uCdg.png" mode="scaleToFill" style="height: 70rpx;width:70rpx; margin: 10rpx;" />
       </a>
       购物车
     </view>
-    <view style="display: flex;flex-flow: column wrap;" bindtap="goFavorite">
-      <a href="https://imgtu.com/i/O3Ky4J">
+    <view class="boxIcon" style="background-color: rgb(194, 0, 0);" bindtap="goFavorite">
+      <a href="https://imgtu.com/i/O3MKPJ">
         <image src="https://s1.ax1x.com/2022/05/08/O3Ky4J.png" mode="scaleToFill" style="height: 70rpx;width:70rpx; margin: 10rpx;" />
       </a>
-      收藏
+      我喜欢
     </view>
-    <view style="display: flex;flex-flow: column wrap;" bindtap="goOrder">
+    <view class="boxIcon" style="background-color: rgb(153, 153, 153);" bindtap="goHistory">
       <a href="https://imgtu.com/i/O3MKPJ">
         <image src="https://s1.ax1x.com/2022/05/08/O3MKPJ.png" mode="scaleToFill" style="height: 70rpx;width:70rpx; margin: 10rpx;" />
       </a>
-      订单
+      历史
     </view>
-    <view style="display: flex;flex-flow: column wrap;" bindtap="goWarehouse">
-      <a href="https://imgtu.com/i/O3M6Z8">
-        <image src="https://s1.ax1x.com/2022/05/08/O3M6Z8.png" mode="scaleToFill" style="height: 70rpx;width:70rpx; margin: 10rpx;" />
-      </a>
-      仓库
-    </view>
+
   </view>
   <!-- 信息列表页面 -->
   <van-cell-group style="margin: 5rpx;margin-top: 100rpx;">
-    <van-cell custom-class="van-cell-group" title="账户" is-link url="/pages/gameMarketProject/person/personInfo/account/account" />
-    <van-cell custom-class="van-cell-group" title="历史记录" is-link url="/pages/gameMarketProject/person/personInfo/history/history" />
+    <van-cell custom-class="van-cell-group" title="个人信息" is-link url="/pages/gameMarketProject/person/personInfo/account/account" />
+    <van-cell custom-class="van-cell-group" title="我的订单" is-link url="/pages/gameMarketProject/person/personInfo/order/order" />
     <van-cell custom-class="van-cell-group" title="我的好友" is-link url="/pages/gameMarketProject/person/personInfo/friend/friend" />
-    <van-cell custom-class="van-cell-group" title="意见反馈" is-link url="/pages/gameMarketProject/person/personInfo/feedback/feedback" />
+    <van-cell custom-class="van-cell-group" title="钱包" is-link url="/pages/gameMarketProject/person/personInfo/wallet/wallet"/>
     <van-cell custom-class="van-cell-group" title="设置" is-link url="/pages/gameMarketProject/person/personInfo/settings/settings" />
   </van-cell-group>
+  <!-- 退出登录 -->
+  <view style="display: flex; justify-content: center;">
+    <button class="loginOutBtn" bindtap="Logout" size="mini">退出登录</button>
+  </view>
 </view>

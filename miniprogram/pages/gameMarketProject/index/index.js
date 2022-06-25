@@ -7,8 +7,8 @@ Page({
    */
   data: {
     show: false,
-    searchFirst:true,
-    Is_game_got : false,
+    searchFirst: true,
+    Is_game_got: false,
     winHeight: "", //窗口高度
     // windowHeight: 0,
     // windowWidth: 0,
@@ -49,24 +49,24 @@ Page({
     gameInfo: [],
   },
   showPopup() {
-    this.setData({ 
+    this.setData({
       show: true,
-      searchFirst:false
+      searchFirst: false
     });
   },
   onClose() {
-    this.setData({ 
+    this.setData({
       show: false,
-      searchFirst:true
+      searchFirst: true
     });
   },
- /*监听搜索输入框的值*/
- onChange(event){
-  console.log(event.detail)
-  this.setData({
-    search:event.detail
-  })
-},
+  /*监听搜索输入框的值*/
+  onChange(event) {
+    console.log(event.detail)
+    this.setData({
+      search: event.detail
+    })
+  },
   checkboxChange(e) {
     console.log('checkboxChange e:', e);
     let string = "riderCommentList[" + e.target.dataset.index + "].selected"
@@ -102,7 +102,6 @@ Page({
   },
   //游戏详情页面
   goDetail(e) {
-
     console.log("GoDetail")
     // console.log(e)
     var gameInfoStr = encodeURIComponent(JSON.stringify(e.currentTarget.dataset.gameInfo))
@@ -111,13 +110,13 @@ Page({
       url: "/pages/gameMarketProject/index/gameDetail/detail/detail?gameInfoStr=" + gameInfoStr,
     })
   },
-  async Onload(){
+  async Onload() {
     console.log(app.globalData.User[0])
     let count = await db.collection("Games").count()
     count = count.total
     //console.log(count)
     let all = []
-    for(let i = 0; i < count; i += 20){
+    for (let i = 0; i < count; i += 20) {
       let list = await db.collection("Games").skip(i).get()
       all = all.concat(list.data)
     }
@@ -125,27 +124,41 @@ Page({
     app.globalData.Game = all;
     //console.log(app.globalData.Game)
     this.setData({
-      Is_game_got:true,
-      gameInfo:all
+      Is_game_got: true,
+      gameInfo: all
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-        // 高度自适应
-        var that = this;
-        wx.getSystemInfo({
-          success: function (res) {
-            var clientHeight = res.windowHeight,
-              clientWidth = res.windowWidth,
-              rpxR = 750 / clientWidth;
-            var calc = clientHeight * rpxR - 130;
-            that.setData({
-              winHeight: calc
-            });
-          }
+    // 高度自适应
+    var that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        var clientHeight = res.windowHeight,
+          clientWidth = res.windowWidth,
+          rpxR = 750 / clientWidth;
+        var calc = clientHeight * rpxR - 130;
+        that.setData({
+          winHeight: calc
         });
+      }
+    });
+    //是否需要填写个人信息
+    if (options.FirstLogin) {
+      wx.showModal({
+        title: '注册成功',
+        content: '请完善个人资料',
+        success(res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: "../person/personInfo/account/account"
+            })
+          } else if (res.cancel) {}
+        }
+      })
+    }
     this.Onload()
   },
 
