@@ -72,7 +72,7 @@ Page({
     this.setData({
       UserInfo:app.globalData.User[0]
     })
-    //console.log(this.data.UserInfo)
+    console.log(this.data.UserInfo)
   },
 
   /**
