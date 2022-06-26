@@ -13,8 +13,20 @@ Page({
     winHeight: "", //窗口高度
     Friend_List: '',
   },
-
-  // 搜索框
+  /*****跳转聊天页面*******/
+  goChatPage: function (e) {
+    console.log("goChatPage")
+     var userInfoStr = encodeURIComponent(JSON.stringify(e.currentTarget.dataset.userInfo))
+     //跳转到聊天界面并传参
+     wx.navigateTo({
+       url: '/pages/gameMarketProject/information/chatPage/chatPage?userInfoStr=' + userInfoStr,
+     })
+   },
+/*******删除好友*********/
+deleteFriend(e){
+  console.log(e.currentTarget.dataset.friendInfo)
+},
+  /*******搜索框*******/
   showPopup() {
     this.setData({
       show: true,
@@ -27,7 +39,12 @@ Page({
       searchFirst: true
     });
   },
-
+/*******添加好友*********/
+addFriend(){
+  wx.navigateTo({
+    url:  "/pages/gameMarketProject/friend/friendAdd/friendAdd",
+  })
+},
 /*******好友列表***** */
   async loadInfo() {
     let count = await db.collection("Friends").where({
