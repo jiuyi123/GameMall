@@ -7,7 +7,8 @@ Page({
   data: {
     user: "",
     newEmail: "",
-    newNickname: ""
+    newNickname: "",
+    newCountry:""
   },
   EmailChage(e) {
     this.setData({
@@ -19,13 +20,20 @@ Page({
       newNickname: e.detail.value
     })
   },
+  CountryChage(e) {
+    this.setData({
+      newCountry: e.detail.value
+    })
+  },
   setNickname() {
     console.log(this.data.newNickname)
   },
   setEmail() {
     console.log(this.data.newEmail)
   },
-
+  setCountry() {
+    console.log(this.data.newCountry)
+  },
   /**
    * 生命周期函数--监听页面加载
    */
