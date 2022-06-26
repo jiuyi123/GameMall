@@ -192,7 +192,7 @@ Page({
         Sender_ID: list[i].Chatid,
         State: "未读"
       }).count()
-      list[i].Newnumber = count
+      list[i].Newnumber = count.total
       if (list[i].Receiver_ID == this.data.Userid) {
         let res = await db.collection("Users").where({
           ID: list[i].Send_ID
@@ -215,8 +215,17 @@ Page({
    */
   onLoad: async function (options) {
     this.LoadPageData()
-    await this.CreateChatList()
-    await this.LoadUserInfo()
+    const that = this
+    db.collection('ChatRecord').watch({
+      onChange: async function (snapshot) {
+        //监控数据发生变化时触发
+        await that.CreateChatList()
+        await that.LoadUserInfo()
+      },
+      onError: (err) => {
+        console.error(err)
+      }
+    })
   },
 
   /**
