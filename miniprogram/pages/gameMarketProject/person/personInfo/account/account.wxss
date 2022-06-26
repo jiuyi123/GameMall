@@ -1,1 +1,8 @@
 /* pages/gameMarketProject/person/personInfo/account/account.wxss */
+.hr {
+  width: 100%;
+  height: 3rpx;
+  margin-top: 15rpx;
+  margin-bottom: 20rpx;
+  background-color: rgb(80, 95, 115);
+}
