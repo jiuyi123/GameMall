@@ -6,13 +6,14 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isSearching:false,//搜索中
     show: false,
     searchFirst: true,
     Is_game_got: false,
     winHeight: '', //窗口高度
+    Show_List:'',
     Friend_List: '',
-    Search_text: '',
-    Friend_List: ''
+    Search_text: ''
   },
   /*****跳转聊天页面*******/
   goChatPage: function (e) {
@@ -41,9 +42,13 @@ Page({
       }
     }
     this.setData({
-      Search_List: list
+      Search_List: list,
+      Show_List:list,
+      show:false,
+      isSearching:true
     })
-    console.log(this.data.Search_List)
+
+    console.log(this.data.Show_List)
   },
   /*******删除好友*********/
   async deleteFriend(e) {
@@ -97,7 +102,10 @@ Page({
   cancel() {
     this.setData({
       show: false,
-      searchFirst: true
+      searchFirst: true,
+      Search_text:'',
+      isSearching:false,
+      Show_List:this.data.Friend_List
     })
   },
   /*******添加好友*********/
@@ -164,9 +172,10 @@ Page({
       }
     }
     this.setData({
-      Friend_List: list
+      Friend_List: list,
+      Show_List:list
     })
-    console.log(this.data.Friend_List)
+    console.log(this.data. Show_List)
   },
 
   check(data, list) {

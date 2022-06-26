@@ -1,2 +1,32 @@
 <!--pages/gameMarketProject/friend/friendAdd/friendAdd.wxml-->
-<text>pages/gameMarketProject/friend/friendAdd/friendAdd.wxml</text>
+<view>
+    <!-- 搜索框 -->
+    <view style="display: flex; flex-direction: row;justify-content: space-around;align-items: center;background: rgb(4, 15, 29,0);">
+      <view style="width: 600rpx;">
+        <van-search placeholder="{{Search_text}}" shape="round" bind:change='bindSearchContent' background="rgb(4, 15, 29,0)">
+        </van-search>
+      </view>
+      <van-button bindtap="Search" color="blue" size="small" style="align-items: center;margin-right: 20rpx;">搜索</van-button>
+    </view>
+  <scroll-view scroll-y="true" style="height:{{winHeight}}rpx; margin-left: 20rpx;margin-right: 20rpx;">
+    <!-- 好友列表 -->
+    <view wx:for="{{Show_List}}" data-item="item">
+      <!-- 滑动单元格 -->
+      <van-swipe-cell  custom-style="border: 3rpx solid rgb(130, 206, 31);">
+        <!-- 用户头像和昵称 -->
+        <view  data-user-Info="{{item}}" bindtap="goChatPage" style="display: flex;flex-direction: row;align-items: center;">
+          <!-- 用户头像 -->
+          <view style="height: 120rpx;">
+            <image src="{{item.Photo_link}}" mode="scaleToFill" style="height: 100rpx;width:100rpx; margin: 10rpx;" />
+          </view>
+          <view>
+            <view style="color: white;margin-left: 35rpx;">{{item.Nickname}}</view>
+          </view>
+        </view>
+      </van-swipe-cell>
+      <!-- 分割线 -->
+      <view class="hr"></view>
+    </view>
+
+  </scroll-view>
+</view>
