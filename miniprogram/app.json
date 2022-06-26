@@ -20,7 +20,9 @@
     "pages/gameMarketProject/information/modules/commentInfo/commentInfo",
     "pages/gameMarketProject/information/modules/systemInfo/systemInfo",
     "pages/index/index",
-    "pages/gameMarketProject/index/Search/Search"
+    "pages/gameMarketProject/index/Search/Search",
+    "pages/gameMarketProject/friend/friendDetail/friendDetail",
+    "pages/gameMarketProject/friend/friendAdd/friendAdd"
   ],
   "window": {
     "backgroundColor": "#0E3767",
@@ -84,6 +86,9 @@
     "van-checkbox-group": "@vant/weapp/checkbox-group/index",
     "van-radio": "@vant/weapp/radio/index",
     "van-radio-group": "@vant/weapp/radio-group/index",
-    "van-area": "@vant/weapp/area/index"
+    "van-area": "@vant/weapp/area/index",
+    "van-index-bar": "@vant/weapp/index-bar/index",
+    "van-index-anchor": "@vant/weapp/index-anchor/index",
+    "van-swipe-cell": "@vant/weapp/swipe-cell/index"
   }
 }

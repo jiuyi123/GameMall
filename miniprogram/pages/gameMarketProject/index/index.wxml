@@ -28,8 +28,6 @@
     <!-- 历史记录 -->
     <text>搜索历史</text>
   </van-popup>
-  <!-- <view style="background-color: ghostwhite;height: 200rpx;width: 300rpx;justify-items: center;box-shadow: 0 0 10px rgb(180, 180, 180); border:1px solid rgb(0, 0, 0)">
-  </view> -->
 
   <!-- 信息合集 -->
   <scroll-view scroll-y="true" style="height:{{winHeight}}rpx; margin-bottom:10rpx ;">

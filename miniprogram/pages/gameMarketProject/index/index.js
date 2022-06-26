@@ -10,8 +10,6 @@ Page({
     searchFirst: true,
     Is_game_got: false,
     winHeight: "", //窗口高度
-    // windowHeight: 0,
-    // windowWidth: 0,
     //搜索框
     search_text: "搜索框",
     //轮播图
