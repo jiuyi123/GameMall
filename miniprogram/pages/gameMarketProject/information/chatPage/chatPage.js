@@ -58,7 +58,7 @@ Page({
     db.collection("ChatRecord").add({
       data: {
         Data: sendmessage,
-        Receiver_ID: this.data.FriendID,
+        Receiver_ID: this.data.friend.ID,
         Sender_ID: app.globalData.User[0].ID,
         Time: this.GetTime(),
         State: '未读'
@@ -71,14 +71,14 @@ Page({
 
   async GetSendMessage() {
     let count = await db.collection("ChatRecord").where({
-      Receiver_ID: this.data.FriendID,
+      Receiver_ID: this.data.friend.ID,
       Sender_ID: app.globalData.User[0].ID,
     }).count()
     count = count.total
     let data = []
     for (let i = 0; i < count; i += 20) {
       let list = await db.collection("ChatRecord").where({
-        Receiver_ID: this.data.FriendID,
+        Receiver_ID: this.data.friend.ID,
         Sender_ID: app.globalData.User[0].ID,
       }).skip(i).get()
       data = data.concat(list.data)
@@ -93,14 +93,14 @@ Page({
   async GetReceiveMessage() {
     let count = await db.collection("ChatRecord").where({
       Receiver_ID: app.globalData.User[0].ID,
-      Sender_ID: this.data.FriendID,
+      Sender_ID: this.data.friend.ID,
     }).count()
     count = count.total
     let data = []
     for (let i = 0; i < count; i += 20) {
       let list = await db.collection("ChatRecord").where({
         Receiver_ID: app.globalData.User[0].ID,
-        Sender_ID: this.data.FriendID,
+        Sender_ID: this.data.friend.ID,
       }).skip(i).get()
       data = data.concat(list.data)
     }
@@ -164,13 +164,12 @@ Page({
       //加载用户信息
       user: app.globalData.User[0]
     });
-
     console.log("朋友")
     console.log(this.data.friend)
     console.log("用户")
     console.log(this.data.user)
     db.collection('ChatRecord').where({
-      Receiver_ID: this.data.FriendID,
+      Receiver_ID: this.data.friend.ID,
       Sender_ID: app.globalData.User[0].ID
     }).watch({
       onChange: async function (snapshot) {
@@ -183,7 +182,7 @@ Page({
         that.setData({
           Show_list: list
         })
-        that.Show()
+        await that.Show()
         console.log("监听发送")
         console.log(that.data.Show_list)
       },
@@ -193,7 +192,7 @@ Page({
     })
     db.collection('ChatRecord').where({
       Receiver_ID: app.globalData.User[0].ID,
-      Sender_ID: this.data.FriendID
+      Sender_ID: this.data.friend.ID
     }).watch({
       onChange: async function (snapshot) {
         //监控数据发生变化时触发

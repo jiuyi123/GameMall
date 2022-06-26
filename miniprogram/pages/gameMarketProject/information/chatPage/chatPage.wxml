@@ -6,7 +6,7 @@
     <!-- 聊天消息列表 -->
     <block wx:for='{{Show_list}}' data-item="item">
       <!-- 单个消息1 对方发出（左） -->
-      <view wx:if='{{(item[0].Sender_ID-friend.ID)}}' id='msg-{{index}}' style='display: flex; padding: 2vw 11vw 2vw 2vw;'>
+      <view wx:if='{{(item[0].Sender_ID-user.ID)!=0}}' id='msg-{{index}}' style='display: flex; padding: 2vw 11vw 2vw 2vw;'>
         <view style='width: 11vw; height: 11vw;'>
           <image style='width: 11vw; height: 11vw; border-radius: 10rpx;' src='{{friend.Photo_link}}'></image>
         </view>
@@ -16,6 +16,7 @@
       </view>
       <!-- 单个消息2 用户发出（右） -->
       <view wx:if='{{!(item[0].Sender_ID-user.ID)}}' style='display: flex; justify-content: flex-end; padding: 2vw 2vw 2vw 11vw;'>
+        <text style="color: azure;">{{item[0].State}}</text>
         <view class='rightMsg'>{{item[0].Data}}</view>
         <view style='width: 4vw; height: 11vw; margin-right: 0.5vw; display: flex; align-items: center; z-index: 9;'>
           <!-- <image style='width: 4vw;' src='../../images/right_msg.png' mode='widthFix'></image> -->
@@ -32,11 +33,11 @@
 
   <!-- 发送栏 -->
   <view class='inputRoom' style='bottom: {{inputBottom}}'>
-    <image style='width: 7vw; margin-left: 3.2vw;' src='https://s1.ax1x.com/2022/05/18/O7kKOS.png' mode='widthFix'></image>
+    <!-- <image style='width: 7vw; margin-left: 3.2vw;' src='https://s1.ax1x.com/2022/05/18/O7kKOS.png' mode='widthFix'></image> -->
     <input bindinput='WriteMessage' bindconfirm='sendClick' adjust-position='{{false}}' value='{{TempMessage}}' confirm-type='send' bindfocus='focus' bindblur='blur'></input>
-    <image style='width: 7vw; margin-left: 3.2vw;' src='https://s1.ax1x.com/2022/05/18/O7kq6f.png' mode='widthFix'></image>
+    <!-- <image style='width: 7vw; margin-left: 3.2vw;' src='https://s1.ax1x.com/2022/05/18/O7kq6f.png' mode='widthFix'></image> -->
     <!-- <image style='width: 7vw; margin-left: 3.2vw;' src='https://s1.ax1x.com/2022/05/18/O7E9Ve.png' mode='widthFix'></image> -->
-    <button bindtap='SendMessage' style="width: 14vw; margin-left: 3.2vw;border-radius: 10rpx;background-color: rgb(2, 250, 44);color: white;">发送</button>
-    <button bindtap='Show' style="width: 14vw; margin-left: 3.2vw;border-radius: 10rpx;background-color: rgb(2, 250, 44);color: white;">发送1</button>
+    <button bindtap='SendMessage' size="mini" style="width: 180rpx; margin-left:5rpx;border-radius: 10rpx;background-color: rgb(2, 250, 44);color: white;">发送</button>
+    <!-- <button bindtap='Show' style="width: 14vw; margin-left: 3.2vw;border-radius: 10rpx;background-color: rgb(2, 250, 44);color: white;">发送1</button> -->
   </view>
 </view>
