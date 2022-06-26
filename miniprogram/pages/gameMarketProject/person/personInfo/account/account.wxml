@@ -1,19 +1,19 @@
 <!--pages/gameMarketProject/person/personInfo/account/account.wxml-->
-<view style="display: flex;flex-direction: column;margin:30rpx;">
+<view style="display: flex;flex-direction: column;margin:50rpx;margin-top: 2%;">
   <!-- 分割线 -->
   <view class="hr"></view>
   <!-- 账户 -->
   <view>
-    <!-- <text style="color: white;font-size: 60rpx;font-weight: bolder;">账户</text> -->
+    <text style="color: white;font-size: 60rpx;font-weight: bolder;margin-top: 2%;">账户</text>
     <!-- 账户信息 -->
-    <view style="display: flex;flex-direction: row;justify-content: space-between;">
+    <view style="display: flex;flex-direction: row;justify-content: space-between;margin-top: 30rpx;">
       <image src="{{user.Photo_link}}" mode="scaleToFill" style="height: 200rpx;width:200rpx;margin: 10rpx;box-shadow: 0 0 10px rgb(180, 180, 180);" />
       <view style="display: flex;flex-direction: column; color: rgb(152, 153, 155);margin-right: 150rpx;">
-        <text style="font-weight: bolder;margin-bottom: 30rpx;">VGame ID</text>
+        <text style="font-weight: bolder;margin-bottom: 20rpx;">VGame ID</text>
         <text>{{user.ID}}</text>
       </view>
     </view>
-
+  
     <!-- 账号信息 -->
     <view style="display: flex;flex-direction: column; color: rgb(152, 153, 155);margin-top: 4%;">
       <text style="font-weight: bolder;margin-bottom: 15rpx;">VGame 账号</text>
@@ -28,7 +28,6 @@
         <text bindtap="setNickname" style="color: rgb(1,191,187);">修改</text>
       </view>
     </view>
-
     <!-- 国家/地区 -->
     <view style="display: flex;flex-direction: column; color: rgb(152, 153, 155);margin-top: 4%;">
       <text style="font-weight: bolder;margin-bottom: 15rpx;">国家/地区</text>
@@ -39,12 +38,12 @@
     </view>
   </view>
   <!-- 分割线 -->
-  <!-- <view class="hr"></view> -->
+  <view class="hr"></view>
   <!-- 隐私 -->
   <view>
-    <!-- <text style="color: white;font-size: 60rpx;font-weight: bolder;margin-bottom: 3%;">隐私</text> -->
+    <text style="color: white;font-size: 60rpx;font-weight: bolder;margin-bottom: 3%;">隐私</text>
     <view style="display: flex;flex-direction: row;justify-content: space-between;margin-top: 4%;">
-      <text style="margin-bottom: 15rpx;color: rgb(152, 153, 155)">邮箱绑定</text>
+      <text style="font-weight: bolder;margin-bottom: 20rpx;color: rgb(152, 153, 155)">邮箱绑定</text>
       <view style="display: flex;">
         <!-- <text style="color: white;">{{user.Email}}</text> -->
         <input type="text" value="{{user.Email}}" bindblur="EmailChage" style="color: white;margin-right: 3rpx;" />
@@ -52,7 +51,7 @@
       </view>
     </view>
     <view style="display: flex;flex-direction: row;justify-content: space-between;margin-top: 4%;">
-      <text style="margin-bottom: 15rpx;color: rgb(152, 153, 155)">密码修改</text>
+      <text style="font-weight: bolder;margin-bottom: 20rpx;color: rgb(152, 153, 155)">密码修改</text>
       <van-icon name="arrow" color="rgb(152, 153, 155)" />
     </view>
   </view>

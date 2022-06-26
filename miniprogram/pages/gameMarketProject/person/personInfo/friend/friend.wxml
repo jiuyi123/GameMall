@@ -1,2 +1,51 @@
 <!--pages/gameMarketProject/person/personInfo/friend/friend.wxml-->
-<text>pages/gameMarketProject/person/personInfo/friend/friend.wxml</text>
+<view>
+  <!-- 导航栏 -->
+  <view style="display: flex;background: rgb(0, 36, 59,0);justify-content: space-between;">
+    <!-- 搜索框 -->
+    <view style="width: 650rpx;">
+      <van-search value="{{ value }}" shape="round" placeholder="输入好友昵称/ID" bindtap="showPopup" background="rgb(136, 203, 230,0)" wx:if="{{searchFirst}}" />
+    </view>
+    <!-- 添加好友按钮 -->
+    <van-icon bindtap="addFriend" name="plus" size="70rpx" style="margin-right: 30rpx;" color="rgb(149,149,149)" />
+  </view>
+  <!-- 点击搜索后内容 -->
+  <van-popup show="{{ show }}" position="top" bind:close="onClose">
+    <!-- 搜索框 -->
+    <view style="display: flex; flex-direction: row;justify-content: space-around;align-items: center;background: rgb(4, 15, 29);">
+      <van-icon bindtap="cancel" name="cross" color="rgb(149,149,149)" style="margin-left: 20rpx;" />
+      <view style="width: 600rpx;">
+        <van-search shape="round" bind:change='bindSearchContent' background="rgb(4, 15, 29)">
+        </van-search>
+      </view>
+      <van-button bindtap="search" color="blue" size="small" style="align-items: center;margin-right: 20rpx;">搜索</van-button>
+    </view>
+  </van-popup>
+  <scroll-view scroll-y="true" style="height:{{winHeight}}rpx; margin-left: 20rpx;margin-right: 20rpx;">
+    <!-- 好友列表 -->
+    <view wx:for="{{Friend_List}}" data-item="item">
+      <!-- 滑动单元格 -->
+      <van-swipe-cell right-width="{{ 65 }}" custom-style="border: 3rpx solid rgb(130, 206, 31);">
+        <!-- 用户头像和昵称 -->
+        <view style="display: flex;flex-direction: row;align-items: center;">
+          <!-- 用户头像 -->
+          <view style="height: 120rpx;">
+            <image src="{{item.Photo_link}}" mode="scaleToFill" style="height: 100rpx;width:100rpx; margin: 10rpx;" />
+          </view>
+          <view>
+            <view style="color: white;margin-left: 35rpx;">{{item.Nickname}}</view>
+          </view>
+        </view>
+        <!-- 左滑删除 -->
+        <view slot="right" style="display: flex; flex-direction: row;align-items: center;justify-content: center; margin-right:  10rpx;margin-top: 30rpx;">
+          <button size="mini" style="background-color: rgb(194, 0, 0);color: white;">
+            <van-icon name="delete-o" color="white" size="50rpx" />
+          </button>
+        </view>
+      </van-swipe-cell>
+      <!-- 分割线 -->
+      <view class="hr"></view>
+    </view>
+
+  </scroll-view>
+</view>

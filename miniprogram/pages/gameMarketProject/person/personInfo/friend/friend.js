@@ -7,9 +7,28 @@ Page({
    * 页面的初始数据
    */
   data: {
-    Friend_List: ''
+    show: false,
+    searchFirst: true,
+    Is_game_got: false,
+    winHeight: "", //窗口高度
+    Friend_List: '',
   },
 
+  // 搜索框
+  showPopup() {
+    this.setData({
+      show: true,
+      searchFirst: false
+    });
+  },
+  cancel(){
+    this.setData({
+      show: false,
+      searchFirst: true
+    });
+  },
+
+/*******好友列表***** */
   async loadInfo() {
     let count = await db.collection("Friends").where({
       User1_ID: app.globalData.User[0].ID
@@ -43,7 +62,7 @@ Page({
       }
     }
     this.setData({
-      Friend_List:list
+      Friend_List: list
     })
     console.log(this.data.Friend_List)
   },
@@ -62,6 +81,19 @@ Page({
    */
   async onLoad(options) {
     this.loadInfo()
+        // 高度自适应
+        var that = this;
+        wx.getSystemInfo({
+          success: function (res) {
+            var clientHeight = res.windowHeight,
+              clientWidth = res.windowWidth,
+              rpxR = 750 / clientWidth;
+            var calc = clientHeight * rpxR - 130;
+            that.setData({
+              winHeight: calc
+            });
+          }
+        });
   },
 
   /**

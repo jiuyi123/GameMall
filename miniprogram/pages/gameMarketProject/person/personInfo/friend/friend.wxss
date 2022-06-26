@@ -1,1 +1,13 @@
 /* pages/gameMarketProject/person/personInfo/friend/friend.wxss */
+.van-index-anchor{
+  background-color: rgb(233, 233, 233,0) !important;
+  color: white !important;
+}
+.hr {
+  width: 66%;
+  height: 3rpx;
+  margin-right: 125rpx;
+  margin-left: 125rpx;
+  margin-top: 15rpx;
+  background-color: rgb(80, 95, 115);
+}
