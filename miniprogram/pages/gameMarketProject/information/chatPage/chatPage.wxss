@@ -2,7 +2,6 @@
 page {
   background-color: rgb(94, 159, 230);
 }
-
 .inputRoom {
   width: 100vw;
   height: 16vw;
@@ -25,7 +24,6 @@ input {
   font-size: 28rpx;
   color: #444;
 }
-
 .leftMsg {
   font-size: 35rpx;
   color: #444;

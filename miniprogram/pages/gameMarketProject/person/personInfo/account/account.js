@@ -5,7 +5,25 @@ Page({
    * 页面的初始数据
    */
   data: {
-    user:"",
+    user: "",
+    newEmail: "",
+    newNickname: ""
+  },
+  EmailChage(e) {
+    this.setData({
+      newEmail: e.detail.value
+    })
+  },
+  NicknameChage(e) {
+    this.setData({
+      newNickname: e.detail.value
+    })
+  },
+  setNickname() {
+    console.log(this.data.newNickname)
+  },
+  setEmail() {
+    console.log(this.data.newEmail)
   },
 
   /**

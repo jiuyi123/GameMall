@@ -6,3 +6,6 @@
   margin-bottom: 20rpx;
   background-color: rgb(80, 95, 115);
 }
+.van-cell-group {
+  background-color: rgba(211, 231, 253, 0.7) !important;
+}
