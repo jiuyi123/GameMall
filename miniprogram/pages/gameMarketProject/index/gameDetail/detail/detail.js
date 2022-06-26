@@ -301,6 +301,11 @@ Page({
             that.setData({
               is_GouMai: true
             })
+          //  this.onClose()
+          //  wx.showToast({
+          //    title: '购买成功',
+          //    duration:1000
+          //  })
           }
         }
       })

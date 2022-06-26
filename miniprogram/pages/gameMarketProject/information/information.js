@@ -9,69 +9,14 @@ Page({
     ChatList: '',
     Userid: '',
     winHeight: "", //聊天列表窗口高度
-    gameInfoObj: [{
-      "userName": "jy",
-      "userPhoto": "https://s1.ax1x.com/2022/05/08/O1XIk4.jpg",
-      "infoContent": "今天有时间呀",
-      "infoTime": "13:15",
-      "numCommentInfo": 12
-    }, {
-      "userName": "ctz",
-      "userPhoto": "https://s1.ax1x.com/2022/05/18/OTqQZ8.jpg ",
-      "infoContent": "今天有时间呀",
-      "infoTime": "13:15",
-      "numCommentInfo": 99
-    }, {
-      "userName": "wzl",
-      "userPhoto": "https://s1.ax1x.com/2022/05/18/OTqKqf.jpg",
-      "infoContent": "奶奶滴",
-      "infoTime": "13:15",
-      "numCommentInfo": 1
-    }, {
-      "userName": "ycr",
-      "userPhoto": "https://s1.ax1x.com/2022/05/18/OTqnMt.jpg",
-      "infoContent": "今天有时间呀",
-      "infoTime": "13:15",
-      "numCommentInfo": 999
-    }, {
-      "userName": "hyl",
-      "userPhoto": "https://s1.ax1x.com/2022/05/18/OTqusP.jpg",
-      "infoContent": "今天有时间呀",
-      "infoTime": "13:15",
-      "numCommentInfo": 0
-    }, {
-      "userName": "小久",
-      "userPhoto": "https://s1.ax1x.com/2022/05/08/O1XIk4.jpg",
-      "infoContent": "今天有时间呀",
-      "infoTime": "13:15",
-      "numCommentInfo": 0
-    }, {
-      "userName": "小楠",
-      "userPhoto": "https://s1.ax1x.com/2022/05/08/O1XIk4.jpg",
-      "infoContent": "今天有时间呀",
-      "infoTime": "13:15",
-      "numCommentInfo": 0
-    }, {
-      "userName": "康康",
-      "userPhoto": "https://s1.ax1x.com/2022/05/08/O1XIk4.jpg",
-      "infoContent": "今天有时间呀",
-      "infoTime": "13:15",
-      "numCommentInfo": 0
-    }, {
-      "userName": "小云",
-      "userPhoto": "https://s1.ax1x.com/2022/05/08/O1XIk4.jpg",
-      "infoContent": "今天有时间呀",
-      "infoTime": "13:15",
-      "numCommentInfo": 0
-    }],
     numCommentInfo: 11, //评论数量
     numSystemInfo: 8, //系统通知数量
   },
   // 跳转聊天界面
   goChatPage: function (e) {
-    console.log("goChatPage")
-    console.log(e.currentTarget.dataset.userInfo)
-    var userInfoStr = encodeURIComponent(JSON.stringify(e.currentTarget.dataset.userInfo))
+   // console.log("goChatPage")
+   // console.log(e.currentTarget.dataset.userInfo)
+    var userInfoStr = encodeURIComponent(JSON.stringify(e.currentTarget.dataset.userInfo.SenderInfo))
     //跳转到聊天界面并传参
     wx.navigateTo({
       url: '../information/chatPage/chatPage?userInfoStr=' + userInfoStr,
@@ -111,7 +56,7 @@ Page({
     for (var i = 0; i < sendlist.length; i++) {
       list = list.concat(sendlist[i])
     }
-    console.log(list)
+    //console.log(list)
     for (var i = 0; i < list.length; i++) {
       if (list[i].Receiver_ID == app.globalData.User[0].ID) {
         if (this.check_1(list[i].Time, list[i].Sender_ID, showlist) == -2) {
@@ -163,7 +108,7 @@ Page({
     this.setData({
       ChatList: show_list
     })
-    console.log(this.data.ChatList)
+   // console.log(this.data.ChatList)
   },
 
   LoadPageData() {
@@ -175,7 +120,7 @@ Page({
           clientWidth = res.windowWidth,
           rpxR = 750 / clientWidth;
         var calc = clientHeight * rpxR - 180;
-        console.log(calc)
+       // console.log(calc)
         that.setData({
           winHeight: calc,
           Userid: app.globalData.User[0].ID
@@ -195,7 +140,7 @@ Page({
       list[i].Newnumber = count.total
       if (list[i].Receiver_ID == this.data.Userid) {
         let res = await db.collection("Users").where({
-          ID: list[i].Send_ID
+          ID: list[i].Chatid
         }).get()
         list[i].SenderInfo = res.data[0]
       } else {
