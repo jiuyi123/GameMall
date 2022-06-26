@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    ChatList:'',
+    ChatList: '',
+    Userid: '',
     winHeight: "", //聊天列表窗口高度
     gameInfoObj: [{
       "userName": "jy",
@@ -70,10 +71,10 @@ Page({
   goChatPage: function (e) {
     console.log("goChatPage")
     console.log(e.currentTarget.dataset.userInfo)
-    var userInfoStr = encodeURIComponent(JSON.stringify(e.currentTarget.dataset.userInfo)) 
+    var userInfoStr = encodeURIComponent(JSON.stringify(e.currentTarget.dataset.userInfo))
     //跳转到聊天界面并传参
     wx.navigateTo({
-      url: '../information/chatPage/chatPage?userInfoStr='+userInfoStr,
+      url: '../information/chatPage/chatPage?userInfoStr=' + userInfoStr,
     })
   },
   //跳转评论消息页面
@@ -89,40 +90,83 @@ Page({
     })
   },
 
-  check(list,Receiver_ID){
-    for(var i = 0;i < list.length;i++){
-      if(list.Receiver_ID==Receiver_ID){
-        return true
+  check_1(time, id, list) {
+    for (var i = 0; i < list.length; i++) {
+      if (id == list[i].Chatid) {
+        if (list[i].Time < time) {
+          return i //替换i
+        } else return -1 //不需要添加
       }
     }
-    return false
+    return -2 //添加
   },
 
-  async CreateChatList(){
-    let count = await db.collection("ChatRecord").where({      
-      Sender_ID:app.globalData.User[0].ID}).count()
+  check(receivelist, sendlist) {
+    let list = []
+    let showlist = []
+    var count = 0
+    for (var i = 0; i < receivelist.length; i++) {
+      list = list.concat(receivelist[i])
+    }
+    for (var i = 0; i < sendlist.length; i++) {
+      list = list.concat(sendlist[i])
+    }
+    console.log(list)
+    for (var i = 0; i < list.length; i++) {
+      if (list[i].Receiver_ID == app.globalData.User[0].ID) {
+        if (this.check_1(list[i].Time, list[i].Sender_ID, showlist) == -2) {
+          showlist = showlist.concat(list[i])
+          showlist[count].Chatid = list[i].Sender_ID
+          count++
+        } else if (this.check_1(list[i].Time, list[i].Sender_ID, showlist) == -1) {} else {
+          list[i].Chatid = list[i].Sender_ID
+          showlist[this.check_1(list[i].Time, list[i].Sender_ID, showlist)] = list[i]
+        }
+      } else if (list[i].Sender_ID == app.globalData.User[0].ID) {
+        if (this.check_1(list[i].Time, list[i].Receiver_ID, showlist) == -2) {
+          showlist = showlist.concat(list[i])
+          showlist[count].Chatid = list[i].Receiver_ID
+          count++
+        } else if (this.check_1(list[i].Time, list[i].Receiver_ID, showlist) == -1) {} else {
+          list[i].Chatid = list[i].Receiver_ID
+          showlist[this.check_1(list[i].Time, list[i].Receiver_ID, showlist)] = list[i]
+        }
+      }
+    }
+    return showlist
+  },
+
+  async CreateChatList() {
+    let count = await db.collection("ChatRecord").where({
+      Sender_ID: app.globalData.User[0].ID
+    }).count()
     count = count.total
-    let data = []
-    for(let i = 0; i < count; i += 20){
-      let list = await db.collection("ChatRecord").where({     
-      Sender_ID:app.globalData.User[0].ID}).skip(i).get()
-      data = data.concat(list.data)
+    let sendlist = []
+    for (let i = 0; i < count; i += 20) {
+      let list = await db.collection("ChatRecord").where({
+        Sender_ID: app.globalData.User[0].ID
+      }).skip(i).get()
+      sendlist = sendlist.concat(list.data)
     }
-    let show_list = []
-    console.log(data)
-    for(var i = 0;i < data.length;i++){
-      if(!this.check(show_list,data[i].Receiver_ID)){
-        var res = await db.collection("Users")
-        show_list
-      }
+    count = await db.collection("ChatRecord").where({
+      Sender_ID: app.globalData.User[0].ID
+    }).count()
+    count = count.total
+    let receivelist = []
+    for (let i = 0; i < count; i += 20) {
+      let list = await db.collection("ChatRecord").where({
+        Receiver_ID: app.globalData.User[0].ID
+      }).skip(i).get()
+      receivelist = receivelist.concat(list.data)
     }
-
+    let show_list = this.check(receivelist, sendlist)
+    this.setData({
+      ChatList: show_list
+    })
+    console.log(this.data.ChatList)
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
+  LoadPageData() {
     // 高度自适应
     var that = this;
     wx.getSystemInfo({
@@ -133,11 +177,46 @@ Page({
         var calc = clientHeight * rpxR - 180;
         console.log(calc)
         that.setData({
-          winHeight: calc
+          winHeight: calc,
+          Userid: app.globalData.User[0].ID
         });
       }
     });
-    this.CreateChatList()
+  },
+
+  async LoadUserInfo() {
+    let list = this.data.ChatList
+    for (let i = 0; i < list.length; i++) {
+      let count = await db.collection("ChatRecord").where({
+        Receiver_ID: this.data.Userid,
+        Sender_ID: list[i].Chatid,
+        State: "未读"
+      }).count()
+      list[i].Newnumber = count
+      if (list[i].Receiver_ID == this.data.Userid) {
+        let res = await db.collection("Users").where({
+          ID: list[i].Send_ID
+        }).get()
+        list[i].SenderInfo = res.data[0]
+      } else {
+        let res = await db.collection("Users").where({
+          ID: list[i].Receiver_ID
+        }).get()
+        list[i].SenderInfo = res.data[0]
+      }
+    }
+    this.setData({
+      ChatList: list
+    })
+    console.log(this.data.ChatList)
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: async function (options) {
+    this.LoadPageData()
+    await this.CreateChatList()
+    await this.LoadUserInfo()
   },
 
   /**

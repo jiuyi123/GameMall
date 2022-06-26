@@ -45,7 +45,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userID:6,
+    userID:3,
     cusHeadIcon:'',
     scrollHeight: '100vh',
     inputBottom: 0,
@@ -55,7 +55,7 @@ Page({
     TempMessage:"",
     SendMessageList:[],
     ReceiveMessageList:[],
-	  FriendID:3
+	  FriendID:6
   },
 
   GetTime(){
@@ -295,8 +295,6 @@ Page({
       msgList,
       inputVal
     });
-
-
   },
 
   /**
@@ -305,5 +303,4 @@ Page({
   toBackClick: function() {
     wx.navigateBack({})
   }
-
 })
