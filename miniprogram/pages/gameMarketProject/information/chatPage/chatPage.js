@@ -118,12 +118,18 @@ Page({
     this.setData({
       ReceiveMessageList: data
     })
-    //console.log(this.data.ReceiveMessageList)
+    console.log(this.data.ReceiveMessageList)
   },
 
   Show() { //前端调用一次用于数据初始化
-    let arr1 = this.data.ReceiveMessageList
-    let arr2 = this.data.SendMessageList
+    let arr1 = []
+    for (let i = 0; i < this.data.ReceiveMessageList.length; i++) {
+      arr1[i] = this.data.ReceiveMessageList[i]
+    }
+    let arr2 = []
+    for (let i = 0; i < this.data.SendMessageList.length; i++) {
+      arr2[i] = this.data.SendMessageList[i]
+    }
     var list = []
     //console.log(arr1)
     //console.log(arr2)
@@ -176,12 +182,6 @@ Page({
         //监控数据发生变化时触发
         await that.GetReceiveMessage()
         await that.GetSendMessage()
-        let list = []
-        list.concat(that.data.Show_list)
-        list.push(that.data.SendMessageList[0])
-        that.setData({
-          Show_list: list
-        })
         await that.Show()
         console.log("监听发送")
         console.log(that.data.Show_list)
@@ -198,12 +198,6 @@ Page({
         //监控数据发生变化时触发
         await that.GetReceiveMessage()
         await that.GetSendMessage()
-        let list = []
-        list.concat(that.data.Show_list)
-        list.push(that.data.ReceiveMessageList[0])
-        that.setData({
-          Show_list: list
-        })
         await that.Show()
         console.log("监听接收")
         console.log(that.data.Show_list)
@@ -284,6 +278,8 @@ Page({
    * 退回上一页
    */
   toBackClick: function () {
-    wx.navigateBack({})
+    wx.navigateBack({
+    })
+
   }
 })

@@ -1,11 +1,36 @@
 <!--pages/gameMarketProject/person/personInfo/account/account.wxml-->
-<view style="display: flex;flex-direction: column;margin:20rpx;">
+<view style="display: flex;flex-direction: column;margin:30rpx;">
   <!-- 分割线 -->
   <view class="hr"></view>
   <!-- 账户 -->
-  <text style="color: white;font-size: 40rpx;font-weight: bolder;">账户</text>
-<!-- 账户信息 -->
-<view>
-  <image src="{{UserInfo.Photo_link}}" mode="scaleToFill" style="height: 80rpx;width:80rpx;margin: 10rpx;" />
-</view>
+  <text style="color: white;font-size: 60rpx;font-weight: bolder;">账户</text>
+  <!-- 账户信息 -->
+  <view style="display: flex;flex-direction: row;justify-content: space-between;">
+    <image src="{{user.Photo_link}}" mode="scaleToFill" style="height: 200rpx;width:200rpx;margin: 10rpx;box-shadow: 0 0 10px rgb(180, 180, 180);" />
+    <view style="display: flex;flex-direction: column; color: rgb(152, 153, 155);margin-right: 150rpx;">
+      <text style="font-weight: bolder;margin-bottom: 30rpx;">VGame ID</text>
+      <text>{{user.ID}}</text>
+    </view>
+  </view>
+
+  <!-- 账号信息 -->
+  <view style="display: flex;flex-direction: column; color: rgb(152, 153, 155);margin-top: 4%;">
+    <text style="font-weight: bolder;margin-bottom: 15rpx;">VGame 账号</text>
+    <text style="color: white;">{{user.Name}}</text>
+  </view>
+
+  <!-- 昵称信息 -->
+  <view style="display: flex;flex-direction: column; color: rgb(152, 153, 155);margin-top: 4%;">
+    <text style="font-weight: bolder;margin-bottom: 15rpx;">昵称</text>
+    <text style="color: white;">{{user.Nickname}}</text>
+  </view>
+
+  <!-- 国家/地区 -->
+  <view style="display: flex;flex-direction: column; color: rgb(152, 153, 155);margin-top: 4%;">
+    <text style="font-weight: bolder;margin-bottom: 15rpx;">国家/地区</text>
+    <!-- <van-area area-list="{{ areaList }}" /> -->
+  </view>
+
+  <!-- 分割线 -->
+  <view class="hr"></view>
 </view>

@@ -83,6 +83,7 @@
     "van-checkbox": "@vant/weapp/checkbox/index",
     "van-checkbox-group": "@vant/weapp/checkbox-group/index",
     "van-radio": "@vant/weapp/radio/index",
-  "van-radio-group": "@vant/weapp/radio-group/index"
+    "van-radio-group": "@vant/weapp/radio-group/index",
+    "van-area": "@vant/weapp/area/index"
   }
 }

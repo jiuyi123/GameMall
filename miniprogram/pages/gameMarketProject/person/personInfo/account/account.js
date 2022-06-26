@@ -1,20 +1,22 @@
 // pages/gameMarketProject/person/personInfo/account/account.js
+const app = getApp();
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    is_Kupublic:true,
-    is_Commentpublic:true,
-    is_Likepublic:true
+    user:"",
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    this.setData({
+      //加载用户信息
+      user: app.globalData.User[0]
+    });
+    console.log(this.data.user)
   },
 
   /**
