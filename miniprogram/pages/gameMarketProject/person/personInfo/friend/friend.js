@@ -1,18 +1,67 @@
 // pages/gameMarketProject/person/personInfo/friend/friend.js
+const app = getApp()
+const db = wx.cloud.database()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    Friend_List: ''
+  },
 
+  async loadInfo() {
+    let count = await db.collection("Friends").where({
+      User1_ID: app.globalData.User[0].ID
+    }).count()
+    count = count.total
+    let data = []
+    for (let i = 0; i < count; i += 20) {
+      let list = await db.collection("Friends").where({
+        User1_ID: app.globalData.User[0].ID
+      }).skip(i).get()
+      data = data.concat(list.data[i].User2_ID)
+    }
+    count = await db.collection("Friends").where({
+      User2_ID: app.globalData.User[0].ID
+    }).count()
+    count = count.total
+    for (let i = 0; i < count; i += 20) {
+      let list = await db.collection("Friends").where({
+        User2_ID: app.globalData.User[0].ID
+      }).skip(i).get()
+      data = data.concat(list.data[i].User1_ID)
+    }
+    //console.log(data)
+    let list = []
+    for (var i = 0; i < data.length; i++) {
+      if (this.check(data[i], list)) {
+        let res = await db.collection("Users").where({
+          ID: data[i]
+        }).get()
+        list.push(res.data[0])
+      }
+    }
+    this.setData({
+      Friend_List:list
+    })
+    console.log(this.data.Friend_List)
+  },
+
+  check(data, list) {
+    for (var i = 0; i < list.length; i++) {
+      if (data == list[i].ID) {
+        return false
+      }
+    }
+    return true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
-
+  async onLoad(options) {
+    this.loadInfo()
   },
 
   /**
