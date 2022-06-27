@@ -14,9 +14,9 @@ Page({
 
     },
     /*******购买弹窗*******/
-    radio: '1',//单选框
+    PayWay: '1',//单选框
     checked: false,//复选框
-    show: false,
+    Buying: false,
     actions: [{
       name: '获取用户信息',
       color: '#07c160',
@@ -41,18 +41,18 @@ Page({
   },
   onChangeRadio(event) {
     this.setData({
-      radio: event.detail,
+      PayWay: event.detail,
     });
   },
   buyPop()
   {
     this.setData({
-      show: true
+      Buying: true
     });
   },
-  onClose() {
+  buyClose() {
     this.setData({
-      show: false
+      Buying: false
     });
   },
   onGetUserInfo(e) {
