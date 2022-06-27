@@ -110,8 +110,8 @@
             </view>
 
             <!-- 购买弹窗 -->
-            <van-action-sheet show="{{ show }}" bind:close="onClose" title="付款页面">
-              <van-radio-group value="{{ radio }}" bind:change="onChangeRadio">
+            <van-action-sheet show="{{ Buying }}" bind:close="buyClose" title="付款页面">
+              <van-radio-group value="{{ PayWay }}" bind:change="onChangeRadio">
                 <view style="display: flex;flex-direction: column; margin: 20rpx;margin-bottom: 40rpx; row-gap: 10rpx;">
                   <van-radio name="1">余额支付</van-radio>
                   <van-radio name="2">微信支付</van-radio>
