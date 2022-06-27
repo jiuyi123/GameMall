@@ -7,7 +7,8 @@ Page({
    */
   data: {
     Add_text: '',
-    Search_List: ''
+    Search_List: '',
+    Add_ID: 4
   },
 
   bindAddContent: function (e) {
@@ -32,6 +33,20 @@ Page({
       Search_List: list
     })
     console.log(this.data.Search_List)
+  },
+
+  Add_Friend: function () {
+    db.collection('Friends').add({
+      data: {
+        User1_ID: app.globalData.User[0].ID,
+        User2_ID: this.data.Add_ID
+      }
+    })
+    wx.showToast({
+      title: '已添加好友',
+      icon: 'success',
+      duration: 900
+    })
   },
   /**
    * 生命周期函数--监听页面加载
