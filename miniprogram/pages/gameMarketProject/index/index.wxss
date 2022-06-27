@@ -24,8 +24,7 @@ page {
 }
 
 .banners {
-  margin: 2rpx;
-  width: 740rpx;
+  width: 700rpx;
   height: 300rpx;
 }
 
@@ -67,6 +66,8 @@ page {
 /* 省略显示 */
 .productNameText {
   font-size: 35rpx;
+  color: rgba(0, 0, 0, 0.945);
+  font-weight: bolder;
   text-overflow: ellipsis;
   z-index: -1;
   display: -webkit-box;
