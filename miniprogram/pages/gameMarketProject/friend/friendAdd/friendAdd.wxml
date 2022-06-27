@@ -8,14 +8,14 @@
     </view>
     <van-button bindtap="Search" color="blue" size="small" style="align-items: center;margin-right: 20rpx;">搜索</van-button>
   </view>
-  <scroll-view scroll-y="true" style="height:{{winHeight}}rpx; margin-left: 20rpx;margin-right: 20rpx;">
+  <scroll-view scroll-y="true" style="height:{{winHeight}}rpx; margin-left: 20rpx;margin-right: 20rpx;width: 700rpx;">
     <!-- 好友列表 -->
     <view wx:for="{{Search_List}}" data-item="item">
       <!-- 滑动单元格 -->
       <van-swipe-cell custom-style="border: 3rpx solid rgb(130, 206, 31);">
         <!-- 用户头像和昵称 -->
-        <view data-user-Info="{{item}}" bindtap="goChatPage" style="display: flex;flex-direction: row;align-items: center;">
-          <view  style="display: flex;flex-direction: row;align-items: center;">
+        <view data-user-Info="{{item}}" bindtap="goChatPage" style="display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
+          <view style="display: flex;flex-direction: row;align-items: center;">
             <!-- 用户头像 -->
             <view style="height: 120rpx;">
               <image src="{{item.Photo_link}}" mode="scaleToFill" style="height: 100rpx;width:100rpx; margin: 10rpx;" />
@@ -24,7 +24,10 @@
               <view style="color: white;margin-left: 35rpx;">{{item.Nickname}}</view>
             </view>
           </view>
-          <button data-user-Info = "{{item}}" bindtap="Add_Friend" size="mini" style="background-color: rgba(111, 230, 100);">添加</button>
+          <view>
+            <button wx:if="{{!item.IsFriend}}" data-user-Info="{{item}}" bindtap="Add_Friend" size="mini" style="background-color: rgba(111, 230, 100);">添加</button>
+            <text wx:if="{{item.IsFriend}}" style="color: aliceblue;">已添加</text>
+          </view>
         </view>
       </van-swipe-cell>
       <!-- 分割线 -->
