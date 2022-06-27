@@ -284,14 +284,14 @@ Page({
     }
 
     //test
-    console.log("动作游戏：");
+    /*console.log("动作游戏：");
     for (var i = 0; i < this.data.dongzuoyouxi.length; i++){
       console.log(i+"."+this.data.dongzuoyouxi[i].Name+":"+this.data.dongzuoyouxi[i].Score+" ")
     }
     console.log("策略游戏：");
     for (var i = 0; i < this.data.celueyouxi.length; i++){
       console.log(i+"."+this.data.celueyouxi[i].Name+":"+this.data.dongzuoyouxi[i].Score+" ")
-    }
+    }*/
   },
   
   //把当前读取到的游戏对象 从大到小 的方式插入到对应的游戏列表中
