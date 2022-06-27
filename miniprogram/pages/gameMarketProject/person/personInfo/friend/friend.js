@@ -6,12 +6,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isSearching:false,//搜索中
+    isSearching: false, //搜索中
     show: false,
     searchFirst: true,
     Is_game_got: false,
     winHeight: '', //窗口高度
-    Show_List:'',
+    Show_List: '',
     Friend_List: '',
     Search_text: '',
     Search_List: ''
@@ -44,9 +44,9 @@ Page({
     }
     this.setData({
       Search_List: list,
-      Show_List:list,
-      show:false,
-      isSearching:true
+      Show_List: list,
+      show: false,
+      isSearching: true
     })
     console.log(this.data.Show_List)
   },
@@ -90,6 +90,12 @@ Page({
         })
         .get()
       await db.collection('Friends').doc(res.data[0]._id).remove()
+      await this.loadInfo()
+      wx.showToast({
+        title: '已删除好友',
+        icon: 'success',
+        duration: 900
+      })
     }
   },
   /*******搜索框*******/
@@ -103,9 +109,9 @@ Page({
     this.setData({
       show: false,
       searchFirst: true,
-      Search_text:'',
-      isSearching:false,
-      Show_List:this.data.Friend_List
+      Search_text: '',
+      isSearching: false,
+      Show_List: this.data.Friend_List
     })
   },
   /*******添加好友*********/
@@ -173,9 +179,9 @@ Page({
     }
     this.setData({
       Friend_List: list,
-      Show_List:list
+      Show_List: list
     })
-    console.log(this.data. Show_List)
+    console.log(this.data.Show_List)
   },
 
   check(data, list) {
@@ -190,7 +196,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
-    this.loadInfo()
+    await this.loadInfo()
     // 高度自适应
     var that = this
     wx.getSystemInfo({
