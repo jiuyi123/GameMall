@@ -24,12 +24,11 @@
               <view style="color: white;margin-left: 35rpx;">{{item.Nickname}}</view>
             </view>
           </view>
-          <button bindtap="Add_Friend" size="mini" style="background-color: rgba(111, 230, 100);">添加</button>
+          <button data-user-Info = "{{item}}" bindtap="Add_Friend" size="mini" style="background-color: rgba(111, 230, 100);">添加</button>
         </view>
       </van-swipe-cell>
       <!-- 分割线 -->
       <view class="hr"></view>
     </view>
-
   </scroll-view>
 </view>

@@ -8,7 +8,7 @@ Page({
   data: {
     Add_text: '',
     Search_List: '',
-    Add_ID: 4
+    Add_ID: ''
   },
 
   bindAddContent: function (e) {
@@ -35,11 +35,13 @@ Page({
     console.log(this.data.Search_List)
   },
 
-  Add_Friend: function () {
+  Add_Friend: function (e) {
+    // console.log(e.currentTarget.dataset.userInfo.ID)
     db.collection('Friends').add({
       data: {
         User1_ID: app.globalData.User[0].ID,
-        User2_ID: this.data.Add_ID
+        User2_ID:e.currentTarget.dataset.userInfo.ID,
+        Add_ID: e.currentTarget.dataset.userInfo.ID
       }
     })
     wx.showToast({
