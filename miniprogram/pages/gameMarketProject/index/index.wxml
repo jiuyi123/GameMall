@@ -2,85 +2,87 @@
 <view>
 
   <!-- 导航栏 -->
-  <view style="display: flex;background: rgb(136, 203, 230,0);">
+  <view style="display: flex;background: rgb(136, 203, 230,0)">
     <!-- 搜索框 -->
-    <view style="width: 650rpx;">
-      <van-search value="{{ value }}" shape="round" placeholder="请输入游戏关键词" bindtap="showPopup" background="rgb(136, 203, 230,0)" wx:if="{{searchFirst}}" />
-    </view>
-    <!-- 分类 -->
-    <view style="display: flex;flex-direction: column;justify-content: center;" bindtap="goSort">
-      <image src="https://s1.ax1x.com/2022/04/29/LvSw1e.png" lazy-load="true" style="width: 110rpx;height: 110rpx;margin-right: 30rpx;"></image>
+    <view style="display: flex;align-items: center;">
+      <view style="width: 620rpx;">
+      <van-search value=" {{ value }}" shape="round" placeholder="请输入游戏关键词" bindtap="showPopup" background="rgb(136, 203, 230,0)" wx:if="{{searchFirst}}" />
     </view>
   </view>
+  <!-- 分类 -->
+  <view style="display: flex;flex-direction: column;justify-content: center;" bindtap="goSort">
+    <image src="https://s1.ax1x.com/2022/04/29/LvSw1e.png" lazy-load="true" style="width: 110rpx;height: 110rpx;margin-right: 30rpx;"></image>
+  </view>
+</view>
 
-  <!-- 点击搜索后内容 -->
-  <van-popup show="{{ show }}" position="top" bind:close="onClose">
-    <!-- 搜索框 -->
-    <view style="display: flex; flex-direction: row;justify-content: space-around;align-items: center;background:rgb(4, 15, 29)">
-      <view style="width: 600rpx;">
-        <van-search bind:change='bindSearchContent' shape="round" background="rgb(4, 15, 29)" placeholder="请输入游戏关键词">
-        </van-search>
-      </view>
-      <van-button bindtap="search" color="blue" size="small" style="align-items: center;margin-right: 20rpx;">搜索</van-button>
+<!-- 点击搜索后内容 -->
+<van-popup show="{{ show }}" position="top" bind:close="onClose">
+  <!-- 搜索框 -->
+  <view style="display: flex; flex-direction: row;justify-content: space-around;align-items: center;background:rgb(4, 15, 29)">
+    <view style="width: 600rpx;">
+      <van-search bind:change='bindSearchContent' shape="round" background="rgb(4, 15, 29)" placeholder="请输入游戏关键词">
+      </van-search>
     </view>
-    <!-- 历史记录
+    <van-button bindtap="search" color="blue" size="small" style="align-items: center;margin-right: 20rpx;">搜索</van-button>
+  </view>
+  <!-- 历史记录
     <text>搜索历史</text> -->
-  </van-popup>
+</van-popup>
 
-  <!-- 信息合集 -->
-  <scroll-view scroll-y="true" style="height:{{winHeight}}rpx; margin-bottom:10rpx;display: flex;flex-direction: column;align-items: center;">
-    <!-- 热点信息栏 -->
-    <van-notice-bar left-icon="volume-o" text="开启洞穴冒险新篇章！《我的世界》夏日派对即将来袭" />
-    <!-- <button>hhh</button> -->
-    <!-- 轮播图 -->
-    <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 4%;">
-      <swiper class="banners" indicator-dots autoplay indicator-active-color="#d43c33" indicator-color="ivory">
-        <swiper-item wx:for="{{imgUrl}}" wx:key="bannerId" style="box-shadow:0 0 10px rgb(180, 180, 180);">
-          <image src="{{item}}" style="width: 700rpx;" />
-        </swiper-item>
-      </swiper>
-    </view>
-    <view style="margin-top: 4%;">
-      <text style="color: white;">你会喜欢</text>
-    </view>
-    <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 1%;">
-      <scroll-view style="width:92%;white-space: nowrap;background-color: rgba(168, 206, 250, 0.5); border-radius: 30rpx;" scroll-x="true">
-        <view>
-          <view wx:for="{{gameInfo}}" wx:key="list1" style="display: inline-block; ">
-            <view data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
-              <view style="margin-top: 3%;">
-                <!-- 游戏图片 -->
-                <image mode="scaleToFill" src="{{item.Pic_link}}" lazy-load="true" style="margin: 15rpx;margin-bottom: 1%;height: 300rpx; width: 200rpx;border-radius: 40rpx;" />
-                <!-- 游戏名 -->
-                <view style="width: 230rpx; display: flex;justify-content: center;margin-bottom: 3%;">
-                  <text class='productNameText'>{{item.Name}}</text>
-                </view>
+<!-- 信息合集 -->
+<scroll-view scroll-y="true" style="height:{{winHeight}}rpx; margin-bottom:10rpx;display: flex;flex-direction: column;align-items: center;">
+  <!-- 热点信息栏 -->
+  <!-- <van-notice-bar left-icon="volume-o" text="开启洞穴冒险新篇章！《我的世界》夏日派对即将来袭" /> -->
+  <!-- <button>hhh</button> -->
+  <!-- 轮播图 -->
+  <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 4%;">
+    <swiper class="banners" indicator-dots autoplay indicator-active-color="#d43c33" indicator-color="ivory">
+      <swiper-item wx:for="{{imgUrl}}" wx:key="bannerId" style="box-shadow:0 0 10px rgb(180, 180, 180);">
+        <image src="{{item}}" style="width: 700rpx;" />
+      </swiper-item>
+    </swiper>
+  </view>
+  <view style="margin-top: 4%;margin-left:4% ;">
+    <text style="color: white;">你会喜欢</text>
+  </view>
+  <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 1%;">
+    <scroll-view style="width:92%;white-space: nowrap;background-color: rgba(168, 206, 250, 0.5); border-radius: 30rpx;" scroll-x="true">
+      <view>
+        <view wx:for="{{gameInfo}}" wx:key="list1" style="display: inline-block; ">
+          <view data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
+            <view style="margin-top: 3%;">
+              <!-- 游戏图片 -->
+              <image mode="scaleToFill" src="{{item.Pic_link}}" lazy-load="true" style="margin: 15rpx;margin-bottom: 1%;height: 300rpx; width: 200rpx;border-radius: 40rpx;" />
+              <!-- 游戏名 -->
+              <view style="width: 230rpx; display: flex;justify-content: center;margin-bottom: 3%;">
+                <text class='productNameText'>{{item.Name}}</text>
               </view>
             </view>
           </view>
         </view>
-      </scroll-view>
-    </view>
-    <view style="margin-top: 4%;">
-      <text style="color: white;">本周新游</text>
-    </view>
-    <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 1%;">
-      <scroll-view style="width:92%;white-space: nowrap;background-color: rgba(168, 206, 250, 0.5); border-radius: 30rpx;" scroll-x="true">
-        <view style="margin-top: 3%;">
-          <view wx:for="{{gameInfo}}" wx:key="list1" style="display: inline-block; ">
-            <view data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
-              <view>
-                <!-- 游戏图片 -->
-                <image mode="scaleToFill" src="{{item.Pic_link}}" lazy-load="true" style="margin: 15rpx;margin-bottom: 1%;height: 300rpx; width: 200rpx;border-radius: 40rpx;" />
-                <!-- 游戏名 -->
-                <view style="width: 230rpx; display: flex;justify-content: center;margin-bottom: 3%;">
-                  <text class='productNameText'>{{item.Name}}</text>
-                </view>
+      </view>
+    </scroll-view>
+  </view>
+  <view style="margin-top: 4%;margin-left:4% ;">
+    <text style="color: white;">本周新游</text>
+  </view>
+  <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 1%;">
+    <scroll-view style="width:92%;white-space: nowrap;background-color: rgba(168, 206, 250, 0.5); border-radius: 30rpx;" scroll-x="true">
+      <view style="margin-top: 3%;">
+        <view wx:for="{{gameInfo}}" wx:key="list1" style="display: inline-block; ">
+          <view data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
+            <view>
+              <!-- 游戏图片 -->
+              <image mode="scaleToFill" src="{{item.Pic_link}}" lazy-load="true" style="margin: 15rpx;margin-bottom: 1%;height: 300rpx; width: 200rpx;border-radius: 40rpx;" />
+              <!-- 游戏名 -->
+              <view style="width: 230rpx; display: flex;justify-content: center;margin-bottom: 3%;">
+                <text class='productNameText'>{{item.Name}}</text>
               </view>
             </view>
           </view>
         </view>
-      </scroll-view>
-    </view>
-  </scroll-view>
+      </view>
+    </scroll-view>
+  </view>
+</scroll-view>
 </view>
