@@ -25,6 +25,8 @@ input {
   color: #444;
 }
 .leftMsg {
+  display:flex;
+  max-width: 70%;
   font-size: 35rpx;
   color: #444;
   line-height: 7vw;
@@ -36,6 +38,8 @@ input {
 }
 
 .rightMsg {
+  display:flex;
+  max-width: 70%;
   font-size: 35rpx;
   color: #444;
   line-height: 7vw;
