@@ -182,6 +182,11 @@ Page({
       }
       time.push(list[i].Time[6])
       time.push('月')
+      if (list[i].Time[8] != 0) {
+        time.push(list[i].Time[8])
+      }
+      time.push(list[i].Time[9])
+      time.push('日')
       for (let j = 11; j < 16; j++) {
         time.push(list[i].Time[j])
       }

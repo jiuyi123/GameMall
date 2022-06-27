@@ -70,7 +70,7 @@
           <view class="infoContent">{{item.Data}}</view>
         </view>
         <!-- 发送时间 -->
-        <view class="infoTime">13:15</view>
+        <view class="infoTime">{{item.Time}}</view>
       </view>
     </view>
   </scroll-view>
