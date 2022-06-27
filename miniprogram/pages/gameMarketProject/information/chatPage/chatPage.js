@@ -39,6 +39,7 @@ Page({
       scrollLast: 'item' + this.data.Show_list.length
     })
   },
+
   GetTime() {
     var blank = ''
     var myDate = new Date()
@@ -61,18 +62,20 @@ Page({
   SendMessage() {
     //console.log(this.data.TempMessage)
     var sendmessage = this.data.TempMessage
-    db.collection('ChatRecord').add({
-      data: {
-        Data: sendmessage,
-        Receiver_ID: this.data.friend.ID,
-        Sender_ID: app.globalData.User[0].ID,
-        Time: this.GetTime(),
-        State: '未读'
-      }
-    })
-    this.setData({
-      TempMessage: ''
-    })
+    if (sendmessage.length != 0) {
+      db.collection('ChatRecord').add({
+        data: {
+          Data: sendmessage,
+          Receiver_ID: this.data.friend.ID,
+          Sender_ID: app.globalData.User[0].ID,
+          Time: this.GetTime(),
+          State: '未读'
+        }
+      })
+      this.setData({
+        TempMessage: ''
+      })
+    }
   },
 
   async GetSendMessage() {
@@ -194,10 +197,10 @@ Page({
       //加载用户信息
       user: app.globalData.User[0]
     })
-    console.log('朋友')
-    console.log(this.data.friend)
-    console.log('用户')
-    console.log(this.data.user)
+    // console.log('朋友')
+    // console.log(this.data.friend)
+    // console.log('用户')
+    // console.log(this.data.user)
     db.collection('ChatRecord')
       .where({
         Receiver_ID: this.data.friend.ID,

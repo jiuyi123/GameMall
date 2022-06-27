@@ -88,18 +88,26 @@ Page({
 
   Add_Friend: async function (e) {
     // console.log(e.currentTarget.dataset.userInfo.ID)
-    db.collection('Friends').add({
-      data: {
-        User1_ID: app.globalData.User[0].ID,
-        User2_ID: e.currentTarget.dataset.userInfo.ID
-      }
-    })
-    await this.Search()
-    wx.showToast({
-      title: '已添加好友',
-      icon: 'success',
-      duration: 900
-    })
+    if (app.globalData.User[0].ID == e.currentTarget.dataset.userInfo.ID) {
+      wx.showToast({
+        title: '这是你自己',
+        icon: 'error',
+        duration: 900
+      })
+    } else {
+      db.collection('Friends').add({
+        data: {
+          User1_ID: app.globalData.User[0].ID,
+          User2_ID: e.currentTarget.dataset.userInfo.ID
+        }
+      })
+      await this.Search()
+      wx.showToast({
+        title: '已添加好友',
+        icon: 'success',
+        duration: 900
+      })
+    }
   },
 
   async LaodInfo() {

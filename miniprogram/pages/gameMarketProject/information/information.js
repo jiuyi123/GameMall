@@ -10,7 +10,8 @@ Page({
     Userid: '',
     winHeight: '', //聊天列表窗口高度
     numCommentInfo: 11, //评论数量
-    numSystemInfo: 8 //系统通知数量
+    numSystemInfo: 8, //系统通知数量
+    ChatListNum:50  //聊天系统存储聊天记录长度
   },
   // 跳转聊天界面
   goChatPage: function (e) {
@@ -294,7 +295,7 @@ Page({
     let list = await this.LoadDeletelist(chatid)
     // console.log(list)
     let sum = count1 + count2
-    for (let i = 0; i < list.length && sum > 50; i++, sum--) {
+    for (let i = 0; i < list.length && sum > this.data.ChatListNum; i++, sum--) {
       db.collection('ChatRecord').doc(list[i]._id).remove()
     }
   },
