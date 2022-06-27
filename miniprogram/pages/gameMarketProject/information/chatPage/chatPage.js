@@ -1,16 +1,16 @@
 // pages/gameMarketProject/information/chatPage/chatPage.js
-const app = getApp();
-var inputVal = '';
-var msgList = [];
-var windowWidth = wx.getSystemInfoSync().windowWidth;
-var windowHeight = wx.getSystemInfoSync().windowHeight;
-var keyHeight = 0;
-var db = wx.cloud.database();
+const app = getApp()
+var inputVal = ''
+var msgList = []
+var windowWidth = wx.getSystemInfoSync().windowWidth
+var windowHeight = wx.getSystemInfoSync().windowHeight
+var keyHeight = 0
+var db = wx.cloud.database()
 /**
  * 初始化数据
  */
 function initData(that) {
-  inputVal = '';
+  inputVal = ''
   that.setData({
     inputVal
   })
@@ -21,18 +21,17 @@ Page({
    * 页面的初始数据
    */
   data: {
-
-    friend: "",
-    user: "",
+    friend: '',
+    user: '',
     inputBottom: 0,
     //新加的
     Show_list: '',
-    TempMessage: "",
+    TempMessage: '',
     SendMessageList: [],
     ReceiveMessageList: [],
     //页面样式数据
     scrollHeight: '100vh',
-    scrollLast: null, //聊天记录置底
+    scrollLast: null //聊天记录置底
   },
   /********聊天记录置底****/
   getScollBottom() {
@@ -41,15 +40,15 @@ Page({
     })
   },
   GetTime() {
-    var blank = ""
-    var myDate = new Date();
-    var year = myDate.getFullYear();
-    var month = (myDate.getMonth() + 1 < 10 ? '0' + (myDate.getMonth() + 1) : myDate.getMonth() + 1);
-    var date = myDate.getDate() < 10 ? '0' + myDate.getDate() : myDate.getDate();
-    var hour = myDate.getHours() < 10 ? '0' + myDate.getHours() : myDate.getHours();
-    var min = myDate.getMinutes() < 10 ? '0' + myDate.getMinutes() : myDate.getMinutes();
-    var sec = myDate.getSeconds() < 10 ? '0' + myDate.getSeconds() : myDate.getSeconds();
-    var myTime = blank.concat(year, "-", month, "-", date, " ", hour, ":", min, ":", sec);
+    var blank = ''
+    var myDate = new Date()
+    var year = myDate.getFullYear()
+    var month = myDate.getMonth() + 1 < 10 ? '0' + (myDate.getMonth() + 1) : myDate.getMonth() + 1
+    var date = myDate.getDate() < 10 ? '0' + myDate.getDate() : myDate.getDate()
+    var hour = myDate.getHours() < 10 ? '0' + myDate.getHours() : myDate.getHours()
+    var min = myDate.getMinutes() < 10 ? '0' + myDate.getMinutes() : myDate.getMinutes()
+    var sec = myDate.getSeconds() < 10 ? '0' + myDate.getSeconds() : myDate.getSeconds()
+    var myTime = blank.concat(year, '-', month, '-', date, ' ', hour, ':', min, ':', sec)
     return myTime
   },
 
@@ -62,7 +61,7 @@ Page({
   SendMessage() {
     //console.log(this.data.TempMessage)
     var sendmessage = this.data.TempMessage
-    db.collection("ChatRecord").add({
+    db.collection('ChatRecord').add({
       data: {
         Data: sendmessage,
         Receiver_ID: this.data.friend.ID,
@@ -77,17 +76,24 @@ Page({
   },
 
   async GetSendMessage() {
-    let count = await db.collection("ChatRecord").where({
-      Receiver_ID: this.data.friend.ID,
-      Sender_ID: app.globalData.User[0].ID,
-    }).count()
+    let count = await db
+      .collection('ChatRecord')
+      .where({
+        Receiver_ID: this.data.friend.ID,
+        Sender_ID: app.globalData.User[0].ID
+      })
+      .count()
     count = count.total
     let data = []
     for (let i = 0; i < count; i += 20) {
-      let list = await db.collection("ChatRecord").where({
-        Receiver_ID: this.data.friend.ID,
-        Sender_ID: app.globalData.User[0].ID,
-      }).skip(i).get()
+      let list = await db
+        .collection('ChatRecord')
+        .where({
+          Receiver_ID: this.data.friend.ID,
+          Sender_ID: app.globalData.User[0].ID
+        })
+        .skip(i)
+        .get()
       data = data.concat(list.data)
     }
     //console.log(data)
@@ -98,27 +104,36 @@ Page({
   },
 
   async GetReceiveMessage() {
-    let count = await db.collection("ChatRecord").where({
-      Receiver_ID: app.globalData.User[0].ID,
-      Sender_ID: this.data.friend.ID,
-    }).count()
+    let count = await db
+      .collection('ChatRecord')
+      .where({
+        Receiver_ID: app.globalData.User[0].ID,
+        Sender_ID: this.data.friend.ID
+      })
+      .count()
     count = count.total
     let data = []
     for (let i = 0; i < count; i += 20) {
-      let list = await db.collection("ChatRecord").where({
-        Receiver_ID: app.globalData.User[0].ID,
-        Sender_ID: this.data.friend.ID,
-      }).skip(i).get()
+      let list = await db
+        .collection('ChatRecord')
+        .where({
+          Receiver_ID: app.globalData.User[0].ID,
+          Sender_ID: this.data.friend.ID
+        })
+        .skip(i)
+        .get()
       data = data.concat(list.data)
     }
     //console.log(data)
     for (let i = 0; i < data.length; i++) {
-      if (data[i].State = '未读') {
-        db.collection("ChatRecord").doc(data[i]._id).update({
-          data: {
-            State: '已读'
-          }
-        })
+      if ((data[i].State = '未读')) {
+        db.collection('ChatRecord')
+          .doc(data[i]._id)
+          .update({
+            data: {
+              State: '已读'
+            }
+          })
         data[i].State = '已读'
       }
     }
@@ -128,7 +143,8 @@ Page({
     console.log(this.data.ReceiveMessageList)
   },
 
-  Show() { //前端调用一次用于数据初始化
+  Show() {
+    //前端调用一次用于数据初始化
     let arr1 = []
     for (let i = 0; i < this.data.ReceiveMessageList.length; i++) {
       arr1[i] = this.data.ReceiveMessageList[i]
@@ -159,100 +175,96 @@ Page({
         Show_list: list
       })
     }
-    console.log("Show_list")
+    console.log('Show_list')
     console.log(this.data.Show_list)
     this.getScollBottom()
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: async function (options) {
-    this.getScollBottom();
+    this.getScollBottom()
     const that = this
     var userFriend = JSON.parse(decodeURIComponent(options.userInfoStr))
     //console.log(userFriend)
-    initData(this);
+    initData(this)
     this.setData({
       //加载朋友信息
       friend: userFriend,
       //加载用户信息
       user: app.globalData.User[0]
-    });
-    console.log("朋友")
+    })
+    console.log('朋友')
     console.log(this.data.friend)
-    console.log("用户")
+    console.log('用户')
     console.log(this.data.user)
-    db.collection('ChatRecord').where({
-      Receiver_ID: this.data.friend.ID,
-      Sender_ID: app.globalData.User[0].ID
-    }).watch({
-      onChange: async function (snapshot) {
-        //监控数据发生变化时触发
-        await that.GetReceiveMessage()
-        await that.GetSendMessage()
-        await that.Show()
-        console.log("监听发送")
-        console.log(that.data.Show_list)
-      },
-      onError: (err) => {
-        console.error(err)
-      }
-    })
-    db.collection('ChatRecord').where({
-      Receiver_ID: app.globalData.User[0].ID,
-      Sender_ID: this.data.friend.ID
-    }).watch({
-      onChange: async function (snapshot) {
-        //监控数据发生变化时触发
-        await that.GetReceiveMessage()
-        await that.GetSendMessage()
-        await that.Show()
-        console.log("监听接收")
-        console.log(that.data.Show_list)
-      },
-      onError: (err) => {
-        console.error(err)
-      }
-    })
+    db.collection('ChatRecord')
+      .where({
+        Receiver_ID: this.data.friend.ID,
+        Sender_ID: app.globalData.User[0].ID
+      })
+      .watch({
+        onChange: async function (snapshot) {
+          //监控数据发生变化时触发
+          await that.GetReceiveMessage()
+          await that.GetSendMessage()
+          await that.Show()
+          console.log('监听发送')
+          console.log(that.data.Show_list)
+        },
+        onError: err => {
+          console.error(err)
+        }
+      })
+    db.collection('ChatRecord')
+      .where({
+        Receiver_ID: app.globalData.User[0].ID,
+        Sender_ID: this.data.friend.ID
+      })
+      .watch({
+        onChange: async function (snapshot) {
+          //监控数据发生变化时触发
+          await that.GetReceiveMessage()
+          await that.GetSendMessage()
+          await that.Show()
+          console.log('监听接收')
+          console.log(that.data.Show_list)
+        },
+        onError: err => {
+          console.error(err)
+        }
+      })
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-
-  },
+  onShow: function () {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-
-  },
+  onPullDownRefresh: function () {},
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-
-  },
+  onReachBottom: function () {},
 
   /**
    * 获取聚焦
    */
   focus: function (e) {
-    keyHeight = e.detail.height;
+    keyHeight = e.detail.height
     this.setData({
-      scrollHeight: (windowHeight - keyHeight) + 'px'
-    });
+      scrollHeight: windowHeight - keyHeight + 'px'
+    })
     this.setData({
       toView: 'msg-' + (msgList.length - 1),
       inputBottom: keyHeight + 'px'
     })
     //计算msg高度
     // calScrollHeight(this, keyHeight);
-
   },
 
   //失去聚焦(软键盘消失)
@@ -264,7 +276,6 @@ Page({
     this.setData({
       toView: 'msg-' + (msgList.length - 1)
     })
-
   },
 
   /**
@@ -276,11 +287,11 @@ Page({
       contentType: 'text',
       content: e.detail.value
     })
-    inputVal = '';
+    inputVal = ''
     this.setData({
       msgList,
       inputVal
-    });
+    })
   },
 
   /**
@@ -288,6 +299,5 @@ Page({
    */
   toBackClick: function () {
     wx.navigateBack({})
-
   }
 })
