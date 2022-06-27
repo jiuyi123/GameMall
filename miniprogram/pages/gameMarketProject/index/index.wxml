@@ -2,31 +2,29 @@
 <view>
 
   <!-- 导航栏 -->
-  <view style="display: flex;background: rgb(136, 203, 230);">
+  <view style="display: flex;background: rgb(136, 203, 230,0);">
     <!-- 搜索框 -->
     <view style="width: 650rpx;">
-      <van-search value="{{ value }}" placeholder="请输入游戏关键词" bindtap="showPopup" background="rgb(136, 203, 230)" wx:if="{{searchFirst}}" />
+      <van-search value="{{ value }}" shape="round" placeholder="请输入游戏关键词" bindtap="showPopup" background="rgb(136, 203, 230,0)" wx:if="{{searchFirst}}" />
     </view>
     <!-- 分类 -->
-    <view style="display: flex;flex-direction: column; border:3rpx solid white;" bindtap="goSort">
-      <a href="https://imgtu.com/i/LvSw1e"></a>
-      <image src="https://s1.ax1x.com/2022/04/29/LvSw1e.png" lazy-load="true" style="width: 100rpx;height: 100rpx;"></image>
-      <text style="color: rgb(220, 235, 15);font-size: 25rpx;">游戏分类</text>
+    <view style="display: flex;flex-direction: column;justify-content: center;" bindtap="goSort">
+      <image src="https://s1.ax1x.com/2022/04/29/LvSw1e.png" lazy-load="true" style="width: 110rpx;height: 110rpx;margin-right: 30rpx;"></image>
     </view>
   </view>
 
   <!-- 点击搜索后内容 -->
-  <van-popup show="{{ show }}" position="top" custom-style="height: 200rpx;" bind:close="onClose">
+  <van-popup show="{{ show }}" position="top"  bind:close="onClose">
     <!-- 搜索框 -->
-    <view style="display: flex; flex-direction: row;justify-content: space-around;align-items: center;background: rgb(136, 203, 230);">
+    <view style="display: flex; flex-direction: row;justify-content: space-around;align-items: center;background:rgb(4, 15, 29)">
       <view style="width: 600rpx;">
-        <van-search bind:change='bindSearchContent' background="rgb(136, 203, 230)" placeholder="请输入游戏关键词">
+        <van-search bind:change='bindSearchContent'  shape="round" background="rgb(4, 15, 29)" placeholder="请输入游戏关键词">
         </van-search>
       </view>
       <van-button bindtap="search" color="blue" size="small" style="align-items: center;margin-right: 20rpx;">搜索</van-button>
     </view>
-    <!-- 历史记录 -->
-    <text>搜索历史</text>
+    <!-- 历史记录
+    <text>搜索历史</text> -->
   </van-popup>
 
   <!-- 信息合集 -->
