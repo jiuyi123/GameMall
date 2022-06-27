@@ -13,7 +13,8 @@ Page({
     winHeight: '', //窗口高度
     Show_List:'',
     Friend_List: '',
-    Search_text: ''
+    Search_text: '',
+    Search_List: ''
   },
   /*****跳转聊天页面*******/
   goChatPage: function (e) {
