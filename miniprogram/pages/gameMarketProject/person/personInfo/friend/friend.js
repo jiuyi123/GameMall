@@ -48,7 +48,6 @@ Page({
       show:false,
       isSearching:true
     })
-
     console.log(this.data.Show_List)
   },
   /*******删除好友*********/

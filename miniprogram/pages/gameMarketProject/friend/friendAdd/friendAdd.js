@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    Friend_List: '',
     Add_text: '',
     Search_List: '',
     Add_ID: ''
@@ -18,6 +19,54 @@ Page({
     })
   },
 
+  check(id,Friendlist){
+    for(var i=0;i<Friendlist.length;i++){
+      if(id==Friendlist[i]){
+        return true
+      }
+    }
+    return false
+  },
+
+  GetFriend: async function () {
+    let count = await db
+      .collection('Friends')
+      .where({
+        User1_ID: app.globalData.User[0].ID
+      })
+      .count()
+    count = count.total
+    let data = []
+    for (let i = 0; i < count; i += 20) {
+      let list = await db
+        .collection('Friends')
+        .where({
+          User1_ID: app.globalData.User[0].ID
+        })
+        .skip(i)
+        .get()
+      data = data.concat(list.data)
+    }
+    count = await db
+      .collection('Friends')
+      .where({
+        User2_ID: app.globalData.User[0].ID
+      })
+      .count()
+    count = count.total
+    for (let i = 0; i < count; i += 20) {
+      let list = await db
+        .collection('Friends')
+        .where({
+          User2_ID: app.globalData.User[0].ID
+        })
+        .skip(i)
+        .get()
+      data = data.concat(list.data)
+    }
+    return data
+  },
+
   Search: async function () {
     let list = []
     var res = await db
@@ -28,6 +77,7 @@ Page({
       .get()
     for (let i = 0; i < res.data.length; i++) {
       list = list.concat(res.data[i])
+      list[i].IsFriend = this.check(list[i].ID,this.data.Friend_List)
     }
     this.setData({
       Search_List: list
@@ -40,8 +90,7 @@ Page({
     db.collection('Friends').add({
       data: {
         User1_ID: app.globalData.User[0].ID,
-        User2_ID:e.currentTarget.dataset.userInfo.ID,
-        Add_ID: e.currentTarget.dataset.userInfo.ID
+        User2_ID: e.currentTarget.dataset.userInfo.ID
       }
     })
     wx.showToast({
@@ -50,10 +99,26 @@ Page({
       duration: 900
     })
   },
+
+  async LaodInfo() {
+    let data = await this.GetFriend()
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].User1_ID == app.globalData.User[0].ID) {
+        data[i] = data[i].User2_ID
+      } else {
+        data[i] = data[i].User1_ID
+      }
+    }
+    this.setData({
+      Friend_List: data
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {},
+  onLoad(options) {
+    this.LaodInfo()
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
