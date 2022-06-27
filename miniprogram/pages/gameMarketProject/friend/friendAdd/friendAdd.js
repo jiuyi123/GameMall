@@ -10,6 +10,12 @@ Page({
     Search_List: '',
     Add_ID: 4
   },
+  /*******搜索好友*********/
+  bindSearchContent: function (e) {
+    this.setData({
+      Add_text: e.detail
+    })
+  },
 
   bindAddContent: function (e) {
     console.log(e.detail)
