@@ -24,6 +24,8 @@ Page({
       color: '#07c160',
       openType: 'getUserInfo'
     }, ],
+    commentNum: 0,//评论数量
+    commentList:[],//评论列表
     /******信息页面数据*******/
     activeNames: ['1'], //折叠面板
     winHeight: "", //窗口高度
@@ -368,22 +370,62 @@ Page({
       WantBuy: false
     })
   },
-
-  WriteEvaluation: async function(content, score, game_id){//向数据库中写入评价
+  //向数据库中写入评价
+  WriteEvaluation: async function(content, score, game_id){
     const cmt = await this.GetAlldb("Comments")
-    console.log(cmt)
     db.collection("Comments").add({
       data: {
         Content: content,
         Game_ID: game_id,
-        ID: cmt.data[cmt.data.length - 1].ID + 1,
+        ID: cmt[cmt.length - 1].ID + 1,
         Score: score,
         Time: this.GetTime(),
         User_ID: app.globalData.User[0].ID
       },
     })
   },
-
+  //读取数据库中游戏的评论
+  GetComment: async function(game_id){
+    var list = new Array();
+    const cmt = await this.GetAlldb("Comments")
+    const usr = await this.GetAlldb("Users")
+    for(var i = 0; i < cmt.length; i++){
+      if(cmt[i].Game_ID == game_id){
+        for(var j = 0; i < usr.length; j++){
+          if(usr[j].ID == cmt[i].User_ID)//找到评论者
+            break
+        }
+        list[list.length] = {
+          Comment:cmt[i],
+          User:usr[j]
+        }
+      }
+    }
+    this.CommentSortByTime(list)//时间顺序排序
+    this.setData({
+      commentList:list
+    })
+    console.log(this.data.commentList)
+  },
+  //对评论列表按照时间顺序排序(基于快排)
+  CommentSortByTime: function(tempArr){
+    if(tempArr.length <= 1)//递归终止
+      return tempArr;
+    //取基准
+	  var pivotIndex = Math.floor(tempArr.length/2);
+	  var pivot = tempArr.splice(pivotIndex,1);
+	  //分左右
+	  var leftArr = [];
+	  var rightArr = [];
+	  for(var i=0;i<tempArr.length;i++){
+      if(tempArr[i].Time > pivot.Time){
+        rightArr.push(tempArr[i]);
+      }else{
+        leftArr.push(tempArr[i]);
+        };
+    };
+	  return this.CommentSortByTime(leftArr).concat(pivot,this.CommentSortByTime(rightArr));
+  },
 
 
   /********************************************* */
@@ -409,7 +451,8 @@ Page({
     await this.Is_ShouCang(game_id)
     await this.Is_GouWuCheGouMai(game_id)
     //await this.WantBuy()
-    await this.WriteEvaluation("爱神的箭哦啊",8.8,4)
+    //await this.WriteEvaluation("戏风格独特",8.8,4)
+    await this.GetComment(4)
   },
 
   /**
