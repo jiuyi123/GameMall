@@ -176,21 +176,30 @@ Page({
       }
     }
     for (var i = 0; i < list.length; i++) {
+      let year = []
+      let month = []
+      let date = []
       let time = []
+      for (let a = 0; a < 4; a++) {
+        year.push(list[i].Time[a])
+      }
       if (list[i].Time[5] != 0) {
-        time.push(list[i].Time[5])
+        month.push(list[i].Time[5])
       }
-      time.push(list[i].Time[6])
-      time.push('月')
+      month.push(list[i].Time[6])
+      month.push('月')
       if (list[i].Time[8] != 0) {
-        time.push(list[i].Time[8])
+        date.push(list[i].Time[8])
       }
-      time.push(list[i].Time[9])
-      time.push('日')
+      date.push(list[i].Time[9])
+      date.push('日')
       for (let j = 11; j < 16; j++) {
         time.push(list[i].Time[j])
       }
-      list[i].Time = time.join('')
+      list[i].year = year.join('')
+      list[i].month = month.join('')
+      list[i].date = date.join('')
+      list[i].time = time.join('')
     }
     this.setData({
       ChatList: list
