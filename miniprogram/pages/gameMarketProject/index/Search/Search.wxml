@@ -1,9 +1,9 @@
 <!--pages/gameMarketProject/index/Search/Search.wxml-->
 <view>
   <!-- 搜索框 -->
-  <view style="display: flex; flex-direction: row;justify-content: space-around;align-items: center;background: rgb(136, 203, 230);">
+  <view style="display: flex; flex-direction: row;justify-content: space-around;align-items: center;background: rgb(136, 203, 230,0);">
     <view style="width: 600rpx;">
-      <van-search bind:change='bindSearchContent' background="rgb(136, 203, 230)" placeholder="{{search_text}}">
+      <van-search bind:change='bindSearchContent' background="rgb(136, 203, 230,0)" shape="round" placeholder="{{search_text}}">
       </van-search>
     </view>
     <van-button bindtap="search" color="blue" size="small" style="align-items: center;margin-right: 20rpx;">搜索</van-button>
