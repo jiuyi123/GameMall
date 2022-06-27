@@ -1,2 +1,3 @@
 <!--pages/gameMarketProject/person/personInfo/feedback/feedback.wxml-->
 <text>pages/gameMarketProject/person/personInfo/feedback/feedback.wxml</text>
+<button bindtap="Charge" color="blue" size="small" style="align-items: center;margin-right: 20rpx;">冲</button>
