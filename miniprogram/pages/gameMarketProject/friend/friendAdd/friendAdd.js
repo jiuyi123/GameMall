@@ -19,9 +19,9 @@ Page({
     })
   },
 
-  check(id,Friendlist){
-    for(var i=0;i<Friendlist.length;i++){
-      if(id==Friendlist[i]){
+  check(id, Friendlist) {
+    for (var i = 0; i < Friendlist.length; i++) {
+      if (id == Friendlist[i]) {
         return true
       }
     }
@@ -68,6 +68,7 @@ Page({
   },
 
   Search: async function () {
+    await this.LaodInfo()
     let list = []
     var res = await db
       .collection('Users')
@@ -77,7 +78,7 @@ Page({
       .get()
     for (let i = 0; i < res.data.length; i++) {
       list = list.concat(res.data[i])
-      list[i].IsFriend = this.check(list[i].ID,this.data.Friend_List)
+      list[i].IsFriend = this.check(list[i].ID, this.data.Friend_List)
     }
     this.setData({
       Search_List: list
@@ -85,7 +86,7 @@ Page({
     console.log(this.data.Search_List)
   },
 
-  Add_Friend: function (e) {
+  Add_Friend: async function (e) {
     // console.log(e.currentTarget.dataset.userInfo.ID)
     db.collection('Friends').add({
       data: {
@@ -93,6 +94,7 @@ Page({
         User2_ID: e.currentTarget.dataset.userInfo.ID
       }
     })
+    await this.Search()
     wx.showToast({
       title: '已添加好友',
       icon: 'success',
@@ -116,9 +118,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
-    this.LaodInfo()
-  },
+  onLoad(options) {},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
