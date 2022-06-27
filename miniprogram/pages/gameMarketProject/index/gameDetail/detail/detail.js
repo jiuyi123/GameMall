@@ -14,9 +14,11 @@ Page({
 
     },
     /*******购买弹窗*******/
-    PayWay: '1',//单选框
+    radio: '1',//单选框
     checked: false,//复选框
+    show: false,
     Buying: false,
+    PayWay: 0,//购买方式 0:余额购买 1-n：其他方式
     actions: [{
       name: '获取用户信息',
       color: '#07c160',
@@ -41,18 +43,18 @@ Page({
   },
   onChangeRadio(event) {
     this.setData({
-      PayWay: event.detail,
+      radio: event.detail,
     });
   },
   buyPop()
   {
     this.setData({
-      Buying: true
+      show: true
     });
   },
-  buyClose() {
+  onClose() {
     this.setData({
-      Buying: false
+      show: false
     });
   },
   onGetUserInfo(e) {
@@ -312,44 +314,60 @@ Page({
     }
   },
 
-  async Gouwuche() { //函数内不允许添加await待测试
-    const res = await db.collection("Orders").where({
-      Game_ID: game_id,
-      User_ID: app.globalData.User[0].ID
-    }).get()
-    const that = this
-    const data = await this.GetAlldb("Orders")
-    if (this.data.is_GouWuChe) {
-      wx.showModal({
-        title: '警告',
-        content: '是否要将产品移除购物车',
-        success(r) {
-          //如果用户点击了确定按钮
-          if (r.confirm) {
-            db.collection("Orders").doc(res.data[0]._id).remove()
-            that.setData({
-              is_GouWuChe: false
-            })
+  async WantBuy() {
+    this.setData({
+      WantBuy: true
+    })
+    if(this.data.PayWay == 0){//余额支付
+      var game = await db.collection("Games").where({
+        ID: app.globalData.Game[0].ID
+      }).get()
+      if(app.globalData.User[0].Balance > this.data.gameInfoObj.Price){
+        //修改数据库User
+        var res = await db.collection("Users").where({
+          ID: app.globalData.User[0].ID
+        }).get()
+        await db.collection("Users").doc(res.data[0]._id).update({
+          data:{
+            Balance:app.globalData.User[0].Balance-this.data.gameInfoObj.Price
           }
-        }
-      })
-    } else {
-      db.collection("Orders")
+        })
+        res = await db.collection("Users").where({
+          User_ID: app.globalData.User[0].ID
+        }).get()
+        //增加一条订单
+        const data = await this.GetAlldb("Orders")
+        db.collection("Orders")
         .add({
           data: {
             Final_price: gameInfoObj.Price,
             Game_ID: game_id,
             ID: data[data.length - 1].ID + 1,
-            State: "未支付",
+            State: "已支付",
             Time: this.GetTime(),
             User_ID: app.globalData.User[0].ID
           },
         })
-      this.setData({
-        is_GouWuChe: true
-      })
+        app.globalData.User = res.data
+        wx.showToast({
+          title: '购买成功',
+        })
+      }else{//余额不足
+        wx.showToast({
+          title: '余额不足',
+          icon:'error',
+        })
+      }
     }
+    this.BuyClose()
   },
+
+  BuyClose: function(){
+    this.setData({
+      WantBuy: false
+    })
+  },
+
   /********************************************* */
   /**
    * 生命周期函数--监听页面加载
