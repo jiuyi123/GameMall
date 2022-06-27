@@ -21,6 +21,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+
     friend: "",
     user: "",
     inputBottom: 0,
@@ -31,8 +32,14 @@ Page({
     ReceiveMessageList: [],
     //页面样式数据
     scrollHeight: '100vh',
+    scrollLast: null, //聊天记录置底
   },
-
+  /********聊天记录置底****/
+  getScollBottom() {
+    this.setData({
+      scrollLast: 'item' + this.data.Show_list.length
+    })
+  },
   GetTime() {
     var blank = ""
     var myDate = new Date();
@@ -154,12 +161,14 @@ Page({
     }
     console.log("Show_list")
     console.log(this.data.Show_list)
+    this.getScollBottom()
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: async function (options) {
+    this.getScollBottom();
     const that = this
     var userFriend = JSON.parse(decodeURIComponent(options.userInfoStr))
     //console.log(userFriend)
@@ -278,8 +287,7 @@ Page({
    * 退回上一页
    */
   toBackClick: function () {
-    wx.navigateBack({
-    })
+    wx.navigateBack({})
 
   }
 })
