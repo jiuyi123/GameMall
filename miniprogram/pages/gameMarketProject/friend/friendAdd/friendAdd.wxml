@@ -1,2 +1,6 @@
 <!--pages/gameMarketProject/friend/friendAdd/friendAdd.wxml-->
-<text>pages/gameMarketProject/friend/friendAdd/friendAdd.wxml</text>
+<view style="width: 600rpx;">
+        <van-search shape="round" bind:change='bindAddContent' background="rgb(4, 15, 29)">
+        </van-search>
+        <van-button bindtap="Search" color="blue" size="small" style="align-items: center;margin-right: 20rpx;">搜索</van-button>
+      </view>
