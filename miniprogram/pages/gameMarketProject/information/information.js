@@ -8,30 +8,30 @@ Page({
   data: {
     ChatList: '',
     Userid: '',
-    winHeight: "", //聊天列表窗口高度
+    winHeight: '', //聊天列表窗口高度
     numCommentInfo: 11, //评论数量
-    numSystemInfo: 8, //系统通知数量
+    numSystemInfo: 8 //系统通知数量
   },
   // 跳转聊天界面
   goChatPage: function (e) {
-   // console.log("goChatPage")
-   // console.log(e.currentTarget.dataset.userInfo)
+    // console.log("goChatPage")
+    // console.log(e.currentTarget.dataset.userInfo)
     var userInfoStr = encodeURIComponent(JSON.stringify(e.currentTarget.dataset.userInfo.SenderInfo))
     //跳转到聊天界面并传参
     wx.navigateTo({
-      url: '../information/chatPage/chatPage?userInfoStr=' + userInfoStr,
+      url: '../information/chatPage/chatPage?userInfoStr=' + userInfoStr
     })
   },
   //跳转评论消息页面
   goCommentInfo: function () {
     wx.navigateTo({
-      url: '../information/modules/commentInfo/commentInfo',
+      url: '../information/modules/commentInfo/commentInfo'
     })
   },
   //跳转系统消息
   goSystemInfo: function () {
     wx.navigateTo({
-      url: '../information/modules/systemInfo/systemInfo',
+      url: '../information/modules/systemInfo/systemInfo'
     })
   },
 
@@ -63,7 +63,8 @@ Page({
           showlist = showlist.concat(list[i])
           showlist[count].Chatid = list[i].Sender_ID
           count++
-        } else if (this.check_1(list[i].Time, list[i].Sender_ID, showlist) == -1) {} else {
+        } else if (this.check_1(list[i].Time, list[i].Sender_ID, showlist) == -1) {
+        } else {
           list[i].Chatid = list[i].Sender_ID
           showlist[this.check_1(list[i].Time, list[i].Sender_ID, showlist)] = list[i]
         }
@@ -72,7 +73,8 @@ Page({
           showlist = showlist.concat(list[i])
           showlist[count].Chatid = list[i].Receiver_ID
           count++
-        } else if (this.check_1(list[i].Time, list[i].Receiver_ID, showlist) == -1) {} else {
+        } else if (this.check_1(list[i].Time, list[i].Receiver_ID, showlist) == -1) {
+        } else {
           list[i].Chatid = list[i].Receiver_ID
           showlist[this.check_1(list[i].Time, list[i].Receiver_ID, showlist)] = list[i]
         }
@@ -82,73 +84,108 @@ Page({
   },
 
   async CreateChatList() {
-    let count = await db.collection("ChatRecord").where({
-      Sender_ID: app.globalData.User[0].ID
-    }).count()
+    let count = await db
+      .collection('ChatRecord')
+      .where({
+        Sender_ID: app.globalData.User[0].ID
+      })
+      .count()
     count = count.total
     let sendlist = []
     for (let i = 0; i < count; i += 20) {
-      let list = await db.collection("ChatRecord").where({
-        Sender_ID: app.globalData.User[0].ID
-      }).skip(i).get()
+      let list = await db
+        .collection('ChatRecord')
+        .where({
+          Sender_ID: app.globalData.User[0].ID
+        })
+        .skip(i)
+        .get()
       sendlist = sendlist.concat(list.data)
     }
-    count = await db.collection("ChatRecord").where({
-      Sender_ID: app.globalData.User[0].ID
-    }).count()
+    count = await db
+      .collection('ChatRecord')
+      .where({
+        Sender_ID: app.globalData.User[0].ID
+      })
+      .count()
     count = count.total
     let receivelist = []
     for (let i = 0; i < count; i += 20) {
-      let list = await db.collection("ChatRecord").where({
-        Receiver_ID: app.globalData.User[0].ID
-      }).skip(i).get()
+      let list = await db
+        .collection('ChatRecord')
+        .where({
+          Receiver_ID: app.globalData.User[0].ID
+        })
+        .skip(i)
+        .get()
       receivelist = receivelist.concat(list.data)
     }
     let show_list = this.check(receivelist, sendlist)
     this.setData({
       ChatList: show_list
     })
-   // console.log(this.data.ChatList)
+    // console.log(this.data.ChatList)
   },
 
   LoadPageData() {
     // 高度自适应
-    var that = this;
+    var that = this
     wx.getSystemInfo({
       success: function (res) {
         var clientHeight = res.windowHeight,
           clientWidth = res.windowWidth,
-          rpxR = 750 / clientWidth;
-        var calc = clientHeight * rpxR - 180;
-       // console.log(calc)
+          rpxR = 750 / clientWidth
+        var calc = clientHeight * rpxR - 180
+        // console.log(calc)
         that.setData({
           winHeight: calc,
           Userid: app.globalData.User[0].ID
-        });
+        })
       }
-    });
+    })
   },
 
   async LoadUserInfo() {
     let list = this.data.ChatList
     for (let i = 0; i < list.length; i++) {
-      let count = await db.collection("ChatRecord").where({
-        Receiver_ID: this.data.Userid,
-        Sender_ID: list[i].Chatid,
-        State: "未读"
-      }).count()
+      let count = await db
+        .collection('ChatRecord')
+        .where({
+          Receiver_ID: this.data.Userid,
+          Sender_ID: list[i].Chatid,
+          State: '未读'
+        })
+        .count()
       list[i].Newnumber = count.total
       if (list[i].Receiver_ID == this.data.Userid) {
-        let res = await db.collection("Users").where({
-          ID: list[i].Chatid
-        }).get()
+        let res = await db
+          .collection('Users')
+          .where({
+            ID: list[i].Chatid
+          })
+          .get()
         list[i].SenderInfo = res.data[0]
       } else {
-        let res = await db.collection("Users").where({
-          ID: list[i].Receiver_ID
-        }).get()
+        let res = await db
+          .collection('Users')
+          .where({
+            ID: list[i].Receiver_ID
+          })
+          .get()
         list[i].SenderInfo = res.data[0]
       }
+    }
+    for (var i = 0; i < list.length; i++) {
+      let time = []
+      if (list[i].Time[5] != 0) {
+        time.push(list[i].Time[5])
+      }
+      time.push(list[i].Time[6])
+      time.push('月')
+      for (let j = 11; j < 16; j++) {
+        time.push(list[i].Time[j])
+      }
+      list[i].Time = time.join('')
     }
     this.setData({
       ChatList: list
@@ -167,7 +204,7 @@ Page({
         await that.CreateChatList()
         await that.LoadUserInfo()
       },
-      onError: (err) => {
+      onError: err => {
         console.error(err)
       }
     })
@@ -176,49 +213,35 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-
-  },
+  onReady: function () {},
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-
-  },
+  onShow: function () {},
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
-
-  },
+  onHide: function () {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
-
-  },
+  onUnload: function () {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-
-  },
+  onPullDownRefresh: function () {},
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-
-  },
+  onReachBottom: function () {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
-  }
+  onShareAppMessage: function () {}
 })
