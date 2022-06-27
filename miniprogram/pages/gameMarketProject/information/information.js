@@ -105,7 +105,7 @@ Page({
     count = await db
       .collection('ChatRecord')
       .where({
-        Sender_ID: app.globalData.User[0].ID
+        Receiver_ID: app.globalData.User[0].ID
       })
       .count()
     count = count.total
