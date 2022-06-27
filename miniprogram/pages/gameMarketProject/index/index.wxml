@@ -68,10 +68,10 @@
   </view>
   <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 1%;">
     <scroll-view style="width:92%;white-space: nowrap;background-color: rgba(168, 206, 250, 0.5); border-radius: 30rpx;" scroll-x="true">
-      <view style="margin-top: 3%;">
-        <view wx:for="{{gameInfo}}" wx:key="list1" style="display: inline-block; ">
+      <view>
+        <view wx:for="{{gameInfo}}" wx:key="list1" style="display: inline-block;">
           <view data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
-            <view>
+            <view style="margin-top: 3%;">
               <!-- 游戏图片 -->
               <image mode="scaleToFill" src="{{item.Pic_link}}" lazy-load="true" style="margin: 15rpx;margin-bottom: 1%;height: 300rpx; width: 200rpx;border-radius: 40rpx;" />
               <!-- 游戏名 -->
@@ -83,6 +83,10 @@
         </view>
       </view>
     </scroll-view>
+  </view>
+  <view style="height: 100rpx;display: flex;flex-direction: column;align-items: center;">
+  <view class="hr"></view>
+  <text style="color: white;font-weight: bolder;">已经到底了</text>
   </view>
 </scroll-view>
 </view>

@@ -76,4 +76,12 @@ page {
   -webkit-line-clamp: 3;
   overflow: hidden;
 }
+
 /*搜索历史*/
+/* 分割线 */
+.hr {
+  width: 98%;
+  height: 3rpx;
+  margin-top: 15rpx;
+  background-color: rgb(219, 225, 233);
+}

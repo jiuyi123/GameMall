@@ -8,40 +8,30 @@
   </view>
 
   <!-- 购物车/我喜欢/订单/库  模块·-->
-  <view class="boxIconAll" >
+  <view class="boxIconAll">
     <view class="boxIcon" style="background-color: rgb(0, 196, 190);" bindtap="goWarehouse">
-      <a href="http://www.w3.org/2000/svg">
-        <image src="https://s4.aconvert.com/convert/p3r68-cdx67/asd0x-x1t42.gif " mode="scaleToFill" style="height: 70rpx;width:70rpx; margin: 10rpx;" />
-      </a>
-      库
+      <van-icon name="send-gift" color="white" size="65rpx" style="margin-top: 10%;" />
+      <text style="margin-bottom: 6%;">库</text>
     </view>
     <view class="boxIcon" style="background-color: rgb(255, 106, 0);" bindtap="goShopCart">
-
-      <a href="https://imgtu.com/i/O3uCdg">
-        <image src="https://s1.ax1x.com/2022/05/08/O3uCdg.png" mode="scaleToFill" style="height: 70rpx;width:70rpx; margin: 10rpx;" />
-      </a>
-      购物车
+      <van-icon name="shopping-cart" color="white" size="65rpx" style="margin-top:  10%;" />
+      <text style="margin-bottom: 6%;">购物车</text>
     </view>
     <view class="boxIcon" style="background-color: rgb(194, 0, 0);" bindtap="goFavorite">
-      <a href="https://imgtu.com/i/O3MKPJ">
-        <image src="https://s1.ax1x.com/2022/05/08/O3Ky4J.png" mode="scaleToFill" style="height: 70rpx;width:70rpx; margin: 10rpx;" />
-      </a>
-      我喜欢
+      <van-icon name="like" color="white" size="65rpx" style="margin-top:  10%;" />
+      <text style="margin-bottom: 6%;">我喜欢</text>
     </view>
     <view class="boxIcon" style="background-color: rgb(153, 153, 153);" bindtap="goHistory">
-      <a href="https://imgtu.com/i/O3MKPJ">
-        <image src="https://s1.ax1x.com/2022/05/08/O3MKPJ.png" mode="scaleToFill" style="height: 70rpx;width:70rpx; margin: 10rpx;" />
-      </a>
-      历史
+      <van-icon name="underway" color="white" size="65rpx" style="margin-top: 10%;" />
+      <text style="margin-bottom: 6%;">历史</text>
     </view>
-
   </view>
   <!-- 信息列表页面 -->
   <van-cell-group style="margin: 5rpx;margin-top: 100rpx;">
     <van-cell custom-class="van-cell-group" title="个人信息" is-link url="/pages/gameMarketProject/person/personInfo/account/account" />
     <van-cell custom-class="van-cell-group" title="我的订单" is-link url="/pages/gameMarketProject/person/personInfo/order/order" />
     <van-cell custom-class="van-cell-group" title="我的好友" is-link url="/pages/gameMarketProject/person/personInfo/friend/friend" />
-    <van-cell custom-class="van-cell-group" title="钱包" is-link url="/pages/gameMarketProject/person/personInfo/wallet/wallet"/>
+    <van-cell custom-class="van-cell-group" title="钱包" is-link url="/pages/gameMarketProject/person/personInfo/wallet/wallet" />
     <van-cell custom-class="van-cell-group" title="设置" is-link url="/pages/gameMarketProject/person/personInfo/settings/settings" />
   </van-cell-group>
   <!-- 退出登录 -->

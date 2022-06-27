@@ -20,6 +20,7 @@ page {
   border-radius: 10rpx;
   width: 150rpx;
   font-weight: border;
+  box-shadow:  0 0 10px rgb(0, 0, 0);
 }
 
 .loginOutBtn {
