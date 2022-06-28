@@ -37,6 +37,7 @@ Page({
         Nickname: this.data.newNickname
       }
     })
+    app.globalData.User[0].Nickname = this.data.newNickname
     wx.showToast({
       title: '昵称修改成功',
       icon: 'success',
@@ -51,6 +52,7 @@ Page({
         Email: this.data.newEmail
       }
     })
+    app.globalData.User[0].Email = this.data.newEmail
     wx.showToast({
       title: '邮箱修改成功',
       icon: 'success',
@@ -65,6 +67,7 @@ Page({
         Country: this.data.newCountry
       }
     })
+    app.globalData.User[0].Country = this.data.newCountry
     wx.showToast({
       title: '地区信息修改成功',
       icon: 'success',

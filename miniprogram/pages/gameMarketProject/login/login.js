@@ -125,14 +125,10 @@ Page({
         .doc(res.data[0]._id)
         .update({
           data: {
-            Name: userInfo.nickName,
-            Nickname: userInfo.nickName,
             Photo_link: userInfo.avatarUrl,
             Country: userInfo.country
           }
         })
-      res.data[0].Name = userInfo.nickName
-      res.data[0].Nickname = userInfo.nickName
       res.data[0].Photo_link = userInfo.avatarUrl
       res.data[0].Country = userInfo.country
       app.globalData.User = res.data //默认0号元素为登录账户
@@ -146,12 +142,19 @@ Page({
       })
     } else {
       var data = await this.GetAlldb('Users')
+      console.log(data)
       db.collection('Users').add({
         data: {
           ID: data[data.length - 1].ID + 1,
           Balance: 0,
           Name: userInfo.nickName,
-          Photo_link: userInfo.avatarUrl //默认头像路径
+          Nickname: userInfo.nickName,
+          Photo_link: userInfo.avatarUrl, //默认头像路径
+          Email: '',
+          Country: userInfo.country,
+          Kupublic: true,
+          Likepublic: true,
+          Commentpublic: true
         }
       })
       var res = await db

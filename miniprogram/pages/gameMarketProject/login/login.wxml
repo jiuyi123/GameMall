@@ -21,8 +21,8 @@
       <view style="border: 3rpx solid rgb(55, 182, 74);width: 650rpx ;height: 80rpx; border-radius: 10rpx;display: flex;justify-content: center;align-items: center;margin-top: 20%;">
     <view class="userinfo">
       <block wx:if="{{!hasUserInfo}}">
-        <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile" style="color: rgb(55, 182, 74);font-weight: bolder;"> 获取头像昵称 </button>
-        <button wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+        <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile" style="color: rgb(55, 182, 74);font-weight: bolder;"> 微信授权登录 </button>
+        <button wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo" style="color: rgb(55, 182, 74);font-weight: bolder;"> 微信授权登录 </button>
       </block>
       <block wx:else>
         <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
