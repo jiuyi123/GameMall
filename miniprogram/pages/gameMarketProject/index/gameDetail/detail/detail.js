@@ -433,17 +433,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: async function (options) {
-    // db.collection("Orders")
-    //         .add({
-    //           data:{
-    //             Final_price:1,
-    //             Game_ID:4,
-    //             ID:2,
-    //             State:"未支付",
-    //             Time:this.GetTime(),
-    //             User_ID:app.globalData.User[0].ID
-    //           },
-    //         })
     gameInfoObj = JSON.parse(decodeURIComponent(options.gameInfoStr))
     game_id = gameInfoObj.ID
     this.UpdateData()
