@@ -111,7 +111,7 @@ Page({
     const that = this
     var res
     var userInfo = this.data.userInfo
-    // console.log(userInfo)
+    console.log(userInfo)
     // console.log(userInfo.openid)
     res = await db
       .collection('Users')
@@ -127,12 +127,14 @@ Page({
           data: {
             Name: userInfo.nickName,
             Nickname: userInfo.nickName,
-            Photo_link: userInfo.avatarUrl
+            Photo_link: userInfo.avatarUrl,
+            Country: userInfo.country
           }
         })
       res.data[0].Name = userInfo.nickName
       res.data[0].Nickname = userInfo.nickName
       res.data[0].Photo_link = userInfo.avatarUrl
+      res.data[0].Country = userInfo.country
       app.globalData.User = res.data //默认0号元素为登录账户
       wx.reLaunch({
         url: '../index/index'
