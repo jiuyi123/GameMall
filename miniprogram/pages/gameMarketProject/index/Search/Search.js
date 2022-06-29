@@ -5,9 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    Top:true,
-    top:false,
-    winHeight: "", //窗口高度
+    Top: true,
+    top: false,
+    winHeight: '', //窗口高度
     Game_list: '',
     search_text: '',
     Show_list: new Array(),
@@ -36,13 +36,13 @@ Page({
   /*******************************/
   //游戏详情页面
   goDetail(e) {
-    console.log("GoDetail")
+    console.log('GoDetail')
     // console.log(e)
     var gameInfoStr = encodeURIComponent(JSON.stringify(e.currentTarget.dataset.gameInfo))
     console.log(gameInfoStr)
     //把点击的游戏对象参数传递给游戏详情页面
     wx.navigateTo({
-      url: "../gameDetail/detail/detail?gameInfoStr=" + gameInfoStr,
+      url: '../gameDetail/detail/detail?gameInfoStr=' + gameInfoStr
     })
   },
   bindSearchContent: function (e) {
@@ -51,18 +51,17 @@ Page({
     })
   },
   search: function () {
-    app.globalData.search_text = this.data.search_text,
-      this.Dafen_AllGame()
+    ;(app.globalData.search_text = this.data.search_text), this.Dafen_AllGame()
   },
   Dafen_AllGame: function () {
     let temp = new Array()
     this.setData({
       Game_list: app.globalData.Game
     })
-    console.log("length:" + app.globalData.Game.length)
+    console.log('length:' + app.globalData.Game.length)
     let game = new Array()
     for (var i = 0; i < this.data.Game_list.length; i++) {
-      game[i] = this.data.Game_list[i];
+      game[i] = this.data.Game_list[i]
     }
     for (var i = 0; i < game.length; i++) {
       temp[i] = this.Dafen(game[i])
@@ -90,7 +89,8 @@ Page({
     console.log(this.data.Show_list)
   },
 
-  Dafen: function (Game) { //比较用户搜索的字符串和游戏属性进行打分
+  Dafen: function (Game) {
+    //比较用户搜索的字符串和游戏属性进行打分
     var fenshu = 0 //总分
     var game = Game //游戏对象
     var str = app.globalData.search_text //用户搜索的字串
@@ -99,7 +99,7 @@ Page({
     fenshu += this.Dafen_shunxu(game.Name)
     fenshu += this.Dafen_shunxu(game.Info)
     fenshu += this.Dafen_tag(game.Tag)
-    return fenshu;
+    return fenshu
   },
 
   //根据用户输入字串和游戏相关字串的字符匹配次数打分
@@ -107,8 +107,7 @@ Page({
     var equal_char = 0
     for (var i = 0; i < str.length; i++) {
       for (var j = 0; j < app.globalData.search_text.length; j++) {
-        if (str[i] == app.globalData.search_text[j])
-          equal_char++
+        if (str[i] == app.globalData.search_text[j]) equal_char++
       }
     }
     return 2 * equal_char
@@ -119,8 +118,7 @@ Page({
     var max_sub_str = this.finMaxSubStr(str, app.globalData.search_text) //算法本质是获取两个字符串的最大相同子字符串的长度
     //console.log("子串长度:" + max_sub_str.length)
     var mark = 2
-    if (max_sub_str.length == 0)
-      return 0
+    if (max_sub_str.length == 0) return 0
     else {
       for (var i = 0; i < max_sub_str.length; i++) {
         mark = 2 * mark
@@ -161,7 +159,7 @@ Page({
 
   //根据用户输入字串和游戏相关字串的字符匹配次数打分
   Dafen_tag: function (tag_str) {
-    var tag_str_array = tag_str.trim().split(" ") //以空格分隔Tag字符串
+    var tag_str_array = tag_str.trim().split(' ') //以空格分隔Tag字符串
     for (var i = 0; i < tag_str_array.length; i++) {
       if (tag_str_array[i] == app.globalData.search_text) return 10
     }
@@ -169,8 +167,10 @@ Page({
   },
 
   Sort: function (arr, game) {
-    for (var i = 0; i < arr.length - 1; i++) { //确定轮数
-      for (var j = 0; j < arr.length - i - 1; j++) { //确定每次比较的次数
+    for (var i = 0; i < arr.length - 1; i++) {
+      //确定轮数
+      for (var j = 0; j < arr.length - i - 1; j++) {
+        //确定每次比较的次数
         if (arr[j] < arr[j + 1]) {
           var tem = arr[j]
           var temgame = game[j]
@@ -189,18 +189,18 @@ Page({
    */
   onLoad: function (options) {
     // 高度自适应
-    var that = this;
+    var that = this
     wx.getSystemInfo({
       success: function (res) {
         var clientHeight = res.windowHeight,
           clientWidth = res.windowWidth,
-          rpxR = 750 / clientWidth;
-        var calc = clientHeight * rpxR - 130;
+          rpxR = 750 / clientWidth
+        var calc = clientHeight * rpxR - 130
         that.setData({
           winHeight: calc
-        });
+        })
       }
-    });
+    })
     //搜索内容
     this.setData({
       search_text: app.globalData.search_text
@@ -211,49 +211,35 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-
-  },
+  onReady: function () {},
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-
-  },
+  onShow: function () {},
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
-
-  },
+  onHide: function () {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
-
-  },
+  onUnload: function () {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-
-  },
+  onPullDownRefresh: function () {},
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-
-  },
+  onReachBottom: function () {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
-  }
+  onShareAppMessage: function () {}
 })

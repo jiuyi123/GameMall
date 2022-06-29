@@ -14,9 +14,22 @@
 
       <button class="loginBtn" form-type="submit" size="mini"><text>登 录</text></button>
       <!-- 微 信 一 键 登 录 -->
-      <view style="border: 3rpx solid rgb(55, 182, 74);width: 650rpx ;height: 80rpx; border-radius: 10rpx;display: flex;justify-content: center;align-items: center;margin-top: 20%;">
+      <!-- <view style="border: 3rpx solid rgb(55, 182, 74);width: 650rpx ;height: 80rpx; border-radius: 10rpx;display: flex;justify-content: center;align-items: center;margin-top: 20%;">
         <text bindtap="Weixin_login" style="color: rgb(55, 182, 74);font-weight: bolder;">微信授权登录</text>
-      </view>
+        <button open-type="getUserProfile" bindgetuserinfo="getUserProfile">授权</button>
+      </view> -->
+      <view style="border: 3rpx solid rgb(55, 182, 74);width: 650rpx ;height: 80rpx; border-radius: 10rpx;display: flex;justify-content: center;align-items: center;margin-top: 20%;">
+    <view class="userinfo">
+      <block wx:if="{{!hasUserInfo}}">
+        <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile" style="color: rgb(55, 182, 74);font-weight: bolder;"> 微信授权登录 </button>
+        <button wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo" style="color: rgb(55, 182, 74);font-weight: bolder;"> 微信授权登录 </button>
+      </block>
+      <block wx:else>
+        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      </block>
+    </view>
+  </view>
       <!-- 新用户注册 -->
       <view style="color:rgb(0, 170, 255);display: flex; justify-content: space-between;font-size: 30rpx;margin-top: 100rpx;">
         <text bindtap="Register" style="border-bottom: 3rpx solid rgb(0, 170, 255);">新用户注册</text>
