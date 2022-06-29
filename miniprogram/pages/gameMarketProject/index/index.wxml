@@ -85,7 +85,6 @@
     </scroll-view>
   </view>
   <view style="height: 100rpx;display: flex;flex-direction: column;align-items: center;">
-  <view class="hr"></view>
   <text style="color: white;font-weight: bolder;">已经到底了</text>
   </view>
 </scroll-view>
