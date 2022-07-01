@@ -6,12 +6,13 @@ Page({
    * 页面的初始数据
    */
   data: {
+    NewComment: '',
     ChatList: '',
     Userid: '',
     winHeight: '', //聊天列表窗口高度
     numCommentInfo: 11, //评论数量
     numSystemInfo: 8, //系统通知数量
-    ChatListNum: 50, //聊天系统存储聊天记录长度
+    ChatListNum: 50 //聊天系统存储聊天记录长度
   },
   // 跳转聊天界面
   goChatPage: function (e) {
@@ -300,22 +301,49 @@ Page({
     }
   },
 
+  async CreateLikeList() {
+    let LikeList = []
+    let count = await db
+      .collection('Comments')
+      .where({
+        User_ID: app.globalData.User[0].ID
+      })
+      .count()
+    count = count.total
+    for (let i = 0; i < count; i += 20) {
+      let list = await db
+        .collection('Comments')
+        .where({
+          User_ID: app.globalData.User[0].ID
+        })
+        .skip(i)
+        .get()
+      LikeList = LikeList.concat(list.data)
+    }
+    console.log(LikeList)
+    let num = 0
+    for (var i = 0; i < LikeList.length; i++) {
+      count = await db
+        .collection('Likes')
+        .where({
+          Evaluation_ID: LikeList[i].ID,
+          State: '未读'
+        })
+        .count()
+      count = count.total
+      num += count
+    }
+    this.setData({
+      NewComment: num
+    })
+    console.log(this.data.NewComment)
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: async function (options) {
     this.LoadPageData()
-    wx.showLoading({
-      title: '加载中',
-      mask: true //开启蒙版遮罩
-    })
-    const that = this
-    await this.CreateChatList()
-    await this.LoadUserInfo()
-    for (var i = 0; i < this.data.ChatList.length; i++) {
-      await this.DeleteRecord(this.data.ChatList[i].Chatid)
-    }
-    wx.hideLoading()
   },
 
   /**
@@ -326,12 +354,17 @@ Page({
     db.collection('ChatRecord').watch({
       onChange: async function (snapshot) {
         //监控数据发生变化时触发
-          await that.CreateChatList()
-          await that.LoadUserInfo()
+        wx.showLoading({
+          title: '加载中',
+          mask: true //开启蒙版遮罩
+        })
+        await that.CreateChatList()
+        await that.LoadUserInfo()
+        wx.hideLoading()
       },
       onError: err => {
         console.log(err)
-        that.onload()
+        that.onLoad()
       }
     })
   },
@@ -339,12 +372,19 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {},
+  onShow: function () {
+    this.CreateLikeList()
+  },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {},
+  onHide: async function () {
+    for (var i = 0; i < this.data.ChatList.length; i++) {
+      //console.log(this.data.ChatList)
+      await this.DeleteRecord(this.data.ChatList[i].Chatid)
+    }
+  },
 
   /**
    * 生命周期函数--监听页面卸载

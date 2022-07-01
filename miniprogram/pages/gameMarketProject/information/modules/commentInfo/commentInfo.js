@@ -156,7 +156,7 @@ Page({
             .get()
           list[list.length] = {
             Liker: res.data[0],
-            Comment:all[i]
+            Comment: all[i]
           }
           db.collection('Likes')
             .doc(data[m]._id)
@@ -165,6 +165,17 @@ Page({
                 State: '已读'
               }
             })
+        }
+      }
+    }
+    for (var i = 0; i < list.length - 1; i++) {
+      //确定轮数
+      for (var j = 0; j < list.length - i - 1; j++) {
+        //确定每次比较的次数
+        if (list[j].Comment.Time < list[j + 1].Comment.Time) {
+          var tem = list[j]
+          list[j] = list[j + 1]
+          list[j + 1] = tem
         }
       }
     }
