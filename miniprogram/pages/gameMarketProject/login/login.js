@@ -125,12 +125,10 @@ Page({
         .doc(res.data[0]._id)
         .update({
           data: {
-            Photo_link: userInfo.avatarUrl,
-            Country: userInfo.country
+            Photo_link: userInfo.avatarUrl
           }
         })
       res.data[0].Photo_link = userInfo.avatarUrl
-      res.data[0].Country = userInfo.country
       app.globalData.User = res.data //默认0号元素为登录账户
       wx.reLaunch({
         url: '../index/index'
