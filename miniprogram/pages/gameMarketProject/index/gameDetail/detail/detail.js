@@ -479,7 +479,6 @@ Page({
     this.setData({
       commentList: list
     })
-    console.log(this.data.commentList)
   },
   //对评论列表按照时间顺序排序(基于快排)
   CommentSortByTime: function (tempArr) {
@@ -532,6 +531,52 @@ Page({
       } else {
         list[i].is_Like = false
       }
+    }
+    this.setData({
+      commentList: list
+    })
+  },
+
+  GetTime() {
+    var blank = ''
+    var myDate = new Date()
+    var year = myDate.getFullYear()
+    var month = myDate.getMonth() + 1 < 10 ? '0' + (myDate.getMonth() + 1) : myDate.getMonth() + 1
+    var date = myDate.getDate() < 10 ? '0' + myDate.getDate() : myDate.getDate()
+    var hour = myDate.getHours() < 10 ? '0' + myDate.getHours() : myDate.getHours()
+    var min = myDate.getMinutes() < 10 ? '0' + myDate.getMinutes() : myDate.getMinutes()
+    var sec = myDate.getSeconds() < 10 ? '0' + myDate.getSeconds() : myDate.getSeconds()
+    var myTime = blank.concat(year, '-', month, '-', date, ' ', hour, ':', min, ':', sec)
+    return myTime
+  },
+
+  async Like(Commentid) {
+    let list = this.data.commentList
+    let i
+    for (i = 0; i < list.length; i++) {
+      if (list[i].Comment.ID == Commentid) {
+        break
+      }
+    }
+    if (list[i].is_Like) {
+      list[i].is_Like = false
+      let res = await db
+        .collection('Likes')
+        .where({
+          User_ID: this.data.User.ID,
+          Evaluation_ID: list[i].Comment.ID
+        })
+        .get()
+      db.collection('Likes').doc(res.data[0]._id).remove()
+    } else {
+      list[i].is_Like = true
+      db.collection('Likes').add({
+        data: {
+          User_ID: this.data.User.ID,
+          Evaluation_ID: list[i].Comment.ID,
+          Time: this.GetTime()
+        }
+      })
     }
     this.setData({
       commentList: list
