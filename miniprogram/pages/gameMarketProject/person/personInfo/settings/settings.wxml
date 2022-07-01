@@ -7,15 +7,15 @@
   </view>
   <view style="display: flex;flex-direction: row;justify-content: space-between;align-content: center;align-items: center;margin-bottom: 30rpx;">
     <text style="color: white;">评论所有人可见</text>
-    <van-switch checked="{{ checkedComment }}" bind:change="onChangeComment" />
+    <van-switch checked="{{ checkedComment }}" bind:change="onChangeComment" size="24px" />
   </view>
   <view style="display: flex;flex-direction: row;justify-content: space-between;align-content: center;align-items: center;margin-bottom: 30rpx;">
     <text style="color: white;">库所有人可见</text>
-    <van-switch checked="{{ checkedWarehouse }}" bind:change="onChangeWarehouse" />
+    <van-switch checked="{{ checkedWarehouse }}" bind:change="onChangeWarehouse" size="24px"/>
   </view>
   <view style="display: flex;flex-direction: row;justify-content: space-between;align-content: center;align-items: center;margin-bottom: 30rpx;">
     <text style="color: white;">我喜欢所有人可见</text>
-    <van-switch checked="{{ checkedLike }}" bind:change="onChangeLiket" />
+    <van-switch checked="{{ checkedLike }}" bind:change="onChangeLike" size="24px" />
   </view>
 
 </view>
