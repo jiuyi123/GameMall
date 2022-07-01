@@ -10,19 +10,15 @@ Page({
    */
   data: {
     gameInfoObj: {},
+    /******评论弹窗****/
+    scoreShow: 0, //打分弹窗
+    commentScore:"",
+    commentContent:"",
     /*******购买弹窗*******/
     radio: '1', //单选框
     checked: false, //复选框
     Buying: false,
     PayWay: 0, //购买方式 0:余额购买 1-n：其他方式
-    actions: [
-      {
-        name: '获取用户信息',
-        color: '#07c160',
-        openType: 'getUserInfo'
-      }
-    ],
-    commentNum: 0, //评论数量
     commentList: [], //评论列表
     /******信息页面数据*******/
     activeNames: ['1'], //折叠面板
@@ -35,7 +31,28 @@ Page({
     is_GouMai: false,
     UserInfo: ''
   },
-  /************************* */
+  /********评论弹窗********** */
+  comment() {
+    this.setData({
+      scoreShow: !this.data.scoreShow
+    })
+  },
+  onCommentClose() {
+    this.setData({
+      scoreShow: false
+    });
+  },
+  onCommentChange(event) {
+    this.setData({
+      commentScore: event.detail,
+    });
+  },
+  //评论框
+  bindSearchContent: function (e) {
+    this.setData({
+      commentContent: e.detail
+    })
+  },
   /****************购买弹窗****************/
   onChangeCheckbox(event) {
     this.setData({
@@ -100,46 +117,6 @@ Page({
   footerTap: app.footerTap,
   /************************************* */
   Load(gameInfoObj) {
-    gameInfoObj.numComment = 999
-    gameInfoObj.score = 4.8
-    gameInfoObj.comment = [
-      {
-        userName: 1,
-        cmtData: '2021.04.01 14:08',
-        cmtScore: [0, 1, 2, 3],
-        cmtContent: '这个游戏太好玩了'
-      },
-      {
-        userName: 2,
-        cmtData: '2021.06.01 14:08',
-        cmtScore: [0, 2],
-        cmtContent: '还可以吧'
-      },
-      {
-        userName: 3,
-        cmtData: '2021.04.12 14:08',
-        cmtScore: [0, 1, 2],
-        cmtContent: '画风我爱了'
-      },
-      {
-        userName: 5,
-        cmtData: '2021.04.13 14:08',
-        cmtScore: [0, 1, 2, 4, 5],
-        cmtContent: '强烈推荐'
-      },
-      {
-        userName: 6,
-        cmtData: '2021.04.13 14:08',
-        cmtScore: [0, 1, 2, 4, 5],
-        cmtContent: '强烈推荐'
-      },
-      {
-        userName: 7,
-        cmtData: '2021.04.13 14:08',
-        cmtScore: [0, 1, 2, 4, 5],
-        cmtContent: '强烈推荐'
-      }
-    ]
     this.setData({
       gameInfoObj
     })
@@ -445,7 +422,11 @@ Page({
     })
   },
   //向数据库中写入评价
-  WriteEvaluation: async function (content, score, game_id) {
+  WriteEvaluation: async function () {
+    let content = this.data.commentContent;
+    let score = this.data.commentScore*2;
+    console.log(content)
+    console.log(score)
     const cmt = await this.GetAlldb('Comments')
     db.collection('Comments').add({
       data: {
@@ -457,6 +438,11 @@ Page({
         User_ID: this.data.User.ID
       }
     })
+    wx.showToast({
+      title: '发表成功',
+      icon:'success'
+    })
+    this.onCommentClose();
   },
   //读取数据库中游戏的评论
   GetComment: async function (game_id) {
@@ -558,7 +544,9 @@ Page({
     return myTime
   },
 
-  async Like(Commentid) {
+  async Like(e) {
+    //console.log(e.currentTarget.dataset.commentInfo.Comment.ID)
+    let Commentid = e.currentTarget.dataset.commentInfo.Comment.ID;
     let list = this.data.commentList
     let i
     for (i = 0; i < list.length; i++) {
