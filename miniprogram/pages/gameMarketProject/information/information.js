@@ -11,7 +11,7 @@ Page({
     winHeight: '', //聊天列表窗口高度
     numCommentInfo: 11, //评论数量
     numSystemInfo: 8, //系统通知数量
-    ChatListNum: 50 //聊天系统存储聊天记录长度
+    ChatListNum: 50, //聊天系统存储聊天记录长度
   },
   // 跳转聊天界面
   goChatPage: function (e) {
@@ -208,32 +208,130 @@ Page({
     //console.log(this.data.ChatList)
   },
 
+  async LoadDeletelist(chatid) {
+    let count = await db
+      .collection('ChatRecord')
+      .where({
+        Receiver_ID: chatid,
+        Sender_ID: app.globalData.User[0].ID
+      })
+      .count()
+    count = count.total
+    let sendlist = []
+    for (let i = 0; i < count; i += 20) {
+      let list = await db
+        .collection('ChatRecord')
+        .where({
+          Sender_ID: app.globalData.User[0].ID,
+          Receiver_ID: chatid
+        })
+        .skip(i)
+        .get()
+      sendlist = sendlist.concat(list.data)
+    }
+    count = await db
+      .collection('ChatRecord')
+      .where({
+        Sender_ID: chatid,
+        Receiver_ID: app.globalData.User[0].ID
+      })
+      .count()
+    count = count.total
+    let receivelist = []
+    for (let i = 0; i < count; i += 20) {
+      let list = await db
+        .collection('ChatRecord')
+        .where({
+          Sender_ID: chatid,
+          Receiver_ID: app.globalData.User[0].ID
+        })
+        .skip(i)
+        .get()
+      receivelist = receivelist.concat(list.data)
+    }
+    let list = []
+    list = this.T(sendlist, receivelist)
+    return list
+  },
+
+  T(arr1, arr2) {
+    let list = []
+    while (arr1.length != 0 || arr2.length != 0) {
+      if (arr1.length == 0) {
+        list.push(arr2.splice(0, 1))
+      } else if (arr2.length == 0) {
+        list.push(arr1.splice(0, 1))
+      } else {
+        if (arr1[0].Time < arr2[0].Time) {
+          list.push(arr1.splice(0, 1))
+        } else {
+          list.push(arr2.splice(0, 1))
+        }
+      }
+    }
+    for (let i = 0; i < list.length; i++) {
+      list[i] = list[i][0]
+    }
+    return list
+  },
+
+  async DeleteRecord(chatid) {
+    let count1 = await db
+      .collection('ChatRecord')
+      .where({
+        Sender_ID: app.globalData.User[0].ID,
+        Receiver_ID: chatid
+      })
+      .count()
+    count1 = count1.total
+    let count2 = await db
+      .collection('ChatRecord')
+      .where({
+        Sender_ID: chatid,
+        Receiver_ID: app.globalData.User[0].ID
+      })
+      .count()
+    count2 = count2.total
+    let list = await this.LoadDeletelist(chatid)
+    // console.log(list)
+    let sum = count1 + count2
+    for (let i = 0; i < list.length && sum > this.data.ChatListNum; i++, sum--) {
+      db.collection('ChatRecord').doc(list[i]._id).remove()
+    }
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: async function (options) {
     this.LoadPageData()
+    wx.showLoading({
+      title: '加载中',
+      mask: true //开启蒙版遮罩
+    })
+    const that = this
+    await this.CreateChatList()
+    await this.LoadUserInfo()
+    for (var i = 0; i < this.data.ChatList.length; i++) {
+      await this.DeleteRecord(this.data.ChatList[i].Chatid)
+    }
+    wx.hideLoading()
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-    this.data.ChatList = app.globalData.ChatList
+  onReady: async function () {
     const that = this
     db.collection('ChatRecord').watch({
       onChange: async function (snapshot) {
-        wx.showLoading({
-          title: '加载中',
-          mask: true //开启蒙版遮罩
-        })
         //监控数据发生变化时触发
-        await that.CreateChatList()
-        await that.LoadUserInfo()
-        wx.hideLoading()
+          await that.CreateChatList()
+          await that.LoadUserInfo()
       },
       onError: err => {
-        console.error(err)
+        console.log(err)
+        that.onload()
       }
     })
   },
