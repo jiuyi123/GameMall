@@ -531,6 +531,14 @@ Page({
       } else {
         list[i].is_Like = false
       }
+      let count = await db
+        .collection('Likes')
+        .where({
+          Evaluation_ID: list[i].Comment.ID
+        })
+        .count()
+      count = count.total
+      list[i].LikeNum = count
     }
     this.setData({
       commentList: list
@@ -560,6 +568,7 @@ Page({
     }
     if (list[i].is_Like) {
       list[i].is_Like = false
+      list[i].LikeNum--
       let res = await db
         .collection('Likes')
         .where({
@@ -570,17 +579,20 @@ Page({
       db.collection('Likes').doc(res.data[0]._id).remove()
     } else {
       list[i].is_Like = true
+      list[i].LikeNum++
       db.collection('Likes').add({
         data: {
           User_ID: this.data.User.ID,
           Evaluation_ID: list[i].Comment.ID,
-          Time: this.GetTime()
+          Time: this.GetTime(),
+          State: '未读'
         }
       })
     }
     this.setData({
       commentList: list
     })
+    console.log(this.data.commentList)
   },
 
   /**
@@ -598,6 +610,7 @@ Page({
     //await this.WriteEvaluation("戏风格独特",8.8,4)
     await this.GetComment(gameInfoObj.ID)
     await this.GetLike()
+    this.Like(2)
     wx.hideLoading()
   },
 
