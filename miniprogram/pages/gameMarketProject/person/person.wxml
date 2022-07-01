@@ -1,10 +1,9 @@
 <!--pages/gameMarketProject/person/person.wxml-->
 <view>
   <!-- 个人头像和昵称 -->
-  <view style="display: flex;align-items: center;background-color: rgb(0, 36, 59,0.5);">
-    <image src="{{UserInfo.Photo_link}}" mode="scaleToFill" style="height: 80rpx;width:80rpx;margin: 10rpx;" />
+  <view bindtap="goAccount" style="display: flex;align-items: center;background-color: rgb(0, 36, 59,0.5);">
+    <image src="{{UserInfo.Photo_link}}" mode="scaleToFill" style="height: 120rpx;width:120rpx;margin: 20rpx;" />
     <text style="font-size: 50rpx;font-weight: bolder;color:rgb(153, 153, 153);">{{UserInfo.Nickname}}</text>
-
   </view>
 
   <!-- 购物车/我喜欢/订单/库  模块·-->
