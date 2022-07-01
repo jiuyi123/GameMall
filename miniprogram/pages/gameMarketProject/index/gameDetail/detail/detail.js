@@ -493,7 +493,7 @@ Page({
     var leftArr = []
     var rightArr = []
     for (var i = 0; i < tempArr.length; i++) {
-      if (tempArr[i].Time > pivot.Time) {
+      if (tempArr[i].Time < pivot.Time) {
         rightArr.push(tempArr[i])
       } else {
         leftArr.push(tempArr[i])
@@ -517,6 +517,27 @@ Page({
     this.Load(gameInfoObj)
   },
 
+  async GetLike() {
+    let list = this.data.commentList
+    for (let i = 0; i < list.length; i++) {
+      let res = await db
+        .collection('Likes')
+        .where({
+          User_ID: this.data.User.ID,
+          Evaluation_ID: list[i].Comment.ID
+        })
+        .get()
+      if (res.data.length > 0) {
+        list[i].is_Like = true
+      } else {
+        list[i].is_Like = false
+      }
+    }
+    this.setData({
+      commentList: list
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -530,7 +551,8 @@ Page({
     await this.Is_GouWuCheGouMai(game_id)
     //await this.WantBuy()
     //await this.WriteEvaluation("戏风格独特",8.8,4)
-    await this.GetComment(4)
+    await this.GetComment(gameInfoObj.ID)
+    await this.GetLike()
     wx.hideLoading()
   },
 
