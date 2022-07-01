@@ -1,86 +1,84 @@
 // pages/gameMarketProject/index/gameDetail/detail/detail.js
-var app = getApp();
-var db = wx.cloud.database();
+var app = getApp()
+var db = wx.cloud.database()
 var gameInfoObj
 var game_id
 
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    gameInfoObj: {
-
-    },
+    gameInfoObj: {},
     /*******购买弹窗*******/
-    radio: '1',//单选框
-    checked: false,//复选框
-    show: false,
+    radio: '1', //单选框
+    checked: false, //复选框
     Buying: false,
-    PayWay: 0,//购买方式 0:余额购买 1-n：其他方式
-    actions: [{
-      name: '获取用户信息',
-      color: '#07c160',
-      openType: 'getUserInfo'
-    }, ],
-    commentNum: 0,//评论数量
-    commentList:[],//评论列表
+    PayWay: 0, //购买方式 0:余额购买 1-n：其他方式
+    actions: [
+      {
+        name: '获取用户信息',
+        color: '#07c160',
+        openType: 'getUserInfo'
+      }
+    ],
+    commentNum: 0, //评论数量
+    commentList: [], //评论列表
     /******信息页面数据*******/
     activeNames: ['1'], //折叠面板
-    winHeight: "", //窗口高度
+    winHeight: '', //窗口高度
     currentTab: 0, //预设当前项的值
     scrollLeft: 0, //tab标题的滚动条位置
     /*************/
     is_ShouCang: false,
     is_GouWuChe: false,
-    is_GouMai: false
+    is_GouMai: false,
+    UserInfo: ''
   },
   /************************* */
   /****************购买弹窗****************/
   onChangeCheckbox(event) {
     this.setData({
-      checked: event.detail,
-    });
+      checked: event.detail
+    })
   },
   onChangeRadio(event) {
     this.setData({
-      radio: event.detail,
-    });
+      radio: event.detail
+    })
   },
-  buyPop()
-  {
+  buyPop() {
     this.setData({
-      show: true
-    });
+      Buying: true
+    })
   },
   onClose() {
     this.setData({
-      show: false
-    });
+      Buying: false
+    })
   },
   onGetUserInfo(e) {
-    console.log(e.detail);
+    console.log(e.detail)
   },
   /**************游戏简介等折叠面板************/
   onChange(event) {
     this.setData({
-      activeNames: event.detail,
-    });
+      activeNames: event.detail
+    })
   },
   /**************中部标签设计***************** */
   // 滚动切换标签样式
   switchTab: function (e) {
     this.setData({
       currentTab: e.detail.current
-    });
-    this.checkCor();
+    })
+    this.checkCor()
   },
   // 点击标题切换当前页时改变样式
   swichNav: function (e) {
-    var cur = e.target.dataset.current;
+    var cur = e.target.dataset.current
     if (this.data.currentTaB == cur) {
-      return false;
+      return false
     } else {
       this.setData({
         currentTab: cur
@@ -104,60 +102,61 @@ Page({
   Load(gameInfoObj) {
     gameInfoObj.numComment = 999
     gameInfoObj.score = 4.8
-    gameInfoObj.comment = [{
-        "userName": 1,
-        "cmtData": "2021.04.01 14:08",
-        "cmtScore": [0, 1, 2, 3],
-        "cmtContent": "这个游戏太好玩了"
+    gameInfoObj.comment = [
+      {
+        userName: 1,
+        cmtData: '2021.04.01 14:08',
+        cmtScore: [0, 1, 2, 3],
+        cmtContent: '这个游戏太好玩了'
       },
       {
-        "userName": 2,
-        "cmtData": "2021.06.01 14:08",
-        "cmtScore": [0, 2],
-        "cmtContent": "还可以吧"
+        userName: 2,
+        cmtData: '2021.06.01 14:08',
+        cmtScore: [0, 2],
+        cmtContent: '还可以吧'
       },
       {
-        "userName": 3,
-        "cmtData": "2021.04.12 14:08",
-        "cmtScore": [0, 1, 2],
-        "cmtContent": "画风我爱了"
+        userName: 3,
+        cmtData: '2021.04.12 14:08',
+        cmtScore: [0, 1, 2],
+        cmtContent: '画风我爱了'
       },
       {
-        "userName": 5,
-        "cmtData": "2021.04.13 14:08",
-        "cmtScore": [0, 1, 2, 4, 5],
-        "cmtContent": "强烈推荐"
+        userName: 5,
+        cmtData: '2021.04.13 14:08',
+        cmtScore: [0, 1, 2, 4, 5],
+        cmtContent: '强烈推荐'
       },
       {
-        "userName": 6,
-        "cmtData": "2021.04.13 14:08",
-        "cmtScore": [0, 1, 2, 4, 5],
-        "cmtContent": "强烈推荐"
+        userName: 6,
+        cmtData: '2021.04.13 14:08',
+        cmtScore: [0, 1, 2, 4, 5],
+        cmtContent: '强烈推荐'
       },
       {
-        "userName": 7,
-        "cmtData": "2021.04.13 14:08",
-        "cmtScore": [0, 1, 2, 4, 5],
-        "cmtContent": "强烈推荐"
+        userName: 7,
+        cmtData: '2021.04.13 14:08',
+        cmtScore: [0, 1, 2, 4, 5],
+        cmtContent: '强烈推荐'
       }
     ]
     this.setData({
-      gameInfoObj,
+      gameInfoObj
     })
     console.log(this.data.gameInfoObj)
     // 高度自适应
-    var that = this;
+    var that = this
     wx.getSystemInfo({
       success: function (res) {
         var clientHeight = res.windowHeight,
           clientWidth = res.windowWidth,
-          rpxR = 750 / clientWidth;
-        var calc = clientHeight * rpxR - 380;
+          rpxR = 750 / clientWidth
+        var calc = clientHeight * rpxR - 380
         that.setData({
           winHeight: calc
-        });
+        })
       }
-    });
+    })
   },
 
   async GetAlldb(DBName) {
@@ -172,23 +171,24 @@ Page({
   },
 
   GetTime() {
-    var blank = ""
-    var myDate = new Date();
-    var year = myDate.getFullYear();
-    var month = (myDate.getMonth() + 1 < 10 ? '0' + (myDate.getMonth() + 1) : myDate.getMonth() + 1);
-    var date = myDate.getDate() < 10 ? '0' + myDate.getDate() : myDate.getDate();
-    var hour = myDate.getHours() < 10 ? '0' + myDate.getHours() : myDate.getHours();
-    var min = myDate.getMinutes() < 10 ? '0' + myDate.getMinutes() : myDate.getMinutes();
-    var sec = myDate.getSeconds() < 10 ? '0' + myDate.getSeconds() : myDate.getSeconds();
-    var myTime = blank.concat(year, "-", month, "-", date, " ", hour, ":", min, ":", sec);
+    var blank = ''
+    var myDate = new Date()
+    var year = myDate.getFullYear()
+    var month = myDate.getMonth() + 1 < 10 ? '0' + (myDate.getMonth() + 1) : myDate.getMonth() + 1
+    var date = myDate.getDate() < 10 ? '0' + myDate.getDate() : myDate.getDate()
+    var hour = myDate.getHours() < 10 ? '0' + myDate.getHours() : myDate.getHours()
+    var min = myDate.getMinutes() < 10 ? '0' + myDate.getMinutes() : myDate.getMinutes()
+    var sec = myDate.getSeconds() < 10 ? '0' + myDate.getSeconds() : myDate.getSeconds()
+    var myTime = blank.concat(year, '-', month, '-', date, ' ', hour, ':', min, ':', sec)
     return myTime
   },
 
   async Is_ShouCang(game_id) {
-    const res = await db.collection("Collect")
+    const res = await db
+      .collection('Collect')
       .where({
         Game_ID: game_id,
-        User_ID: app.globalData.User[0].ID
+        User_ID: this.data.User.ID
       })
       .get()
     if (res.data.length > 0) {
@@ -199,17 +199,18 @@ Page({
   },
 
   async Is_GouWuCheGouMai(game_id) {
-    const res = await db.collection("Orders")
+    const res = await db
+      .collection('Orders')
       .where({
         Game_ID: game_id,
-        User_ID: app.globalData.User[0].ID
+        User_ID: this.data.User.ID
       })
       .get()
-    if (res.data.length > 0 && res.data[0].State == "未支付") {
+    if (res.data.length > 0 && res.data[0].State == '未支付') {
       this.setData({
         is_GouWuChe: true
       })
-    } else if (res.data.length > 0 && res.data[0].State == "已支付") {
+    } else if (res.data.length > 0 && res.data[0].State == '已支付') {
       this.setData({
         is_GouMai: true
       })
@@ -217,31 +218,39 @@ Page({
   },
 
   async UpdateData() {
-    var res = await db.collection("Games").where({
-      ID: game_id
-    }).get()
+    var res = await db
+      .collection('Games')
+      .where({
+        ID: game_id
+      })
+      .get()
     console.log(res.data)
-    db.collection("Games").doc(res.data[0]._id).update({
-      data: {
-        Hits: res.data[0].Hits + 1
-      }
-    })
-    db.collection("Click").add({
+    db.collection('Games')
+      .doc(res.data[0]._id)
+      .update({
+        data: {
+          Hits: res.data[0].Hits + 1
+        }
+      })
+    db.collection('Click').add({
       data: {
         Game_ID: game_id,
         Time: this.GetTime(),
-        User_ID: app.globalData.User[0].ID
+        User_ID: this.data.User.ID
       }
     })
   },
 
   async ShouCang() {
     if (this.data.is_ShouCang) {
-      var res = await db.collection("Collect").where({
-        Game_ID: game_id,
-        User_ID: app.globalData.User[0].ID
-      }).get()
-      db.collection("Collect").doc(res.data[0]._id).remove()
+      var res = await db
+        .collection('Collect')
+        .where({
+          Game_ID: game_id,
+          User_ID: this.data.User.ID
+        })
+        .get()
+      db.collection('Collect').doc(res.data[0]._id).remove()
       this.setData({
         is_ShouCang: false
       })
@@ -251,11 +260,11 @@ Page({
         duration: 1000
       })
     } else {
-      db.collection("Collect").add({
+      db.collection('Collect').add({
         data: {
           Game_ID: game_id,
           Time: this.GetTime(),
-          User_ID: app.globalData.User[0].ID
+          User_ID: this.data.User.ID
         }
       })
       this.setData({
@@ -269,13 +278,58 @@ Page({
     }
   },
 
-  async Goumai() {
-    const res = await db.collection("Orders").where({
-      Game_ID: game_id,
-      User_ID: app.globalData.User[0].ID
-    }).get()
+  async Gouwuche() {
+    //函数内不允许添加await待测试
+    const res = await db
+      .collection('Orders')
+      .where({
+        Game_ID: game_id,
+        User_ID: this.data.User.ID
+      })
+      .get()
     const that = this
-    const data = await this.GetAlldb("Orders")
+    const data = await this.GetAlldb('Orders')
+    if (this.data.is_GouWuChe) {
+      wx.showModal({
+        title: '警告',
+        content: '是否要将产品移除购物车',
+        success(r) {
+          //如果用户点击了确定按钮
+          if (r.confirm) {
+            db.collection('Orders').doc(res.data[0]._id).remove()
+            that.setData({
+              is_GouWuChe: false
+            })
+          }
+        }
+      })
+    } else {
+      db.collection('Orders').add({
+        data: {
+          Final_price: gameInfoObj.Price,
+          Game_ID: game_id,
+          ID: data[data.length - 1].ID + 1,
+          State: '未支付',
+          Time: this.GetTime(),
+          User_ID: this.data.User.ID
+        }
+      })
+      this.setData({
+        is_GouWuChe: true
+      })
+    }
+  },
+
+  async Goumai() {
+    const res = await db
+      .collection('Orders')
+      .where({
+        Game_ID: game_id,
+        User_ID: this.data.User.ID
+      })
+      .get()
+    const that = this
+    const data = await this.GetAlldb('Orders')
     if (this.data.is_GouMai == false) {
       wx.showModal({
         title: '确认',
@@ -283,34 +337,37 @@ Page({
         success(r) {
           //如果用户点击了确定按钮
           if (r.confirm) {
-            if (res.data.length > 0) { //记录存在说明在购物车内
-              db.collection("Orders").doc(res.data[0]._id).update({
+            if (res.data.length > 0) {
+              //记录存在说明在购物车内
+              db.collection('Orders')
+                .doc(res.data[0]._id)
+                .update({
+                  data: {
+                    State: '已支付',
+                    Time: that.GetTime()
+                  }
+                })
+            } else {
+              //记录不在购物车内
+              db.collection('Orders').add({
                 data: {
-                  State: "已支付",
-                  Time: that.GetTime()
+                  Final_price: gameInfoObj.Price,
+                  Game_ID: game_id,
+                  ID: data[data.length - 1].ID + 1,
+                  State: '已支付',
+                  Time: that.GetTime(),
+                  User_ID: this.data.User.ID
                 }
               })
-            } else { //记录不在购物车内
-              db.collection("Orders")
-                .add({
-                  data: {
-                    Final_price: gameInfoObj.Price,
-                    Game_ID: game_id,
-                    ID: data[data.length - 1].ID + 1,
-                    State: "已支付",
-                    Time: that.GetTime(),
-                    User_ID: app.globalData.User[0].ID
-                  },
-                })
             }
             that.setData({
               is_GouMai: true
             })
-          //  this.onClose()
-          //  wx.showToast({
-          //    title: '购买成功',
-          //    duration:1000
-          //  })
+            //  this.onClose()
+            //  wx.showToast({
+            //    title: '购买成功',
+            //    duration:1000
+            //  })
           }
         }
       })
@@ -321,112 +378,130 @@ Page({
     this.setData({
       WantBuy: true
     })
-    if(this.data.PayWay == 0){//余额支付
-      var game = await db.collection("Games").where({
-        ID: app.globalData.Game[0].ID
-      }).get()
-      if(app.globalData.User[0].Balance > this.data.gameInfoObj.Price){
-        //修改数据库User
-        var res = await db.collection("Users").where({
-          ID: app.globalData.User[0].ID
-        }).get()
-        await db.collection("Users").doc(res.data[0]._id).update({
-          data:{
-            Balance:app.globalData.User[0].Balance-this.data.gameInfoObj.Price
-          }
+    if (this.data.PayWay == 0) {
+      //余额支付
+      var game = await db
+        .collection('Games')
+        .where({
+          ID: app.globalData.Game[0].ID
         })
-        res = await db.collection("Users").where({
-          User_ID: app.globalData.User[0].ID
-        }).get()
+        .get()
+      if (this.data.User.Balance > this.data.gameInfoObj.Price) {
+        //修改数据库User
+        var res = await db
+          .collection('Users')
+          .where({
+            ID: this.data.User.ID
+          })
+          .get()
+        await db
+          .collection('Users')
+          .doc(res.data[0]._id)
+          .update({
+            data: {
+              Balance: this.data.User.Balance - this.data.gameInfoObj.Price
+            }
+          })
+        res = await db
+          .collection('Users')
+          .where({
+            ID: this.data.User.ID
+          })
+          .get()
         //增加一条订单
-        const data = await this.GetAlldb("Orders")
-        db.collection("Orders")
-        .add({
+        const data = await this.GetAlldb('Orders')
+        db.collection('Orders').add({
           data: {
             Final_price: gameInfoObj.Price,
             Game_ID: game_id,
             ID: data[data.length - 1].ID + 1,
-            State: "已支付",
+            State: '已支付',
             Time: this.GetTime(),
-            User_ID: app.globalData.User[0].ID
-          },
+            User_ID: this.data.User.ID
+          }
         })
         app.globalData.User = res.data
-        wx.showToast({
-          title: '购买成功',
+        console.log(res.data)
+        this.setData({
+          is_GouMai: true
         })
-      }else{//余额不足
+        wx.showToast({
+          title: '购买成功'
+        })
+      } else {
+        //余额不足
         wx.showToast({
           title: '余额不足',
-          icon:'error',
+          icon: 'error'
         })
       }
     }
     this.BuyClose()
   },
 
-  BuyClose: function(){
+  BuyClose: function () {
     this.setData({
-      WantBuy: false
+      Buying: false
     })
   },
   //向数据库中写入评价
-  WriteEvaluation: async function(content, score, game_id){
-    const cmt = await this.GetAlldb("Comments")
-    db.collection("Comments").add({
+  WriteEvaluation: async function (content, score, game_id) {
+    const cmt = await this.GetAlldb('Comments')
+    db.collection('Comments').add({
       data: {
         Content: content,
         Game_ID: game_id,
         ID: cmt[cmt.length - 1].ID + 1,
         Score: score,
         Time: this.GetTime(),
-        User_ID: app.globalData.User[0].ID
-      },
+        User_ID: this.data.User.ID
+      }
     })
   },
   //读取数据库中游戏的评论
-  GetComment: async function(game_id){
-    var list = new Array();
-    const cmt = await this.GetAlldb("Comments")
-    const usr = await this.GetAlldb("Users")
-    for(var i = 0; i < cmt.length; i++){
-      if(cmt[i].Game_ID == game_id){
-        for(var j = 0; i < usr.length; j++){
-          if(usr[j].ID == cmt[i].User_ID)//找到评论者
+  GetComment: async function (game_id) {
+    var list = new Array()
+    const cmt = await this.GetAlldb('Comments')
+    const usr = await this.GetAlldb('Users')
+    for (var i = 0; i < cmt.length; i++) {
+      if (cmt[i].Game_ID == game_id) {
+        for (var j = 0; j < usr.length; j++) {
+          if (usr[j].ID == cmt[i].User_ID)
+            //找到评论者
             break
         }
         list[list.length] = {
-          Comment:cmt[i],
-          User:usr[j]
+          Comment: cmt[i],
+          User: usr[j]
         }
       }
     }
-    this.CommentSortByTime(list)//时间顺序排序
+    this.CommentSortByTime(list) //时间顺序排序
     this.setData({
-      commentList:list
+      commentList: list
     })
     console.log(this.data.commentList)
   },
   //对评论列表按照时间顺序排序(基于快排)
-  CommentSortByTime: function(tempArr){
-    if(tempArr.length <= 1)//递归终止
-      return tempArr;
+  CommentSortByTime: function (tempArr) {
+    if (tempArr.length <= 1)
+      //递归终止
+      return tempArr
     //取基准
-	  var pivotIndex = Math.floor(tempArr.length/2);
-	  var pivot = tempArr.splice(pivotIndex,1);
-	  //分左右
-	  var leftArr = [];
-	  var rightArr = [];
-	  for(var i=0;i<tempArr.length;i++){
-      if(tempArr[i].Time > pivot.Time){
-        rightArr.push(tempArr[i]);
-      }else{
-        leftArr.push(tempArr[i]);
-        };
-    };
-	  return this.CommentSortByTime(leftArr).concat(pivot,this.CommentSortByTime(rightArr));
+    var pivotIndex = Math.floor(tempArr.length / 2)
+    var pivot = tempArr.splice(pivotIndex, 1)
+    //分左右
+    var leftArr = []
+    var rightArr = []
+    for (var i = 0; i < tempArr.length; i++) {
+      if (tempArr[i].Time > pivot.Time) {
+        rightArr.push(tempArr[i])
+      } else {
+        leftArr.push(tempArr[i])
+      }
+    }
+    return this.CommentSortByTime(leftArr).concat(pivot, this.CommentSortByTime(rightArr))
   },
-
 
   /********************************************* */
   /**
@@ -437,6 +512,17 @@ Page({
     game_id = gameInfoObj.ID
     this.UpdateData()
     this.Load(gameInfoObj)
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: async function (options) {
+    console.log('-----------onReady-----------')
+    this.setData({
+      User: app.globalData.User[0]
+    })
+    console.log(app.globalData.User[0])
     await this.Is_ShouCang(game_id)
     await this.Is_GouWuCheGouMai(game_id)
     //await this.WantBuy()
@@ -445,51 +531,44 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    console.log("-----------onReady-----------")
-  },
-
-  /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log("-----------onShow-----------")
+    console.log('-----------onShow-----------')
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    console.log("-----------onHide-----------")
+    console.log('-----------onHide-----------')
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    console.log("-----------onUnload-----------")
+    console.log('-----------onUnload-----------')
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    console.log("-----------onPullDownRefresh-----------")
+    console.log('-----------onPullDownRefresh-----------')
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    console.log("-----------onReachBottom-----------")
+    console.log('-----------onReachBottom-----------')
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    console.log("-----------onShareAppMessage-----------")
+    console.log('-----------onShareAppMessage-----------')
   }
 })

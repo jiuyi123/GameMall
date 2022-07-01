@@ -123,7 +123,7 @@
                   </van-checkbox>
                 </view>
 
-                <button bindtap="Goumai" style="background-color: red;color: white;">确认支付 {{gameInfoObj.Price}}¥</button>
+                <button bindtap="WantBuy" style="background-color: red;color: white;">确认支付 {{gameInfoObj.Price}}¥</button>
               </van-radio-group>
 
             </van-action-sheet>
