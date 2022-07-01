@@ -463,12 +463,11 @@ Page({
     var list = new Array()
     const cmt = await this.GetAlldb('Comments')
     const usr = await this.GetAlldb('Users')
+    var j
     for (var i = 0; i < cmt.length; i++) {
       if (cmt[i].Game_ID == game_id) {
-        for (var j = 0; j < usr.length; j++) {
-          if (usr[j].ID == cmt[i].User_ID)
-            //找到评论者
-            break
+        for (j = 0; j < usr.length; j++) {
+          if (usr[j].ID == cmt[i].User_ID) break
         }
         list[list.length] = {
           Comment: cmt[i],
@@ -508,6 +507,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: async function (options) {
+    wx.showLoading({
+      title: '加载中',
+      mask: true //开启蒙版遮罩
+    })
     gameInfoObj = JSON.parse(decodeURIComponent(options.gameInfoStr))
     game_id = gameInfoObj.ID
     this.UpdateData()
@@ -528,6 +531,7 @@ Page({
     //await this.WantBuy()
     //await this.WriteEvaluation("戏风格独特",8.8,4)
     await this.GetComment(4)
+    wx.hideLoading()
   },
 
   /**

@@ -73,17 +73,17 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function () {},
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
     this.setData({
       UserInfo: app.globalData.User[0]
     })
     console.log(this.data.UserInfo)
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {},
 
   /**
    * 生命周期函数--监听页面隐藏

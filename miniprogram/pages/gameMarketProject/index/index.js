@@ -1,17 +1,18 @@
 // pages/gameMarketProject/index/index.js
-var db = wx.cloud.database();
+var db = wx.cloud.database()
 var app = getApp()
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    ChatList: '',
     show: false,
     searchFirst: true,
     Is_game_got: false,
-    winHeight: "", //窗口高度
+    winHeight: '', //窗口高度
     //搜索框
-    search_text: "搜索框",
+    search_text: '搜索框',
     //轮播图
     imgUrl: [
       'https://gimg0.baidu.com/gimg/src=https%3A%2F%2Ffenwan.cdn.bcebos.com%2Fcms%2Fgamenow%2Flewan%2F2022-3%2F1646812039347%2Fe6d1f90b0992.jpg&app=2000&size=f0,0&n=0&g=0n&q=85&fmt=jpeg?sec=0&t=3f17723bb549fd62fa24472631f87533',
@@ -22,41 +23,47 @@ Page({
       'https://fenwan.cdn.bcebos.com/cms/gamenow/lewan/2022-2/1644565803292/e2df1c0a895e.jpg?x-bce-process=image/resize,m_lfit,w_242'
     ],
     //分类标签
-    riderCommentList: [{
-      value: '全部',
-      selected: false,
-      title: '全部'
-    }, {
-      value: '动作',
-      selected: false,
-      title: '动作'
-    }, {
-      value: '剧情',
-      selected: false,
-      title: '剧情'
-    }, {
-      value: 'FPS',
-      selected: false,
-      title: 'FPS'
-    }, {
-      value: '其他',
-      selected: false,
-      title: '其他'
-    }],
+    riderCommentList: [
+      {
+        value: '全部',
+        selected: false,
+        title: '全部'
+      },
+      {
+        value: '动作',
+        selected: false,
+        title: '动作'
+      },
+      {
+        value: '剧情',
+        selected: false,
+        title: '剧情'
+      },
+      {
+        value: 'FPS',
+        selected: false,
+        title: 'FPS'
+      },
+      {
+        value: '其他',
+        selected: false,
+        title: '其他'
+      }
+    ],
     //游戏
-    gameInfo: [],
+    gameInfo: []
   },
   showPopup() {
     this.setData({
       show: true,
       searchFirst: false
-    });
+    })
   },
   onClose() {
     this.setData({
       show: false,
       searchFirst: true
-    });
+    })
   },
   /*监听搜索输入框的值*/
   onChange(event) {
@@ -66,8 +73,8 @@ Page({
     })
   },
   checkboxChange(e) {
-    console.log('checkboxChange e:', e);
-    let string = "riderCommentList[" + e.target.dataset.index + "].selected"
+    console.log('checkboxChange e:', e)
+    let string = 'riderCommentList[' + e.target.dataset.index + '].selected'
     this.setData({
       [string]: !this.data.riderCommentList[e.target.dataset.index].selected
     })
@@ -88,61 +95,320 @@ Page({
 
     app.globalData.search_text = this.data.search_text
     wx.navigateTo({
-      url: "/pages/gameMarketProject/index/Search/Search",
+      url: '/pages/gameMarketProject/index/Search/Search'
     })
   },
   //游戏分类页面跳转
   goSort() {
-    console.log("GoSort")
+    console.log('GoSort')
     wx.navigateTo({
-      url: "/pages/gameMarketProject/index/gameSort/sort/sort",
+      url: '/pages/gameMarketProject/index/gameSort/sort/sort'
     })
   },
   //游戏详情页面
   goDetail(e) {
-    console.log("GoDetail")
+    console.log('GoDetail')
     // console.log(e)
     var gameInfoStr = encodeURIComponent(JSON.stringify(e.currentTarget.dataset.gameInfo))
     //把点击的游戏对象参数传递给游戏详情页面
     wx.navigateTo({
-      url: "/pages/gameMarketProject/index/gameDetail/detail/detail?gameInfoStr=" + gameInfoStr,
+      url: '/pages/gameMarketProject/index/gameDetail/detail/detail?gameInfoStr=' + gameInfoStr
     })
   },
-  async Onload() {
+
+  async LoadDeletelist(chatid) {
+    let count = await db
+      .collection('ChatRecord')
+      .where({
+        Receiver_ID: chatid,
+        Sender_ID: app.globalData.User[0].ID
+      })
+      .count()
+    count = count.total
+    let sendlist = []
+    for (let i = 0; i < count; i += 20) {
+      let list = await db
+        .collection('ChatRecord')
+        .where({
+          Sender_ID: app.globalData.User[0].ID,
+          Receiver_ID: chatid
+        })
+        .skip(i)
+        .get()
+      sendlist = sendlist.concat(list.data)
+    }
+    count = await db
+      .collection('ChatRecord')
+      .where({
+        Sender_ID: chatid,
+        Receiver_ID: app.globalData.User[0].ID
+      })
+      .count()
+    count = count.total
+    let receivelist = []
+    for (let i = 0; i < count; i += 20) {
+      let list = await db
+        .collection('ChatRecord')
+        .where({
+          Sender_ID: chatid,
+          Receiver_ID: app.globalData.User[0].ID
+        })
+        .skip(i)
+        .get()
+      receivelist = receivelist.concat(list.data)
+    }
+    let list = []
+    list = this.T(sendlist, receivelist)
+    return list
+  },
+
+  T(arr1, arr2) {
+    let list = []
+    while (arr1.length != 0 || arr2.length != 0) {
+      if (arr1.length == 0) {
+        list.push(arr2.splice(0, 1))
+      } else if (arr2.length == 0) {
+        list.push(arr1.splice(0, 1))
+      } else {
+        if (arr1[0].Time < arr2[0].Time) {
+          list.push(arr1.splice(0, 1))
+        } else {
+          list.push(arr2.splice(0, 1))
+        }
+      }
+    }
+    for (let i = 0; i < list.length; i++) {
+      list[i] = list[i][0]
+    }
+    return list
+  },
+
+  async Onloading() {
+    wx.showLoading({
+      title: '加载中',
+      mask: true //开启蒙版遮罩
+    })
+    await this.CreateChatList()
+    await this.LoadUserInfo()
+    for (var i = 0; i < this.data.ChatList.length; i++) {
+      await this.DeleteRecord(this.data.ChatList[i].Chatid)
+    }
+    app.globalData.ChatList = this.data.ChatList
     console.log(app.globalData.User[0])
-    let count = await db.collection("Games").count()
+    let count = await db.collection('Games').count()
     count = count.total
     //console.log(count)
     let all = []
     for (let i = 0; i < count; i += 20) {
-      let list = await db.collection("Games").skip(i).get()
+      let list = await db.collection('Games').skip(i).get()
       all = all.concat(list.data)
     }
     //console.log(all)
-    app.globalData.Game = all;
+    app.globalData.Game = all
     //console.log(app.globalData.Game)
     this.setData({
       Is_game_got: true,
       gameInfo: all
     })
+    wx.hideLoading()
   },
+
+  check(receivelist, sendlist) {
+    let list = []
+    let showlist = []
+    var count = 0
+    for (var i = 0; i < receivelist.length; i++) {
+      list = list.concat(receivelist[i])
+    }
+    for (var i = 0; i < sendlist.length; i++) {
+      list = list.concat(sendlist[i])
+    }
+    //console.log(list)
+    for (var i = 0; i < list.length; i++) {
+      if (list[i].Receiver_ID == app.globalData.User[0].ID) {
+        if (this.check_1(list[i].Time, list[i].Sender_ID, showlist) == -2) {
+          showlist = showlist.concat(list[i])
+          showlist[count].Chatid = list[i].Sender_ID
+          count++
+        } else if (this.check_1(list[i].Time, list[i].Sender_ID, showlist) == -1) {
+        } else {
+          list[i].Chatid = list[i].Sender_ID
+          showlist[this.check_1(list[i].Time, list[i].Sender_ID, showlist)] = list[i]
+        }
+      } else if (list[i].Sender_ID == app.globalData.User[0].ID) {
+        if (this.check_1(list[i].Time, list[i].Receiver_ID, showlist) == -2) {
+          showlist = showlist.concat(list[i])
+          showlist[count].Chatid = list[i].Receiver_ID
+          count++
+        } else if (this.check_1(list[i].Time, list[i].Receiver_ID, showlist) == -1) {
+        } else {
+          list[i].Chatid = list[i].Receiver_ID
+          showlist[this.check_1(list[i].Time, list[i].Receiver_ID, showlist)] = list[i]
+        }
+      }
+    }
+    return showlist
+  },
+
+  check_1(time, id, list) {
+    for (var i = 0; i < list.length; i++) {
+      if (id == list[i].Chatid) {
+        if (list[i].Time < time) {
+          return i //替换i
+        } else return -1 //不需要添加
+      }
+    }
+    return -2 //添加
+  },
+
+  async LoadUserInfo() {
+    let list = this.data.ChatList
+    for (let i = 0; i < list.length; i++) {
+      let count = await db
+        .collection('ChatRecord')
+        .where({
+          Receiver_ID: this.data.Userid,
+          Sender_ID: list[i].Chatid,
+          State: '未读'
+        })
+        .count()
+      list[i].Newnumber = count.total
+      if (list[i].Receiver_ID == this.data.Userid) {
+        let res = await db
+          .collection('Users')
+          .where({
+            ID: list[i].Chatid
+          })
+          .get()
+        list[i].SenderInfo = res.data[0]
+      } else {
+        let res = await db
+          .collection('Users')
+          .where({
+            ID: list[i].Receiver_ID
+          })
+          .get()
+        list[i].SenderInfo = res.data[0]
+      }
+    }
+    for (var i = 0; i < list.length; i++) {
+      let year = []
+      let month = []
+      let date = []
+      let time = []
+      for (let a = 0; a < 4; a++) {
+        year.push(list[i].Time[a])
+      }
+      if (list[i].Time[5] != 0) {
+        month.push(list[i].Time[5])
+      }
+      month.push(list[i].Time[6])
+      month.push('月')
+      if (list[i].Time[8] != 0) {
+        date.push(list[i].Time[8])
+      }
+      date.push(list[i].Time[9])
+      date.push('日')
+      for (let j = 11; j < 16; j++) {
+        time.push(list[i].Time[j])
+      }
+      list[i].year = year.join('')
+      list[i].month = month.join('')
+      list[i].date = date.join('')
+      list[i].time = time.join('')
+    }
+    this.setData({
+      ChatList: list
+    })
+    //console.log(this.data.ChatList)
+  },
+
+  async CreateChatList() {
+    let count = await db
+      .collection('ChatRecord')
+      .where({
+        Sender_ID: app.globalData.User[0].ID
+      })
+      .count()
+    count = count.total
+    let sendlist = []
+    for (let i = 0; i < count; i += 20) {
+      let list = await db
+        .collection('ChatRecord')
+        .where({
+          Sender_ID: app.globalData.User[0].ID
+        })
+        .skip(i)
+        .get()
+      sendlist = sendlist.concat(list.data)
+    }
+    count = await db
+      .collection('ChatRecord')
+      .where({
+        Receiver_ID: app.globalData.User[0].ID
+      })
+      .count()
+    count = count.total
+    let receivelist = []
+    for (let i = 0; i < count; i += 20) {
+      let list = await db
+        .collection('ChatRecord')
+        .where({
+          Receiver_ID: app.globalData.User[0].ID
+        })
+        .skip(i)
+        .get()
+      receivelist = receivelist.concat(list.data)
+    }
+    let show_list = this.check(receivelist, sendlist)
+    this.setData({
+      ChatList: show_list
+    })
+    // console.log(this.data.ChatList)
+  },
+
+  async DeleteRecord(chatid) {
+    let count1 = await db
+      .collection('ChatRecord')
+      .where({
+        Sender_ID: app.globalData.User[0].ID,
+        Receiver_ID: chatid
+      })
+      .count()
+    count1 = count1.total
+    let count2 = await db
+      .collection('ChatRecord')
+      .where({
+        Sender_ID: chatid,
+        Receiver_ID: app.globalData.User[0].ID
+      })
+      .count()
+    count2 = count2.total
+    let list = await this.LoadDeletelist(chatid)
+    // console.log(list)
+    let sum = count1 + count2
+    for (let i = 0; i < list.length && sum > this.data.ChatListNum; i++, sum--) {
+      db.collection('ChatRecord').doc(list[i]._id).remove()
+    }
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: async function (options) {
     // 高度自适应
-    var that = this;
+    var that = this
     wx.getSystemInfo({
       success: function (res) {
         var clientHeight = res.windowHeight,
           clientWidth = res.windowWidth,
-          rpxR = 750 / clientWidth;
-        var calc = clientHeight * rpxR - 130;
+          rpxR = 750 / clientWidth
+        var calc = clientHeight * rpxR - 130
         that.setData({
           winHeight: calc
-        });
+        })
       }
-    });
+    })
     //是否需要填写个人信息
     if (options.FirstLogin) {
       wx.showModal({
@@ -151,61 +417,48 @@ Page({
         success(res) {
           if (res.confirm) {
             wx.navigateTo({
-              url: "../person/personInfo/account/account"
+              url: '../person/personInfo/account/account'
             })
-          } else if (res.cancel) {}
+          } else if (res.cancel) {
+          }
         }
       })
     }
-    this.Onload()
+    await this.Onloading()
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-
-  },
+  onReady: function () {},
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-
-  },
+  onShow: function () {},
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
-
-  },
+  onHide: function () {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
-
-  },
+  onUnload: function () {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-
-  },
+  onPullDownRefresh: function () {},
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-
-  },
+  onReachBottom: function () {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
-  }
+  onShareAppMessage: function () {}
 })

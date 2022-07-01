@@ -186,6 +186,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: async function (options) {
+    wx.showLoading({
+      title: '加载中',
+      mask: true //开启蒙版遮罩
+    })
     this.getScollBottom()
     const that = this
     var userFriend = JSON.parse(decodeURIComponent(options.userInfoStr))
@@ -237,6 +241,7 @@ Page({
           console.error(err)
         }
       })
+      wx.hideLoading()
   },
 
   /**

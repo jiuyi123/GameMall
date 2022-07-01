@@ -122,6 +122,10 @@ Page({
   },
   /*******好友列表***** */
   async loadInfo() {
+    wx.showLoading({
+      title: '加载中',
+      mask: true //开启蒙版遮罩
+    })
     let count = await db
       .collection('Friends')
       .where({
@@ -182,6 +186,7 @@ Page({
       Show_List: list
     })
     console.log(this.data.Show_List)
+    wx.hideLoading()
   },
 
   check(data, list) {

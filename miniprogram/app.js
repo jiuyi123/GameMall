@@ -5,7 +5,7 @@ App({
     Game:'',
     User:'',
     Photo_link:'',
-    
+    ChatList:''
   },
   
   userInfo:{
