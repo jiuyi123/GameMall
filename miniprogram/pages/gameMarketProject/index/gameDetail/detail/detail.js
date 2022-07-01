@@ -12,8 +12,8 @@ Page({
     gameInfoObj: {},
     /******评论弹窗****/
     scoreShow: 0, //打分弹窗
-    commentScore:"",
-    commentContent:"",
+    commentScore: '',
+    commentContent: '',
     /*******购买弹窗*******/
     radio: '1', //单选框
     checked: false, //复选框
@@ -40,12 +40,12 @@ Page({
   onCommentClose() {
     this.setData({
       scoreShow: false
-    });
+    })
   },
   onCommentChange(event) {
     this.setData({
-      commentScore: event.detail,
-    });
+      commentScore: event.detail
+    })
   },
   //评论框
   bindSearchContent: function (e) {
@@ -423,8 +423,9 @@ Page({
   },
   //向数据库中写入评价
   WriteEvaluation: async function () {
-    let content = this.data.commentContent;
-    let score = this.data.commentScore*2;
+    let content = this.data.commentContent.value
+    let score = this.data.commentScore * 2
+    let list = this.data.commentList
     console.log(content)
     console.log(score)
     const cmt = await this.GetAlldb('Comments')
@@ -438,11 +439,28 @@ Page({
         User_ID: this.data.User.ID
       }
     })
+    list[list.length] = {
+      Comment: {
+        Content: content,
+        Game_ID: game_id,
+        ID: cmt[cmt.length - 1].ID + 1,
+        Score: score,
+        Time: this.GetTime(),
+        User_ID: this.data.User.ID
+      },
+      User: app.globalData.User[0],
+      is_Like: false,
+      LikeNum: 0
+    }
+    this.CommentSortByTime(list)
+    this.setData({
+      commentList: list
+    })
     wx.showToast({
       title: '发表成功',
-      icon:'success'
+      icon: 'success'
     })
-    this.onCommentClose();
+    this.onCommentClose()
   },
   //读取数据库中游戏的评论
   GetComment: async function (game_id) {
@@ -461,30 +479,25 @@ Page({
         }
       }
     }
-    this.CommentSortByTime(list) //时间顺序排序
+    list = this.CommentSortByTime(list) //时间顺序排序
     this.setData({
       commentList: list
     })
   },
-  //对评论列表按照时间顺序排序(基于快排)
-  CommentSortByTime: function (tempArr) {
-    if (tempArr.length <= 1)
-      //递归终止
-      return tempArr
-    //取基准
-    var pivotIndex = Math.floor(tempArr.length / 2)
-    var pivot = tempArr.splice(pivotIndex, 1)
-    //分左右
-    var leftArr = []
-    var rightArr = []
-    for (var i = 0; i < tempArr.length; i++) {
-      if (tempArr[i].Time < pivot.Time) {
-        rightArr.push(tempArr[i])
-      } else {
-        leftArr.push(tempArr[i])
+
+  CommentSortByTime: function (arr) {
+    for (var i = 0; i < arr.length - 1; i++) {
+      //确定轮数
+      for (var j = 0; j < arr.length - i - 1; j++) {
+        //确定每次比较的次数
+        if (arr[j].Comment.Time < arr[j + 1].Comment.Time) {
+          var tem = arr[j]
+          arr[j] = arr[j + 1]
+          arr[j + 1] = tem
+        }
       }
     }
-    return this.CommentSortByTime(leftArr).concat(pivot, this.CommentSortByTime(rightArr))
+    return arr
   },
 
   /********************************************* */
@@ -529,6 +542,7 @@ Page({
     this.setData({
       commentList: list
     })
+    console.log(list)
   },
 
   GetTime() {
@@ -546,7 +560,7 @@ Page({
 
   async Like(e) {
     //console.log(e.currentTarget.dataset.commentInfo.Comment.ID)
-    let Commentid = e.currentTarget.dataset.commentInfo.Comment.ID;
+    let Commentid = e.currentTarget.dataset.commentInfo.Comment.ID
     let list = this.data.commentList
     let i
     for (i = 0; i < list.length; i++) {
@@ -580,7 +594,6 @@ Page({
     this.setData({
       commentList: list
     })
-    console.log(this.data.commentList)
   },
 
   /**
@@ -598,7 +611,6 @@ Page({
     //await this.WriteEvaluation("戏风格独特",8.8,4)
     await this.GetComment(gameInfoObj.ID)
     await this.GetLike()
-    this.Like(2)
     wx.hideLoading()
   },
 
