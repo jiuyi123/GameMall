@@ -7,8 +7,9 @@ Page({
    */
   data: {
     UserInfo: "",
-    Balance:"",
+    Balance: "",
     show: false,
+    inputNumber: 0,
   },
   /**** */
   showPopup() {
@@ -23,7 +24,11 @@ Page({
     });
   },
 
-
+  bindInputChange(e) {
+    this.setData({
+      inputNumber: e.detail.value
+    })
+  },
 
   /******/
   /* 生命周期函数--监听页面加载 */
@@ -37,7 +42,7 @@ Page({
   },
 
   async Charge(e) {
-    var Amount = e.detail.value
+    var Amount = this.data.inputNumber
     console.log(Amount)
     let res = await db
       .collection('Users')
@@ -51,16 +56,16 @@ Page({
         data: {
           Balance: Number(app.globalData.User[0].Balance) + Number(Amount)
         }
-        
+
       })
-      this.setData({
-        Balance:Number(app.globalData.User[0].Balance) + Number(Amount)
-      })
-    app.globalData.User[0].Balance =Number(app.globalData.User[0].Balance) + Number(Amount)
+    this.setData({
+      Balance: Number(app.globalData.User[0].Balance) + Number(Amount)
+    })
+    app.globalData.User[0].Balance = Number(app.globalData.User[0].Balance) + Number(Amount)
     this.onClose();
     wx.showToast({
       title: '充值成功',
-      icon:'success'
+      icon: 'success'
     })
   },
   /**
