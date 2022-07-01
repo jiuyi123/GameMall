@@ -1,27 +1,37 @@
 // pages/gameMarketProject/person/personInfo/feedback/feedback.js
-const app = getApp();
-const db = wx.cloud.database();
+const app = getApp()
+const db = wx.cloud.database()
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    UserInfo: "",
-    Balance: "",
+    UserInfo: '',
+    Balance: '',
     show: false,
-    inputNumber: 0,
+    inputNumber: 0
   },
   /**** */
   showPopup() {
     this.setData({
       show: true
-    });
+    })
   },
 
   onClose() {
     this.setData({
-      show: false
-    });
+      show: false,
+      inputNumber: 0
+    })
+  },
+
+  check(val) {
+    var regPos = /^\d+(\d+)?$/ //非负浮点数
+    if (regPos.test(val)) {
+      return true
+    } else {
+      return false
+    }
   },
 
   bindInputChange(e) {
@@ -37,36 +47,45 @@ Page({
       UserInfo: app.globalData.User[0],
       Balance: app.globalData.User[0].Balance
     })
-    console.log("Wallet")
+    console.log('Wallet')
     console.log(this.data.UserInfo)
   },
 
   async Charge(e) {
     var Amount = this.data.inputNumber
     console.log(Amount)
-    let res = await db
-      .collection('Users')
-      .where({
-        ID: app.globalData.User[0].ID
+    if (this.check(Amount)) {
+      let res = await db
+        .collection('Users')
+        .where({
+          ID: app.globalData.User[0].ID
+        })
+        .get()
+      db.collection('Users')
+        .doc(res.data[0]._id)
+        .update({
+          data: {
+            Balance: Number(app.globalData.User[0].Balance) + Number(Amount)
+          }
+        })
+      this.setData({
+        Balance: Number(app.globalData.User[0].Balance) + Number(Amount)
       })
-      .get()
-    db.collection('Users')
-      .doc(res.data[0]._id)
-      .update({
-        data: {
-          Balance: Number(app.globalData.User[0].Balance) + Number(Amount)
-        }
-
+      app.globalData.User[0].Balance = Number(app.globalData.User[0].Balance) + Number(Amount)
+      this.onClose()
+      wx.showToast({
+        title: '充值成功',
+        icon: 'success'
       })
-    this.setData({
-      Balance: Number(app.globalData.User[0].Balance) + Number(Amount)
-    })
-    app.globalData.User[0].Balance = Number(app.globalData.User[0].Balance) + Number(Amount)
-    this.onClose();
-    wx.showToast({
-      title: '充值成功',
-      icon: 'success'
-    })
+    } else {
+      wx.showToast({
+        title: '非法输入',
+        icon: 'error'
+      })
+      this.setData({
+        inputNumber: ''
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
