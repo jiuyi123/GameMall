@@ -1,24 +1,44 @@
 // pages/gameMarketProject/person/personInfo/feedback/feedback.js
 const app = getApp();
+const db = wx.cloud.database();
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    UserInfo: ""
+    UserInfo: "",
+    Balance:"",
+    show: false,
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  /**** */
+  showPopup() {
+    this.setData({
+      show: true
+    });
+  },
+
+  onClose() {
+    this.setData({
+      show: false
+    });
+  },
+
+
+
+  /******/
+  /* 生命周期函数--监听页面加载 */
   onLoad(options) {
     this.setData({
-      UserInfo:app.globalData.User[0]
+      UserInfo: app.globalData.User[0],
+      Balance: app.globalData.User[0].Balance
     })
     console.log("Wallet")
     console.log(this.data.UserInfo)
   },
 
-  async Charge() {
+  async Charge(e) {
+    var Amount = e.detail.value
+    console.log(Amount)
     let res = await db
       .collection('Users')
       .where({
@@ -29,10 +49,19 @@ Page({
       .doc(res.data[0]._id)
       .update({
         data: {
-          Balance: app.globalData.User[0].Balance + this.data.Amount
+          Balance: Number(app.globalData.User[0].Balance) + Number(Amount)
         }
+        
       })
-    app.globalData.User[0].Balance = app.globalData.User[0].Balance + this.data.Amount
+      this.setData({
+        Balance:Number(app.globalData.User[0].Balance) + Number(Amount)
+      })
+    app.globalData.User[0].Balance =Number(app.globalData.User[0].Balance) + Number(Amount)
+    this.onClose();
+    wx.showToast({
+      title: '充值成功',
+      icon:'success'
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

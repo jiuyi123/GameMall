@@ -89,6 +89,7 @@
     "van-area": "@vant/weapp/area/index",
     "van-index-bar": "@vant/weapp/index-bar/index",
     "van-index-anchor": "@vant/weapp/index-anchor/index",
-    "van-swipe-cell": "@vant/weapp/swipe-cell/index"
+    "van-swipe-cell": "@vant/weapp/swipe-cell/index",
+    "van-switch": "@vant/weapp/switch/index"
   }
 }

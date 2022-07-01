@@ -14,7 +14,7 @@
   </view>
   <view style="background-color:rgba(173,216,210, 0.3);">
     <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab" style="height:{{winHeight}}rpx">
-      <swiper-item wx:for="{{[0,1,2]}}">
+      <swiper-item wx:for="{{[0,1]}}">
         <scroll-view scroll-y="true" class="scoll-h">
           <!-- -----------------信息页面 ------------------------------------->
           <view wx:if="{{currentTab==0?'active':''}}" style="display: flex;flex-direction: column;">
