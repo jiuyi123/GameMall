@@ -149,3 +149,11 @@ page{
   -webkit-line-clamp: 1;
   overflow: hidden;
 }
+
+.hr {
+  width: 90%;
+  height: 3rpx;
+  margin-left: 5%;
+  margin-top: 15rpx;
+  background-color: rgb(80, 95, 115);
+}

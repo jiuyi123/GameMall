@@ -9,7 +9,7 @@
   <!-- tab -->
   <view class="tab-h" scroll-left="{{scrollLeft}}">
     <view class="tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="swichNav">信息</view>
-    <view class="tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav">评论({{gameInfoObj.numComment}})</view>
+    <view class="tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav">评论({{commentList.length}})</view>
     <!-- <view class="tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="swichNav">推荐</view> -->
   </view>
   <view style="background-color:rgba(173,216,210, 0.3);">
@@ -27,7 +27,7 @@
               <!-- 游戏信息 -->
               <view style=" display: flex;flex-flow: column wrap;row-gap: 40rpx; height: 300rpx;width: 450rpx; margin: 10rpx;color: white;">
                 <view style="display: flex;justify-content: space-around;flex-direction: row;">
-                  <text class="productNameText"style="font-size:40rpx;font-weight: bolder;">{{gameInfoObj.Name}}</text>
+                  <text class="productNameText" style="font-size:40rpx;font-weight: bolder;">{{gameInfoObj.Name}}</text>
                   <van-icon bindtap="ShouCang" wx:if="{{!is_ShouCang}}" name="like-o" color="red" size="20px" />
                   <van-icon bindtap="ShouCang" wx:if="{{is_ShouCang}}" name="like" color="red" size="20px" />
                 </view>
@@ -119,7 +119,7 @@
                 </view>
                 <view style="margin:20rpx;">
                   <van-checkbox value="{{ checked }}" shape="square" bind:change="onChangeCheckbox" style="color: whitesmoke;">
-                   <text style="font-size: smaller;color: gray;">本人阅读并同意以下协议</text>
+                    <text style="font-size: smaller;color: gray;">本人阅读并同意以下协议</text>
                   </van-checkbox>
                 </view>
 
@@ -128,32 +128,36 @@
 
             </van-action-sheet>
           </view>
-
           <!-- 评论页面 ------------------------------------->
           <view wx:if="{{currentTab==1?'active':''}}">
-            <!-- 总评分 -->
-            <view>
-              <text>总评分：{{gameInfoObj.score}}</text>
-            </view>
-            <!--具体评价-->
-            <view id="reviewView">
-              <!--用户评论项-->
-              <view class="reviewItemView" wx:for="{{gameInfoObj.comment}}" wx:for-index="userId" data-item="item">
-                <view class="userNameView">
-                  用户{{item.userName}}
-                  <view>
-                    <view class="star" wx:for="{{item.cmtScore}}">
-                      <view class="icon icon_yellow"></view>
-                    </view>
+            <!--用户评论项-->
+            <view wx:for="{{commentList}}" wx:for-index="userId" data-item="item" style="display: flex;flex-direction: column;align-items: center;margin-top: 30rpx;">
+              <!-- 单个用户评论信息 -->
+              <view style="display: flex;flex-direction: column;width: 95%;height: 300rpx;border-radius: 10rpx;background-color: rgb(16, 67, 123);">
+                <!-- 个人头像和昵称 -->
+                <view bindtap="goAccount" style="display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
+                  <view style="display: flex;align-items: center;margin-top: 10rpx;">
+                    <image src="{{item.User.Photo_link}}" mode="scaleToFill" style="height: 80rpx;width:80rpx;margin-left: 30rpx;" />
+                    <text style="font-size: 35rpx;font-weight: bolder;color:rgb(153, 153, 153);margin-left: 20rpx;">{{item.User.Nickname}}</text>
                   </view>
+                  <van-rate value="{{item.Comment.Score/2 }}" size="{{ 15 }}" color="#ffd21e" void-icon="star" allow-half void-color="#eee" bind:change="onChange" readonly style="display: flex;margin-right: 20rpx;" />
                 </view>
-                <view>{{item.cmtData}}</view>
-                <view>{{item.cmtContent}}</view>
-              </view>
-              <!--查看更多-->
-              <view id="moreView" bindtap="goHotArticlePage">
-                <text>查看更多</text>
-                <view class="arrow"></view>
+                <!-- 分割线 -->
+                <view class="hr"></view>
+                <!-- 评论内容 -->
+                <view style="margin-left: 30rpx;margin-right: 30rpx ;color: white;font-size: medium;height: 120rpx;border:3rpx solid red;">
+                  <text>{{item.Comment.Content}}</text>
+                </view>
+                <!-- 时间和点赞 -->
+                <view style="margin-left: 30rpx;display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
+                  <!-- 时间 -->
+                  <text style="color: white;">{{item.Comment.Time}}</text>
+                  <!-- 点赞 -->
+                  <van-icon name="good-job-o"/>
+                  <!-- 已点赞 -->
+                  <van-icon name="good-job" color="red" />
+                </view>
+
               </view>
             </view>
             <!-- 100rpx占位符 -->
