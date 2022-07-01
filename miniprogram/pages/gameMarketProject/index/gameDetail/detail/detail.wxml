@@ -27,7 +27,7 @@
               <!-- 游戏信息 -->
               <view style=" display: flex;flex-flow: column wrap;row-gap: 40rpx; height: 300rpx;width: 450rpx; margin: 10rpx;color: white;">
                 <view style="display: flex;justify-content: space-around;flex-direction: row;">
-                  <text style="font-size:40rpx;font-weight: bolder;">{{gameInfoObj.Name}}</text>
+                  <text class="productNameText"style="font-size:40rpx;font-weight: bolder;">{{gameInfoObj.Name}}</text>
                   <van-icon bindtap="ShouCang" wx:if="{{!is_ShouCang}}" name="like-o" color="red" size="20px" />
                   <van-icon bindtap="ShouCang" wx:if="{{is_ShouCang}}" name="like" color="red" size="20px" />
                 </view>
@@ -110,7 +110,7 @@
             </view>
 
             <!-- 购买弹窗 -->
-            <van-action-sheet show="{{ Buying }}" bind:close="buyClose" title="付款页面">
+            <van-action-sheet show="{{ Buying }}" bind:close="BuyClose" title="付款页面">
               <van-radio-group value="{{ PayWay }}" bind:change="onChangeRadio">
                 <view style="display: flex;flex-direction: column; margin: 20rpx;margin-bottom: 40rpx; row-gap: 10rpx;">
                   <van-radio name="1">余额支付</van-radio>
