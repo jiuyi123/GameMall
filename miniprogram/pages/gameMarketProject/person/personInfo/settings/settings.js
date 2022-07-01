@@ -5,9 +5,23 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    checkedComment:true,
+    checkedWarehouse:true,
+    checkedLike:true
   },
-
+/***** */
+onChangeComment({ detail }) {
+  // 需要手动对 checked 状态进行更新
+  this.setData({ checkedComment: detail });
+},
+onChangeWarehouse({ detail }) {
+  // 需要手动对 checked 状态进行更新
+  this.setData({ checkedWarehouse: detail });
+},
+onChangeLiket({ detail }) {
+  // 需要手动对 checked 状态进行更新
+  this.setData({ checkedLike: detail });
+},
   /**
    * 生命周期函数--监听页面加载
    */

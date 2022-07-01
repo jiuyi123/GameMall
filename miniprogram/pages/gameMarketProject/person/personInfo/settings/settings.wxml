@@ -1,2 +1,21 @@
 <!--pages/gameMarketProject/person/personInfo/settings/settings.wxml-->
-<text>pages/gameMarketProject/person/personInfo/settings/settings.wxml</text>
+<view style="display: flex;flex-direction: column;margin-left: 10%;margin-right: 10%;">
+  <!-- 分割线 -->
+  <view class="hr"></view>
+  <view style="">
+    <text style="color: white;font-size: 60rpx;font-weight: bolder;margin-top: 2%;">账户</text>
+  </view>
+  <view style="display: flex;flex-direction: row;justify-content: space-between;align-content: center;align-items: center;margin-bottom: 30rpx;">
+    <text style="color: white;">评论所有人可见</text>
+    <van-switch checked="{{ checkedComment }}" bind:change="onChangeComment" />
+  </view>
+  <view style="display: flex;flex-direction: row;justify-content: space-between;align-content: center;align-items: center;margin-bottom: 30rpx;">
+    <text style="color: white;">库所有人可见</text>
+    <van-switch checked="{{ checkedWarehouse }}" bind:change="onChangeWarehouse" />
+  </view>
+  <view style="display: flex;flex-direction: row;justify-content: space-between;align-content: center;align-items: center;margin-bottom: 30rpx;">
+    <text style="color: white;">我喜欢所有人可见</text>
+    <van-switch checked="{{ checkedLike }}" bind:change="onChangeLiket" />
+  </view>
+
+</view>
