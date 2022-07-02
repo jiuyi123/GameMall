@@ -70,6 +70,13 @@
               "pages/gameMarketProject/friend/friendDetail/friendDetail"
             ]
           }
+        },
+        {
+          "name": "分类页面",
+          "pathName": "pages/gameMarketProject/index/gameSort/sort/sort",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

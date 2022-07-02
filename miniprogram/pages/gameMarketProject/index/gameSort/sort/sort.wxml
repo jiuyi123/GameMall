@@ -1,43 +1,25 @@
-<view class="containers">
-  <input class="search" type="text" value="{{keywrod}}" placeholder="输入搜索关键字" confirm-type="search" bindinput="inputChange" bindfocus="inputFocus" bindconfirm="onKeywordConfirm"></input>
-
-  <view class="catalog" wx:if="{{catalog}}">
-  <!-- 侧边栏 -->
-    <scroll-view scroll-y="true" class="nav">
-      <view>
-        <view class="item {{ index===str ? 'active' : ''}}" 
-        wx:for="{{navlist}}" 
-        wx:key="{{item.id}}" 
-        data-index="{{index}}" 
-        bindtap="switchCate" 
-        data-floor="b{{index}}">{{item.name}}</view>
-      </view>
-    </scroll-view>
-  <!-- 游戏栏 -->
-    <view class="tops">
-      <scroll-view scroll-y="true" class="right" scroll-into-view="{{floorNum}}" scroll-with-animation="true" scroll-top="{{scrolltop}}" bindscrolltolower="lower" data-index="{{index}}">
-        <view class="cate" data-id="{{item.id}}">
-          <view class="hd">
-            <image src="../../../../../images/shouye/area.png"></image>
-            <text id="b{{index}}" class="txt">{{currentCategory.name}}系列</text>
-            <image src="../../../../../images/shouye/area.png"></image>
-          </view>
-          
-          <view class="bd" wx:for="{{currentCategory.subCategoryList}}" wx:key="{item.id}}" id="gameInformation" data-game-Info="{{item}}" bindtap="goDetail">
-            <image src="{{item.src}}"></image>
-            <view class="bd-pro">
-              <text class="bd-pro-name">{{item.name}}</text>
-              <text class="bd-pro-weight">{{item.num}}</text>
-              <view class="bd-product">
-                <text class="bd-pro-price">{{item.price}}</text>
-                <text class="bd-product-text" bindtap="cartTap">+</text>
+<scroll-view wx:for="{{Show_list}}" scroll-y="true" style="height:100vh;display: flex;flex-direction: column;align-items: center;">
+  <view style="display: flex;flex-direction: column;align-items: center;">
+    <view style="margin-top: 4%;">
+      <text class="titleClass" style="color: white;">——* {{item[0].Tag}} *——</text>
+    </view>
+    <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 1%;width:92%;">
+      <scroll-view style="white-space: nowrap;background-color: rgba(168, 206, 250, 0.5); border-radius: 30rpx;" scroll-x="true">
+        <view>
+          <view wx:for="{{item}}" style="display: inline-block;">
+            <view data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
+              <view style="margin-top: 3%;">
+                <!-- 游戏图片 -->
+                <image mode="scaleToFill" src="{{item.Pic_link}}" lazy-load="true" style="margin: 15rpx;margin-bottom: 1%;height: 300rpx; width: 200rpx;border-radius: 40rpx;" />
+                <!-- 游戏名 -->
+                <view style="width: 230rpx; display: flex;justify-content: center;margin-bottom: 3%;">
+                  <text class='productNameText'>{{item.Name}}</text>
+                </view>
               </view>
             </view>
           </view>
         </view>
       </scroll-view>
     </view>
-
   </view>
-
-</view>
+</scroll-view>
