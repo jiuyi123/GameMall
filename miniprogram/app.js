@@ -4,7 +4,8 @@ App({
     search_text:'',
     Game:'',
     User:'',
-    Photo_link:''
+    Photo_link:'',
+    Friend_list:''
   },
   
   userInfo:{

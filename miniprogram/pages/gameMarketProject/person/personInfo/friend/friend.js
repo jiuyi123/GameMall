@@ -170,7 +170,7 @@ goUserInfo: function (e) {
         .get()
       data = data.concat(list.data)
     }
-    console.log(data)
+    //console.log(data)
     for (var i = 0; i < data.length; i++) {
       if (data[i].User1_ID == app.globalData.User[0].ID) {
         data[i] = data[i].User2_ID
@@ -194,6 +194,7 @@ goUserInfo: function (e) {
       Friend_List: list,
       Show_List: list
     })
+    app.globalData.Friend_list = list
     console.log(this.data.Show_List)
     wx.hideLoading()
   },
@@ -210,7 +211,6 @@ goUserInfo: function (e) {
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
-    await this.loadInfo()
     // 高度自适应
     var that = this
     wx.getSystemInfo({
@@ -234,7 +234,9 @@ goUserInfo: function (e) {
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {},
+  async onShow() {
+    await this.loadInfo()
+  },
 
   /**
    * 生命周期函数--监听页面隐藏
