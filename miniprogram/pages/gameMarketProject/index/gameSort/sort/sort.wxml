@@ -1,12 +1,12 @@
-<scroll-view wx:for="{{Show_list}}" scroll-y="true" style="height:100vh;display: flex;flex-direction: column;align-items: center;">
-  <view style="display: flex;flex-direction: column;align-items: center;">
+<scroll-view  scroll-y="true" style="height:100vh;display: flex;flex-direction: column;align-items: center;">
+  <view wx:if="{{celueyouxi.length!=0}}" style="display: flex;flex-direction: column;align-items: center;">
     <view style="margin-top: 4%;">
-      <text class="titleClass" style="color: white;">——* {{item[0].Tag}} *——</text>
+      <text class="titleClass" style="color: white;">——* {{celueyouxi[0].Tag}} *——</text>
     </view>
     <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 1%;width:92%;">
       <scroll-view style="white-space: nowrap;background-color: rgba(168, 206, 250, 0.5); border-radius: 30rpx;" scroll-x="true">
         <view>
-          <view wx:for="{{item}}" style="display: inline-block;">
+          <view wx:for="{{celueyouxi}}" style="display: inline-block;">
             <view data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
               <view style="margin-top: 3%;">
                 <!-- 游戏图片 -->
@@ -22,4 +22,435 @@
       </scroll-view>
     </view>
   </view>
-</scroll-view>
+
+  <view wx:if="{{disanrenchensheji.length!=0}}" style="display: flex;flex-direction: column;align-items: center;">
+    <view style="margin-top: 4%;">
+      <text class="titleClass" style="color: white;">——* {{disanrenchensheji[0].Tag}} *——</text>
+    </view>
+    <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 1%;width:92%;">
+      <scroll-view style="white-space: nowrap;background-color: rgba(168, 206, 250, 0.5); border-radius: 30rpx;" scroll-x="true">
+        <view>
+          <view wx:for="{{disanrenchensheji}}" style="display: inline-block;">
+            <view data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
+              <view style="margin-top: 3%;">
+                <!-- 游戏图片 -->
+                <image mode="scaleToFill" src="{{item.Pic_link}}" lazy-load="true" style="margin: 15rpx;margin-bottom: 1%;height: 300rpx; width: 200rpx;border-radius: 40rpx;" />
+                <!-- 游戏名 -->
+                <view style="width: 230rpx; display: flex;justify-content: center;margin-bottom: 3%;">
+                  <text class='productNameText'>{{item.Name}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <view wx:if="{{dongzuojuese.length!=0}}" style="display: flex;flex-direction: column;align-items: center;">
+    <view style="margin-top: 4%;">
+      <text class="titleClass" style="color: white;">——* {{dongzuojuese[0].Tag}} *——</text>
+    </view>
+    <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 1%;width:92%;">
+      <scroll-view style="white-space: nowrap;background-color: rgba(168, 206, 250, 0.5); border-radius: 30rpx;" scroll-x="true">
+        <view>
+          <view wx:for="{{dongzuojuese}}" style="display: inline-block;">
+            <view data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
+              <view style="margin-top: 3%;">
+                <!-- 游戏图片 -->
+                <image mode="scaleToFill" src="{{item.Pic_link}}" lazy-load="true" style="margin: 15rpx;margin-bottom: 1%;height: 300rpx; width: 200rpx;border-radius: 40rpx;" />
+                <!-- 游戏名 -->
+                <view style="width: 230rpx; display: flex;justify-content: center;margin-bottom: 3%;">
+                  <text class='productNameText'>{{item.Name}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <view wx:if="{{dongzuoyouxi.length!=0}}" style="display: flex;flex-direction: column;align-items: center;">
+    <view style="margin-top: 4%;">
+      <text class="titleClass" style="color: white;">——* {{dongzuoyouxi[0].Tag}} *——</text>
+    </view>
+    <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 1%;width:92%;">
+      <scroll-view style="white-space: nowrap;background-color: rgba(168, 206, 250, 0.5); border-radius: 30rpx;" scroll-x="true">
+        <view>
+          <view wx:for="{{dongzuoyouxi}}" style="display: inline-block;">
+            <view data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
+              <view style="margin-top: 3%;">
+                <!-- 游戏图片 -->
+                <image mode="scaleToFill" src="{{item.Pic_link}}" lazy-load="true" style="margin: 15rpx;margin-bottom: 1%;height: 300rpx; width: 200rpx;border-radius: 40rpx;" />
+                <!-- 游戏名 -->
+                <view style="width: 230rpx; display: flex;justify-content: center;margin-bottom: 3%;">
+                  <text class='productNameText'>{{item.Name}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <view wx:if="{{gedouyouxi.length!=0}}" style="display: flex;flex-direction: column;align-items: center;">
+    <view style="margin-top: 4%;">
+      <text class="titleClass" style="color: white;">——* {{gedouyouxi[0].Tag}} *——</text>
+    </view>
+    <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 1%;width:92%;">
+      <scroll-view style="white-space: nowrap;background-color: rgba(168, 206, 250, 0.5); border-radius: 30rpx;" scroll-x="true">
+        <view>
+          <view wx:for="{{gedouyouxi}}" style="display: inline-block;">
+            <view data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
+              <view style="margin-top: 3%;">
+                <!-- 游戏图片 -->
+                <image mode="scaleToFill" src="{{item.Pic_link}}" lazy-load="true" style="margin: 15rpx;margin-bottom: 1%;height: 300rpx; width: 200rpx;border-radius: 40rpx;" />
+                <!-- 游戏名 -->
+                <view style="width: 230rpx; display: flex;justify-content: center;margin-bottom: 3%;">
+                  <text class='productNameText'>{{item.Name}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <view wx:if="{{jishizhanlue.length!=0}}" style="display: flex;flex-direction: column;align-items: center;">
+    <view style="margin-top: 4%;">
+      <text class="titleClass" style="color: white;">——* {{jishizhanlue[0].Tag}} *——</text>
+    </view>
+    <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 1%;width:92%;">
+      <scroll-view style="white-space: nowrap;background-color: rgba(168, 206, 250, 0.5); border-radius: 30rpx;" scroll-x="true">
+        <view>
+          <view wx:for="{{jishizhanlue}}" style="display: inline-block;">
+            <view data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
+              <view style="margin-top: 3%;">
+                <!-- 游戏图片 -->
+                <image mode="scaleToFill" src="{{item.Pic_link}}" lazy-load="true" style="margin: 15rpx;margin-bottom: 1%;height: 300rpx; width: 200rpx;border-radius: 40rpx;" />
+                <!-- 游戏名 -->
+                <view style="width: 230rpx; display: flex;justify-content: center;margin-bottom: 3%;">
+                  <text class='productNameText'>{{item.Name}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <view wx:if="{{juesebanyan.length!=0}}" style="display: flex;flex-direction: column;align-items: center;">
+    <view style="margin-top: 4%;">
+      <text class="titleClass" style="color: white;">——* {{juesebanyan[0].Tag}} *——</text>
+    </view>
+    <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 1%;width:92%;">
+      <scroll-view style="white-space: nowrap;background-color: rgba(168, 206, 250, 0.5); border-radius: 30rpx;" scroll-x="true">
+        <view>
+          <view wx:for="{{juesebanyan}}" style="display: inline-block;">
+            <view data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
+              <view style="margin-top: 3%;">
+                <!-- 游戏图片 -->
+                <image mode="scaleToFill" src="{{item.Pic_link}}" lazy-load="true" style="margin: 15rpx;margin-bottom: 1%;height: 300rpx; width: 200rpx;border-radius: 40rpx;" />
+                <!-- 游戏名 -->
+                <view style="width: 230rpx; display: flex;justify-content: center;margin-bottom: 3%;">
+                  <text class='productNameText'>{{item.Name}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <view wx:if="{{maoxianyouxi.length!=0}}" style="display: flex;flex-direction: column;align-items: center;">
+    <view style="margin-top: 4%;">
+      <text class="titleClass" style="color: white;">——* {{maoxianyouxi[0].Tag}} *——</text>
+    </view>
+    <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 1%;width:92%;">
+      <scroll-view style="white-space: nowrap;background-color: rgba(168, 206, 250, 0.5); border-radius: 30rpx;" scroll-x="true">
+        <view>
+          <view wx:for="{{maoxianyouxi}}" style="display: inline-block;">
+            <view data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
+              <view style="margin-top: 3%;">
+                <!-- 游戏图片 -->
+                <image mode="scaleToFill" src="{{item.Pic_link}}" lazy-load="true" style="margin: 15rpx;margin-bottom: 1%;height: 300rpx; width: 200rpx;border-radius: 40rpx;" />
+                <!-- 游戏名 -->
+                <view style="width: 230rpx; display: flex;justify-content: center;margin-bottom: 3%;">
+                  <text class='productNameText'>{{item.Name}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <view wx:if="{{monijingying.length!=0}}" style="display: flex;flex-direction: column;align-items: center;">
+    <view style="margin-top: 4%;">
+      <text class="titleClass" style="color: white;">——* {{monijingying[0].Tag}} *——</text>
+    </view>
+    <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 1%;width:92%;">
+      <scroll-view style="white-space: nowrap;background-color: rgba(168, 206, 250, 0.5); border-radius: 30rpx;" scroll-x="true">
+        <view>
+          <view wx:for="{{monijingying}}" style="display: inline-block;">
+            <view data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
+              <view style="margin-top: 3%;">
+                <!-- 游戏图片 -->
+                <image mode="scaleToFill" src="{{item.Pic_link}}" lazy-load="true" style="margin: 15rpx;margin-bottom: 1%;height: 300rpx; width: 200rpx;border-radius: 40rpx;" />
+                <!-- 游戏名 -->
+                <view style="width: 230rpx; display: flex;justify-content: center;margin-bottom: 3%;">
+                  <text class='productNameText'>{{item.Name}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <view wx:if="{{moniqilei.length!=0}}" style="display: flex;flex-direction: column;align-items: center;">
+    <view style="margin-top: 4%;">
+      <text class="titleClass" style="color: white;">——* {{moniqilei[0].Tag}} *——</text>
+    </view>
+    <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 1%;width:92%;">
+      <scroll-view style="white-space: nowrap;background-color: rgba(168, 206, 250, 0.5); border-radius: 30rpx;" scroll-x="true">
+        <view>
+          <view wx:for="{{moniqilei}}" style="display: inline-block;">
+            <view data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
+              <view style="margin-top: 3%;">
+                <!-- 游戏图片 -->
+                <image mode="scaleToFill" src="{{item.Pic_link}}" lazy-load="true" style="margin: 15rpx;margin-bottom: 1%;height: 300rpx; width: 200rpx;border-radius: 40rpx;" />
+                <!-- 游戏名 -->
+                <view style="width: 230rpx; display: flex;justify-content: center;margin-bottom: 3%;">
+                  <text class='productNameText'>{{item.Name}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <view wx:if="{{saicheyouxi.length!=0}}" style="display: flex;flex-direction: column;align-items: center;">
+    <view style="margin-top: 4%;">
+      <text class="titleClass" style="color: white;">——* {{saicheyouxi[0].Tag}} *——</text>
+    </view>
+    <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 1%;width:92%;">
+      <scroll-view style="white-space: nowrap;background-color: rgba(168, 206, 250, 0.5); border-radius: 30rpx;" scroll-x="true">
+        <view>
+          <view wx:for="{{saicheyouxi}}" style="display: inline-block;">
+            <view data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
+              <view style="margin-top: 3%;">
+                <!-- 游戏图片 -->
+                <image mode="scaleToFill" src="{{item.Pic_link}}" lazy-load="true" style="margin: 15rpx;margin-bottom: 1%;height: 300rpx; width: 200rpx;border-radius: 40rpx;" />
+                <!-- 游戏名 -->
+                <view style="width: 230rpx; display: flex;justify-content: center;margin-bottom: 3%;">
+                  <text class='productNameText'>{{item.Name}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <view wx:if="{{shejiyouxi.length!=0}}" style="display: flex;flex-direction: column;align-items: center;">
+    <view style="margin-top: 4%;">
+      <text class="titleClass" style="color: white;">——* {{shejiyouxi[0].Tag}} *——</text>
+    </view>
+    <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 1%;width:92%;">
+      <scroll-view style="white-space: nowrap;background-color: rgba(168, 206, 250, 0.5); border-radius: 30rpx;" scroll-x="true">
+        <view>
+          <view wx:for="{{shejiyouxi}}" style="display: inline-block;">
+            <view data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
+              <view style="margin-top: 3%;">
+                <!-- 游戏图片 -->
+                <image mode="scaleToFill" src="{{item.Pic_link}}" lazy-load="true" style="margin: 15rpx;margin-bottom: 1%;height: 300rpx; width: 200rpx;border-radius: 40rpx;" />
+                <!-- 游戏名 -->
+                <view style="width: 230rpx; display: flex;justify-content: center;margin-bottom: 3%;">
+                  <text class='productNameText'>{{item.Name}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <view wx:if="{{tiyuyundong.length!=0}}" style="display: flex;flex-direction: column;align-items: center;">
+    <view style="margin-top: 4%;">
+      <text class="titleClass" style="color: white;">——* {{tiyuyundong[0].Tag}} *——</text>
+    </view>
+    <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 1%;width:92%;">
+      <scroll-view style="white-space: nowrap;background-color: rgba(168, 206, 250, 0.5); border-radius: 30rpx;" scroll-x="true">
+        <view>
+          <view wx:for="{{tiyuyundong}}" style="display: inline-block;">
+            <view data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
+              <view style="margin-top: 3%;">
+                <!-- 游戏图片 -->
+                <image mode="scaleToFill" src="{{item.Pic_link}}" lazy-load="true" style="margin: 15rpx;margin-bottom: 1%;height: 300rpx; width: 200rpx;border-radius: 40rpx;" />
+                <!-- 游戏名 -->
+                <view style="width: 230rpx; display: flex;justify-content: center;margin-bottom: 3%;">
+                  <text class='productNameText'>{{item.Name}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <view wx:if="{{wangluoyouxi.length!=0}}" style="display: flex;flex-direction: column;align-items: center;">
+    <view style="margin-top: 4%;">
+      <text class="titleClass" style="color: white;">——* {{wangluoyouxi[0].Tag}} *——</text>
+    </view>
+    <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 1%;width:92%;">
+      <scroll-view style="white-space: nowrap;background-color: rgba(168, 206, 250, 0.5); border-radius: 30rpx;" scroll-x="true">
+        <view>
+          <view wx:for="{{wangluoyouxi}}" style="display: inline-block;">
+            <view data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
+              <view style="margin-top: 3%;">
+                <!-- 游戏图片 -->
+                <image mode="scaleToFill" src="{{item.Pic_link}}" lazy-load="true" style="margin: 15rpx;margin-bottom: 1%;height: 300rpx; width: 200rpx;border-radius: 40rpx;" />
+                <!-- 游戏名 -->
+                <view style="width: 230rpx; display: flex;justify-content: center;margin-bottom: 3%;">
+                  <text class='productNameText'>{{item.Name}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <view wx:if="{{xiuxianyizhi.length!=0}}" style="display: flex;flex-direction: column;align-items: center;">
+    <view style="margin-top: 4%;">
+      <text class="titleClass" style="color: white;">——* {{xiuxianyizhi[0].Tag}} *——</text>
+    </view>
+    <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 1%;width:92%;">
+      <scroll-view style="white-space: nowrap;background-color: rgba(168, 206, 250, 0.5); border-radius: 30rpx;" scroll-x="true">
+        <view>
+          <view wx:for="{{xiuxianyizhi}}" style="display: inline-block;">
+            <view data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
+              <view style="margin-top: 3%;">
+                <!-- 游戏图片 -->
+                <image mode="scaleToFill" src="{{item.Pic_link}}" lazy-load="true" style="margin: 15rpx;margin-bottom: 1%;height: 300rpx; width: 200rpx;border-radius: 40rpx;" />
+                <!-- 游戏名 -->
+                <view style="width: 230rpx; display: flex;justify-content: center;margin-bottom: 3%;">
+                  <text class='productNameText'>{{item.Name}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <view wx:if="{{yangchengyouxi.length!=0}}" style="display: flex;flex-direction: column;align-items: center;">
+    <view style="margin-top: 4%;">
+      <text class="titleClass" style="color: white;">——* {{yangchengyouxi[0].Tag}} *——</text>
+    </view>
+    <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 1%;width:92%;">
+      <scroll-view style="white-space: nowrap;background-color: rgba(168, 206, 250, 0.5); border-radius: 30rpx;" scroll-x="true">
+        <view>
+          <view wx:for="{{yangchengyouxi}}" style="display: inline-block;">
+            <view data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
+              <view style="margin-top: 3%;">
+                <!-- 游戏图片 -->
+                <image mode="scaleToFill" src="{{item.Pic_link}}" lazy-load="true" style="margin: 15rpx;margin-bottom: 1%;height: 300rpx; width: 200rpx;border-radius: 40rpx;" />
+                <!-- 游戏名 -->
+                <view style="width: 230rpx; display: flex;justify-content: center;margin-bottom: 3%;">
+                  <text class='productNameText'>{{item.Name}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <view wx:if="{{yinyueyouxi.length!=0}}" style="display: flex;flex-direction: column;align-items: center;">
+    <view style="margin-top: 4%;">
+      <text class="titleClass" style="color: white;">——* {{yinyueyouxi[0].Tag}} *——</text>
+    </view>
+    <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 1%;width:92%;">
+      <scroll-view style="white-space: nowrap;background-color: rgba(168, 206, 250, 0.5); border-radius: 30rpx;" scroll-x="true">
+        <view>
+          <view wx:for="{{yinyueyouxi}}" style="display: inline-block;">
+            <view data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
+              <view style="margin-top: 3%;">
+                <!-- 游戏图片 -->
+                <image mode="scaleToFill" src="{{item.Pic_link}}" lazy-load="true" style="margin: 15rpx;margin-bottom: 1%;height: 300rpx; width: 200rpx;border-radius: 40rpx;" />
+                <!-- 游戏名 -->
+                <view style="width: 230rpx; display: flex;justify-content: center;margin-bottom: 3%;">
+                  <text class='productNameText'>{{item.Name}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <view wx:if="{{zhuomianqipai.length!=0}}" style="display: flex;flex-direction: column;align-items: center;">
+    <view style="margin-top: 4%;">
+      <text class="titleClass" style="color: white;">——* {{zhuomianqipai[0].Tag}} *——</text>
+    </view>
+    <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 1%;width:92%;">
+      <scroll-view style="white-space: nowrap;background-color: rgba(168, 206, 250, 0.5); border-radius: 30rpx;" scroll-x="true">
+        <view>
+          <view wx:for="{{zhuomianqipai}}" style="display: inline-block;">
+            <view data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
+              <view style="margin-top: 3%;">
+                <!-- 游戏图片 -->
+                <image mode="scaleToFill" src="{{item.Pic_link}}" lazy-load="true" style="margin: 15rpx;margin-bottom: 1%;height: 300rpx; width: 200rpx;border-radius: 40rpx;" />
+                <!-- 游戏名 -->
+                <view style="width: 230rpx; display: flex;justify-content: center;margin-bottom: 3%;">
+                  <text class='productNameText'>{{item.Name}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  <view wx:if="{{qitayouxi.length!=0}}" style="display: flex;flex-direction: column;align-items: center;">
+    <view style="margin-top: 4%;">
+      <text class="titleClass" style="color: white;">——* {{qitayouxi[0].Tag}} *——</text>
+    </view>
+    <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 1%;width:92%;">
+      <scroll-view style="white-space: nowrap;background-color: rgba(168, 206, 250, 0.5); border-radius: 30rpx;" scroll-x="true">
+        <view>
+          <view wx:for="{{qitayouxi}}" style="display: inline-block;">
+            <view data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
+              <view style="margin-top: 3%;">
+                <!-- 游戏图片 -->
+                <image mode="scaleToFill" src="{{item.Pic_link}}" lazy-load="true" style="margin: 15rpx;margin-bottom: 1%;height: 300rpx; width: 200rpx;border-radius: 40rpx;" />
+                <!-- 游戏名 -->
+                <view style="width: 230rpx; display: flex;justify-content: center;margin-bottom: 3%;">
+                  <text class='productNameText'>{{item.Name}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  </scroll-view>

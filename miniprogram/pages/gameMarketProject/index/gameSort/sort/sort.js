@@ -163,32 +163,28 @@ Page({
 
   onLoad: function (options) {
     this.SortGame();
-    let list=[]
-    list.concat(this.data.celueyouxi)
-    list.concat(this.data.disanrenchensheji)
-    // list.concat(this.data.dongzuojuese)
-    // list.concat(this.data.dongzuoyouxi)
-    // list.concat(this.data.gedouyouxi)
-    // list.concat(this.data.jishizhanlue)
-    // list.concat(this.data.juesebanyan)
-    // list.concat(this.data.maoxianyouxi)
-    // list.concat(this.data.monijingying)
-    // list.concat(this.data.moniqilei)
-    // list.concat(this.data.saicheyouxi)
-    // list.concat(this.data.shejiyouxi)
-    // list.concat(this.data.tiyuyundong)
-    // list.concat(this.data.wangluoyouxi)
-    // list.concat(this.data.xiuxianyizhi)
-    // list.concat(this.data.yangchengyouxi)
-    // list.concat(this.data.yinyueyouxi)
-    // list.concat(this.data.zhuomianqipai)
-    // list.concat(this.data.qitayouxi)
-    console.log(list)
-    console.log(this.data.Game_list)
     this.setData({
-      Show_list:list
+      celueyouxi:this.data.celueyouxi,
+      disanrenchensheji:this.data.disanrenchensheji,
+      dongzuojuese:this.data.dongzuojuese,
+      dongzuoyouxi:this.data.dongzuoyouxi,
+      gedouyouxi:this.data.gedouyouxi,
+      jishizhanlue:this.data.jishizhanlue,
+      juesebanyan:this.data.juesebanyan,
+      maoxianyouxi:this.data.maoxianyouxi,
+      monijingying:this.data.monijingying,
+      moniqilei:this.data.moniqilei,
+      saicheyouxi:this.data.saicheyouxi,
+      shejiyouxi:this.data.shejiyouxi,
+      tiyuyundong:this.data.tiyuyundong,
+      wangluoyouxi:this.data.wangluoyouxi,
+      xiuxianyizhi:this.data.xiuxianyizhi,
+      yangchengyouxi:this.data.yangchengyouxi,
+      yinyueyouxi:this.data.yinyueyouxi,
+      zhuomianqipai:this.data.zhuomianqipai,
+      qitayouxi:this.data.qitayouxi,
     })
-    console.log(this.data.Show_list)
+    console.log(this.data.Game_list)
   },
   getCatalog: function () {
     let that = this;
