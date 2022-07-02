@@ -14,7 +14,7 @@
       <!-- 滑动单元格 -->
       <van-swipe-cell custom-style="border: 3rpx solid rgb(130, 206, 31);">
         <!-- 用户头像和昵称 -->
-        <view data-user-Info="{{item}}" bindtap="goChatPage" style="display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
+        <view data-user-Info="{{item}}" bindtap="goUserInfo" style="display: flex;flex-direction: row;justify-content: space-between;align-items: center;">
           <view style="display: flex;flex-direction: row;align-items: center;">
             <!-- 用户头像 -->
             <view style="height: 120rpx;">

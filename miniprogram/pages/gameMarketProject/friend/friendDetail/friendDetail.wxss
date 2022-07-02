@@ -1,1 +1,14 @@
 /* pages/gameMarketProject/friend/friendDetail/friendDetail.wxss */
+/* 省略显示 */
+.productNameText {
+  font-size: 25rpx;
+  color: rgba(0, 0, 0, 0.945);
+  font-weight: bolder;
+  text-overflow: ellipsis;
+  z-index: -1;
+  display: -webkit-box;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}

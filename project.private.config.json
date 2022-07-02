@@ -57,6 +57,19 @@
               "pages/gameMarketProject/index/index"
             ]
           }
+        },
+        {
+          "name": "好友详情页",
+          "pathName": "pages/gameMarketProject/friend/friendDetail/friendDetail",
+          "query": "",
+          "launchMode": "default",
+          "scene": null,
+          "partialCompile": {
+            "enabled": false,
+            "pages": [
+              "pages/gameMarketProject/friend/friendDetail/friendDetail"
+            ]
+          }
         }
       ]
     }

@@ -16,6 +16,15 @@ Page({
     Search_text: '',
     Search_List: ''
   },
+  /***跳转好友详情界面** */
+goUserInfo: function (e) {
+  console.log('goChatPage')
+  var userInfoStr = encodeURIComponent(JSON.stringify(e.currentTarget.dataset.userInfo))
+  //跳转好友详情界面并传参
+  wx.navigateTo({
+    url: '/pages/gameMarketProject/friend/friendDetail/friendDetail?userInfoStr=' + userInfoStr
+  })
+},
   /*****跳转聊天页面*******/
   goChatPage: function (e) {
     console.log('goChatPage')

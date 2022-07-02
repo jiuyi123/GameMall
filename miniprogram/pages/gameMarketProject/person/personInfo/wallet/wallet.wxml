@@ -10,7 +10,7 @@
 
     <van-popup closeable show="{{ show }}" position="bottom" bind:close="onClose">
       <text style="color: black;font-size: larger;font-weight: bolder;">请输入充值金额</text>
-      <input type="number" bindinput="bindInputChange" style="margin-top: 30rpx;margin-bottom: 30rpx;" />
+      <input type="number" bindinput="bindInputChange" value="{{inputNumber}}" style="margin-top: 30rpx;margin-bottom: 30rpx;" />
       <button bindtap="Charge" style="background-color: rgb(255, 44, 29);">确定</button>
     </van-popup>
 

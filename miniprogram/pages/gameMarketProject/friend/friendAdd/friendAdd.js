@@ -11,7 +11,15 @@ Page({
     Search_List: '',
     Add_ID: ''
   },
-
+  /***跳转好友详情界面** */
+  goUserInfo: function (e) {
+    console.log('goUserInfo')
+    var userInfoStr = encodeURIComponent(JSON.stringify(e.currentTarget.dataset.userInfo))
+    //跳转好友详情界面并传参
+    wx.navigateTo({
+      url: '/pages/gameMarketProject/friend/friendDetail/friendDetail?userInfoStr=' + userInfoStr
+    })
+  },
   bindAddContent: function (e) {
     console.log(e.detail)
     this.setData({

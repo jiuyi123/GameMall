@@ -1,2 +1,72 @@
 <!--pages/gameMarketProject/friend/friendDetail/friendDetail.wxml-->
-<text>pages/gameMarketProject/friend/friendDetail/friendDetail.wxml</text>
+<view style="display: flex;flex-direction: column;justify-content: space-between;align-items: center;height: 100% ;;">
+
+
+  <view style="display: flex;flex-direction: column;width: 100%;">
+    <!-- 账户 -->
+    <view style="display: flex;flex-direction: column;align-items: center;">
+      <text style="color: white;font-size: 60rpx;font-weight: bolder;margin-top: 2%;">{{userInfo.Nickname}}</text>
+      <!-- 账户信息 -->
+      <view style="display: flex;flex-direction: row;justify-content: space-between;margin-top: 30rpx;">
+        <image src="{{userInfo.Photo_link}}" mode="scaleToFill" style="height: 250rpx;width:250rpx;margin: 10rpx;box-shadow: 0 0 10px rgb(29, 28, 28);" />
+      </view>
+    </view>
+
+    <view>
+      <view wx:if="{{userInfo.Kupublic}}">
+        <view style="margin-top: 4%;margin-left:4% ;">
+          <text style="color: white;">他拥有的游戏</text>
+        </view>
+        <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 1%;">
+          <scroll-view style="width:92%;white-space: nowrap;background-color: rgba(168, 206, 250, 0.5); border-radius: 30rpx;" scroll-x="true">
+            <view>
+              <view wx:for="{{gameInfoHad}}" wx:key="list1" style="display: inline-block; ">
+                <view data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
+                  <view style="margin-top: 3%;">
+                    <!-- 游戏图片 -->
+                    <image mode="scaleToFill" src="{{item.Pic_link}}" lazy-load="true" style="margin: 15rpx;margin-bottom: 1%;height: 150rpx; width: 120rpx;border-radius: 20rpx;" />
+                    <!-- 游戏名 -->
+                    <view style="width: 150rpx; display: flex;justify-content: center;margin-bottom: 3%;">
+                      <text class='productNameText'>{{item.Name}}</text>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </scroll-view>
+        </view>
+      </view>
+      <view wx:if="{{userInfo.Likepublic}}">
+        <view style="margin-top: 4%;margin-left:4% ;">
+          <text style="color: white;">他收藏的游戏</text>
+        </view>
+        <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 1%;">
+          <scroll-view style="width:92%;white-space: nowrap;background-color: rgba(168, 206, 250, 0.5); border-radius: 30rpx;" scroll-x="true">
+            <view>
+              <view wx:for="{{gameInfoLike}}" wx:key="list1" style="display: inline-block; ">
+                <view data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
+                  <view style="margin-top: 3%;">
+                    <!-- 游戏图片 -->
+                    <image mode="scaleToFill" src="{{item.Pic_link}}" lazy-load="true" style="margin: 15rpx;margin-bottom: 1%;height: 150rpx; width: 120rpx;border-radius: 20rpx;" />
+                    <!-- 游戏名 -->
+                    <view style="width: 150rpx; display: flex;justify-content: center;margin-bottom: 3%;">
+                      <text class='productNameText'>{{item.Name}}</text>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </scroll-view>
+        </view>
+      </view>
+    </view>
+
+
+  </view>
+  
+  <view style="width: 100%;display: flex;">
+      <van-button bindtap="addFriend" wx:if="{{!isFriend}}" type="primary" block style="width: 100%;height: 10%;">加好友</van-button>
+      <van-button bindtap="delete" wx:if="{{isFriend}}" type="danger" block style="width: 50%;">删除好友</van-button>
+      <van-button bindtap="goChatPage" wx:if="{{isFriend}}" type="info" block style="width: 50%;">发送消息</van-button>
+    </view>
+</view>
