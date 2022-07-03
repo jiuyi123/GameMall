@@ -47,18 +47,9 @@ Page({
   },
 
   Register: async function (e) {
-    /*
-       判断密码长度是够合法，两次密码是否一致，设置相关布尔值
-       判断Account——new是否合法，比较数据库账户是否已存在
-       有任何错误则结束
-       *
-       都成功则依据数据库中的ID序号生成下一序号,
-       设置app.globalData.user为新建的用户Json格式数据,
-       并在user添加该用户,最后跳转至index  
-       *
-       */
-    //console.log(e.detail.value)
     var data = await this.GetAlldb("Users")
+    var yingwen = new RegExp("[A-Za-z]+")
+    var shuzi = new RegExp("[0-9]+");
     this.setData({
       Account_new: e.detail.value.Account_new,
       Password_new: e.detail.value.Password_new,
@@ -70,7 +61,27 @@ Page({
         icon: 'error',
         duration: 1500,
       })
-    } else {
+    } else if (this.data.Account_new.length > 25 || this.data.Account_new.length < 2) {
+      wx.showToast({
+        title: '账号长度非法',
+        icon: 'error',
+        duration: 1500,
+      })
+    } else if (this.data.Password_new.length > 16 || this.data.Password_new.length < 6) {
+      wx.showToast({
+        title: '密码长度非法',
+        icon: 'error',
+        duration: 1500,
+      })
+    } 
+    else if(!(yingwen.test(this.data.Password_new)&&shuzi.test(this.data.Password_new))){
+      wx.showToast({
+        title: '输入密码非法',
+        icon: 'error',
+        duration: 1500,
+      })
+    }
+    else {
       db.collection("Users")
         .where({
           Name: this.data.Account_new
@@ -100,31 +111,31 @@ Page({
                 IDNext: data[data.length - 1].ID + 1
               })
               db.collection("Users")
-              .add({
-                data:{
-                ID:this.data.IDNext,
-                Balance:0,
-                Name:this.data.Account_new,
-                Nickname:this.data.Account_new,
-                Password:this.data.Password_new,
-                Photo_link:"https://thirdwx.qlogo.cn/mmopen/vi_32/POgEwh4mIHO4nibH0KlMECNjjGxQUq24ZEaGT4poC6icRiccVGKSyXwibcPq4BWmiaIGuG1icwxaQX6grC9VemZoJ8rg/132",
-                Email:'',
-                Country:userInfo.country,
-                Kupublic:true,
-                Likepublic:true,
-                Commentpublic:true
-                },
-              })
+                .add({
+                  data: {
+                    ID: this.data.IDNext,
+                    Balance: 0,
+                    Name: this.data.Account_new,
+                    Nickname: this.data.Account_new,
+                    Password: this.data.Password_new,
+                    Photo_link: "https://thirdwx.qlogo.cn/mmopen/vi_32/POgEwh4mIHO4nibH0KlMECNjjGxQUq24ZEaGT4poC6icRiccVGKSyXwibcPq4BWmiaIGuG1icwxaQX6grC9VemZoJ8rg/132",
+                    Email: '',
+                    Country: userInfo.country,
+                    Kupublic: true,
+                    Likepublic: true,
+                    Commentpublic: true
+                  },
+                })
               db.collection("Users")
-                  .where({
-                    Name:this.data.Account_new
-                  })
-                  .get({
-                    success:res=>{
-                      console.log(res.data)
-                      app.globalData.User = res.data
-                    }
-                  })
+                .where({
+                  Name: this.data.Account_new
+                })
+                .get({
+                  success: res => {
+                    console.log(res.data)
+                    app.globalData.User = res.data
+                  }
+                })
 
               wx.reLaunch({
                 url: "../index/index?FirstLogin=" + true
