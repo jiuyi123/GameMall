@@ -5,7 +5,7 @@
     <view style="display: flex;flex-direction: column;align-items: center;margin-top: 5%; ">
       <text style="color: white;font-size: xx-large;font-weight: bolder;">{{Balance}}</text>
       <text style="color: white;font-weight: bolder;margin-top: 5%;">金额(元)</text>
-      <button bindtap="showPopup" size="mini" style="background-color: yellowgreen;color: white;margin-top: 30rpx;">充值</button>
+      <button bindtap="showPopup" size="mini" style="background-color: rgb(0, 196, 190);color: white;margin-top: 30rpx;">充值</button>
     </view>
 
     <van-popup closeable show="{{ show }}" position="bottom" bind:close="onClose">

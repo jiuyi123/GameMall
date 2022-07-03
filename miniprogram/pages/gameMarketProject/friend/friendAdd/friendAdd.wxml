@@ -6,7 +6,7 @@
       <van-search placeholder="{{Search_text}}" shape="round" bind:change='bindAddContent' background="rgb(4, 15, 29,0)">
       </van-search>
     </view>
-    <van-button bindtap="Search" color="blue" size="small" style="align-items: center;margin-right: 20rpx;">搜索</van-button>
+    <van-button bindtap="Search" color="rgb(0, 196, 190)" size="small" style="align-items: center;margin-right: 20rpx;">搜索</van-button>
   </view>
   <scroll-view scroll-y="true" style="height:{{winHeight}}rpx; margin-left: 20rpx;margin-right: 20rpx;width: 700rpx;">
     <!-- 好友列表 -->

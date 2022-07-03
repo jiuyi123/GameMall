@@ -6,7 +6,7 @@
       <van-search bind:change='bindSearchContent' background="rgb(136, 203, 230,0)" shape="round" placeholder="{{search_text}}">
       </van-search>
     </view>
-    <van-button bindtap="search" color="blue" size="small" style="align-items: center;margin-right: 20rpx;">搜索</van-button>
+    <van-button bindtap="search" color="rgb(0, 196, 190)" size="small" style="align-items: center;margin-right: 20rpx;">搜索</van-button>
   </view>
 
   <!-- 结果列表   这里的类的名字请忽略，因为是直接复制消息列表的 -->
