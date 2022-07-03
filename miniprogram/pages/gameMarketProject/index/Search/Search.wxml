@@ -27,8 +27,6 @@
           <view class="infoContent">标签：{{item.Tag}}</view>
           <!-- 热度 -->
           <view class="infoContent">热度：{{item.Hits}}</view>
-          <!-- 发行时间 -->
-          <view class="infoTime">时间：{{item.Release_Time}}</view>
         </view>
         <!-- 游戏价格 -->
         <view class="gamePrice">¥{{item.Price}}</view>

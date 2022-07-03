@@ -7,35 +7,41 @@ Page({
    * 页面的初始数据
    */
   data: {
-    Show_list:''
+    Show_list: ''
   },
- //游戏详情页面
- goDetail(e){
-  console.log("GoDetail")
-  console.log(e)
-  var gameInfoStr = encodeURIComponent(JSON.stringify(e.currentTarget.dataset.gameInfo)) 
-  //把点击的游戏对象参数传递给游戏详情页面
-  wx.navigateTo({
-    url:"/pages/gameMarketProject/index/gameDetail/detail/detail?gameInfoStr="+gameInfoStr,
-  })
-},
-//获取游戏列表
-  async LoadInfo(){
-    let count = await db.collection("Orders").where({      User_ID:app.globalData.User[0].ID,
-      State:"已支付"}).count()
+  
+
+  //游戏详情页面
+  goDetail(e) {
+    console.log("GoDetail")
+    console.log(e)
+    var gameInfoStr = encodeURIComponent(JSON.stringify(e.currentTarget.dataset.gameInfo))
+    //把点击的游戏对象参数传递给游戏详情页面
+    wx.navigateTo({
+      url: "/pages/gameMarketProject/index/gameDetail/detail/detail?gameInfoStr=" + gameInfoStr,
+    })
+  },
+  //获取游戏列表
+  async LoadInfo() {
+    let count = await db.collection("Orders").where({
+      User_ID: app.globalData.User[0].ID,
+      State: "已支付"
+    }).count()
     count = count.total
     let all = []
-    for(let i = 0; i < count; i += 20){
-      let list = await db.collection("Orders").where({      User_ID:app.globalData.User[0].ID,
-        State:"已支付"}).skip(i).get()
+    for (let i = 0; i < count; i += 20) {
+      let list = await db.collection("Orders").where({
+        User_ID: app.globalData.User[0].ID,
+        State: "已支付"
+      }).skip(i).get()
       all = all.concat(list.data)
     }
     var gamelist = new Array
-    for(let i = 0; i < all.length; i++){
-      gamelist = gamelist.concat(app.globalData.Game[all[i].Game_ID-1])
+    for (let i = 0; i < all.length; i++) {
+      gamelist = gamelist.concat(app.globalData.Game[all[i].Game_ID - 1])
     }
     this.setData({
-      Show_list:gamelist
+      Show_list: gamelist
     })
   },
 

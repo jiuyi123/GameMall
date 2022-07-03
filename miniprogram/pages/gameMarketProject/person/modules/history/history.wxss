@@ -1,1 +1,60 @@
 /* pages/gameMarketProject/person/personInfo/history/history.wxss */
+/* 搜索列表 */
+.inputBox {
+  width: 500rpx;
+  height: 70rpx;
+  background: rgba(244, 246, 248, 1);
+  border-radius: 17px;
+  margin: 20rpx 0rpx 0rpx 20rpx;
+  font-size: 26rpx;
+  color: #000;
+  line-height: 70rpx;
+  text-align: center;
+}
+
+.buttonBox {
+  margin-top: 20rpx;
+  background-color: lightblue;
+  height: 70rpx;
+  text-align: center;
+}
+
+/* 聊天列表 */
+
+.reviewItemView {
+  border-bottom: 1rpx solid #f1f1f1;
+  position: relative;
+}
+
+.infoBox {
+  display: inline-flex;
+}
+
+.nameInfoBox {
+  margin-left: 20rpx;
+  color: #fff;
+  width: 430rpx;
+}
+
+.userName {
+  margin-bottom: 10rpx;
+  font-size: larger;
+  font-weight: bolder;
+}
+
+.infoContent {
+  font-size: smaller;
+  color: rgb(206, 206, 206);
+}
+
+.infoTime {
+  font-size: smaller;
+  color: rgb(206, 206, 206);
+}
+.gamePrice {
+  width: 60rpx;
+  display: flex;
+  flex-direction: row-reverse;
+  align-self: center;
+  color: rgb(255, 251, 37);
+}
