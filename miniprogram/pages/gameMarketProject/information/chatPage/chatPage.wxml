@@ -1,4 +1,5 @@
 <!--pages/gameMarketProject/information/chatPage/chatPage.wxml-->
+<wxs src="chatPage.wxs" module="tools" /> 
 <view>
   <scroll-view scroll-y scroll-into-view='{{scrollLast}}' style='height: {{scrollHeight}};'>
     <!-- <view class='scrollMsg'> -->
@@ -11,12 +12,12 @@
         </view>
         <view style='width: 4vw; height: 11vw; margin-left: 0.5vw; display: flex; align-items: center; z-index: 9;'>
         </view>
-        <view class='leftMsg'>{{item[0].Data}}</view>
+        <view class='leftMsg'>{{tools.length(item[0].Data)}}</view>
       </view>
       <!-- 单个消息2 用户发出（右） -->
       <view wx:if='{{!(item[0].Sender_ID-user.ID)}}' style='display: flex; justify-content: flex-end;align-items: center; padding: 2vw 2vw 2vw 11vw;'>
         <text style="color: rgb(194, 197, 197);font-size: smaller;margin-right: 10rpx;">{{item[0].State}}</text>
-        <view class='rightMsg'>{{item[0].Data}}</view>
+        <view class='rightMsg'>{{tools.length(item[0].Data)}}</view>
         <view style='width: 4vw; height: 11vw; margin-right: 0.5vw; display: flex; align-items: center; z-index: 9;'>
           <!-- <image style='width: 4vw;' src='../../images/right_msg.png' mode='widthFix'></image> -->
         </view>

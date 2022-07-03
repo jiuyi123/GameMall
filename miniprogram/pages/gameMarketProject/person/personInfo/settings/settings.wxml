@@ -6,16 +6,16 @@
     <text style="color: white;font-size: 60rpx;font-weight: bolder;margin-top: 2%;">账户</text>
   </view>
   <view style="display: flex;flex-direction: row;justify-content: space-between;align-content: center;align-items: center;margin-bottom: 30rpx;">
-    <text style="color: white;">评论所有人可见</text>
-    <van-switch checked="{{ checkedComment }}" bind:change="onChangeComment" size="24px" />
+    <text style="color: white; ">评论所有人可见</text>
+    <van-switch checked="{{ checkedComment }}" bind:change="onChangeComment" active-color="rgb(0, 196, 190);" size="24px" />
   </view>
   <view style="display: flex;flex-direction: row;justify-content: space-between;align-content: center;align-items: center;margin-bottom: 30rpx;">
     <text style="color: white;">库所有人可见</text>
-    <van-switch checked="{{ checkedWarehouse }}" bind:change="onChangeWarehouse" size="24px"/>
+    <van-switch checked="{{ checkedWarehouse }}" bind:change="onChangeWarehouse"  active-color="rgb(0, 196, 190);" size="24px"/>
   </view>
   <view style="display: flex;flex-direction: row;justify-content: space-between;align-content: center;align-items: center;margin-bottom: 30rpx;">
     <text style="color: white;">我喜欢所有人可见</text>
-    <van-switch checked="{{ checkedLike }}" bind:change="onChangeLike" size="24px" />
+    <van-switch checked="{{ checkedLike }}" bind:change="onChangeLike"  active-color="rgb(0, 196, 190);" size="24px" />
   </view>
 
 </view>
