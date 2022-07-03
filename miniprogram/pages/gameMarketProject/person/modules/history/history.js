@@ -61,15 +61,36 @@ Page({
         show_list[count++].Time = all[i].Time
       }
     }
+    show_list = this.SortByTime(show_list)
     this.setData({
       Show_list: show_list
     })
   },
+
+  SortByTime(arr) {
+    for (var i = 0; i < arr.length - 1; i++) {
+      //确定轮数
+      for (var j = 0; j < arr.length - i - 1; j++) {
+        //确定每次比较的次数
+        if (arr[j].Time < arr[j + 1].Time) {
+          var tem = arr[j]
+          arr[j] = arr[j + 1]
+          arr[j + 1] = tem
+        }
+      }
+    }
+    return arr
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
     // 高度自适应
+    wx.showLoading({
+      title: '加载中',
+      mask: true //开启蒙版遮罩
+    })
     var that = this
     wx.getSystemInfo({
       success: function (res) {
@@ -85,6 +106,7 @@ Page({
 
     await this.LoadInfo()
     console.log(this.data.Show_list)
+    wx.hideLoading()
   },
 
   /**

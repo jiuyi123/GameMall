@@ -63,19 +63,24 @@ Page({
     //console.log(this.data.TempMessage)
     var sendmessage = this.data.TempMessage
     if (sendmessage.length != 0) {
-      db.collection('ChatRecord').add({
-        data: {
-          Data: sendmessage,
-          Receiver_ID: this.data.friend.ID,
-          Sender_ID: app.globalData.User[0].ID,
-          Time: this.GetTime(),
-          State: '未读'
+      for (var i = 0; i < sendmessage.length; i++) {
+        if (sendmessage[i] != ' ') {
+          db.collection('ChatRecord').add({
+            data: {
+              Data: sendmessage,
+              Receiver_ID: this.data.friend.ID,
+              Sender_ID: app.globalData.User[0].ID,
+              Time: this.GetTime(),
+              State: '未读'
+            }
+          })
+          break
         }
-      })
-      this.setData({
-        TempMessage: ''
-      })
+      }
     }
+    this.setData({
+      TempMessage: ''
+    })
   },
 
   async GetSendMessage() {
@@ -143,7 +148,7 @@ Page({
     this.setData({
       ReceiveMessageList: data
     })
-    console.log(this.data.ReceiveMessageList)
+    //console.log(this.data.ReceiveMessageList)
   },
 
   Show() {
@@ -178,18 +183,14 @@ Page({
         Show_list: list
       })
     }
-    console.log('Show_list')
-    console.log(this.data.Show_list)
+    //console.log('Show_list')
+    //console.log(this.data.Show_list)
     this.getScollBottom()
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: async function (options) {
-    wx.showLoading({
-      title: '加载中',
-      mask: true //开启蒙版遮罩
-    })
     this.getScollBottom()
     const that = this
     var userFriend = JSON.parse(decodeURIComponent(options.userInfoStr))
@@ -215,9 +216,9 @@ Page({
           //监控数据发生变化时触发
           await that.GetReceiveMessage()
           await that.GetSendMessage()
-          await that.Show()
-          console.log('监听发送')
-          console.log(that.data.Show_list)
+          that.Show()
+          //console.log('监听发送')
+          //console.log(that.data.Show_list)
         },
         onError: err => {
           console.error(err)
@@ -233,15 +234,15 @@ Page({
           //监控数据发生变化时触发
           await that.GetReceiveMessage()
           await that.GetSendMessage()
-          await that.Show()
-          console.log('监听接收')
-          console.log(that.data.Show_list)
+          that.Show()
+          //console.log('监听接收')
+          //console.log(that.data.Show_list)
         },
         onError: err => {
           console.error(err)
         }
       })
-      wx.hideLoading()
+    wx.hideLoading()
   },
 
   /**
