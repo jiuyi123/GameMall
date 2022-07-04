@@ -5,10 +5,10 @@
   <view style="">
     <text style="color: white;font-size: 60rpx;font-weight: bolder;margin-top: 2%;">账户</text>
   </view>
-  <view style="display: flex;flex-direction: row;justify-content: space-between;align-content: center;align-items: center;margin-bottom: 30rpx;">
+  <!-- <view style="display: flex;flex-direction: row;justify-content: space-between;align-content: center;align-items: center;margin-bottom: 30rpx;">
     <text style="color: white; ">评论所有人可见</text>
     <van-switch checked="{{ checkedComment }}" bind:change="onChangeComment" active-color="rgb(0, 196, 190);" size="24px" />
-  </view>
+  </view> -->
   <view style="display: flex;flex-direction: row;justify-content: space-between;align-content: center;align-items: center;margin-bottom: 30rpx;">
     <text style="color: white;">库所有人可见</text>
     <van-switch checked="{{ checkedWarehouse }}" bind:change="onChangeWarehouse"  active-color="rgb(0, 196, 190);" size="24px"/>

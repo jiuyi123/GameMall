@@ -4,11 +4,11 @@
     <view class="sonPageItem" bindtap="goCommentInfo">
       <view>
         <!-- 通知图标 -->
-        <view class="head-text" wx:if="{{numCommentInfo>0}}">
+        <view class="head-text" wx:if="{{NewComment>0}}">
           <view class="num-box">
             <view class="btn-groups">
-              <button class="goods-btn" wx:if="{{numCommentInfo<=99}}">{{numCommentInfo}}</button>
-              <button class="goods-btn" wx:if="{{numCommentInfo>99}}">...</button>
+              <button class="goods-btn" wx:if="{{NewComment<=99}}">{{NewComment}}</button>
+              <button class="goods-btn" wx:if="{{NewComment>99}}">...</button>
             </view>
           </view>
         </view>

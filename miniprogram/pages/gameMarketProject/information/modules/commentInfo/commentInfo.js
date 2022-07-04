@@ -9,77 +9,21 @@ Page({
     winHeight: '', //聊天列表窗口高度
     WeiduList: '',
     YiduList: '',
-    //这里本应该是其他用户的消息
-    gameInfoObj: [{
-        userName: 'jy',
-        userPhoto: 'https://s1.ax1x.com/2022/05/08/O1XIk4.jpg',
-        infoContent: '今天有时间呀',
-        infoTime: '13:15',
-        numCommentInfo: 12
-      },
-      {
-        userName: 'ctz',
-        userPhoto: 'https://s1.ax1x.com/2022/05/18/OTqQZ8.jpg ',
-        infoContent: '今天有时间呀',
-        infoTime: '13:15',
-        numCommentInfo: 5
-      },
-      {
-        userName: 'wzl',
-        userPhoto: 'https://s1.ax1x.com/2022/05/18/OTqKqf.jpg',
-        infoContent: '今天有时间呀',
-        infoTime: '13:15',
-        numCommentInfo: 1
-      },
-      {
-        userName: 'ycr',
-        userPhoto: 'https://s1.ax1x.com/2022/05/18/OTqnMt.jpg',
-        infoContent: '今天有时间呀',
-        infoTime: '13:15',
-        numCommentInfo: 999
-      },
-      {
-        userName: 'hyl',
-        userPhoto: 'https://s1.ax1x.com/2022/05/18/OTqusP.jpg',
-        infoContent: '今天有时间呀',
-        infoTime: '13:15',
-        numCommentInfo: 0
-      },
-      {
-        userName: '小久',
-        userPhoto: 'https://s1.ax1x.com/2022/05/08/O1XIk4.jpg',
-        infoContent: '今天有时间呀',
-        infoTime: '13:15',
-        numCommentInfo: 0
-      },
-      {
-        userName: '小楠',
-        userPhoto: 'https://s1.ax1x.com/2022/05/08/O1XIk4.jpg',
-        infoContent: '今天有时间呀',
-        infoTime: '13:15',
-        numCommentInfo: 0
-      },
-      {
-        userName: '康康',
-        userPhoto: 'https://s1.ax1x.com/2022/05/08/O1XIk4.jpg',
-        infoContent: '今天有时间呀',
-        infoTime: '13:15',
-        numCommentInfo: 0
-      },
-      {
-        userName: '小云',
-        userPhoto: 'https://s1.ax1x.com/2022/05/08/O1XIk4.jpg',
-        infoContent: '今天有时间呀',
-        infoTime: '13:15',
-        numCommentInfo: 0
-      }
-    ]
   },
-
+  /***跳转好友详情界面** */
+  goUserInfo: function (e) {
+    console.log('goUserInfo')
+    console.log(e.currentTarget.dataset.userInfo)
+    var userInfoStr = encodeURIComponent(JSON.stringify(e.currentTarget.dataset.userInfo))
+    //跳转好友详情界面并传参
+    wx.navigateTo({
+      url: '/pages/gameMarketProject/friend/friendDetail/friendDetail?userInfoStr=' + userInfoStr
+    })
+  },
   // 跳转聊天界面
   goChatPage: function (e) {
-    console.log('goChatPage')
-    console.log(e.currentTarget.dataset.userInfo)
+   // console.log('goChatPage')
+   // console.log(e.currentTarget.dataset.userInfo)
     var userInfoStr = encodeURIComponent(JSON.stringify(e.currentTarget.dataset.userInfo))
     //跳转到聊天界面并传参
     wx.navigateTo({
@@ -96,7 +40,7 @@ Page({
           clientWidth = res.windowWidth,
           rpxR = 750 / clientWidth
         var calc = clientHeight * rpxR - 0
-        console.log(calc)
+        //console.log(calc)
         that.setData({
           winHeight: calc
         })
@@ -201,6 +145,7 @@ Page({
     this.setData({
       YiduList: list
     })
+    console.log("YiduList")
     console.log(list)
   },
 
@@ -247,7 +192,7 @@ Page({
             .get()
           data = data.concat(list.data)
         }
-        console.log(data)
+       // console.log(data)
         for (var m = 0; m < data.length; m++) {
           let res = await db
             .collection('Users')
@@ -310,7 +255,7 @@ Page({
     this.setData({
       WeiduList: list
     })
-    console.log("list")
+    console.log("WeiduList")
     console.log(list)
   },
 
