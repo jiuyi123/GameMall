@@ -31,6 +31,14 @@ Page({
     is_GouMai: false,
     UserInfo: ''
   },
+/***视频出错处理*** */
+playError(){
+  wx.showToast({
+    title: '暂时无法播放',
+    icon:"error",
+    duration:1000
+  })
+},
   /********评论弹窗********** */
   comment() {
     this.setData({
