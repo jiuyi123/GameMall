@@ -31,14 +31,14 @@ Page({
     is_GouMai: false,
     UserInfo: ''
   },
-/***视频出错处理*** */
-playError(){
-  wx.showToast({
-    title: '暂时无法播放',
-    icon:"error",
-    duration:1000
-  })
-},
+  /***视频出错处理*** */
+  playError() {
+    wx.showToast({
+      title: '暂时无法播放',
+      icon: "error",
+      duration: 1000
+    })
+  },
   /********评论弹窗********** */
   comment() {
     this.setData({
@@ -365,12 +365,6 @@ playError(){
     })
     if (this.data.PayWay == 0) {
       //余额支付
-      var game = await db
-        .collection('Games')
-        .where({
-          ID: app.globalData.Game[0].ID
-        })
-        .get()
       if (this.data.User.Balance > this.data.gameInfoObj.Price) {
         //修改数据库User
         var res = await db
@@ -393,6 +387,17 @@ playError(){
             ID: this.data.User.ID
           })
           .get()
+        app.globalData.User = res.data
+        console.log(res.data)
+
+        let res1 = await db.collection("Orders").where({
+          Game_ID:game_id,
+          User_ID:this.data.User.ID,
+          State:'未支付'
+        }).get()
+        if(res1.data.length>0){
+          await db.collection("Orders").doc(res1.data[0]._id).remove()
+        }
         //增加一条订单
         const data = await this.GetAlldb('Orders')
         db.collection('Orders').add({
@@ -405,8 +410,6 @@ playError(){
             User_ID: this.data.User.ID
           }
         })
-        app.globalData.User = res.data
-        console.log(res.data)
         this.setData({
           is_GouMai: true
         })
@@ -420,6 +423,9 @@ playError(){
           icon: 'error'
         })
       }
+    }
+    else if(this.data.PayWay==1){
+      
     }
     this.BuyClose()
   },
