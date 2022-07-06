@@ -1,7 +1,0 @@
-var length = function(s)
-{
-  var res
-  res=insertStr(s,20,"\n");
-  return "sssssssss";
-}
-module.exports.length = length
