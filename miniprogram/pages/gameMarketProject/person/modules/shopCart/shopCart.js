@@ -80,7 +80,6 @@ Page({
       Show_list: newList,
       allSelect: select
     })
-    that.countNum()
     that.count()
   },
  
