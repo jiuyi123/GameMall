@@ -21,7 +21,7 @@ Page({
     monijingying:[],
     moniqilei:[],
     qitayouxi:[],
-    saicheyouxi :[],
+    saicheyouxi:[],
     shejiyouxi:[],
     tiyuyundong:[],
     wangluoyouxi:[],
@@ -48,7 +48,9 @@ Page({
     var game;//当前读取的游戏对象
     for (var i = 0; i < this.data.Game_list.length; i++) {
       game = this.data.Game_list[i];
-      if(game.Score == "null") continue;//没有打分直接跳过
+      if(game.Score == "null") {
+        game.Score = 0;
+      }//没有打分当作0分
       switch (game.Tag) {
         case "策略游戏":
           this.InsertGameToArray(game,this.data.celueyouxi);
@@ -162,6 +164,7 @@ Page({
   },
 
   onLoad: function (options) {
+    
     this.SortGame();
     this.setData({
       celueyouxi:this.data.celueyouxi,
