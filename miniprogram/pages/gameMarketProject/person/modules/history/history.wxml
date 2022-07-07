@@ -11,21 +11,21 @@
           </a>
         </view>
         <view style="display: flex;flex-direction: column;justify-content: space-between;">
-            <!-- 游戏名和标签 -->
-            <view class="nameInfoBox">
-              <!-- 游戏名 -->
-              <view class="userName">{{item.Name}}</view>
-              <!-- 游戏标签 -->
-              <view class="infoContent">标签：{{item.Tag}}</view>
-              <!-- 热度 -->
-              <view class="infoContent">热度：{{item.Hits}}</view>
-            </view>
-            <!-- 浏览时间 -->
-            <view style="color: white;margin-left:20rpx ;">时间：{{item.Time}}</view>
+          <!-- 游戏名和标签 -->
+          <view class="nameInfoBox">
+            <!-- 游戏名 -->
+            <view class="userName">{{item.Name}}</view>
+            <!-- 游戏标签 -->
+            <view class="infoContent">标签：{{item.Tag}}</view>
+            <!-- 热度 -->
+            <view class="infoContent">热度：{{item.Hits}}</view>
+          </view>
+          <!-- 浏览时间 -->
+          <view style="color: white;margin-left:20rpx ;">时间：{{item.Time}}</view>
         </view>
       </view>
     </view>
     <view hidden="{{Top}}" class="back" bindtap="backTop" style="color: white;height: 100rpx;display: flex;justify-content: center;size: 50rpx;">已经到底了，点击返回顶端</view>
-  </scroll-view>
+    </scroll-view>
 
 </view>
