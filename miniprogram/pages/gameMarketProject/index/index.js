@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    ChatList: '',
+    HotChart: '',
+    TuijianList: '',
     show: false,
     searchFirst: true,
     Is_game_got: false,
@@ -23,8 +24,7 @@ Page({
       'https://fenwan.cdn.bcebos.com/cms/gamenow/lewan/2022-2/1644565803292/e2df1c0a895e.jpg?x-bce-process=image/resize,m_lfit,w_242'
     ],
     //分类标签
-    riderCommentList: [
-      {
+    riderCommentList: [{
         value: '全部',
         selected: false,
         title: '全部'
@@ -137,9 +137,99 @@ Page({
       Is_game_got: true,
       gameInfo: all
     })
+    await this.LoadTuijianList()
+    await this.LoadHotChart()
+    console.log(this.data.TuijianList)
+    console.log(this.data.HotChart)
     wx.hideLoading()
   },
 
+  async LoadTuijianList() {
+    let TuijianList = []
+    let Tuijian = []
+    let count = await db.collection('Collect').where({
+      User_ID: app.globalData.User[0].ID
+    }).count()
+    count = count.total
+    console.log(count)
+    if (count > 0) {
+      let all = []
+      for (let i = 0; i < count; i += 20) {
+        let list = await db.collection('Collect').where({
+          User_ID: app.globalData.User[0].ID
+        }).skip(i).get()
+        all = all.concat(list.data)
+      }
+      for (let i = 0; i < all.length; i++) {
+        Tuijian[i] = app.globalData.Game[all[i].Game_ID - 1].Tag
+      }
+      count = 0
+      for (var j = 0; j < Tuijian.length; j++) {
+        for (let i = 0, n = 0; i < app.globalData.Game.length && n < 20; i++) {
+          if (app.globalData.Game[i].Tag == Tuijian[j] && this.check(app.globalData.Game[i], TuijianList)) {
+            TuijianList = TuijianList.concat(app.globalData.Game[i])
+            n++
+            count++
+          }
+        }
+      }
+      while (count < 60) {
+        for (let i = 0; i < app.globalData.Game.length && count < 60; i++, count++) {
+          if (this.check(app.globalData.Game[i], TuijianList)) {
+            TuijianList = TuijianList.concat(app.globalData.Game[i])
+          }
+        }
+      }
+    } else {
+      console.log("没有收藏")
+      TuijianList = []
+    }
+    //console.log(TuijianList)
+    //console.log(app.globalData.Game.length)
+    this.setData({
+      TuijianList: TuijianList
+    })
+  },
+
+  check(item, list) {
+    for (var i = 0; i < list.length; i++) {
+      if (item == list[i]) {
+        return false
+      }
+    }
+    return true
+  },
+
+  async LoadHotChart() {
+    let list = []
+    let count = 0
+    let game = new Array()
+    for (var i = 0; i < app.globalData.Game.length; i++) {
+      game[i] = app.globalData.Game[i]
+    }
+    for (var i = 0; i < game.length - 1; i++) {
+      //确定轮数
+      for (var j = 0; j < game.length - i - 1; j++) {
+        //确定每次比较的次数
+        if (game[j].Hits < game[j + 1].Hits) {
+          var temgame = game[j]
+          game[j] = game[j + 1]
+          game[j + 1] = temgame
+        }
+      }
+    }
+    while (count < 60) {
+      for (let i = 0; i < game.length && count < 60; i++, count++) {
+        if (this.check(game[i], list)) {
+          list = list.concat(game[i])
+        }
+      }
+    }
+    //console.log(list)
+    this.setData({
+      HotChart:list
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -167,8 +257,7 @@ Page({
             wx.navigateTo({
               url: '../person/personInfo/account/account'
             })
-          } else if (res.cancel) {
-          }
+          } else if (res.cancel) {}
         }
       })
     }
