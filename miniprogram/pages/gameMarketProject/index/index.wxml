@@ -48,7 +48,7 @@
   <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 1%;">
     <scroll-view style="width:92%;white-space: nowrap;background-color: rgba(125, 183, 248, 0.5); border-radius: 30rpx;" scroll-x="true">
       <view>
-        <view wx:for="{{gameInfo}}" wx:key="list1" style="display: inline-block; ">
+        <view wx:for="{{HotChart}}" wx:key="list1" style="display: inline-block; ">
           <view data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
             <view style="margin-top: 3%;">
               <!-- 游戏图片 -->
@@ -69,7 +69,7 @@
   <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 1%;">
     <scroll-view style="width:92%;white-space: nowrap;background-color: rgba(125, 183, 248, 0.5); border-radius: 30rpx;" scroll-x="true">
       <view>
-        <view wx:for="{{gameInfo}}" wx:key="list1" style="display: inline-block;">
+        <view wx:for="{{TuijianList}}" wx:key="list1" style="display: inline-block;">
           <view data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
             <view style="margin-top: 3%;">
               <!-- 游戏图片 -->
