@@ -3,17 +3,19 @@
   <text style="color: azure;">已拥有{{Show_list.length}}个游戏</text>
 </view>
 <!-- 展示区 -->
-<view style="width: 99%;margin-top: 20rpx;">
-  <view>
+<view style="display: flex;justify-content: center;">
+<view style="width: 95%;margin-top: 20rpx;justify-content: center;">
+  <view style="background-color: rgba(150, 150, 150, 0.5);border-radius: 35rpx;">
     <view wx:for="{{Show_list}}" style="display: inline-block;">
       <view data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
-        <view style="height: 400rpx;width: 234rpx;margin: 5rpx;background-color: rgb(0, 255, 255,0.5);">
-          <image mode="scaleToFill" src="{{item.Pic_link}}" lazy-load="true" style="margin: 15rpx;margin-bottom: 5rpx;height: 300rpx; width: 204rpx;" />
-          <view style="width: 230rpx;margin-right: 2rpx;margin-left: 2rpx; display: flex;justify-content: center;color:lightblue;">
+        <view style="height: 400rpx;width: 234rpx;">
+          <image mode="scaleToFill" src="{{item.Pic_link}}" lazy-load="true" style="margin: 20rpx;margin-bottom: 5rpx;height: 300rpx; width: 204rpx;border-radius: 30rpx;" />
+          <view style="width: 230rpx; display: flex;justify-content: center;color:rgb(255, 255, 255);z-index:100">
             <text class='productNameText'>{{item.Name}}</text>
           </view>
         </view>
       </view>
     </view>
   </view>
+</view>
 </view>

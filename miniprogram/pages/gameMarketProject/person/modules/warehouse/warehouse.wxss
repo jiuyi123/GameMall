@@ -2,6 +2,7 @@
 /* 省略显示 */
 .productNameText {
   font-size: 35rpx;
+  font-weight: bolder;
   text-overflow: ellipsis;
   z-index: -1;
   display: -webkit-box;
