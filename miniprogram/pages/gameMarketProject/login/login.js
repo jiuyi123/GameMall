@@ -2,6 +2,7 @@
 /*Author 花园路 */
 const app = getApp()
 const db = wx.cloud.database()
+var openid
 Page({
   /**
    * 页面的初始数据
@@ -85,23 +86,28 @@ Page({
       success: res => {
         //获取用户信息
         userInfo = res.userInfo
-        // 获取code值
-        wx.login({
-          success: res => {
-            let code = res.code
-            // 通过code换取openId
-            wx.request({
-              url: `https://api.weixin.qq.com/sns/jscode2session?appid=wxa25a2ea091c9f809&secret=0060decbfc8c655a7157c02f8cfd386f&js_code=${code}&grant_type=authorization_code`,
-              success: res => {
-                userInfo.openid = res.data.openid
-                that.setData({
-                  userInfo: userInfo
-                })
-                that.Weixin_login()
-              }
-            })
-          }
+        //获取code值
+        userInfo.openid = openid
+        that.setData({
+          userInfo: userInfo
         })
+        that.Weixin_login()
+        // wx.login({
+        //   success: res => {
+        //     let code = res.code
+        //     // 通过code换取openId
+        //     wx.request({
+        //       url: `https://api.weixin.qq.com/sns/jscode2session?appid=wxa25a2ea091c9f809&secret=0060decbfc8c655a7157c02f8cfd386f&js_code=${code}&grant_type=authorization_code`,
+        //       success: res => {
+        //         userInfo.openid = res.data.openid
+        //         that.setData({
+        //           userInfo: userInfo
+        //         })
+        //         that.Weixin_login()
+        //       }
+        //     })
+        //   }
+        // })
       }
     })
   },
@@ -175,7 +181,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: async function (options) {
+  onLoad: function (options) {
     //await this.GetUserInfo()
     if (wx.getUserProfile) {
       this.setData({
@@ -192,7 +198,20 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {},
+  onShow: async function () {
+    let res = await db.collection("Users").add({
+      data: {
+        login: '1'
+      }
+    })
+    res = await db.collection("Users").where({
+      login: '1'
+    }).get()
+    //console.log(res.data)
+    openid = await res.data[0]._openid
+    db.collection("Users").doc(res.data[0]._id).remove()
+    //console.log(openid)
+  },
 
   /**
    * 生命周期函数--监听页面隐藏
