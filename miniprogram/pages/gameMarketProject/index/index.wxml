@@ -37,18 +37,39 @@
   <!-- 轮播图 -->
   <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 4%;">
     <swiper class="banners" indicator-dots autoplay indicator-active-color="#d43c33" indicator-color="ivory">
-      <swiper-item wx:for="{{imgUrl}}" wx:key="bannerId" style="box-shadow:0 0 10px rgb(180, 180, 180);">
+      <swiper-item wx:for="{{imgUrl}}" wx:key="bannerId" style="box-shadow:0 0 10px rgb(184, 169, 169);">
         <image src="{{item}}" style="width: 700rpx;" />
       </swiper-item>
     </swiper>
   </view>
   <view style="margin-top: 4%;margin-left:4% ;">
+    <text style="color: white;">热榜</text>
+  </view>
+  <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 1%;">
+    <scroll-view style="width:92%;white-space: nowrap;background-color: rgba(125, 183, 248, 0.5); border-radius: 30rpx;" scroll-x="true">
+      <view>
+        <view wx:for="{{gameInfo}}" wx:key="list1" style="display: inline-block; ">
+          <view data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
+            <view style="margin-top: 3%;">
+              <!-- 游戏图片 -->
+              <image mode="scaleToFill" src="{{item.Pic_link}}" lazy-load="true" style="margin: 15rpx;margin-bottom: 1%;height: 300rpx; width: 200rpx;border-radius: 40rpx;" />
+              <!-- 游戏名 -->
+              <view style="width: 230rpx; display: flex;justify-content: center;margin-bottom: 3%;">
+                <text class='productNameText'>{{item.Name}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <view style="margin-top: 4%;margin-left:4% ;">
     <text style="color: white;">你会喜欢</text>
   </view>
   <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 1%;">
-    <scroll-view style="width:92%;white-space: nowrap;background-color: rgba(168, 206, 250, 0.5); border-radius: 30rpx;" scroll-x="true">
+    <scroll-view style="width:92%;white-space: nowrap;background-color: rgba(125, 183, 248, 0.5); border-radius: 30rpx;" scroll-x="true">
       <view>
-        <view wx:for="{{gameInfo}}" wx:key="list1" style="display: inline-block; ">
+        <view wx:for="{{gameInfo}}" wx:key="list1" style="display: inline-block;">
           <view data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
             <view style="margin-top: 3%;">
               <!-- 游戏图片 -->
@@ -67,7 +88,7 @@
     <text style="color: white;">本周新游</text>
   </view>
   <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 1%;">
-    <scroll-view style="width:92%;white-space: nowrap;background-color: rgba(168, 206, 250, 0.5); border-radius: 30rpx;" scroll-x="true">
+    <scroll-view style="width:92%;white-space: nowrap;background-color: rgba(125, 183, 248, 0.5); border-radius: 30rpx;" scroll-x="true">
       <view>
         <view wx:for="{{gameInfo}}" wx:key="list1" style="display: inline-block;">
           <view data-game-Info="{{item}}" style="flex-direction: column;display: flex;" bindtap="goDetail">
@@ -84,6 +105,7 @@
       </view>
     </scroll-view>
   </view>
+
   <view style="height: 200rpx;display: flex;flex-direction: column-reverse;align-items: center;">
   <text style="color: white;font-weight: bolder;">已经到底了</text>
   </view>

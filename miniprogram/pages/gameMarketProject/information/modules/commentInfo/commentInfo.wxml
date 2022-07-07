@@ -58,4 +58,5 @@
         <view class="infoTime">{{item.time}}</view>
       </view>
     </view>
+    <text wx:if="{{WeiduList.length==0&&YiduList.length==0}}" style="margin-top: 50rpx;font-weight: bolder;font-size: larger;display: flex;justify-content: center;color: aliceblue;">暂时没有通知</text> 
   </scroll-view>

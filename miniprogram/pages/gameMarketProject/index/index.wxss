@@ -66,10 +66,10 @@ page {
 /* 省略显示 */
 .productNameText {
   font-size: 35rpx;
-  color: rgba(0, 0, 0);
-  font-weight: bolder;
+  color: rgb(224, 224, 224);
+  font-weight:600;
   text-overflow: ellipsis;
-  z-index: -1;
+  z-index: 99;
   display: -webkit-box;
   word-break: break-all;
   -webkit-box-orient: vertical;

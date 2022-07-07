@@ -118,9 +118,9 @@
                   <van-radio name="3">支付宝支付</van-radio>
                 </view>
                 <view style="margin:20rpx;">
-                  <van-checkbox value="{{ checked }}" shape="square" bind:change="onChangeCheckbox" style="color: whitesmoke;">
-                    <text style="font-size: smaller;color: gray;">本人阅读并同意以下协议</text>
-                  </van-checkbox>
+                  <!-- <van-checkbox value="{{ checked }}" shape="square" bind:change="onChangeCheckbox" style="color: whitesmoke;"> -->
+                    <!-- <text style="font-size: smaller;color: gray;">本人阅读并同意以下协议</text> -->
+                  <!-- </van-checkbox> -->
                 </view>
                 <button bindtap="WantBuy" style="background-color: red;color: white;">确认支付 {{gameInfoObj.Price}}¥</button>
               </van-radio-group>
