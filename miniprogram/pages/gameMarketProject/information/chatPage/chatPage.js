@@ -222,6 +222,7 @@ Page({
         },
         onError: err => {
           console.error(err)
+          this.onReady()
         }
       })
     db.collection('ChatRecord')

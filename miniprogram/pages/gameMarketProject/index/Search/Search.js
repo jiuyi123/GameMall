@@ -51,7 +51,7 @@ Page({
     })
   },
   search: function () {
-    ;(app.globalData.search_text = this.data.search_text), this.Dafen_AllGame()
+    (app.globalData.search_text = this.data.search_text), this.Dafen_AllGame()
   },
   Dafen_AllGame: function () {
     let temp = new Array()
