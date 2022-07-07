@@ -18,10 +18,10 @@
         <text bindtap="Weixin_login" style="color: rgb(55, 182, 74);font-weight: bolder;">微信授权登录</text>
         <button open-type="getUserProfile" bindgetuserinfo="getUserProfile">授权</button>
       </view> -->
-      <view style="border: 3rpx solid rgb(55, 182, 74);width: 650rpx ;height: 80rpx; border-radius: 10rpx;display: flex;justify-content: center;align-items: center;margin-top: 20%;">
+      <view style="border: 3rpx solid rgb(55, 182, 74); width: 330rpx; height: 92rpx; border-radius: 10rpx; display: flex; justify-content: center; align-items: center; margin-top: 20%; box-sizing: border-box">
     <view class="userinfo">
       <block wx:if="{{!hasUserInfo}}">
-        <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile" style="color: rgb(55, 182, 74);font-weight: bolder;"> 微信授权登录 </button>
+        <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile" style="color: rgb(55, 182, 74); font-weight: bolder; width: 354rpx; height: 96rpx; display: block; box-sizing: border-box; left: -2rpx; top: 0rpx; position: relative"> 微信授权登录 </button>
         <button wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo" style="color: rgb(55, 182, 74);font-weight: bolder;"> 微信授权登录 </button>
       </block>
       <block wx:else>

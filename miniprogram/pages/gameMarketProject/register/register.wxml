@@ -10,17 +10,17 @@
       <!-- 账户 -->
       <view style="display: flex;flex-flow: column;margin-bottom: 20rpx;">
         <text class="loginText">账号</text>
-        <input class="loginBox" type="text" name="Account_new" value="{{Account_new}}"></input>
+        <input class="loginBox" type="text" name="Account_new" placeholder="账号长度在2-25位" value="{{Account_new}}"></input>
       </view>
       <!-- 密码 -->
       <view style="display: flex;flex-flow: column;margin-bottom: 20rpx;">
         <text class="loginText">密码</text>
-        <input class="loginBox" type="password" name="Password_new" value="{{Password_new}}"></input>
+        <input class="loginBox" type="password" name="Password_new" placeholder="密码长度6-16位中英文混合" value="{{Password_new}}"></input>
       </view>
       <!-- 确认密码 -->
       <view style="display: flex;flex-flow: column;margin-bottom: 20rpx;">
         <text class="loginText">确认密码</text>
-        <input class="loginBox" type="password" name="Password_new_again" value="{{Password_new_again}}"></input>
+        <input class="loginBox" type="password" name="Password_new_again" placeholder="确保上一输入相同" value="{{Password_new_again}}"></input>
       </view>
       <!-- 注册按钮 -->
       <button class="loginBtn" form-type="submit" size="mini"><text>注 册</text></button>

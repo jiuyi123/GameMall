@@ -4,7 +4,7 @@
   <view  wx:if="{{!isSearching}}"  style="display: flex;background: rgb(0, 36, 59,0);justify-content: space-between;">
     <!-- 搜索框 -->
     <view style="width: 650rpx;">
-      <van-search value="{{ value }}" shape="round" placeholder="输入好友昵称/ID" bindtap="showPopup" background="rgb(136, 203, 230,0)"/>
+      <van-search value="{{ value }}" shape="round" placeholder="搜索已有好友，点击右侧+添加好友" bindtap="showPopup" background="rgb(136, 203, 230,0)"/>
     </view>
     <!-- 添加好友按钮 -->
     <van-icon bindtap="addFriend" name="plus" size="70rpx" style="margin-right: 30rpx;" color="rgb(149,149,149)" />
