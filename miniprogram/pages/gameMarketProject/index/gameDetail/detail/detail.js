@@ -9,6 +9,12 @@ Page({
    * 页面的初始数据
    */
   data: {
+    Video_linklist: [
+      "https://vd2.bdstatic.com/mda-kg7n1zwrxjfr3x7i/v1-cae/sc/mda-kg7n1zwrxjfr3x7i.mp4",
+      "https://vd2.bdstatic.com/mda-kh3ntpac8va2r6ue/sc/mda-kh3ntpac8va2r6ue.mp4",
+      "https://vd3.bdstatic.com/mda-ma6g1x52ms3y33nx/v1-cae/sc/mda-ma6g1x52ms3y33nx.mp4"
+    ],
+
     gameInfoObj: {},
     /******评论弹窗****/
     scoreShow: 0, //打分弹窗
@@ -33,11 +39,16 @@ Page({
   },
   /***视频出错处理*** */
   playError() {
-    wx.showToast({
-      title: '暂时无法播放',
-      icon: "error",
-      duration: 1000
-    })
+    let list = this.data.gameInfoObj
+    list.Video_link = this.data.Video_linklist[Math.ceil(Math.random()*3-1)]
+      this.setData({
+        gameInfoObj: list
+      })
+    // wx.showToast({
+    //   title: '暂时无法播放',
+    //   icon: "error",
+    //   duration: 1000
+    // })
   },
   /********评论弹窗********** */
   comment() {
@@ -69,7 +80,7 @@ Page({
   },
   onChangeRadio(event) {
     this.setData({
-      radio: event.detail
+      PayWay: event.detail
     })
   },
   buyPop() {
@@ -363,8 +374,13 @@ Page({
     this.setData({
       WantBuy: true
     })
+    console.log(this.data.PayWay)
     if (this.data.PayWay == 0) {
       //余额支付
+      wx.showLoading({
+        title: '加载中',
+        mask: true //开启蒙版遮罩
+      })
       if (this.data.User.Balance > this.data.gameInfoObj.Price) {
         //修改数据库User
         var res = await db
@@ -391,11 +407,11 @@ Page({
         console.log(res.data)
 
         let res1 = await db.collection("Orders").where({
-          Game_ID:game_id,
-          User_ID:this.data.User.ID,
-          State:'未支付'
+          Game_ID: game_id,
+          User_ID: this.data.User.ID,
+          State: '未支付'
         }).get()
-        if(res1.data.length>0){
+        if (res1.data.length > 0) {
           await db.collection("Orders").doc(res1.data[0]._id).remove()
         }
         //增加一条订单
@@ -423,10 +439,39 @@ Page({
           icon: 'error'
         })
       }
+    } else {
+      wx.showLoading({
+        title: '加载中',
+        mask: true //开启蒙版遮罩
+      })
+      let res1 = await db.collection("Orders").where({
+        Game_ID: game_id,
+        User_ID: this.data.User.ID,
+        State: '未支付'
+      }).get()
+      if (res1.data.length > 0) {
+        await db.collection("Orders").doc(res1.data[0]._id).remove()
+      }
+      //增加一条订单
+      const data = await this.GetAlldb('Orders')
+      db.collection('Orders').add({
+        data: {
+          Final_price: gameInfoObj.Price,
+          Game_ID: game_id,
+          ID: data[data.length - 1].ID + 1,
+          State: '已支付',
+          Time: this.GetTime(),
+          User_ID: this.data.User.ID
+        }
+      })
+      this.setData({
+        is_GouMai: true
+      })
+      wx.showToast({
+        title: '购买成功'
+      })
     }
-    else if(this.data.PayWay==1){
-      
-    }
+    wx.hideLoading()
     this.BuyClose()
   },
 

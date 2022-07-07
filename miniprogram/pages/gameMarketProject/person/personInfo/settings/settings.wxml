@@ -2,7 +2,7 @@
 <view style="display: flex;flex-direction: column;margin-left: 10%;margin-right: 10%;">
   <!-- 分割线 -->
   <view class="hr"></view>
-  <view style="">
+  <view >
     <text style="color: white;font-size: 60rpx;font-weight: bolder;margin-top: 2%;">账户</text>
   </view>
   <!-- <view style="display: flex;flex-direction: row;justify-content: space-between;align-content: center;align-items: center;margin-bottom: 30rpx;">

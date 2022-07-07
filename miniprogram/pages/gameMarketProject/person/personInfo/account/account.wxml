@@ -22,25 +22,33 @@
 
     <!-- 昵称信息 -->
     <view style="display: flex;flex-direction: column; color: rgb(152, 153, 155);margin-top: 4%;">
-      <text style="font-weight: bolder;margin-bottom: 15rpx;">昵称</text>
+      <text style="font-weight: bolder;margin-bottom: 15rpx;">昵称(点击下方修改)</text>
       <view style="display: flex;flex-direction: row;justify-content: space-between;">
         <input type="text" value="{{user.Nickname}}" bindblur="NicknameChage" style="color: white;" />
-        <text bindtap="setNickname" style="color: rgb(1,191,187);">修改</text>
+        <text bindtap="setNickname" style="color: rgb(1,191,187);">上传</text>
       </view>
     </view>
     <!-- 国家/地区 -->
     <view style="display: flex;flex-direction: column; color: rgb(152, 153, 155);margin-top: 4%;">
-      <text style="font-weight: bolder;margin-bottom: 15rpx;">国家/地区</text>
+      <text style="font-weight: bolder;margin-bottom: 15rpx;">国家/地区(点击下方修改)</text>
       <view style="display: flex;flex-direction: row;justify-content: space-between;">
         <input type="text" value="{{user.Country}}" bindblur="CountryChage" style="color: white;" />
-        <text bindtap="setCountry" style="color: rgb(1,191,187);">修改</text>
+        <text bindtap="setCountry" style="color: rgb(1,191,187);">上传</text>
       </view>
     </view>
   </view>
   <!-- 分割线 -->
   <view class="hr"></view>
   <!-- 隐私 -->
-  <view>
+  <view style="display: flex;flex-direction: row;justify-content: space-between;align-content: center;align-items: center;margin-bottom: 30rpx;">
+    <text style="color: white;">库所有人可见</text>
+    <van-switch checked="{{ checkedWarehouse }}" bind:change="onChangeWarehouse"  active-color="rgb(0, 196, 190);" size="24px"/>
+  </view>
+  <view style="display: flex;flex-direction: row;justify-content: space-between;align-content: center;align-items: center;margin-bottom: 30rpx;">
+    <text style="color: white;">我喜欢所有人可见</text>
+    <van-switch checked="{{ checkedLike }}" bind:change="onChangeLike"  active-color="rgb(0, 196, 190);" size="24px" />
+  </view>
+  <view wx:if="{{false}}">
     <text style="color: white;font-size: 60rpx;font-weight: bolder;margin-bottom: 3%;">隐私</text>
     <view style="display: flex;flex-direction: row;justify-content: space-between;margin-top: 4%;">
       <text style="font-weight: bolder;margin-bottom: 20rpx;color: rgb(152, 153, 155)">邮箱绑定</text>

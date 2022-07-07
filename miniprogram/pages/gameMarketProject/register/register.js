@@ -73,15 +73,13 @@ Page({
         icon: 'error',
         duration: 1500,
       })
-    } 
-    else if(!(yingwen.test(this.data.Password_new)&&shuzi.test(this.data.Password_new))){
+    } else if (!(yingwen.test(this.data.Password_new) && shuzi.test(this.data.Password_new))) {
       wx.showToast({
         title: '输入密码非法',
         icon: 'error',
         duration: 1500,
       })
-    }
-    else {
+    } else {
       db.collection("Users")
         .where({
           Name: this.data.Account_new
@@ -110,6 +108,10 @@ Page({
               this.setData({
                 IDNext: data[data.length - 1].ID + 1
               })
+              wx.showLoading({
+                title: '加载中',
+                mask: true //开启蒙版遮罩
+              })
               db.collection("Users")
                 .add({
                   data: {
@@ -136,7 +138,7 @@ Page({
                     app.globalData.User = res.data
                   }
                 })
-
+              wx.hideLoading()
               wx.reLaunch({
                 url: "../index/index?FirstLogin=" + true
               })

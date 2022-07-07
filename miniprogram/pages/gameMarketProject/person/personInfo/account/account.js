@@ -9,7 +9,46 @@ Page({
     user: '',
     newEmail: '',
     newNickname: '',
-    newCountry: ''
+    newCountry: '',
+    checkedComment: true,
+    checkedWarehouse: true,
+    checkedLike: true
+  },
+  onChangeComment({ detail }) {
+    // 需要手动对 checked 状态进行更新
+    this.setData({ checkedComment: detail })
+    db.collection('Users')
+      .doc(app.globalData.User[0]._id)
+      .update({
+        data: {
+          Commentpublic: detail
+        }
+      })
+    app.globalData.User[0].Commentpublic = detail
+  },
+  onChangeWarehouse({ detail }) {
+    // 需要手动对 checked 状态进行更新
+    this.setData({ checkedWarehouse: detail })
+    db.collection('Users')
+      .doc(app.globalData.User[0]._id)
+      .update({
+        data: {
+          Kupublic: detail
+        }
+      })
+    app.globalData.User[0].Kupublic = detail
+  },
+  onChangeLike({ detail }) {
+    // 需要手动对 checked 状态进行更新
+    this.setData({ checkedLike: detail })
+    db.collection('Users')
+      .doc(app.globalData.User[0]._id)
+      .update({
+        data: {
+          Likepublic: detail
+        }
+      })
+    app.globalData.User[0].Likepublic = detail
   },
 
   CountryChage(e) {
@@ -99,7 +138,13 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {},
+  onShow() {
+    this.setData({
+      checkedComment: app.globalData.User[0].Commentpublic,
+      checkedWarehouse: app.globalData.User[0].Kupublic,
+      checkedLike: app.globalData.User[0].Likepublic
+    })
+  },
 
   /**
    * 生命周期函数--监听页面隐藏

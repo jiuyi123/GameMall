@@ -52,11 +52,8 @@
                   <text style="font-size: larger;">{{item.Developer}}</text>
                 </view>
               </view>
-              <van-icon name="delete-o" size="30" color="white"/>
-
+              <van-icon name="delete-o" data-value="{{item}}" bindtap="delete" size="30" color="white"/>
             </view>
-
-
             <view class="goods-price">价格：￥{{item.Price}}</view>
           </view>
         </view>

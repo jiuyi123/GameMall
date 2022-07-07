@@ -137,10 +137,6 @@ Page({
       Is_game_got: true,
       gameInfo: all
     })
-    await this.LoadTuijianList()
-    await this.LoadHotChart()
-    console.log(this.data.TuijianList)
-    console.log(this.data.HotChart)
     wx.hideLoading()
   },
 
@@ -262,6 +258,8 @@ Page({
       })
     }
     await this.Onloading()
+    await this.LoadTuijianList()
+    await this.LoadHotChart()
   },
 
   /**
@@ -272,7 +270,12 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {},
+  onShow: async function () {
+    await this.LoadTuijianList()
+    await this.LoadHotChart()
+    console.log(this.data.TuijianList)
+    console.log(this.data.HotChart)
+  },
 
   /**
    * 生命周期函数--监听页面隐藏

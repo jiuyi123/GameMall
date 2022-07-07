@@ -6,11 +6,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    goodsNum:'',
+    goodsNum: '',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    Show_list:'',
+    Show_list: '',
     allSelect: "circle",
     num: 0,
     count: 0,
@@ -18,16 +18,16 @@ Page({
     lastY: 0,
     text: "没有滑动",
   },
- //游戏详情页面
- goDetail(e){
-  console.log("GoDetail")
-  console.log(e)
-  var gameInfoStr = encodeURIComponent(JSON.stringify(e.currentTarget.dataset.gameInfo)) 
-  //把点击的游戏对象参数传递给游戏详情页面
-  wx.navigateTo({
-    url:"/pages/gameMarketProject/index/gameDetail/detail/detail?gameInfoStr="+gameInfoStr,
-  })
-},
+  //游戏详情页面
+  goDetail(e) {
+    console.log("GoDetail")
+    console.log(e)
+    var gameInfoStr = encodeURIComponent(JSON.stringify(e.currentTarget.dataset.gameInfo))
+    //把点击的游戏对象参数传递给游戏详情页面
+    wx.navigateTo({
+      url: "/pages/gameMarketProject/index/gameDetail/detail/detail?gameInfoStr=" + gameInfoStr,
+    })
+  },
 
   GetTime() {
     var blank = ""
@@ -46,17 +46,28 @@ Page({
     var that = this
     var index = e.currentTarget.dataset.index
     var select = e.currentTarget.dataset.select
-
+    var newList = that.data.Show_list
+    console.log(newList)
     if (select == "circle") {
       var stype = "success"
     } else {
       var stype = "circle"
     }
-    var newList = that.data.Show_list
     newList[index].select = stype
     that.setData({
       Show_list: newList
     })
+    if (this.data.allSelect == "circle" && this.check(newList)) {
+      console.log(111)
+      this.setData({
+        allSelect: "success"
+      })
+    }
+    else if(this.data.allSelect == "success"&&!this.check(newList)){
+      this.setData({
+        allSelect: "circle"
+      })
+    }
     that.count()
   },
   //全选
@@ -80,10 +91,32 @@ Page({
       Show_list: newList,
       allSelect: select
     })
+    if (this.data.allSelect == "circle" && this.check(newList)) {
+      console.log(111)
+      this.setData({
+        allSelect: "success"
+      })
+    }
+    else if(this.data.allSelect == "success"&&!this.check(newList)){
+      this.setData({
+        allSelect: "circle"
+      })
+    }
     that.count()
   },
- 
-  count: function () {//计算金额方法
+
+  check(list) {
+    for (var i = 0; i < list.length; i++) {
+      if (list[i].select == "circle") {
+        return false
+      } else if (list.select == "success") {
+        continue
+      }
+    }
+    return true
+  },
+
+  count: function () { //计算金额方法
     var that = this
     var newList = that.data.Show_list
     var newCount = 0
@@ -97,67 +130,89 @@ Page({
     })
   },
 
-  buy: async function (){ //弹窗显示购买
+  async delete(e){
+    //console.log(e.currentTarget.dataset.value)
+    var newList = this.data.Show_list
+    let res = await db.collection("Orders").where({
+      Game_ID:e.currentTarget.dataset.value.ID,
+      User_ID:app.globalData.User[0].ID,
+      State:'未支付'
+    }).get()
+    db.collection("Orders").doc(res.data[0]._id).remove()
+    for(var i=0;i<newList.length;i++){
+      if(e.currentTarget.dataset.value.ID==newList[i].ID){
+        newList.splice(i,1)
+      }
+    }
+    this.setData({
+      Show_list:newList
+    })
+  },
+
+  buy: async function () { //弹窗显示购买
     var UserID = app.globalData.User[0].ID
-      if(app.globalData.User[0].Balance>this.data.count){
-        //修改数据库User
-        var res = await db.collection("Users").where({
-          ID:UserID
-        }).get()
-        await db.collection("Users").doc(res.data[0]._id).update({
-          data:{
-            Balance:app.globalData.User[0].Balance-this.data.count
-          }
-        })
-        res = await db.collection("Users").where({
-          ID:UserID
-        }).get()
-        app.globalData.User = res.data
-        //修改订单信息
-        for(var i = 0;i < this.data.Show_list.length;i++){
-          if (this.data.Show_list[i].select == "success") {
+    if (app.globalData.User[0].Balance > this.data.count) {
+      //修改数据库User
+      var res = await db.collection("Users").where({
+        ID: UserID
+      }).get()
+      await db.collection("Users").doc(res.data[0]._id).update({
+        data: {
+          Balance: app.globalData.User[0].Balance - this.data.count
+        }
+      })
+      res = await db.collection("Users").where({
+        ID: UserID
+      }).get()
+      app.globalData.User = res.data
+      //修改订单信息
+      for (var i = 0; i < this.data.Show_list.length; i++) {
+        if (this.data.Show_list[i].select == "success") {
           res = await db.collection("Orders").where({
-            Game_ID:this.data.Show_list[i].ID,
-            User_ID:UserID
+            Game_ID: this.data.Show_list[i].ID,
+            User_ID: UserID
           }).get()
           await db.collection("Orders").doc(res.data[0]._id).update({
-            data:{
-              State:'已支付',
-              Time:this.GetTime(),
-              Final_price:this.data.Show_list[i].Price
+            data: {
+              State: '已支付',
+              Time: this.GetTime(),
+              Final_price: this.data.Show_list[i].Price
             }
           })
         }
         wx.reLaunch({
-          url:"../shopCart/shopCart",
+          url: "../shopCart/shopCart",
         })
       }
-    }
-    else{
+    } else {
       wx.showToast({
         title: '余额不足',
       })
     }
   },
 
-  async LoadInfo(){
-    let count = await db.collection("Orders").where({      User_ID:app.globalData.User[0].ID,
-      State:"未支付"}).count()
+  async LoadInfo() {
+    let count = await db.collection("Orders").where({
+      User_ID: app.globalData.User[0].ID,
+      State: "未支付"
+    }).count()
     count = count.total
     let all = []
-    for(let i = 0; i < count; i += 20){
-      let list = await db.collection("Orders").where({      User_ID:app.globalData.User[0].ID,
-        State:"未支付"}).skip(i).get()
+    for (let i = 0; i < count; i += 20) {
+      let list = await db.collection("Orders").where({
+        User_ID: app.globalData.User[0].ID,
+        State: "未支付"
+      }).skip(i).get()
       all = all.concat(list.data)
     }
     var gamelist = new Array
-    for(let i = 0; i < all.length; i++){
-      app.globalData.Game[all[i].Game_ID-1].select = "circle",
-      app.globalData.Game[all[i].Game_ID-1].num = 1,
-      gamelist = gamelist.concat(app.globalData.Game[all[i].Game_ID-1])
+    for (let i = 0; i < all.length; i++) {
+      app.globalData.Game[all[i].Game_ID - 1].select = "circle",
+        app.globalData.Game[all[i].Game_ID - 1].num = 1,
+        gamelist = gamelist.concat(app.globalData.Game[all[i].Game_ID - 1])
     }
     this.setData({
-      Show_list:gamelist
+      Show_list: gamelist
     })
   },
 
@@ -165,11 +220,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: async function (options) {
-    var width=wx.getSystemInfoSync().windowWidth
-    var height=wx.getSystemInfoSync().windowHeight
-    height=height-55-53;
+    var width = wx.getSystemInfoSync().windowWidth
+    var height = wx.getSystemInfoSync().windowHeight
+    height = height - 55 - 53;
     this.setData({
-      height:height
+      height: height
     })
   },
 

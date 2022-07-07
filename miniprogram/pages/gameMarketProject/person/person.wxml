@@ -30,7 +30,7 @@
     <van-cell custom-class="van-cell-group" title="我的订单" is-link url="/pages/gameMarketProject/person/personInfo/order/order" />
     <van-cell custom-class="van-cell-group" title="我的好友" is-link url="/pages/gameMarketProject/person/personInfo/friend/friend" />
     <van-cell custom-class="van-cell-group" title="钱包" is-link url="/pages/gameMarketProject/person/personInfo/wallet/wallet" />
-    <van-cell custom-class="van-cell-group" title="设置" is-link url="/pages/gameMarketProject/person/personInfo/settings/settings" />
+    <van-cell wx:if="{{false}}" custom-class="van-cell-group" title="设置" is-link url="/pages/gameMarketProject/person/personInfo/settings/settings" />
   </van-cell-group>
   <!-- 退出登录 -->
   <view style="display: flex; justify-content: center;">

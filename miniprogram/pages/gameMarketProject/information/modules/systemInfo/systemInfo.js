@@ -6,7 +6,6 @@ Page({
    */
   data: {
     winHeight: "", //聊天列表窗口高度
-
     //这里本应该是其他用户的消息
     gameInfoObj: [{
       "userName": "jy",
