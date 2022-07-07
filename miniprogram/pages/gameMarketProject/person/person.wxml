@@ -21,7 +21,7 @@
     </view>
     <view class="boxIcon" style="background-color: rgb(153, 153, 153);" bindtap="goHistory">
       <van-icon name="underway" color="white" size="65rpx" style="margin-top: 10%;" />
-      <text style="margin-bottom: 6%;">历史</text>
+      <text style="margin-bottom: 6%;">浏览历史</text>
     </view>
   </view>
   <!-- 信息列表页面 -->
