@@ -31,7 +31,6 @@
 <!-- *********************************************** -->
 <!-- 总界面 -->
 <view class="product-container">
-
   <view class="product-list" style="  height: calc(100vh - 100rpx);">
     <view class="product-item" wx:for="{{Show_list}}" wx:for-index="index" wx:key='slideProductList'>
       <!-- 商品列表 -->
@@ -45,12 +44,20 @@
           </view>
 
           <!-- 商品信息描述 -->
-          <view class="product-movable-item">
-            <view class="goods-name">{{item.Name}}</view>
-            <view class="goods-type">标签
-              <text>{{item.Tag}}</text>
+          <view class="product-movable-item" style="display: flex;flex-direction: column;justify-content: space-between;">
+            <view style="display: flex;flex-direction: row;justify-content: space-between;width: 380rpx;">
+              <view style="display: flex;flex-direction: column;align-content: space-between;">
+                <view class="goods-name" style="width: 300rpx;">{{item.Name}}</view>
+                <view class="goods-type">
+                  <text style="font-size: larger;">{{item.Developer}}</text>
+                </view>
+              </view>
+              <van-icon name="delete-o" size="30" color="white"/>
+
             </view>
-            <view class="goods-price">￥{{item.Price}}</view>
+
+
+            <view class="goods-price">价格：￥{{item.Price}}</view>
           </view>
         </view>
       </slide-delete>
@@ -66,12 +73,6 @@
     <view class="count">
       <text>合计：</text>￥{{count}}
     </view>
-    <view class="order">
-      <view class="orders">
-        <button bindtap='buy'>结算</button>
-        <text class="allnum">({{num}})</text>
-      </view>
-
-    </view>
   </view>
+  <button bindtap='buy' style="background-color: white;color: red;width: 160rpx;height: 80rpx;position: absolute;bottom: 10rpx;right: 10rpx;font-size: 35rpx;">结算</button>
 </view>

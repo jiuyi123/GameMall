@@ -77,6 +77,21 @@
 
 
 /******************************************************/
+/* 省略显示 */
+.productNameText {
+  font-size: 35rpx;
+  color: rgb(224, 224, 224);
+  font-weight:600;
+  text-overflow: ellipsis;
+  z-index: 99;
+  display: -webkit-box;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+
 .cart-box .item {
   display: flex;
   flex-direction: row;
@@ -90,7 +105,7 @@
 }
 
 .goods-img {
-  width: 160rpx;
+  width: 240rpx;
   margin-left: 20rpx;
   height: 160rpx;
 }
@@ -105,30 +120,40 @@
 }
 
 .goods-name {
-  font-size: 32rpx;
+  font-size: 35rpx;
+  color: rgb(224, 224, 224);
+  font-weight:600;
+  text-overflow: ellipsis;
+  z-index: 99;
+  display: -webkit-box;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  font-size: 40rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: #333;
-  padding-bottom: 10rpx;
-  width: 290rpx;
+  color: rgb(235, 235, 235);
+  /* padding-bottom: 10rpx; */
+  /* width: 290rpx; */
 }
 
 .goods-price {
-  font-size: 32rpx;
-  color: #e02e24;
-  position: relative;
-  top: 14rpx;
+  font-size: 38rpx;
+  color: rgb(200, 200, 253);
+  /* position: relative; */
+  /* top: 14rpx; */
 }
 
 .goods-type {
-  color: rgb(255, 251, 4);
+  color: rgb(168, 168, 168);
   font-size: 24rpx;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 240rpx;
-  padding-bottom: 10rpx;
+  /* overflow: hidden; */
+  /* text-overflow: ellipsis; */
+  /* white-space: nowrap; */
+  /* width: 240rpx; */
+  /* padding-bottom: 10rpx; */
 }
 
 .num-box {
@@ -319,16 +344,16 @@
   margin-left: 10rpx;
   position: relative;
   width: 730rpx;
-  border-bottom: 10rpx solid #f0f3fa;
+  border-bottom: 1rpx solid #f0f3fa;
   box-sizing: border-box;
-  background: rgba(79, 199, 226, 0.8);
+  background: rgba(35, 41, 43, 0.0);
   z-index: 999;
 }
 
 .slide-product-list .slide-product-item {
   position: relative;
   width: 100vw;
-  border-bottom: 2rpx solid #e9e9e9;
+  border-bottom: 1rpx solid #e9e9e9;
   box-sizing: border-box;
   background: #fff;
   z-index: 999;
@@ -347,7 +372,7 @@
 }
 
 .product-list .product-item:first-child {
-  border-top: 10rpx solid #f0f3fa;
+  border-top: 1rpx solid #f0f3fa;
 }
 
 .product-list .product-item .delete-btn {
@@ -374,8 +399,12 @@
 }
 
 .product-list .product-item-wrap .product-movable-item {
-  flex: 1;
-
+  width: 380rpx;
+  height: 280rpx;
+  display: flex;
+  flex-direction: column;
+  align-items:flex-end;
+  align-content: flex-end;  
   /* overflow:hidden;*/
 }
 
@@ -399,7 +428,7 @@
 .product-list .product-item-wrap .product-movable-item-amount {
   flex: 1;
   padding-right: 50rpx;
-  position: relative;
+  /* position: relative; */
 }
 
 .product-list .product-item-wrap .product-movable-item-amount .amount {
