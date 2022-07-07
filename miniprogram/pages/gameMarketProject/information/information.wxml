@@ -44,7 +44,7 @@
   </view>
 
   <!-- 聊天列表 -->
-  <scroll-view scroll-y="true" style="height:{{winHeight}}rpx;">
+  <scroll-view  wx:if="{{ChatList.length!=0}}" scroll-y="true" style="height:{{winHeight}}rpx;">
     <view class="reviewItemView" wx:for="{{ChatList}}" data-item="item">
       <view class="infoBox" bindtap="goChatPage" id="userFriend" data-user-Info="{{item}}">
         <!-- 用户头像 -->
@@ -74,6 +74,6 @@
       </view>
     </view>
   </scroll-view>
-
+  <text wx:if="{{ChatList.length==0}}" style="margin-top: 50rpx;font-weight: bolder;font-size: larger;display: flex;justify-content: center;color: aliceblue;">暂时没有通知</text> 
 </view>
 

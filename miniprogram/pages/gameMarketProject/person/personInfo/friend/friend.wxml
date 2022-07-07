@@ -30,9 +30,9 @@
       </view>
       <van-button bindtap="Search" color="blue" size="small" style="align-items: center;margin-right: 20rpx;">搜索</van-button>
     </view>
-  <scroll-view scroll-y="true" style="height:{{winHeight}}rpx; margin-left: 20rpx;margin-right: 20rpx;">
+  <scroll-view wx:if="{{Show_List.length!=0}}" scroll-y="true" style="height:{{winHeight}}rpx; margin-left: 20rpx;margin-right: 20rpx;">
     <!-- 好友列表 -->
-    <view wx:for="{{Show_List}}" data-item="item">
+    <view  wx:for="{{Show_List}}" data-item="item">
       <!-- 滑动单元格 -->
       <van-swipe-cell  right-width="{{ 65 }}" custom-style="border: 3rpx solid rgb(130, 206, 31);">
         <!-- 用户头像和昵称 -->
@@ -57,4 +57,5 @@
     </view>
 
   </scroll-view>
+  <text wx:if="{{Show_List.length==0}}" style="margin-top: 50rpx;font-weight: bolder;font-size: larger;display: flex;justify-content: center;color: aliceblue;">您还没有好友，点击右侧添加好友</text> 
 </view>
