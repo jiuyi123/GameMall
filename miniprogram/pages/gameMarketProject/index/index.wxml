@@ -38,14 +38,14 @@
   <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 4%;">
     <swiper class="banners" indicator-dots autoplay indicator-active-color="#d43c33" indicator-color="ivory">
       <swiper-item wx:for="{{imgUrl}}" wx:key="bannerId" style="box-shadow:0 0 10px rgb(184, 169, 169);">
-        <image src="{{item}}" style="width: 700rpx;" />
+        <image data-game-Info="{{item}}" bindtap="goUrlDetail" src="{{item.src}}" style="width: 700rpx;" />
       </swiper-item>
     </swiper>
   </view>
-  <view style="margin-top: 4%;margin-left:4% ;">
+  <view wx:if="{{HotChart.length!=0}}" style="margin-top: 4%;margin-left:4% ;">
     <text style="color: white;">热榜</text>
   </view>
-  <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 1%;">
+  <view  wx:if="{{HotChart.length!=0}}"  style="display: flex;flex-direction: row;justify-content: center;margin-top: 1%;">
     <scroll-view style="width:92%;white-space: nowrap;background-color: rgba(125, 183, 248, 0.5); border-radius: 30rpx;" scroll-x="true">
       <view>
         <view wx:for="{{HotChart}}" wx:key="list1" style="display: inline-block; ">
@@ -63,10 +63,10 @@
       </view>
     </scroll-view>
   </view>
-  <view style="margin-top: 4%;margin-left:4% ;">
+  <view  wx:if="{{TuijianList.length!=0}}"  style="margin-top: 4%;margin-left:4% ;">
     <text style="color: white;">你会喜欢</text>
   </view>
-  <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 1%;">
+  <view  wx:if="{{TuijianList.length!=0}}"  style="display: flex;flex-direction: row;justify-content: center;margin-top: 1%;">
     <scroll-view style="width:92%;white-space: nowrap;background-color: rgba(125, 183, 248, 0.5); border-radius: 30rpx;" scroll-x="true">
       <view>
         <view wx:for="{{TuijianList}}" wx:key="list1" style="display: inline-block;">
@@ -84,10 +84,10 @@
       </view>
     </scroll-view>
   </view>
-  <view style="margin-top: 4%;margin-left:4% ;">
+  <view  wx:if="{{gameInfo.length!=0}}" style="margin-top: 4%;margin-left:4% ;">
     <text style="color: white;">本周新游</text>
   </view>
-  <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 1%;">
+  <view  wx:if="{{gameInfo.length!=0}}" style="display: flex;flex-direction: row;justify-content: center;margin-top: 1%;">
     <scroll-view style="width:92%;white-space: nowrap;background-color: rgba(125, 183, 248, 0.5); border-radius: 30rpx;" scroll-x="true">
       <view>
         <view wx:for="{{gameInfo}}" wx:key="list1" style="display: inline-block;">

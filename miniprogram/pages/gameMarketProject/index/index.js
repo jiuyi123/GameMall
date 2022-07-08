@@ -6,8 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    first:false,
-    LunboList:'',
+    first: false,
+    LunboList: '',
     HotChart: '',
     TuijianList: '',
     show: false,
@@ -17,40 +17,20 @@ Page({
     //搜索框
     search_text: '搜索框',
     //轮播图
-    imgUrl: [
-      'https://gimg0.baidu.com/gimg/src=https%3A%2F%2Ffenwan.cdn.bcebos.com%2Fcms%2Fgamenow%2Flewan%2F2022-3%2F1646812039347%2Fe6d1f90b0992.jpg&app=2000&size=f0,0&n=0&g=0n&q=85&fmt=jpeg?sec=0&t=3f17723bb549fd62fa24472631f87533',
-      'https://gimg0.baidu.com/gimg/src=https%3A%2F%2Ffenwan.cdn.bcebos.com%2Fcms%2Fgamenow%2Flewan%2F2021-11%2F1637903172608%2Fe5b2517f49c2.JPG&app=2000&size=f0,0&n=0&g=0n&q=85&fmt=jpeg?sec=0&t=b05e87275f1cf74fa7b6f77510a1fc84',
-      'https://gimg0.baidu.com/gimg/src=https%3A%2F%2Ffenwan.cdn.bcebos.com%2Fcms%2Fgamenow%2Flewan%2F2021-11%2F1637291479527%2Fa6ec7f49e3ec.jpg&app=2000&size=f0,0&n=0&g=0n&q=85&fmt=jpeg?sec=0&t=1ed168ddce7ec65fccbee9299d4d77b9',
-      'https://gimg0.baidu.com/gimg/src=https%3A%2F%2Ffenwan.cdn.bcebos.com%2Fcms%2Fgamenow%2Flewan%2F2022-1%2F1643014481622%2Fced90f06ca9c.JPG&app=2000&size=f0,0&n=0&g=0n&q=85&fmt=jpeg?sec=0&t=49ab0aad3ae61005bc287275ffb242fd',
-      'https://gimg0.baidu.com/gimg/src=https%3A%2F%2Ffenwan.cdn.bcebos.com%2Fcms%2Fgamenow%2Flewan%2F2022-4%2F1649840368082%2Ff6c03d2548df.jpg&app=2000&size=f0,0&n=0&g=0n&q=85&fmt=jpeg?sec=0&t=88cd3a4ff17872345f1a6592c71173df',
-      'https://fenwan.cdn.bcebos.com/cms/gamenow/lewan/2022-2/1644565803292/e2df1c0a895e.jpg?x-bce-process=image/resize,m_lfit,w_242'
-    ],
-    //分类标签
-    riderCommentList: [{
-        value: '全部',
-        selected: false,
-        title: '全部'
+    imgUrl: [{
+        "src": "https://img1.baidu.com/it/u=582258535,2308803420&fm=253&fmt=auto&app=138&f=PNG?w=1267&h=495",
+        "ID": "51"
+      }, {
+        "src": "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg1.doubanio.com%2Fview%2Fgroup_topic%2Fl%2Fpublic%2Fp492567967.jpg&refer=http%3A%2F%2Fimg1.doubanio.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659833485&t=09096021afd4d9ae97495bb207636a0e",
+        "ID": "61"
+      }, {
+        "src": "https://img2.baidu.com/it/u=4051406532,1053820514&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500",
+        "ID": "102"
+      }, {
+        "src": "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.taowopu.com%2Fpublic%2Fuploads%2F2020%2F08%2F28%2F5f48818ba0dbc.png&refer=http%3A%2F%2Fwww.taowopu.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659834501&t=d6dde9353c543b8e5f0339e784303db4",
+        "ID": "110"
       },
-      {
-        value: '动作',
-        selected: false,
-        title: '动作'
-      },
-      {
-        value: '剧情',
-        selected: false,
-        title: '剧情'
-      },
-      {
-        value: 'FPS',
-        selected: false,
-        title: 'FPS'
-      },
-      {
-        value: '其他',
-        selected: false,
-        title: '其他'
-      }
+
     ],
     //游戏
     gameInfo: []
@@ -107,6 +87,20 @@ Page({
       url: '/pages/gameMarketProject/index/gameSort/sort/sort'
     })
   },
+  goUrlDetail(e){
+    console.log("goUrlDetail")
+    console.log(e.currentTarget.dataset.gameInfo.ID)
+    var ID = e.currentTarget.dataset.gameInfo.ID
+    let info = app.globalData.Game[ID-1]
+    console.log(info)
+    var gameInfoStr = encodeURIComponent(JSON.stringify(info))
+    //把点击的游戏对象参数传递给游戏详情页面
+    wx.navigateTo({
+      url: '/pages/gameMarketProject/index/gameDetail/detail/detail?gameInfoStr=' + gameInfoStr
+    })
+
+  },
+
   //游戏详情页面
   goDetail(e) {
     console.log('GoDetail')
@@ -225,7 +219,7 @@ Page({
     }
     //console.log(list)
     this.setData({
-      HotChart:list
+      HotChart: list
     })
   },
   /**
@@ -263,7 +257,7 @@ Page({
     await this.LoadTuijianList()
     await this.LoadHotChart()
     this.setData({
-      first:false
+      first: false
     })
   },
 
@@ -276,7 +270,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: async function () {
-    if(!this.data.first){
+    if (!this.data.first) {
       await this.LoadTuijianList()
       await this.LoadHotChart()
     }
