@@ -98,7 +98,6 @@ Page({
     wx.navigateTo({
       url: '/pages/gameMarketProject/index/gameDetail/detail/detail?gameInfoStr=' + gameInfoStr
     })
-
   },
 
   //游戏详情页面
