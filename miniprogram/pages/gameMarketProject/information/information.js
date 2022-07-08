@@ -128,10 +128,9 @@ Page({
     let leftlist = []
     let rightlist = []
     for (let i = 0; i < this.data.ChatList.length; i++) {
-      if (this.data.ChatList[i].State = '未读' && this.data.ChatList[i].Receiver_ID == app.globalData.User[0]. ID){
+      if (this.data.ChatList[i].State = '未读' && this.data.ChatList[i].Receiver_ID == app.globalData.User[0].ID) {
         leftlist = leftlist.concat(this.data.ChatList[i])
-      }
-      else{
+      } else {
         rightlist = rightlist.concat(this.data.ChatList[i])
       }
     }
@@ -139,12 +138,12 @@ Page({
     rightlist = this.sort(rightlist)
     leftlist = leftlist.concat(rightlist)
     this.setData({
-      ChatList:leftlist
+      ChatList: leftlist
     })
     console.log(this.data.ChatList)
   },
 
-  sort(arr){
+  sort(arr) {
     for (var i = 0; i < arr.length - 1; i++) {
       //确定轮数
       for (var j = 0; j < arr.length - i - 1; j++) {
@@ -403,8 +402,17 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: async function () {
     this.CreateLikeList()
+    let num = await db.collection("SystemNotification").where({
+      State: '未读'
+    }).count()
+    num = num.total
+    this.setData({
+        Newnotification: num
+      }
+    )
+    console.log(num)
   },
 
   /**

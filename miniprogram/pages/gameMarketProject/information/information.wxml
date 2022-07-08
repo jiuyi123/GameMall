@@ -21,11 +21,11 @@
     </view>
     <view class="sonPageItem" bindtap="goSystemInfo">
       <!-- 通知图标 -->
-      <view class="head-text" wx:if="{{numSystemInfo>0}}">
+      <view class="head-text" wx:if="{{Newnotification>0}}">
         <view class="num-box">
           <view class="btn-groups">
-            <button class="goods-btn" wx:if="{{numSystemInfo<=99}}">{{numSystemInfo}}</button>
-            <button class="goods-btn" wx:if="{{numSystemInfo>99}}">...</button>
+            <button class="goods-btn" wx:if="{{Newnotification<=99}}">{{Newnotification}}</button>
+            <button class="goods-btn" wx:if="{{Newnotification>99}}">...</button>
           </view>
         </view>
       </view>
