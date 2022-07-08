@@ -1,62 +1,60 @@
 <!--pages/gameMarketProject/information/modules/systemInfo/systemInfo.wxml-->
-    <!-- 聊天列表 -->
-    <scroll-view scroll-y="true" style="height:{{winHeight}}rpx;">
-<!-- 未读 -->
-<view class="reviewItemView" wx:for="{{WeiduList}}" data-item="item">
-      <view class="infoBox" bindtap="goUserInfo" id="userFriend" data-user-Info="{{item.Liker}}">
-        <!-- 用户头像 -->
-        <view style="height: 120rpx;">
-          <!-- 通知图标 -->
-          <view class="head-text" style="margin-left:85rpx;margin-bottom: 10rpx;" >
-            <view class="num-box">
-              <view class="btn-groups">
-                <button class="goods-btn"></button>
-              </view>
-            </view>
+<!-- 聊天列表 -->
+<scroll-view scroll-y="true" style="height:{{winHeight}}rpx;">
+  <!-- 未读 -->
+  <view class="reviewItemView" wx:for="{{WeiduList}}" data-item="item">
+  <view class="infoBox" id="userFriend"> 
+    <!-- 用户头像 -->
+    <view style="height: 120rpx;">
+      <!-- 通知图标 -->
+      <view class="head-text" style="margin-left:85rpx;margin-bottom: 10rpx;">
+        <view class="num-box">
+          <view class="btn-groups">
+            <button class="goods-btn"></button>
           </view>
-          <a href="{{item.Liker.Photo_link}}">
-            <image src="{{item.Liker.Photo_link}}" mode="scaleToFill" style="height: 100rpx;width:100rpx; margin: 10rpx;" />
-          </a>
         </view>
-        <!-- 用户名和消息 -->
-        <view class="nameInfoBox">
-          <!-- 用户名 -->
-          <view class="userName">{{item.Liker.Nickname}} <text style="color: gainsboro;font-size: 24rpx;">赞了你的评论</text></view>
-          <!-- 最新消息 -->
-          <view class="infoContent">"{{item.Comment.Content}}"</view>
-        </view>
-        <!-- 发送时间 -->
-        <view class="infoTime">{{item.time}}</view>
       </view>
+      <a href="{{item.Photo_link}}">
+        <image src="{{item.Photo_link}}" mode="scaleToFill" style="height: 100rpx;width:100rpx; margin: 10rpx;" />
+      </a>
     </view>
-<!-- 已读 -->
-    <view class="reviewItemView" wx:for="{{YiduList}}" data-item="item">
-      <view class="infoBox" bindtap="goUserInfo" id="userFriend" data-user-Info="{{item.Liker}}">
-        <!-- 用户头像 -->
-        <view style="height: 120rpx;">
-          <!-- 通知图标 -->
-          <view class="head-text" style="margin-left:85rpx;margin-bottom: 10rpx;" wx:if="{{item.numCommentInfo>0}}">
-            <view class="num-box">
-              <view class="btn-groups">
-                <button class="goods-btn" wx:if="{{item.numCommentInfo<=99}}">{{item.numCommentInfo}}</button>
-                <button class="goods-btn" wx:if="{{item.numCommentInfo>99}}">...</button>
-              </view>
-            </view>
+    <!-- 用户名和消息 -->
+    <view class="nameInfoBox">
+      <!-- 用户名 -->
+      <view class="userName">VGame管理员 <text style="color: gainsboro;font-size: 24rpx;">赞了你的评论</text></view>
+      <!-- 最新消息 -->
+      <view class="infoContent">"{{item.Content}}"</view>
+    </view>
+    <!-- 发送时间 -->
+    <view class="infoTime">{{item.Time}}</view>
+  <!-- 已读 -->
+  <view class="reviewItemView" wx:for="{{YiduList}}" data-item="item">
+    <view class="infoBox" id="userFriend"> 
+    <!-- 用户头像 -->
+    <view style="height: 120rpx;">
+      <!-- 通知图标 -->
+      <view class="head-text" style="margin-left:85rpx;margin-bottom: 10rpx;" wx:if="{{item.numCommentInfo>0}}">
+        <view class="num-box">
+          <view class="btn-groups">
+            <button class="goods-btn" wx:if="{{item.numCommentInfo<=99}}">{{item.numCommentInfo}}</button>
+            <button class="goods-btn" wx:if="{{item.numCommentInfo>99}}">...</button>
           </view>
-          <a href="{{item.Liker.Photo_link}}">
-            <image src="{{item.Liker.Photo_link}}" mode="scaleToFill" style="height: 100rpx;width:100rpx; margin: 10rpx;" />
-          </a>
         </view>
-        <!-- 用户名和消息 -->
-        <view class="nameInfoBox">
-          <!-- 用户名 -->
-          <view class="userName">{{item.Liker.Nickname}} <text style="color: gainsboro;font-size: 24rpx;">赞了你的评论</text></view>
-          <!-- 最新消息 -->
-          <view class="infoContent">"{{item.Comment.Content}}"</view>
-        </view>
-        <!-- 发送时间 -->
-        <view class="infoTime">{{item.time}}</view>
       </view>
+      <a href="{{item.Photo_link}}">
+        <image src="{{item.Photo_link}}" mode="scaleToFill" style="height: 100rpx;width:100rpx; margin: 10rpx;" />
+      </a>
     </view>
-    <text wx:if="{{WeiduList.length==0&&YiduList.length==0}}" style="margin-top: 50rpx;font-weight: bolder;font-size: larger;display: flex;justify-content: center;color: aliceblue;">暂时没有通知</text> 
-  </scroll-view>
+    </view>
+    <!-- 用户名和消息 -->
+    <view class="nameInfoBox">
+      <!-- 用户名 -->
+      <view class="userName">VGame管理员 <text style="color: gainsboro;font-size: 24rpx;"></text></view>
+      <!-- 最新消息 -->
+      <view class="infoContent">"{{item.Content}}"</view>
+    </view>
+    <!-- 发送时间 -->
+    <view class="infoTime">{{item.Time}}</view>
+  </view>
+  <text wx:if="{{WeiduList.length==0&&YiduList.length==0}}" style="margin-top: 50rpx;font-weight: bolder;font-size: larger;display: flex;justify-content: center;color: aliceblue;">暂时没有通知</text>
+</scroll-view>

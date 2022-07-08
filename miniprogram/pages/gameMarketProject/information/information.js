@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    Newnotification: '',
     NewComment: '',
     ChatList: '',
     Userid: '',
@@ -65,8 +66,7 @@ Page({
           showlist = showlist.concat(list[i])
           showlist[count].Chatid = list[i].Sender_ID
           count++
-        } else if (this.check_1(list[i].Time, list[i].Sender_ID, showlist) == -1) {
-        } else {
+        } else if (this.check_1(list[i].Time, list[i].Sender_ID, showlist) == -1) {} else {
           list[i].Chatid = list[i].Sender_ID
           showlist[this.check_1(list[i].Time, list[i].Sender_ID, showlist)] = list[i]
         }
@@ -75,8 +75,7 @@ Page({
           showlist = showlist.concat(list[i])
           showlist[count].Chatid = list[i].Receiver_ID
           count++
-        } else if (this.check_1(list[i].Time, list[i].Receiver_ID, showlist) == -1) {
-        } else {
+        } else if (this.check_1(list[i].Time, list[i].Receiver_ID, showlist) == -1) {} else {
           list[i].Chatid = list[i].Receiver_ID
           showlist[this.check_1(list[i].Time, list[i].Receiver_ID, showlist)] = list[i]
         }
@@ -126,8 +125,40 @@ Page({
     this.setData({
       ChatList: show_list
     })
-    // console.log(this.data.ChatList)
+    let leftlist = []
+    let rightlist = []
+    for (let i = 0; i < this.data.ChatList.length; i++) {
+      if (this.data.ChatList[i].State = '未读' && this.data.ChatList[i].Receiver_ID == app.globalData.User[0]. ID){
+        leftlist = leftlist.concat(this.data.ChatList[i])
+      }
+      else{
+        rightlist = rightlist.concat(this.data.ChatList[i])
+      }
+    }
+    leftlist = this.sort(leftlist)
+    rightlist = this.sort(rightlist)
+    leftlist = leftlist.concat(rightlist)
+    this.setData({
+      ChatList:leftlist
+    })
+    console.log(this.data.ChatList)
   },
+
+  sort(arr){
+    for (var i = 0; i < arr.length - 1; i++) {
+      //确定轮数
+      for (var j = 0; j < arr.length - i - 1; j++) {
+        //确定每次比较的次数
+        if (arr[j].Time < arr[j + 1].Time) {
+          var tem = arr[j]
+          arr[j] = arr[j + 1]
+          arr[j + 1] = tem
+        }
+      }
+    }
+    return arr
+  },
+
 
   LoadPageData() {
     // 高度自适应
@@ -320,7 +351,7 @@ Page({
         .get()
       LikeList = LikeList.concat(list.data)
     }
-    console.log(LikeList)
+    //console.log(LikeList)
     let num = 0
     for (var i = 0; i < LikeList.length; i++) {
       count = await db
