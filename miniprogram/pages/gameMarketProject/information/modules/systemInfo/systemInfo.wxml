@@ -18,16 +18,17 @@
           <image src="{{item.Photo_link}}" mode="scaleToFill" style="height: 100rpx;width:100rpx; margin: 10rpx;" />
         </a>
       </view>
-    </view>
+
     <!-- 用户名和消息 -->
     <view class="nameInfoBox">
       <!-- 用户名 -->
-      <view class="userName">VGame管理员 <text style="color: gainsboro;font-size: 24rpx;">赞了你的评论</text></view>
+      <view class="userName">VGame管理员 </view>
       <!-- 最新消息 -->
       <view class="infoContent">"{{item.Content}}"</view>
     </view>
     <!-- 发送时间 -->
     <view class="infoTime">{{item.Time}}</view>
+  </view>
   </view>
   <!-- 已读 -->
   <view class="reviewItemView" wx:for="{{YiduList}}" data-item="item">
