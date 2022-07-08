@@ -3,20 +3,21 @@
 <scroll-view scroll-y="true" style="height:{{winHeight}}rpx;">
   <!-- 未读 -->
   <view class="reviewItemView" wx:for="{{WeiduList}}" data-item="item">
-  <view class="infoBox" id="userFriend"> 
-    <!-- 用户头像 -->
-    <view style="height: 120rpx;">
-      <!-- 通知图标 -->
-      <view class="head-text" style="margin-left:85rpx;margin-bottom: 10rpx;">
-        <view class="num-box">
-          <view class="btn-groups">
-            <button class="goods-btn"></button>
+    <view class="infoBox" id="userFriend">
+      <!-- 用户头像 -->
+      <view style="height: 120rpx;">
+        <!-- 通知图标 -->
+        <view class="head-text" style="margin-left:85rpx;margin-bottom: 10rpx;">
+          <view class="num-box">
+            <view class="btn-groups">
+              <button class="goods-btn"></button>
+            </view>
           </view>
         </view>
+        <a href="{{item.Photo_link}}">
+          <image src="{{item.Photo_link}}" mode="scaleToFill" style="height: 100rpx;width:100rpx; margin: 10rpx;" />
+        </a>
       </view>
-      <a href="{{item.Photo_link}}">
-        <image src="{{item.Photo_link}}" mode="scaleToFill" style="height: 100rpx;width:100rpx; margin: 10rpx;" />
-      </a>
     </view>
     <!-- 用户名和消息 -->
     <view class="nameInfoBox">
@@ -27,24 +28,25 @@
     </view>
     <!-- 发送时间 -->
     <view class="infoTime">{{item.Time}}</view>
+  </view>
   <!-- 已读 -->
   <view class="reviewItemView" wx:for="{{YiduList}}" data-item="item">
-    <view class="infoBox" id="userFriend"> 
-    <!-- 用户头像 -->
-    <view style="height: 120rpx;">
-      <!-- 通知图标 -->
-      <view class="head-text" style="margin-left:85rpx;margin-bottom: 10rpx;" wx:if="{{item.numCommentInfo>0}}">
-        <view class="num-box">
-          <view class="btn-groups">
-            <button class="goods-btn" wx:if="{{item.numCommentInfo<=99}}">{{item.numCommentInfo}}</button>
-            <button class="goods-btn" wx:if="{{item.numCommentInfo>99}}">...</button>
+    <view class="infoBox" id="userFriend">
+      <!-- 用户头像 -->
+      <view style="height: 120rpx;">
+        <!-- 通知图标 -->
+        <view class="head-text" style="margin-left:85rpx;margin-bottom: 10rpx;" wx:if="{{item.numCommentInfo>0}}">
+          <view class="num-box">
+            <view class="btn-groups">
+              <button class="goods-btn" wx:if="{{item.numCommentInfo<=99}}">{{item.numCommentInfo}}</button>
+              <button class="goods-btn" wx:if="{{item.numCommentInfo>99}}">...</button>
+            </view>
           </view>
         </view>
+        <a href="{{item.Photo_link}}">
+          <image src="{{item.Photo_link}}" mode="scaleToFill" style="height: 100rpx;width:100rpx; margin: 10rpx;" />
+        </a>
       </view>
-      <a href="{{item.Photo_link}}">
-        <image src="{{item.Photo_link}}" mode="scaleToFill" style="height: 100rpx;width:100rpx; margin: 10rpx;" />
-      </a>
-    </view>
     </view>
     <!-- 用户名和消息 -->
     <view class="nameInfoBox">
