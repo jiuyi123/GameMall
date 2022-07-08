@@ -55,28 +55,39 @@ Page({
     var Amount = this.data.inputNumber
     console.log(Amount)
     if (this.check(Amount)) {
-      let res = await db
-        .collection('Users')
-        .where({
-          ID: app.globalData.User[0].ID
+      if (app.globalData.User[0].Balance + Amount < 100000) {
+        let res = await db
+          .collection('Users')
+          .where({
+            ID: app.globalData.User[0].ID
+          })
+          .get()
+        db.collection('Users')
+          .doc(res.data[0]._id)
+          .update({
+            data: {
+              Balance: Number(app.globalData.User[0].Balance) + Number(Amount)
+            }
+          })
+        this.setData({
+          Balance: Number(app.globalData.User[0].Balance) + Number(Amount)
         })
-        .get()
-      db.collection('Users')
-        .doc(res.data[0]._id)
-        .update({
-          data: {
-            Balance: Number(app.globalData.User[0].Balance) + Number(Amount)
-          }
+        app.globalData.User[0].Balance = Number(app.globalData.User[0].Balance) + Number(Amount)
+        this.onClose()
+        wx.showToast({
+          title: '充值成功',
+          icon: 'success'
         })
-      this.setData({
-        Balance: Number(app.globalData.User[0].Balance) + Number(Amount)
-      })
-      app.globalData.User[0].Balance = Number(app.globalData.User[0].Balance) + Number(Amount)
-      this.onClose()
-      wx.showToast({
-        title: '充值成功',
-        icon: 'success'
-      })
+      } else {
+        console.log(111)
+        wx.showToast({
+          title: '金额过大',
+          icon: 'error'
+        })
+        this.setData({
+          inputNumber: ''
+        })
+      }
     } else {
       wx.showToast({
         title: '非法输入',
