@@ -47,7 +47,7 @@
           <image src="{{item.Photo_link}}" mode="scaleToFill" style="height: 100rpx;width:100rpx; margin: 10rpx;" />
         </a>
       </view>
-    </view>
+
     <!-- 用户名和消息 -->
     <view class="nameInfoBox">
       <!-- 用户名 -->
@@ -57,6 +57,8 @@
     </view>
     <!-- 发送时间 -->
     <view class="infoTime">{{item.Time}}</view>
+
+  </view>
   </view>
   <text wx:if="{{WeiduList.length==0&&YiduList.length==0}}" style="margin-top: 50rpx;font-weight: bolder;font-size: larger;display: flex;justify-content: center;color: aliceblue;">暂时没有通知</text>
 </scroll-view>
