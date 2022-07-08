@@ -1,9 +1,9 @@
 
 .loginImage {
-  margin-top: 15%;
-  width: 150rpx;
-  height: 150rpx;
-  margin-left: 300rpx;
+  margin-top: 6%;
+  width: 250rpx;
+  height: 250rpx;
+  margin-left: 250rpx;
 }
 
 .loginBorder {
