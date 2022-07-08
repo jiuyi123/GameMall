@@ -14,7 +14,7 @@
 
     <view>
       <view wx:if="{{userInfo.Kupublic}}">
-        <view style="margin-top: 4%;margin-left:4% ;">
+        <view  wx:if="{{Ku_list.length!=0}}" style="margin-top: 4%;margin-left:4% ;">
           <text style="color: white;">他拥有的游戏</text>
         </view>
         <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 1%;">
@@ -37,7 +37,7 @@
         </view>
       </view>
       <view wx:if="{{userInfo.Likepublic}}">
-        <view style="margin-top: 4%;margin-left:4% ;">
+        <view wx:if="{{Like_list.length!=0}}" style="margin-top: 4%;margin-left:4% ;">
           <text style="color: white;">他收藏的游戏</text>
         </view>
         <view style="display: flex;flex-direction: row;justify-content: center;margin-top: 1%;">
