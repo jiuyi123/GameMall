@@ -180,9 +180,7 @@ Page({
             }
           })
         }
-        wx.reLaunch({
-          url: "../shopCart/shopCart",
-        })
+   this.onShow()
       }
     } else {
       wx.showToast({
