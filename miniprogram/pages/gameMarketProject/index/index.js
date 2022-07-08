@@ -6,6 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    first:false,
+    LunboList:'',
     HotChart: '',
     TuijianList: '',
     show: false,
@@ -260,6 +262,9 @@ Page({
     await this.Onloading()
     await this.LoadTuijianList()
     await this.LoadHotChart()
+    this.setData({
+      first:false
+    })
   },
 
   /**
@@ -271,8 +276,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: async function () {
-    await this.LoadTuijianList()
-    await this.LoadHotChart()
+    if(!this.data.first){
+      await this.LoadTuijianList()
+      await this.LoadHotChart()
+    }
     console.log(this.data.TuijianList)
     console.log(this.data.HotChart)
   },
