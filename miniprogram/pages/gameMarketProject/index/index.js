@@ -6,8 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    first: false,
-    LunboList: '',
+    first:true,
+    LunboList:'',
     HotChart: '',
     TuijianList: '',
     show: false,
@@ -118,6 +118,7 @@ Page({
       mask: true //开启蒙版遮罩
     })
     console.log(app.globalData.User[0])
+    console.log(app.globalData.User)
     let count = await db.collection('Games').count()
     count = count.total
     //console.log(count)
@@ -274,8 +275,6 @@ Page({
       await this.LoadTuijianList()
       await this.LoadHotChart()
     }
-    console.log(this.data.TuijianList)
-    console.log(this.data.HotChart)
   },
 
   /**
@@ -291,7 +290,9 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {},
+  onPullDownRefresh: function () {
+
+  },
 
   /**
    * 页面上拉触底事件的处理函数
