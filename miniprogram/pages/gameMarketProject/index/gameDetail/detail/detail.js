@@ -471,7 +471,24 @@ Page({
         title: '购买成功'
       })
     }
+    console.log(this.data.PayWay )
     wx.hideLoading()
+    if(this.data.PayWay == 2)
+    {
+      wx.showToast({
+        title: '微信支付成功',
+        image:"../../../../../images/pay/微信支付.jpg",
+        duration:2000
+      })
+    }
+    else if(this.data.PayWay == 3){
+      wx.showToast({
+        title: '支付宝支付成功',
+        image:"../../../../../images/pay/支付宝.jpg",
+        duration:2000
+      })
+    }
+
     this.BuyClose()
   },
 
