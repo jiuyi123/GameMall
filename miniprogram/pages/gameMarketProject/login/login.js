@@ -74,7 +74,7 @@ Page({
     var userInfo
     const that = this
     wx.login({
-      success(res) {
+      success(res) {  
         //获取code
         console.log(res)
       }

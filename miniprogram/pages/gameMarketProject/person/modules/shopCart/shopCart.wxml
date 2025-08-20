@@ -30,7 +30,7 @@
 
 <!-- *********************************************** -->
 <!-- 总界面 -->
-<view class="product-container">
+<view  class="product-container">
   <view class="product-list" style="  height: calc(100vh - 100rpx);">
     <view class="product-item" wx:for="{{Show_list}}" wx:for-index="index" wx:key='slideProductList'>
       <!-- 商品列表 -->
